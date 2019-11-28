@@ -7,5 +7,5 @@ RUN npm install -g yarn && yarn install
 COPY . .
 
 WORKDIR /usr/src/app
-RUN yarn prisma deploy
+RUN yarn prisma deploy --force
 CMD ["yarn", "start"]
