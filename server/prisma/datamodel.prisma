@@ -4,3 +4,8 @@ type User {
   password: String!
   name: String!
 }
+
+type Post {
+  id: ID! @id
+  title: String!
+}
