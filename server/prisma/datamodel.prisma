@@ -1,8 +1,3 @@
-type Post {
-  id: ID! @id
-  title: String!
-}
-
 type User {
   id: ID! @id
   email: String! @unique

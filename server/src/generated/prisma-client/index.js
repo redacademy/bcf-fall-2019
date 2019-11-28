@@ -5,10 +5,6 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
-    name: "Post",
-    embedded: false
-  },
-  {
     name: "User",
     embedded: false
   }
@@ -16,6 +12,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://us1.prisma.sh/public-narrowlegend-270/server/dev`
+  endpoint: `https://us1.prisma.sh/public-lunarpainter-332/server/dev`
 });
 exports.prisma = new exports.Prisma();
