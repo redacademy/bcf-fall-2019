@@ -4,3 +4,29 @@ type User {
   password: String!
   name: String!
 }
+
+type Review{
+  id: ID! @id
+  user_iD: String!
+  score: Int!
+  comment: String!
+  date: DateTime!
+}
+
+type Event{
+  id: ID! @id
+  title: String!
+  date: DateTime!
+  time: String!
+  category: String!
+  price: Int!
+  location_title: String!
+  address: String!
+  image: String!
+  difficulty: String!
+  language: String!
+  details: String!
+  host_user_id: String!
+  reviews: [Review]!
+}
+
