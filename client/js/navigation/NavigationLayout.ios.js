@@ -7,8 +7,9 @@ import BookingScreen from '../screens/Booking';
 import FavesScreen from '../screens/Faves';
 import ProfileScreen from '../screens/Profile';
 import {sharedNavigationOptions} from './config';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const {mediumGrey, white} = colors;
+const {mediumGrey, black, white} = colors;
 
 const HomeStack = createStackNavigator(
   {
@@ -89,11 +90,11 @@ export default createBottomTabNavigator(
         const {routeName} = navigation.state;
         let iconName;
         if (routeName === 'Home') {
-          iconName = '';
+          iconName = 'ios-calendar';
         } else if (routeName === 'Search') {
-          iconName = '';
+          iconName = 'ios-map';
         } else if (routeName === 'Calendar') {
-          iconName = '';
+          iconName = 'ios-heart';
         } else if (routeName === 'Faves') {
           iconName = '';
         } else if (routeName === 'Profile') {
@@ -103,13 +104,13 @@ export default createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: white,
+      activeTintColor: black,
       inactiveTintColor: mediumGrey,
       labelStyle: {
         fontSize: 10,
       },
       style: {
-        backgroundColor: white,
+        backgroundColor: black,
       },
     },
   },
