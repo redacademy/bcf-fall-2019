@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.bpfall2019"
+        applicationId "com.bcparksfoundation"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
