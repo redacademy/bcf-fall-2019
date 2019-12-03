@@ -1,10 +1,10 @@
 # OSX
 #
-.DS_Store
+**/.DS_Store
 
 # Xcode
 #
-build/
+**/build
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -13,27 +13,31 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
+**/xcuserdata
 *.xccheckout
 *.moved-aside
-DerivedData
+*DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
 
 # Android/IntelliJ
 #
-build/
-.idea
-.gradle
-local.properties
+**/.idea
+**/.gradle
+**/local.properties
 *.iml
 
 # node.js
 #
-node_modules/
-npm-debug.log
-yarn-error.log
+**/node_modules
+**/npm-debug.log
+**/yarn-error.log
+**/package-lock.json
+yarn.lock*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # BUCK
 buck-out/
@@ -56,4 +60,10 @@ buck-out/
 *.jsbundle
 
 # CocoaPods
-/ios/Pods/
+**/ios/Pods/
+*Podfile.lock
+
+**/dist
+**/.vscode
+**/.log
+**/.env
