@@ -1,4 +1,4 @@
-package com.bpfall2019;
+package com.bcparksfoundation;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "BPFall2019";
+    return "BCParksFoundation";
   }
 
   @Override
