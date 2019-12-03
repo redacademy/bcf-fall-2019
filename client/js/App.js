@@ -31,7 +31,9 @@ const App = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={{fontFamily: 'Montserrat-Regular'}}>Step One</Text>
+              <Text style={{fontFamily: 'Montserrat-Regular', fontSize: 100}}>
+                Step One
+              </Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
