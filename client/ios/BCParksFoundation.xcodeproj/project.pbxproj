@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* BCParksFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BCParksFoundationTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -20,6 +19,8 @@
 		37755E9F9678F0819628BA79 /* libPods-BCParksFoundation-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68FFA0D7C209AC76EBB1E5 /* libPods-BCParksFoundation-tvOSTests.a */; };
 		A22BA80382FA3A8869B246DA /* libPods-BCParksFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25293581EBE63CF863D7791B /* libPods-BCParksFoundation.a */; };
 		ED55EFCED19703AF63D4F322 /* libPods-BCParksFoundationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 455873A8D620863A2BB9B4AC /* libPods-BCParksFoundationTests.a */; };
+		D7E4874F71A34F3388334F16 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40CE6F742C344D628B3C19B0 /* Montserrat-Regular.otf */; };
+		78FDFC66B39443879F9B092A /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23314AD7AA734272BF47F9C4 /* Montserrat-SemiBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FB7E495CA66F22F2B501FB5E /* Pods-BCParksFoundation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundation.debug.xcconfig"; path = "Target Support Files/Pods-BCParksFoundation/Pods-BCParksFoundation.debug.xcconfig"; sourceTree = "<group>"; };
 		FF19C5CF1697A7FC0E31E172 /* libPods-BCParksFoundation-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BCParksFoundation-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40CE6F742C344D628B3C19B0 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; name = "Montserrat-Regular.otf"; path = "../js/assets/fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		23314AD7AA734272BF47F9C4 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; name = "Montserrat-SemiBold.otf"; path = "../js/assets/fonts/Montserrat-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C9902ADEC6AB12E42B6E3254 /* Pods */,
+				FF53BA826BC645998054474C /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +201,16 @@
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		FF53BA826BC645998054474C /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				40CE6F742C344D628B3C19B0 /* Montserrat-Regular.otf */,
+				23314AD7AA734272BF47F9C4 /* Montserrat-SemiBold.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -285,7 +299,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -338,6 +352,8 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				D7E4874F71A34F3388334F16 /* Montserrat-Regular.otf in Resources */,
+				78FDFC66B39443879F9B092A /* Montserrat-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
