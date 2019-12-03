@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.bpfall2019">
+  package="com.bcparksfoundation">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

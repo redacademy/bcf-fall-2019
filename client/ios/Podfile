@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'BPFall2019' do
-  # Pods for BPFall2019
+target 'BCParksFoundation' do
+  # Pods for BCParksFoundation
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -34,7 +34,7 @@ target 'BPFall2019' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'BPFall2019Tests' do
+  target 'BCParksFoundationTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -42,10 +42,10 @@ target 'BPFall2019' do
   use_native_modules!
 end
 
-target 'BPFall2019-tvOS' do
-  # Pods for BPFall2019-tvOS
+target 'BCParksFoundation-tvOS' do
+  # Pods for BCParksFoundation-tvOS
 
-  target 'BPFall2019-tvOSTests' do
+  target 'BCParksFoundation-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
