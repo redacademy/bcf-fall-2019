@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* BPFall2019Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BPFall2019Tests.m */; };
+		00E356F31AD99517003FC87E /* BCParksFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BCParksFoundationTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -15,11 +15,11 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* BPFall2019Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BPFall2019Tests.m */; };
-		34082825F64E97630C654589 /* libPods-BPFall2019-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF19C5CF1697A7FC0E31E172 /* libPods-BPFall2019-tvOS.a */; };
-		37755E9F9678F0819628BA79 /* libPods-BPFall2019-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68FFA0D7C209AC76EBB1E5 /* libPods-BPFall2019-tvOSTests.a */; };
-		A22BA80382FA3A8869B246DA /* libPods-BPFall2019.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25293581EBE63CF863D7791B /* libPods-BPFall2019.a */; };
-		ED55EFCED19703AF63D4F322 /* libPods-BPFall2019Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 455873A8D620863A2BB9B4AC /* libPods-BPFall2019Tests.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* BCParksFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BCParksFoundationTests.m */; };
+		34082825F64E97630C654589 /* libPods-BCParksFoundation-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF19C5CF1697A7FC0E31E172 /* libPods-BCParksFoundation-tvOS.a */; };
+		37755E9F9678F0819628BA79 /* libPods-BCParksFoundation-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E68FFA0D7C209AC76EBB1E5 /* libPods-BCParksFoundation-tvOSTests.a */; };
+		A22BA80382FA3A8869B246DA /* libPods-BCParksFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25293581EBE63CF863D7791B /* libPods-BCParksFoundation.a */; };
+		ED55EFCED19703AF63D4F322 /* libPods-BCParksFoundationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 455873A8D620863A2BB9B4AC /* libPods-BCParksFoundationTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,45 +28,45 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = BPFall2019;
+			remoteInfo = BCParksFoundation;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "BPFall2019-tvOS";
+			remoteInfo = "BCParksFoundation-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* BPFall2019Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BPFall2019Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* BCParksFoundationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BCParksFoundationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* BPFall2019Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPFall2019Tests.m; sourceTree = "<group>"; };
-		0D59491CA8648EB3320F9CDE /* Pods-BPFall2019-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPFall2019-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BPFall2019-tvOSTests/Pods-BPFall2019-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* BPFall2019.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPFall2019.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = BPFall2019/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BPFall2019/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* BCParksFoundationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BCParksFoundationTests.m; sourceTree = "<group>"; };
+		0D59491CA8648EB3320F9CDE /* Pods-BCParksFoundation-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundation-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BCParksFoundation-tvOSTests/Pods-BCParksFoundation-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* BCParksFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCParksFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = BCParksFoundation/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BCParksFoundation/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BPFall2019/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BPFall2019/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BPFall2019/main.m; sourceTree = "<group>"; };
-		25293581EBE63CF863D7791B /* libPods-BPFall2019.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BPFall2019.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E47B1E0B4A5D006451C7 /* BPFall2019-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BPFall2019-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* BPFall2019-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BPFall2019-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		455873A8D620863A2BB9B4AC /* libPods-BPFall2019Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BPFall2019Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		740B63E533863073641E0C4D /* Pods-BPFall2019-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPFall2019-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BPFall2019-tvOS/Pods-BPFall2019-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		82B042807114A0C96B5206C2 /* Pods-BPFall2019Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPFall2019Tests.release.xcconfig"; path = "Target Support Files/Pods-BPFall2019Tests/Pods-BPFall2019Tests.release.xcconfig"; sourceTree = "<group>"; };
-		891B1FFB1DE7CD8288514F05 /* Pods-BPFall2019-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPFall2019-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-BPFall2019-tvOS/Pods-BPFall2019-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		964CAA3A9AE815A82AA620D3 /* Pods-BPFall2019-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPFall2019-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-BPFall2019-tvOSTests/Pods-BPFall2019-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9E68FFA0D7C209AC76EBB1E5 /* libPods-BPFall2019-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BPFall2019-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C932210737AC2190FA9B5117 /* Pods-BPFall2019Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPFall2019Tests.debug.xcconfig"; path = "Target Support Files/Pods-BPFall2019Tests/Pods-BPFall2019Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		D26297A3B184E9212577566C /* Pods-BPFall2019.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPFall2019.release.xcconfig"; path = "Target Support Files/Pods-BPFall2019/Pods-BPFall2019.release.xcconfig"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BCParksFoundation/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BCParksFoundation/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BCParksFoundation/main.m; sourceTree = "<group>"; };
+		25293581EBE63CF863D7791B /* libPods-BCParksFoundation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BCParksFoundation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* BCParksFoundation-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BCParksFoundation-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* BCParksFoundation-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BCParksFoundation-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		455873A8D620863A2BB9B4AC /* libPods-BCParksFoundationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BCParksFoundationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		740B63E533863073641E0C4D /* Pods-BCParksFoundation-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundation-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BCParksFoundation-tvOS/Pods-BCParksFoundation-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		82B042807114A0C96B5206C2 /* Pods-BCParksFoundationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundationTests.release.xcconfig"; path = "Target Support Files/Pods-BCParksFoundationTests/Pods-BCParksFoundationTests.release.xcconfig"; sourceTree = "<group>"; };
+		891B1FFB1DE7CD8288514F05 /* Pods-BCParksFoundation-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundation-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-BCParksFoundation-tvOS/Pods-BCParksFoundation-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		964CAA3A9AE815A82AA620D3 /* Pods-BCParksFoundation-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundation-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-BCParksFoundation-tvOSTests/Pods-BCParksFoundation-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9E68FFA0D7C209AC76EBB1E5 /* libPods-BCParksFoundation-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BCParksFoundation-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C932210737AC2190FA9B5117 /* Pods-BCParksFoundationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundationTests.debug.xcconfig"; path = "Target Support Files/Pods-BCParksFoundationTests/Pods-BCParksFoundationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D26297A3B184E9212577566C /* Pods-BCParksFoundation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundation.release.xcconfig"; path = "Target Support Files/Pods-BCParksFoundation/Pods-BCParksFoundation.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		FB7E495CA66F22F2B501FB5E /* Pods-BPFall2019.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPFall2019.debug.xcconfig"; path = "Target Support Files/Pods-BPFall2019/Pods-BPFall2019.debug.xcconfig"; sourceTree = "<group>"; };
-		FF19C5CF1697A7FC0E31E172 /* libPods-BPFall2019-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BPFall2019-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB7E495CA66F22F2B501FB5E /* Pods-BCParksFoundation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BCParksFoundation.debug.xcconfig"; path = "Target Support Files/Pods-BCParksFoundation/Pods-BCParksFoundation.debug.xcconfig"; sourceTree = "<group>"; };
+		FF19C5CF1697A7FC0E31E172 /* libPods-BCParksFoundation-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BCParksFoundation-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED55EFCED19703AF63D4F322 /* libPods-BPFall2019Tests.a in Frameworks */,
+				ED55EFCED19703AF63D4F322 /* libPods-BCParksFoundationTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A22BA80382FA3A8869B246DA /* libPods-BPFall2019.a in Frameworks */,
+				A22BA80382FA3A8869B246DA /* libPods-BCParksFoundation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34082825F64E97630C654589 /* libPods-BPFall2019-tvOS.a in Frameworks */,
+				34082825F64E97630C654589 /* libPods-BCParksFoundation-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,20 +98,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37755E9F9678F0819628BA79 /* libPods-BPFall2019-tvOSTests.a in Frameworks */,
+				37755E9F9678F0819628BA79 /* libPods-BCParksFoundation-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* BPFall2019Tests */ = {
+		00E356EF1AD99517003FC87E /* BCParksFoundationTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* BPFall2019Tests.m */,
+				00E356F21AD99517003FC87E /* BCParksFoundationTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = BPFall2019Tests;
+			path = BCParksFoundationTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -122,7 +122,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* BPFall2019 */ = {
+		13B07FAE1A68108700A75B9A /* BCParksFoundation */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -133,7 +133,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = BPFall2019;
+			name = BCParksFoundation;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -141,10 +141,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				25293581EBE63CF863D7791B /* libPods-BPFall2019.a */,
-				FF19C5CF1697A7FC0E31E172 /* libPods-BPFall2019-tvOS.a */,
-				9E68FFA0D7C209AC76EBB1E5 /* libPods-BPFall2019-tvOSTests.a */,
-				455873A8D620863A2BB9B4AC /* libPods-BPFall2019Tests.a */,
+				25293581EBE63CF863D7791B /* libPods-BCParksFoundation.a */,
+				FF19C5CF1697A7FC0E31E172 /* libPods-BCParksFoundation-tvOS.a */,
+				9E68FFA0D7C209AC76EBB1E5 /* libPods-BCParksFoundation-tvOSTests.a */,
+				455873A8D620863A2BB9B4AC /* libPods-BCParksFoundationTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,9 +159,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* BPFall2019 */,
+				13B07FAE1A68108700A75B9A /* BCParksFoundation */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* BPFall2019Tests */,
+				00E356EF1AD99517003FC87E /* BCParksFoundationTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C9902ADEC6AB12E42B6E3254 /* Pods */,
@@ -174,10 +174,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* BPFall2019.app */,
-				00E356EE1AD99517003FC87E /* BPFall2019Tests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* BPFall2019-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* BPFall2019-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* BCParksFoundation.app */,
+				00E356EE1AD99517003FC87E /* BCParksFoundationTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* BCParksFoundation-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* BCParksFoundation-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,14 +185,14 @@
 		C9902ADEC6AB12E42B6E3254 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FB7E495CA66F22F2B501FB5E /* Pods-BPFall2019.debug.xcconfig */,
-				D26297A3B184E9212577566C /* Pods-BPFall2019.release.xcconfig */,
-				891B1FFB1DE7CD8288514F05 /* Pods-BPFall2019-tvOS.debug.xcconfig */,
-				740B63E533863073641E0C4D /* Pods-BPFall2019-tvOS.release.xcconfig */,
-				964CAA3A9AE815A82AA620D3 /* Pods-BPFall2019-tvOSTests.debug.xcconfig */,
-				0D59491CA8648EB3320F9CDE /* Pods-BPFall2019-tvOSTests.release.xcconfig */,
-				C932210737AC2190FA9B5117 /* Pods-BPFall2019Tests.debug.xcconfig */,
-				82B042807114A0C96B5206C2 /* Pods-BPFall2019Tests.release.xcconfig */,
+				FB7E495CA66F22F2B501FB5E /* Pods-BCParksFoundation.debug.xcconfig */,
+				D26297A3B184E9212577566C /* Pods-BCParksFoundation.release.xcconfig */,
+				891B1FFB1DE7CD8288514F05 /* Pods-BCParksFoundation-tvOS.debug.xcconfig */,
+				740B63E533863073641E0C4D /* Pods-BCParksFoundation-tvOS.release.xcconfig */,
+				964CAA3A9AE815A82AA620D3 /* Pods-BCParksFoundation-tvOSTests.debug.xcconfig */,
+				0D59491CA8648EB3320F9CDE /* Pods-BCParksFoundation-tvOSTests.release.xcconfig */,
+				C932210737AC2190FA9B5117 /* Pods-BCParksFoundationTests.debug.xcconfig */,
+				82B042807114A0C96B5206C2 /* Pods-BCParksFoundationTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -201,9 +201,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* BPFall2019Tests */ = {
+		00E356ED1AD99517003FC87E /* BCParksFoundationTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BPFall2019Tests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BCParksFoundationTests" */;
 			buildPhases = (
 				32337A57702565D4197FEEA6 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -215,14 +215,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = BPFall2019Tests;
-			productName = BPFall2019Tests;
-			productReference = 00E356EE1AD99517003FC87E /* BPFall2019Tests.xctest */;
+			name = BCParksFoundationTests;
+			productName = BCParksFoundationTests;
+			productReference = 00E356EE1AD99517003FC87E /* BCParksFoundationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* BPFall2019 */ = {
+		13B07F861A680F5B00A75B9A /* BCParksFoundation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BPFall2019" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BCParksFoundation" */;
 			buildPhases = (
 				EAEF1120AB281C98B12CEFDE /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -235,14 +235,14 @@
 			);
 			dependencies = (
 			);
-			name = BPFall2019;
-			productName = BPFall2019;
-			productReference = 13B07F961A680F5B00A75B9A /* BPFall2019.app */;
+			name = BCParksFoundation;
+			productName = BCParksFoundation;
+			productReference = 13B07F961A680F5B00A75B9A /* BCParksFoundation.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* BPFall2019-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* BCParksFoundation-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BPFall2019-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BCParksFoundation-tvOS" */;
 			buildPhases = (
 				AA900070489CB2CEBA0DA6D7 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -255,14 +255,14 @@
 			);
 			dependencies = (
 			);
-			name = "BPFall2019-tvOS";
-			productName = "BPFall2019-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* BPFall2019-tvOS.app */;
+			name = "BCParksFoundation-tvOS";
+			productName = "BCParksFoundation-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* BCParksFoundation-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* BPFall2019-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* BCParksFoundation-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BPFall2019-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BCParksFoundation-tvOSTests" */;
 			buildPhases = (
 				85372935F602364DA401BAEA /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -274,9 +274,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "BPFall2019-tvOSTests";
-			productName = "BPFall2019-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* BPFall2019-tvOSTests.xctest */;
+			name = "BCParksFoundation-tvOSTests";
+			productName = "BCParksFoundation-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* BCParksFoundation-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -303,7 +303,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BPFall2019" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BCParksFoundation" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -316,10 +316,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* BPFall2019 */,
-				00E356ED1AD99517003FC87E /* BPFall2019Tests */,
-				2D02E47A1E0B4A5D006451C7 /* BPFall2019-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* BPFall2019-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* BCParksFoundation */,
+				00E356ED1AD99517003FC87E /* BCParksFoundationTests */,
+				2D02E47A1E0B4A5D006451C7 /* BCParksFoundation-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* BCParksFoundation-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -402,7 +402,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BPFall2019Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BCParksFoundationTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,7 +424,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BPFall2019-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BCParksFoundation-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -446,7 +446,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BPFall2019-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BCParksFoundation-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -468,7 +468,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BPFall2019-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BCParksFoundation-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -520,7 +520,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* BPFall2019Tests.m in Sources */,
+				00E356F31AD99517003FC87E /* BCParksFoundationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* BPFall2019Tests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* BCParksFoundationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,12 +555,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* BPFall2019 */;
+			target = 13B07F861A680F5B00A75B9A /* BCParksFoundation */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* BPFall2019-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* BCParksFoundation-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -572,7 +572,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = BPFall2019;
+			path = BCParksFoundation;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -580,14 +580,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C932210737AC2190FA9B5117 /* Pods-BPFall2019Tests.debug.xcconfig */;
+			baseConfigurationReference = C932210737AC2190FA9B5117 /* Pods-BCParksFoundationTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = BPFall2019Tests/Info.plist;
+				INFOPLIST_FILE = BCParksFoundationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -597,17 +597,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BPFall2019.app/BPFall2019";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BCParksFoundation.app/BCParksFoundation";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82B042807114A0C96B5206C2 /* Pods-BPFall2019Tests.release.xcconfig */;
+			baseConfigurationReference = 82B042807114A0C96B5206C2 /* Pods-BCParksFoundationTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = BPFall2019Tests/Info.plist;
+				INFOPLIST_FILE = BCParksFoundationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -617,18 +617,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BPFall2019.app/BPFall2019";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BCParksFoundation.app/BCParksFoundation";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB7E495CA66F22F2B501FB5E /* Pods-BPFall2019.debug.xcconfig */;
+			baseConfigurationReference = FB7E495CA66F22F2B501FB5E /* Pods-BCParksFoundation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				INFOPLIST_FILE = BPFall2019/Info.plist;
+				INFOPLIST_FILE = BCParksFoundation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -636,18 +636,18 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = BPFall2019;
+				PRODUCT_NAME = BCParksFoundation;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D26297A3B184E9212577566C /* Pods-BPFall2019.release.xcconfig */;
+			baseConfigurationReference = D26297A3B184E9212577566C /* Pods-BCParksFoundation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = BPFall2019/Info.plist;
+				INFOPLIST_FILE = BCParksFoundation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -655,14 +655,14 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = BPFall2019;
+				PRODUCT_NAME = BCParksFoundation;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 891B1FFB1DE7CD8288514F05 /* Pods-BPFall2019-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 891B1FFB1DE7CD8288514F05 /* Pods-BCParksFoundation-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -673,14 +673,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "BPFall2019-tvOS/Info.plist";
+				INFOPLIST_FILE = "BCParksFoundation-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BPFall2019-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BCParksFoundation-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -690,7 +690,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 740B63E533863073641E0C4D /* Pods-BPFall2019-tvOS.release.xcconfig */;
+			baseConfigurationReference = 740B63E533863073641E0C4D /* Pods-BCParksFoundation-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -701,14 +701,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "BPFall2019-tvOS/Info.plist";
+				INFOPLIST_FILE = "BCParksFoundation-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BPFall2019-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BCParksFoundation-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -718,7 +718,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 964CAA3A9AE815A82AA620D3 /* Pods-BPFall2019-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 964CAA3A9AE815A82AA620D3 /* Pods-BCParksFoundation-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -728,24 +728,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "BPFall2019-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "BCParksFoundation-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BPFall2019-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BCParksFoundation-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BPFall2019-tvOS.app/BPFall2019-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BCParksFoundation-tvOS.app/BCParksFoundation-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D59491CA8648EB3320F9CDE /* Pods-BPFall2019-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 0D59491CA8648EB3320F9CDE /* Pods-BCParksFoundation-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -755,17 +755,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "BPFall2019-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "BCParksFoundation-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BPFall2019-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BCParksFoundation-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BPFall2019-tvOS.app/BPFall2019-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BCParksFoundation-tvOS.app/BCParksFoundation-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -872,7 +872,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BPFall2019Tests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BCParksFoundationTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -881,7 +881,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BPFall2019" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BCParksFoundation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -890,7 +890,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BPFall2019-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BCParksFoundation-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -899,7 +899,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BPFall2019-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BCParksFoundation-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -908,7 +908,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BPFall2019" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BCParksFoundation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
