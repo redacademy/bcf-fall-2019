@@ -64,5 +64,3 @@ buck-out/
 **/.vscode
 **/.log
 **/.env
-
-*.gitconfig
