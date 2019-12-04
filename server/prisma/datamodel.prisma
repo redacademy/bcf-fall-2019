@@ -73,17 +73,20 @@ type SelfGuidedTour{
 }
 
 type Faq {
+  id: ID! @id
   question: String!
   answer: String!
 }
 
 type ContactInfo{
+  id: ID! @id
   address: String!
   phoneNumber: String!
   email: String!
 }
 
 type ContactUs{
+  id: ID! @id
   contactInfo: ContactInfo!
   twitterLink: String
   instagramLink: String
@@ -91,6 +94,7 @@ type ContactUs{
 }
 
 type Info{
+  id: ID! @id
   faq: [Faq]
   about: String!
   contactUs: ContactUs!
