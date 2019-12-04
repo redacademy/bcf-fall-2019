@@ -1,1 +1,1 @@
-// Add any code here
+export {default as THEME} from './Theme';
