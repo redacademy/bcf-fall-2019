@@ -19,6 +19,21 @@ const THEME = {
     black: '#000000',
     grey: 'rgba(0,0,0,0.5)',
   },
+  shadow: {
+    onText: {
+      ...Platform.select({
+        ios: {
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.5,
+          shadowRadius: 4,
+        },
+        android: {
+          elevation: 3,
+        },
+      }),
+    },
+  },
 };
 
 export default THEME;
