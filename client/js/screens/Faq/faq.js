@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const Faq = () => {
+const Faq = props => {
   return <Text>Hello Faq</Text>;
 };
 

@@ -97,50 +97,46 @@ export default createBottomTabNavigator(
 
         if (routeName === 'Home') {
           Icon = focused ? (
-            <Image source={require('../assests/images/imgNavHomeActive.png')} />
+            <Image source={require('../assets/images/imgNavHomeActive.png')} />
           ) : (
-            <Image
-              source={require('../assests/images/imgNavHomeDefault.png')}
-            />
+            <Image source={require('../assets/images/imgNavHomeDefault.png')} />
           );
         } else if (routeName === 'Search') {
           Icon = focused ? (
             <Image
-              source={require('../assests/images/imgNavSearchActive.png')}
+              source={require('../assets/images/imgNavSearchActive.png')}
             />
           ) : (
             <Image
-              source={require('../assests/images/imgNavSearchDefault.png')}
+              source={require('../assets/images/imgNavSearchDefault.png')}
             />
           );
         } else if (routeName === 'Booking') {
           Icon = focused ? (
             <Image
-              source={require('../assests/images/imgNavBookingActive.png')}
+              source={require('../assets/images/imgNavBookingActive.png')}
             />
           ) : (
             <Image
-              source={require('../assests/images/imgNavBookingDefault.png')}
+              source={require('../assets/images/imgNavBookingDefault.png')}
             />
           );
         } else if (routeName === 'Saved') {
           Icon = focused ? (
-            <Image
-              source={require('../assests/images/imgNavSavedActive.png')}
-            />
+            <Image source={require('../assets/images/imgNavSavedActive.png')} />
           ) : (
             <Image
-              source={require('../assests/images/imgNavSavedDefault.png')}
+              source={require('../assets/images/imgNavSavedDefault.png')}
             />
           );
         } else if (routeName === 'Profile') {
           Icon = focused ? (
             <Image
-              source={require('../assests/images/imgNavProfileActive.png')}
+              source={require('../assets/images/imgNavProfileActive.png')}
             />
           ) : (
             <Image
-              source={require('../assests/images/imgNavProfileDefault.png')}
+              source={require('../assets/images/imgNavProfileDefault.png')}
             />
           );
         }
