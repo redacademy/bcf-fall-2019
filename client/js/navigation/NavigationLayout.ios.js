@@ -1,15 +1,19 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
+
 import HomeScreen from '../screens/Home';
 import SearchScreen from '../screens/Search';
 import BookingScreen from '../screens/Booking';
-import FavesScreen from '../screens/Faves';
+import SavedScreen from '../screens/Saved';
 import ProfileScreen from '../screens/Profile';
-import {sharedNavigationOptions} from './config';
-import Icon from 'react-native-vector-icons/Ionicons';
 
-const {mediumGrey, black, white} = colors;
+import {Image} from 'react-native';
+
+import {sharedNavigationOptions} from './config';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+
+const {black, mediumGrey, white} = Colors;
 
 const HomeStack = createStackNavigator(
   {
@@ -50,15 +54,15 @@ const BookingStack = createStackNavigator(
   },
 );
 
-const FavesStack = createStackNavigator(
+const SavedStack = createStackNavigator(
   {
-    Faves: FavesScreen,
+    Saved: SavedScreen,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
       ...sharedNavigationOptions(navigation),
-      initialRouteName: 'Faves',
-      title: 'Faves',
+      initialRouteName: 'Saved',
+      title: 'Saved',
     }),
   },
 );
@@ -81,26 +85,66 @@ export default createBottomTabNavigator(
     Home: HomeStack,
     Search: SearchStack,
     Booking: BookingStack,
-    Faves: FavesStack,
+    Saved: SavedStack,
     Profile: ProfileStack,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
       tabBarIcon: ({focused, tintColor}) => {
         const {routeName} = navigation.state;
-        let iconName;
+
+        let Icon = null;
+
         if (routeName === 'Home') {
-          iconName = 'ios-calendar';
+          Icon = focused ? (
+            <Image source={require('../assests/images/imgNavHomeActive.png')} />
+          ) : (
+            <Image
+              source={require('../assests/images/imgNavHomeDefault.png')}
+            />
+          );
         } else if (routeName === 'Search') {
-          iconName = 'ios-map';
-        } else if (routeName === 'Calendar') {
-          iconName = 'ios-heart';
-        } else if (routeName === 'Faves') {
-          iconName = '';
+          Icon = focused ? (
+            <Image
+              source={require('../assests/images/imgNavSearchActive.png')}
+            />
+          ) : (
+            <Image
+              source={require('../assests/images/imgNavSearchDefault.png')}
+            />
+          );
+        } else if (routeName === 'Booking') {
+          Icon = focused ? (
+            <Image
+              source={require('../assests/images/imgNavBookingActive.png')}
+            />
+          ) : (
+            <Image
+              source={require('../assests/images/imgNavBookingDefault.png')}
+            />
+          );
+        } else if (routeName === 'Saved') {
+          Icon = focused ? (
+            <Image
+              source={require('../assests/images/imgNavSavedActive.png')}
+            />
+          ) : (
+            <Image
+              source={require('../assests/images/imgNavSavedDefault.png')}
+            />
+          );
         } else if (routeName === 'Profile') {
-          iconName = '';
+          Icon = focused ? (
+            <Image
+              source={require('../assests/images/imgNavProfileActive.png')}
+            />
+          ) : (
+            <Image
+              source={require('../assests/images/imgNavProfileDefault.png')}
+            />
+          );
         }
-        return <Icon name={iconName} size={25} color={tintColor} />;
+        return Icon;
       },
     }),
     tabBarOptions: {
@@ -110,7 +154,7 @@ export default createBottomTabNavigator(
         fontSize: 10,
       },
       style: {
-        backgroundColor: black,
+        backgroundColor: white,
       },
     },
   },
