@@ -1,40 +1,57 @@
 import React from 'react';
-import {ImageBackground} from 'react-native';
+import {ImageBackground, Text, View} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
+import styles from './styles';
+import {THEME} from '../../config';
 
 const OnboardingSwiper = () => {
   return (
     <Onboarding
       pages={[
         {
-          backgroundColor: '#000',
+          backgroundColor: THEME.colors.black,
           image: (
             <ImageBackground
               source={require('../../assets/images/imgOnboarding01.jpg')}
-              style={{width: '100%', height: '100%'}}
-            />
+              style={styles.pageDefault}>
+              <View style={styles.contentWrap}>
+                <Text style={styles.content}>
+                  {`Explore\nFamily-Friendly\nEvents`}
+                </Text>
+              </View>
+            </ImageBackground>
           ),
           title: ``,
           subtitle: '',
         },
         {
-          backgroundColor: '#000',
+          backgroundColor: THEME.colors.black,
           image: (
             <ImageBackground
               source={require('../../assets/images/imgOnboarding02.jpg')}
-              style={{width: '100%', height: '100%'}}
-            />
+              style={styles.pageDefault}>
+              <View style={styles.contentWrap}>
+                <Text style={styles.content}>
+                  {`Find a trail for\nyou with Audio`}
+                </Text>
+              </View>
+            </ImageBackground>
           ),
           title: ``,
           subtitle: '',
         },
         {
-          backgroundColor: '#000',
+          backgroundColor: THEME.colors.black,
           image: (
             <ImageBackground
               source={require('../../assets/images/imgOnboarding03.jpg')}
-              style={{width: '100%', height: '100%'}}
-            />
+              style={styles.pageDefault}>
+              <View style={styles.contentWrap}>
+                <Text style={styles.content}>
+                  {`Support and Enhance BC Parks`}
+                </Text>
+              </View>
+            </ImageBackground>
           ),
           title: ``,
           subtitle: '',
