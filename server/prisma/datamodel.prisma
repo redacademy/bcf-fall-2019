@@ -1,6 +1,101 @@
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+type Host {
+  id: ID! @id
+  email: String! @unique
+  name: String!
+  image: String!
+  bio: String!
+}
+
 type User {
   id: ID! @id
   email: String! @unique
   password: String!
-  name: String!
+  firstName: String!
+  lastName: String!
+  location: String!
+  image: String!
+  bio: String!
+  date: DateTime! @createdAt
+  eventsHosted: [String]
+}
+
+type Review {
+  id: ID! @id
+  userID: String! 
+  score: Int!
+  comment: String!
+  date: DateTime! @createdAt
+}
+
+type Event {
+  id: ID! @id
+  title: String!
+  date: DateTime! 
+  startAt: String!
+  endAt: String!
+  category: String!
+  price: Float!
+  locationTitle: String!
+  address: String!
+  image: String!
+  difficulty: Difficulty!
+  language: String!
+  details: String!
+  host: Host!
+  reviews: [Review]!  @relation(link: INLINE, onDelete: CASCADE)
+}
+
+type Audio {
+  id: ID! @id
+  title: String!
+  description: String!
+  duration: String!
+  latitude: String!
+  longitude: String!
+  url: String!
+}
+
+type SelfGuidedTour{
+  id: ID! @id
+  title: String!
+  location: String!
+  duration: String!
+  difficulty: Difficulty!
+  petFriendly: Boolean! @default(value: false)
+  description: String!
+  audio: [Audio]!  @relation(link: INLINE, onDelete: CASCADE)
+}
+
+type Faq {
+  id: ID! @id
+  question: String!
+  answer: String!
+}
+
+type ContactInfo{
+  id: ID! @id
+  address: String!
+  phoneNumber: String!
+  email: String!
+}
+
+type ContactUs{
+  id: ID! @id
+  contactInfo: ContactInfo!
+  twitterLink: String
+  instagramLink: String
+  facebookLink: String
+}
+
+type Info{
+  id: ID! @id
+  faq: [Faq]
+  about: String!
+  contactUs: ContactUs!
 }
