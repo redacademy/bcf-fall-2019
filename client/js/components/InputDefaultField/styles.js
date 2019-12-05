@@ -18,12 +18,6 @@ const styles = StyleSheet.create({
     borderColor: THEME.colors.grey,
   },
   selected: {
-    ...THEME.padding.inputField,
-    ...THEME.typography.size.default,
-    ...THEME.borders.radius.default,
-    ...THEME.borders.width.default,
-    color: THEME.colors.black,
-    backgroundColor: THEME.colors.paleGrey,
     borderColor: THEME.colors.burntSienna,
   },
 });

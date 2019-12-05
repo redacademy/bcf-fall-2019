@@ -37,8 +37,30 @@ const SignIn = props => {
                           autoCapitalize="none"
                           autoCompleteType="email"
                           placeholder={placeholder}
+                          textContentType="emailAddress"
+                          style={styles.inputEmail}
                         />
                       );
+                    }}
+                  </Field>
+                  <Field name="password" placeholder="Password">
+                    {({input, meta, placeholder}) => {
+                      return (
+                        <InputDefaultField
+                          {...input}
+                          title="Password"
+                          secureTextEntry={true}
+                          autoCapitalize="none"
+                          autoCompleteType="password"
+                          placeholder={placeholder}
+                          textContentType="password"
+                        />
+                      );
+                    }}
+                  </Field>
+                  <Field name="rememberMe">
+                    {({input}) => {
+                      return <></>;
                     }}
                   </Field>
                   <Button title="Sign In" onPress={props.handleSubmit} />

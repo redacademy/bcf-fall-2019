@@ -53,6 +53,9 @@ const THEME = {
     },
   },
   padding: {
+    default: int => {
+      return 16 * int;
+    },
     accountScreen: {
       paddingHorizontal: 32,
     },

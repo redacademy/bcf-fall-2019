@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
   signInBgImg: {
@@ -9,6 +10,9 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 116,
     textAlign: 'center',
+  },
+  inputEmail: {
+    marginBottom: THEME.padding.default(2),
   },
 });
 

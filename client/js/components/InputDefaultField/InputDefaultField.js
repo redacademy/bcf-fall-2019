@@ -9,15 +9,15 @@ class InputDefaultField extends Component {
     this.state = {
       selected: false,
       styles: {
-        default: ({...this.props.style}, {...styles.default}),
-        selected: ({...this.props.style}, {...styles.selected}),
+        default: {...this.props.style, ...styles.default},
+        selected: {...this.props.style, ...styles.default, ...styles.selected},
       },
     };
   }
 
   render() {
     const {title} = this.props;
-    console.log('children: ', this.props);
+
     return (
       <View>
         <Text style={styles.title}>{title}</Text>
