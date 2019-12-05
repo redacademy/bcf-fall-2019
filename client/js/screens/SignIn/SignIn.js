@@ -1,6 +1,6 @@
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
-import {ScrollView, Text, ImageBackground} from 'react-native';
+import {ScrollView, Button, ImageBackground, View} from 'react-native';
 import {Form} from 'react-final-form';
 import TitleText from '../../components/TitleText';
 import {THEME} from '../../config';
@@ -16,6 +16,18 @@ const SignIn = props => {
       <ScrollView>
         <SafeAreaView style={THEME.padding.accountScreen}>
           <TitleText style={styles.title}>Sign In</TitleText>
+          <Form
+            onSubmit={() => {
+              console.log(1);
+            }}>
+            {props => {
+              return (
+                <View>
+                  <Button title="submit" onPress={props.handleSubmit} />
+                </View>
+              );
+            }}
+          </Form>
         </SafeAreaView>
       </ScrollView>
     </>
