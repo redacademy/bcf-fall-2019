@@ -1,8 +1,9 @@
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {ScrollView, Button, ImageBackground, View} from 'react-native';
-import {Form} from 'react-final-form';
+import {Form, Field} from 'react-final-form';
 import TitleText from '../../components/TitleText';
+import InputDefaultField from '../../components/InputDefaultField';
 import {THEME} from '../../config';
 import styles from './styles';
 
@@ -21,8 +22,20 @@ const SignIn = props => {
               console.log(1);
             }}>
             {props => {
+              console.log(props);
               return (
                 <View>
+                  <Field name="email" placeholder="example@email.com">
+                    {({input, meta, placeholder}) => {
+                      return (
+                        <InputDefaultField
+                          title="Email"
+                          autoCompleteType="email"
+                          placeholder={placeholder}
+                        />
+                      );
+                    }}
+                  </Field>
                   <Button title="submit" onPress={props.handleSubmit} />
                 </View>
               );
