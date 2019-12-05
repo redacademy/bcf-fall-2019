@@ -34,6 +34,11 @@ const THEME = {
       }),
     },
   },
+  padding: {
+    accountScreen: {
+      paddingHorizontal: 32,
+    },
+  },
 };
 
 export default THEME;
