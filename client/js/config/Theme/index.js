@@ -8,6 +8,23 @@ const THEME = {
     bold: {
       fontFamily: 'Montserrat-SemiBold',
     },
+    size: {
+      default: {
+        fontSize: 17,
+      },
+    },
+  },
+  borders: {
+    radius: {
+      default: {
+        borderRadius: 4,
+      },
+    },
+    width: {
+      default: {
+        borderWidth: 1,
+      },
+    },
   },
   colors: {
     astronautBlue: '#013859',
@@ -18,6 +35,7 @@ const THEME = {
     white: '#FFFFFF',
     black: '#000000',
     grey: 'rgba(0,0,0,0.5)',
+    paleGrey: '#F8FBFD',
   },
   shadow: {
     onText: {
@@ -37,6 +55,10 @@ const THEME = {
   padding: {
     accountScreen: {
       paddingHorizontal: 32,
+    },
+    inputField: {
+      paddingHorizontal: 16,
+      paddingVertical: 12,
     },
   },
 };

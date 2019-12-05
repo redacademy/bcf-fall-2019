@@ -18,8 +18,11 @@ const SignIn = props => {
         <SafeAreaView style={THEME.padding.accountScreen}>
           <TitleText style={styles.title}>Sign In</TitleText>
           <Form
-            onSubmit={() => {
-              console.log(1);
+            onSubmit={values => {
+              console.log('submit: ', 1);
+            }}
+            validate={values => {
+              console.log('validate: ', values);
             }}>
             {props => {
               console.log(props);
@@ -29,14 +32,16 @@ const SignIn = props => {
                     {({input, meta, placeholder}) => {
                       return (
                         <InputDefaultField
+                          {...input}
                           title="Email"
+                          autoCapitalize="none"
                           autoCompleteType="email"
                           placeholder={placeholder}
                         />
                       );
                     }}
                   </Field>
-                  <Button title="submit" onPress={props.handleSubmit} />
+                  <Button title="Sign In" onPress={props.handleSubmit} />
                 </View>
               );
             }}
