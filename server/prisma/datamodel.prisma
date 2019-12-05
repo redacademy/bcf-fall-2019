@@ -22,7 +22,6 @@ type User {
   image: String!
   bio: String!
   date: DateTime! @createdAt
-  eventsHosted: [String]
 }
 
 type Review {
@@ -48,7 +47,7 @@ type Event {
   language: String!
   details: String!
   host: Host!
-  reviews: [Review]!  @relation(link: INLINE, onDelete: CASCADE)
+  reviews: [Review]!  @relation(link: TABLE, onDelete: CASCADE)
 }
 
 type Audio {
@@ -69,7 +68,7 @@ type SelfGuidedTour{
   difficulty: Difficulty!
   petFriendly: Boolean! @default(value: false)
   description: String!
-  audio: [Audio]!  @relation(link: INLINE, onDelete: CASCADE)
+  audio: [Audio]!  @relation(link: TABLE, onDelete: CASCADE)
 }
 
 type Faq {
