@@ -2134,8 +2134,7 @@ type User {
   firstName: String!
   lastName: String!
   location: String!
-  image: String!
-  bio: String!
+  image: String
   date: DateTime!
 }
 
@@ -2152,8 +2151,7 @@ input UserCreateInput {
   firstName: String!
   lastName: String!
   location: String!
-  image: String!
-  bio: String!
+  image: String
 }
 
 type UserEdge {
@@ -2176,8 +2174,6 @@ enum UserOrderByInput {
   location_DESC
   image_ASC
   image_DESC
-  bio_ASC
-  bio_DESC
   date_ASC
   date_DESC
 }
@@ -2189,8 +2185,7 @@ type UserPreviousValues {
   firstName: String!
   lastName: String!
   location: String!
-  image: String!
-  bio: String!
+  image: String
   date: DateTime!
 }
 
@@ -2219,7 +2214,6 @@ input UserUpdateInput {
   lastName: String
   location: String
   image: String
-  bio: String
 }
 
 input UserUpdateManyMutationInput {
@@ -2229,7 +2223,6 @@ input UserUpdateManyMutationInput {
   lastName: String
   location: String
   image: String
-  bio: String
 }
 
 input UserWhereInput {
@@ -2331,20 +2324,6 @@ input UserWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
-  bio: String
-  bio_not: String
-  bio_in: [String!]
-  bio_not_in: [String!]
-  bio_lt: String
-  bio_lte: String
-  bio_gt: String
-  bio_gte: String
-  bio_contains: String
-  bio_not_contains: String
-  bio_starts_with: String
-  bio_not_starts_with: String
-  bio_ends_with: String
-  bio_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
