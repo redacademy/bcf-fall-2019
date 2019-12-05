@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const About = () => {
+const About = props => {
   return <Text>Hello About</Text>;
 };
 

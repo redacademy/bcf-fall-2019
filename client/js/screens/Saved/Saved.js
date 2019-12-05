@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const Faves = () => {
+const Faves = props => {
   return <Text>Hello Saved</Text>;
 };
 
