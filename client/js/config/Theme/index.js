@@ -8,6 +8,37 @@ const THEME = {
     bold: {
       fontFamily: 'Montserrat-SemiBold',
     },
+    size: {
+      default: {
+        fontSize: 17,
+      },
+      caption: {
+        fontSize: 12,
+      },
+    },
+    weight: {
+      medium: '500',
+      semibold: '600',
+    },
+    button: {
+      fontSize: 17,
+      fontWeight: '400',
+      textAlign: 'center',
+      letterSpacing: -0.41,
+      lineHeight: 22,
+    },
+  },
+  borders: {
+    radius: {
+      default: {
+        borderRadius: 4,
+      },
+    },
+    width: {
+      default: {
+        borderWidth: 1,
+      },
+    },
   },
   colors: {
     astronautBlue: '#013859',
@@ -18,6 +49,7 @@ const THEME = {
     white: '#FFFFFF',
     black: '#000000',
     grey: 'rgba(0,0,0,0.5)',
+    paleGrey: '#F8FBFD',
   },
   shadow: {
     onText: {
@@ -33,6 +65,24 @@ const THEME = {
         },
       }),
     },
+  },
+  padding: {
+    default: int => {
+      return 16 * int;
+    },
+    accountScreen: {
+      paddingHorizontal: 32,
+    },
+    inputField: {
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+    },
+  },
+  button: {
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#F1785B',
+    paddingVertical: 12,
   },
 };
 
