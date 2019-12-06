@@ -1,13 +1,21 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
+export const toggleOnbording = async () => {
+  try {
+    return await AsyncStorage.setItem(`onBoarding`, true);
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
 export const addViewer = async viewer => {
   try {
     return await AsyncStorage.setItem(
-      `${viewer}`,
+      `user`,
       JSON.stringify({
         id: viewer.id,
         token: viewer.token,
-        viewerLoggedDate: new Date(),
       }),
     );
   } catch (e) {
@@ -17,10 +25,8 @@ export const addViewer = async viewer => {
 };
 
 export const getViewer = async () => {
-  let value = null;
   try {
-    const keys = await AsyncStorage.getAllKeys();
-    value = await AsyncStorage.multiGet(keys);
+    const value = await AsyncStorage.getItem('user');
     return value;
   } catch (e) {
     console.log(e);
@@ -28,9 +34,9 @@ export const getViewer = async () => {
   }
 };
 
-export const removeViewer = async viewerId => {
+export const removeViewer = async () => {
   try {
-    return await AsyncStorage.removeItem(`${viewerId}`);
+    return await AsyncStorage.removeItem(`user`);
   } catch (e) {
     console.log(e);
     return false;
