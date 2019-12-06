@@ -39,7 +39,6 @@ const SignIn = props => {
                 <Form
                   onSubmit={async values => {
                     try {
-                      console.log(values);
                       await logIn({variables: values});
                     } catch (error) {
                       console.log(error);
