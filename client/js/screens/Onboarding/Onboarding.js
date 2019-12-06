@@ -3,8 +3,9 @@ import {ImageBackground, Text, View} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from './styles';
 import {THEME} from '../../config';
+import PropTypes from 'prop-types';
 
-const OnboardingSwiper = () => {
+const OnboardingSwiper = ({navigation}) => {
   return (
     <Onboarding
       pages={[
@@ -62,3 +63,7 @@ const OnboardingSwiper = () => {
 };
 
 export default OnboardingSwiper;
+
+OnboardingSwiper.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
