@@ -56,7 +56,7 @@ type Audio {
   selfGuidedTour: SelfGuidedTour!
 }
 
-Type AudioMarkers {
+type AudioMarkers {
   id: ID! @id
   title: String!
   description: String!
