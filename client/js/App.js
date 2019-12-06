@@ -10,9 +10,8 @@ export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <SignIn />
+        <RootStackNavigator />
       </ApolloProvider>
     );
-    // return <RootStackNavigator />;
   }
 }
