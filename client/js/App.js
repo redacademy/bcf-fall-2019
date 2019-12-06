@@ -5,7 +5,7 @@ import SignIn from './screens/SignIn';
 
 export default class App extends Component {
   render() {
-    return <SignIn />;
-    // return <RootStackNavigator />;
+    // return <SignIn />;
+    return <RootStackNavigator />;
   }
 }
