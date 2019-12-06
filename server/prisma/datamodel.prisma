@@ -19,14 +19,13 @@ type User {
   firstName: String!
   lastName: String!
   location: String!
-  image: String!
-  bio: String!
+  image: String
   date: DateTime! @createdAt
 }
 
 type Review {
   id: ID! @id
-  userID: String! 
+  user: User! 
   score: Int!
   comment: String!
   date: DateTime! @createdAt

@@ -509,8 +509,6 @@ export type UserOrderByInput =
   | "location_DESC"
   | "image_ASC"
   | "image_DESC"
-  | "bio_ASC"
-  | "bio_DESC"
   | "date_ASC"
   | "date_DESC";
 
@@ -1119,7 +1117,6 @@ export interface UserUpdateManyMutationInput {
   lastName?: Maybe<String>;
   location?: Maybe<String>;
   image?: Maybe<String>;
-  bio?: Maybe<String>;
 }
 
 export interface UserWhereInput {
@@ -1221,20 +1218,6 @@ export interface UserWhereInput {
   image_not_starts_with?: Maybe<String>;
   image_ends_with?: Maybe<String>;
   image_not_ends_with?: Maybe<String>;
-  bio?: Maybe<String>;
-  bio_not?: Maybe<String>;
-  bio_in?: Maybe<String[] | String>;
-  bio_not_in?: Maybe<String[] | String>;
-  bio_lt?: Maybe<String>;
-  bio_lte?: Maybe<String>;
-  bio_gt?: Maybe<String>;
-  bio_gte?: Maybe<String>;
-  bio_contains?: Maybe<String>;
-  bio_not_contains?: Maybe<String>;
-  bio_starts_with?: Maybe<String>;
-  bio_not_starts_with?: Maybe<String>;
-  bio_ends_with?: Maybe<String>;
-  bio_not_ends_with?: Maybe<String>;
   date?: Maybe<DateTimeInput>;
   date_not?: Maybe<DateTimeInput>;
   date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1430,8 +1413,7 @@ export interface UserCreateInput {
   firstName: String;
   lastName: String;
   location: String;
-  image: String;
-  bio: String;
+  image?: Maybe<String>;
 }
 
 export interface FaqCreateManyInput {
@@ -1750,7 +1732,6 @@ export interface UserUpdateInput {
   lastName?: Maybe<String>;
   location?: Maybe<String>;
   image?: Maybe<String>;
-  bio?: Maybe<String>;
 }
 
 export interface ContactInfoUpdateDataInput {
@@ -2328,8 +2309,7 @@ export interface UserPreviousValues {
   firstName: String;
   lastName: String;
   location: String;
-  image: String;
-  bio: String;
+  image?: String;
   date: DateTimeOutput;
 }
 
@@ -2343,7 +2323,6 @@ export interface UserPreviousValuesPromise
   lastName: () => Promise<String>;
   location: () => Promise<String>;
   image: () => Promise<String>;
-  bio: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
 
@@ -2357,7 +2336,6 @@ export interface UserPreviousValuesSubscription
   lastName: () => Promise<AsyncIterator<String>>;
   location: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
-  bio: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
@@ -2630,8 +2608,7 @@ export interface User {
   firstName: String;
   lastName: String;
   location: String;
-  image: String;
-  bio: String;
+  image?: String;
   date: DateTimeOutput;
 }
 
@@ -2643,7 +2620,6 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   lastName: () => Promise<String>;
   location: () => Promise<String>;
   image: () => Promise<String>;
-  bio: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
 
@@ -2657,7 +2633,6 @@ export interface UserSubscription
   lastName: () => Promise<AsyncIterator<String>>;
   location: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
-  bio: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
@@ -2671,7 +2646,6 @@ export interface UserNullablePromise
   lastName: () => Promise<String>;
   location: () => Promise<String>;
   image: () => Promise<String>;
-  bio: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
 
