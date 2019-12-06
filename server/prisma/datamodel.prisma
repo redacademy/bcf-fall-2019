@@ -52,7 +52,7 @@ type Event {
 type Audio {
   id: ID! @id
   url: String!
-  markers: [AudioMarkers]! 
+  markers: [AudioMarkers] 
   selfGuidedTour: SelfGuidedTour!
 }
 
@@ -63,7 +63,7 @@ type AudioMarkers {
   latitude: String!
   longitude: String!
   start: Float!
-  audio: Audio! @relation(link: TABLE, onDelete: CASCADE)
+  audio: Audio @relation(link: TABLE, onDelete: CASCADE)
 }
 
 type SelfGuidedTour{
@@ -74,7 +74,7 @@ type SelfGuidedTour{
   difficulty: Difficulty!
   petFriendly: Boolean! @default(value: false)
   description: String!
-  audio: Audio!  @relation(link: TABLE, onDelete: CASCADE)
+  audio: Audio  @relation(link: TABLE, onDelete: CASCADE)
 }
 
 
