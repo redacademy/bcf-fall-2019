@@ -27,10 +27,7 @@ const SignIn = props => {
       <ScrollView>
         <SafeAreaView style={THEME.padding.accountScreen}>
           <TitleText style={styles.title}>Sign In</TitleText>
-          <Form
-            onSubmit={values => {
-              console.log('submit: ', values);
-            }}>
+          <Form onSubmit={values => {}}>
             {props => {
               return (
                 <View>
@@ -50,7 +47,6 @@ const SignIn = props => {
                           password: 'Please enter the password',
                         });
                       }
-                      // console.log(values, isErrors);
                     }}
                   />
                   <Field name="email" placeholder="example@email.com">
