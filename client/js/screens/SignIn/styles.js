@@ -37,6 +37,13 @@ const styles = StyleSheet.create({
   button: {
     width: 147,
     alignSelf: 'center',
+    marginBottom: 16,
+  },
+  text: {
+    ...THEME.typography.size.caption,
+    color: THEME.colors.astronautBlue,
+    textAlign: 'center',
+    marginBottom: 16,
   },
 });
 

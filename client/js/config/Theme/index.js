@@ -20,21 +20,11 @@ const THEME = {
       medium: '500',
     },
     button: {
-      default: {
-        fontSize: 17,
-        fontWeight: '400',
-        textAlign: 'center',
-        letterSpacing: -0.41,
-        lineHeight: 22,
-        color: '#F1785B',
-      },
-      selected: {
-        fontSize: 17,
-        fontWeight: '400',
-        letterSpacing: -0.41,
-        lineHeight: 22,
-        color: '#FFFFFF',
-      },
+      fontSize: 17,
+      fontWeight: '400',
+      textAlign: 'center',
+      letterSpacing: -0.41,
+      lineHeight: 22,
     },
   },
   borders: {
@@ -88,20 +78,10 @@ const THEME = {
     },
   },
   button: {
-    default: {
-      borderRadius: 4,
-      borderWidth: 1,
-      borderColor: '#F1785B',
-      backgroundColor: '#FFFFFF',
-      paddingVertical: 12,
-    },
-    selected: {
-      borderRadius: 4,
-      borderWidth: 1,
-      borderColor: '#F1785B',
-      backgroundColor: '#F1785B',
-      paddingVertical: 12,
-    },
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#F1785B',
+    paddingVertical: 12,
   },
 };
 

@@ -10,7 +10,7 @@ import {THEME} from '../../config';
 import styles from './styles';
 
 const SignIn = props => {
-  const [errors, setErros] = useState(null);
+  const [isErrors, setErrors] = useState(null);
   return (
     <>
       <ImageBackground
@@ -25,20 +25,25 @@ const SignIn = props => {
               console.log('submit: ', values);
             }}>
             {props => {
-              // console.log(props.valid);
               return (
                 <View>
                   <FormSpy
                     subscription={{values: true}}
                     onChange={({values}) => {
-                      setErros(null);
+                      setErrors(null);
                       if (!values.email) {
-                        setErros({email: 'Please enter the email'});
+                        setErrors({
+                          ...isErrors,
+                          email: 'Please enter the email',
+                        });
                       }
                       if (!values.password) {
-                        setErros({password: 'Please enter the password'});
+                        setErrors({
+                          ...isErrors,
+                          password: 'Please enter the password',
+                        });
                       }
-                      console.log(errors);
+                      // console.log(values, isErrors);
                     }}
                   />
                   <Field name="email" placeholder="example@email.com">
@@ -84,12 +89,19 @@ const SignIn = props => {
                   <ButtonDefault
                     onPress={props.handleSubmit}
                     buttonStyle={styles.button}
+                    isActive={!isErrors ? true : false}
                     title="Sign In"
                   />
                 </View>
               );
             }}
           </Form>
+          <View>
+            <Text style={styles.text}>or</Text>
+            <Text style={styles.text}>
+              Sign in with your social media account
+            </Text>
+          </View>
         </SafeAreaView>
       </ScrollView>
     </>
