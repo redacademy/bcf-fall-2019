@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
-import {ScrollView, Button, ImageBackground, View, Text} from 'react-native';
+import {ScrollView, ImageBackground, View, Text} from 'react-native';
 import {Form, FormSpy, Field} from 'react-final-form';
 import TitleText from '../../components/TitleText';
+import ButtonDefault from '../../components/ButtonDefault';
 import InputDefaultField from '../../components/InputDefaultField';
 import InputDefaultCheckBox from '../../components/InputDefaultCheckBox';
 import {THEME} from '../../config';
 import styles from './styles';
 
 const SignIn = props => {
+  const [errors, setErros] = useState(null);
   return (
     <>
       <ImageBackground
@@ -23,13 +25,20 @@ const SignIn = props => {
               console.log('submit: ', values);
             }}>
             {props => {
-              console.log(props);
+              // console.log(props.valid);
               return (
                 <View>
                   <FormSpy
                     subscription={{values: true}}
                     onChange={({values}) => {
-                      console.log(values);
+                      setErros(null);
+                      if (!values.email) {
+                        setErros({email: 'Please enter the email'});
+                      }
+                      if (!values.password) {
+                        setErros({password: 'Please enter the password'});
+                      }
+                      console.log(errors);
                     }}
                   />
                   <Field name="email" placeholder="example@email.com">
@@ -72,7 +81,11 @@ const SignIn = props => {
                     <Text style={styles.forgot}>Forgot Password?</Text>
                   </View>
 
-                  <Button title="Sign In" onPress={props.handleSubmit} />
+                  <ButtonDefault
+                    onPress={props.handleSubmit}
+                    buttonStyle={styles.button}
+                    title="Sign In"
+                  />
                 </View>
               );
             }}

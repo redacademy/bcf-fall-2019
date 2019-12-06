@@ -19,6 +19,23 @@ const THEME = {
     weight: {
       medium: '500',
     },
+    button: {
+      default: {
+        fontSize: 17,
+        fontWeight: '400',
+        textAlign: 'center',
+        letterSpacing: -0.41,
+        lineHeight: 22,
+        color: '#F1785B',
+      },
+      selected: {
+        fontSize: 17,
+        fontWeight: '400',
+        letterSpacing: -0.41,
+        lineHeight: 22,
+        color: '#FFFFFF',
+      },
+    },
   },
   borders: {
     radius: {
@@ -67,6 +84,22 @@ const THEME = {
     },
     inputField: {
       paddingHorizontal: 16,
+      paddingVertical: 12,
+    },
+  },
+  button: {
+    default: {
+      borderRadius: 4,
+      borderWidth: 1,
+      borderColor: '#F1785B',
+      backgroundColor: '#FFFFFF',
+      paddingVertical: 12,
+    },
+    selected: {
+      borderRadius: 4,
+      borderWidth: 1,
+      borderColor: '#F1785B',
+      backgroundColor: '#F1785B',
       paddingVertical: 12,
     },
   },

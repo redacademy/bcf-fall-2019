@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   },
   columnCols2: {
     height: 24,
+    marginBottom: 16,
     paddingLeft: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -29,7 +30,13 @@ const styles = StyleSheet.create({
     marginLeft: THEME.padding.default(0.5),
     color: THEME.colors.astronautBlue,
     fontWeight: THEME.typography.weight.medium,
+    flex: 1,
+    textAlign: 'right',
     textDecorationLine: 'underline',
+  },
+  button: {
+    width: 147,
+    alignSelf: 'center',
   },
 });
 
