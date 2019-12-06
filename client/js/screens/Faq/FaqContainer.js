@@ -3,7 +3,7 @@ import Faq from './Faq';
 
 class FaqContainer extends Component {
   render() {
-    <Faq />;
+    return <Faq />;
   }
 }
 

@@ -3,7 +3,7 @@ import Contact from './Contact';
 
 class ContactContainer extends Component {
   render() {
-    <Contact />;
+    return <Contact />;
   }
 }
 
