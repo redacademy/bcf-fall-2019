@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, Text, View} from 'react-native';
+import {ImageBackground, Text, View, TouchableOpacity} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from './styles';
 import {THEME} from '../../config';
@@ -8,6 +8,19 @@ import PropTypes from 'prop-types';
 const OnboardingSwiper = ({navigation}) => {
   return (
     <Onboarding
+      skipToPage={2}
+      DoneButtonComponent={props => {
+        return (
+          <TouchableOpacity
+            {...props}
+            style={styles.btnDone}
+            onPress={e => {
+              navigation.navigate('SignIn');
+            }}>
+            <Text style={styles.btnDoneText}>Done</Text>
+          </TouchableOpacity>
+        );
+      }}
       pages={[
         {
           backgroundColor: THEME.colors.black,
