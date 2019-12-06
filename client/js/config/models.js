@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-export const toggleOnbording = async () => {
+export const removeOnbording = async () => {
   try {
-    return await AsyncStorage.setItem(`onBoarding`, true);
+    return await AsyncStorage.setItem(`isOnBoardingCompleted`, true);
   } catch (e) {
     console.log(e);
     return false;
