@@ -108,6 +108,7 @@ const SignIn = props => {
             <Text style={styles.text}>
               Sign in with your social media account
             </Text>
+
             <View style={{...styles.columnCols2, ...styles.wrapSocial}}>
               <TouchableOpacity style={styles.socialIcon}>
                 <View style={{...styles.btnSocial, ...styles.btnFacebook}}>
@@ -134,6 +135,15 @@ const SignIn = props => {
                 </View>
               </TouchableOpacity>
             </View>
+            <Text style={{...styles.text, ...styles.lastText}}>
+              New to Discover?
+            </Text>
+
+            <TouchableOpacity>
+              <Text style={{...styles.text, ...styles.textNewAcc}}>
+                Create An Account
+              </Text>
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </ScrollView>

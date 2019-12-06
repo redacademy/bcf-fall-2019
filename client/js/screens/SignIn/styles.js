@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    marginTop: 116,
+    marginTop: 160,
     textAlign: 'center',
   },
   inputEmail: {
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   },
   wrapSocial: {
     height: 46,
+    marginBottom: 36,
   },
   socialIcon: {
     flex: 1,
@@ -74,6 +75,11 @@ const styles = StyleSheet.create({
   },
   textGoogle: {
     color: THEME.colors.grey,
+  },
+  lastText: {marginBottom: 8},
+  textNewAcc: {
+    fontWeight: THEME.typography.weight.medium,
+    textDecorationLine: 'underline',
   },
 });
 
