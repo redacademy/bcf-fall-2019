@@ -45,6 +45,36 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 16,
   },
+  wrapSocial: {
+    height: 46,
+  },
+  socialIcon: {
+    flex: 1,
+  },
+  secondIcon: {marginLeft: 16},
+  btnSocial: {
+    ...THEME.borders.radius.default,
+    ...THEME.shadow.onText,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  socialText: {
+    ...THEME.typography.size.default,
+    fontWeight: THEME.typography.weight.semibold,
+    marginLeft: 4,
+  },
+  btnFacebook: {
+    backgroundColor: 'rgb(17, 82, 187)',
+  },
+  textFacebook: {
+    color: THEME.colors.white,
+  },
+  btnGoogle: {
+    backgroundColor: THEME.colors.white,
+  },
+  textGoogle: {
+    color: THEME.colors.grey,
+  },
 });
 
 export default styles;

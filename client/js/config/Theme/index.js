@@ -18,6 +18,7 @@ const THEME = {
     },
     weight: {
       medium: '500',
+      semibold: '600',
     },
     button: {
       fontSize: 17,

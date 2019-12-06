@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
-import {ScrollView, ImageBackground, View, Text} from 'react-native';
+import {
+  ScrollView,
+  Image,
+  ImageBackground,
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import {Form, FormSpy, Field} from 'react-final-form';
 import TitleText from '../../components/TitleText';
 import ButtonDefault from '../../components/ButtonDefault';
@@ -101,6 +108,32 @@ const SignIn = props => {
             <Text style={styles.text}>
               Sign in with your social media account
             </Text>
+            <View style={{...styles.columnCols2, ...styles.wrapSocial}}>
+              <TouchableOpacity style={styles.socialIcon}>
+                <View style={{...styles.btnSocial, ...styles.btnFacebook}}>
+                  <Image
+                    resizeMode="cover"
+                    source={require('../../assets/images/icFacebook.png')}
+                  />
+                  <Text style={{...styles.socialText, ...styles.textFacebook}}>
+                    Facebook
+                  </Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{...styles.socialIcon, ...styles.secondIcon}}>
+                <View style={{...styles.btnSocial, ...styles.btnGoogle}}>
+                  <Image
+                    resizeMode="cover"
+                    source={require('../../assets/images/icGoogle.png')}
+                  />
+                  <Text style={{...styles.socialText, ...styles.textGoogle}}>
+                    Google
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
         </SafeAreaView>
       </ScrollView>
