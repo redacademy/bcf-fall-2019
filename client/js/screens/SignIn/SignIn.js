@@ -1,9 +1,10 @@
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
-import {ScrollView, Button, ImageBackground, View} from 'react-native';
-import {Form, Field} from 'react-final-form';
+import {ScrollView, Button, ImageBackground, View, Text} from 'react-native';
+import {Form, FormSpy, Field} from 'react-final-form';
 import TitleText from '../../components/TitleText';
 import InputDefaultField from '../../components/InputDefaultField';
+import InputDefaultCheckBox from '../../components/InputDefaultCheckBox';
 import {THEME} from '../../config';
 import styles from './styles';
 
@@ -19,15 +20,18 @@ const SignIn = props => {
           <TitleText style={styles.title}>Sign In</TitleText>
           <Form
             onSubmit={values => {
-              console.log('submit: ', 1);
-            }}
-            validate={values => {
-              console.log('validate: ', values);
+              console.log('submit: ', values);
             }}>
             {props => {
               console.log(props);
               return (
                 <View>
+                  <FormSpy
+                    subscription={{values: true}}
+                    onChange={({values}) => {
+                      console.log(values);
+                    }}
+                  />
                   <Field name="email" placeholder="example@email.com">
                     {({input, meta, placeholder}) => {
                       return (
@@ -54,15 +58,20 @@ const SignIn = props => {
                           autoCompleteType="password"
                           placeholder={placeholder}
                           textContentType="password"
+                          style={styles.inputPassword}
                         />
                       );
                     }}
                   </Field>
-                  <Field name="rememberMe">
-                    {({input}) => {
-                      return <></>;
-                    }}
-                  </Field>
+                  <View style={styles.columnCols2}>
+                    <InputDefaultCheckBox
+                      type="checkbox"
+                      name="rememberMe"
+                      rightText="Remeber me"
+                    />
+                    <Text style={styles.forgot}>Forgot Password?</Text>
+                  </View>
+
                   <Button title="Sign In" onPress={props.handleSubmit} />
                 </View>
               );

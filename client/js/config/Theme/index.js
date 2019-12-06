@@ -12,6 +12,12 @@ const THEME = {
       default: {
         fontSize: 17,
       },
+      caption: {
+        fontSize: 12,
+      },
+    },
+    weight: {
+      medium: '500',
     },
   },
   borders: {
