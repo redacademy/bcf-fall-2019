@@ -53,7 +53,17 @@ const SignIn = ({navigation}) => {
                     try {
                       await logIn({variables: values});
                     } catch (error) {
-                      console.log(error);
+                      let message = error.message.split(': ')[1];
+                      Alert.alert(
+                        message,
+                        '',
+                        [
+                          {
+                            text: 'OK',
+                          },
+                        ],
+                        {cancelable: true},
+                      );
                     }
                   }}>
                   {props => {
@@ -120,7 +130,6 @@ const SignIn = ({navigation}) => {
                                 [
                                   {
                                     text: 'OK',
-                                    onPress: () => console.log('OK Pressed'),
                                   },
                                 ],
                                 {cancelable: true},
