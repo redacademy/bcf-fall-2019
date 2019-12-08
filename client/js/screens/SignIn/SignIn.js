@@ -4,6 +4,7 @@ import {Mutation} from 'react-apollo';
 import {MUTATION_LOG_IN} from '../../apollo/mutations';
 import SafeAreaView from 'react-native-safe-area-view';
 import {
+  Alert,
   ScrollView,
   Image,
   ImageBackground,
@@ -25,6 +26,7 @@ const client = new ApolloClient({uri: 'http://157.245.163.7:8000/'});
 
 const SignIn = ({navigation}) => {
   const [isErrors, setErrors] = useState(null);
+
   return (
     <Mutation
       mutation={MUTATION_LOG_IN}
@@ -61,17 +63,11 @@ const SignIn = ({navigation}) => {
                           subscription={{values: true}}
                           onChange={({values}) => {
                             setErrors(null);
-                            if (!values.email) {
-                              setErrors({
-                                ...isErrors,
-                                email: 'Please enter the email',
-                              });
-                            }
                             if (!values.password) {
-                              setErrors({
-                                ...isErrors,
-                                password: 'Please enter the password',
-                              });
+                              setErrors('Please enter the password');
+                            }
+                            if (!values.email) {
+                              setErrors('Please enter the email');
                             }
                           }}
                         />
@@ -116,7 +112,23 @@ const SignIn = ({navigation}) => {
                         </View>
 
                         <ButtonDefault
-                          onPress={props.handleSubmit}
+                          onPress={() => {
+                            if (isErrors) {
+                              Alert.alert(
+                                isErrors,
+                                '',
+                                [
+                                  {
+                                    text: 'OK',
+                                    onPress: () => console.log('OK Pressed'),
+                                  },
+                                ],
+                                {cancelable: true},
+                              );
+                            } else {
+                              props.handleSubmit();
+                            }
+                          }}
                           buttonStyle={styles.button}
                           isActive={!isErrors ? true : false}
                           title="Sign In"
