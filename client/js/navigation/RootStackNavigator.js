@@ -1,6 +1,6 @@
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {AuthLoading, SignIn, Onboarding} from '../screens';
+import {ServiceLoading, AuthLoading, SignIn, Onboarding} from '../screens';
 import NavigationLayout from './NavigationLayout';
 import AboutModal from '../screens/About';
 import ContactModal from '../screens/Contact';
@@ -20,12 +20,18 @@ const AppStack = createStackNavigator(
   },
 );
 
-const AuthStack = createStackNavigator(
-  {
-    Onboarding,
-    SignIn,
-  },
-  {headerMode: 'none'},
+const AuthContainer = createAppContainer(
+  createSwitchNavigator(
+    {
+      ServiceLoading,
+      Onboarding,
+      SignIn,
+    },
+    {
+      headerMode: 'none',
+      initialRouteName: 'ServiceLoading',
+    },
+  ),
 );
 
 export default createAppContainer(
@@ -33,7 +39,7 @@ export default createAppContainer(
     {
       AuthLoading,
       App: AppStack,
-      Auth: AuthStack,
+      Auth: AuthContainer,
     },
     {
       initialRouteName: 'AuthLoading',

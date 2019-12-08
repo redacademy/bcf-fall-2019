@@ -1,8 +1,17 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-export const removeOnbording = async () => {
+export const getOnboarding = async () => {
   try {
-    return await AsyncStorage.setItem(`isOnBoardingCompleted`, true);
+    return await AsyncStorage.getItem('isOnBoardingCompleted');
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+export const removeOnboarding = async () => {
+  try {
+    return await AsyncStorage.setItem(`isOnBoardingCompleted`, `true`);
   } catch (e) {
     console.log(e);
     return false;
@@ -26,8 +35,7 @@ export const addViewer = async viewer => {
 
 export const getViewer = async () => {
   try {
-    const value = await AsyncStorage.getItem('user');
-    return value;
+    return await AsyncStorage.getItem('user');
   } catch (e) {
     console.log(e);
     return false;
