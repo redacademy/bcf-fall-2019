@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
+import {getViewer} from '../../config/models';
 import AuthLoading from './AuthLoading';
 
 class AuthLoadingContainer extends Component {
@@ -9,7 +9,7 @@ class AuthLoadingContainer extends Component {
 
   // Fetch the token from storage then navigate to our appropriate place
   _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
+    const userToken = await getViewer();
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.

@@ -18,17 +18,27 @@ import InputDefaultField from '../../components/InputDefaultField';
 import InputDefaultCheckBox from '../../components/InputDefaultCheckBox';
 import {THEME} from '../../config';
 import styles from './styles';
+import {addViewer} from '../../config/models';
+import PropTypes from 'prop-types';
 
 const client = new ApolloClient({uri: 'http://157.245.163.7:8000/'});
 
-const SignIn = props => {
+const SignIn = ({navigation}) => {
   const [isErrors, setErrors] = useState(null);
   return (
-    <Mutation mutation={MUTATION_LOG_IN} client={client}>
+    <Mutation
+      mutation={MUTATION_LOG_IN}
+      client={client}
+      onCompleted={async ({login}) => {
+        const viewer = {id: login.user.id, token: login.token};
+        await addViewer(viewer);
+        await navigation.navigate('AuthLoading');
+        try {
+        } catch (error) {}
+      }}>
       {(logIn, {loading, error, data}) => {
         return (
           <>
-            {console.log(data)}
             <ImageBackground
               style={styles.signInBgImg}
               source={require('../../assets/images/imgSignIn01.jpg')}
@@ -173,3 +183,7 @@ const SignIn = props => {
 };
 
 export default SignIn;
+
+SignIn.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
