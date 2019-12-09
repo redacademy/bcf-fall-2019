@@ -3,7 +3,8 @@ import Onboarding from './Onboarding';
 
 class OnboardingContainer extends Component {
   render() {
-    return <Onboarding />;
+    const {navigation} = this.props;
+    return <Onboarding navigation={navigation} />;
   }
 }
 

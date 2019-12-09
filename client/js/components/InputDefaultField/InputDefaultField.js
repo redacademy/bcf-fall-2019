@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 class InputDefaultField extends Component {
   constructor(props) {
@@ -41,3 +42,8 @@ class InputDefaultField extends Component {
 }
 
 export default InputDefaultField;
+
+InputDefaultField.propTypes = {
+  title: PropTypes.string.isRequired,
+  style: PropTypes.object,
+};
