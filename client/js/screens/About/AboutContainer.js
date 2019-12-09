@@ -1,31 +1,29 @@
 import React, {Component} from 'react';
 import About from './About';
 import Loader from '../../components/Loader';
-//import query from apollo/queries.js
+import {Query} from 'react-apollo';
+import {QUERY_INFOES} from '../../apollo/queries';
 
 class AboutContainer extends Component {
-  static navigationOptions = {
-    title: 'About',
-    render() {
-      return (
-        <Query query={QUERY_INFO}>
-          {({loading, error, data}) => {
-            if (loading) {
-              return <Loader />;
-            }
+  render() {
+    return (
+      <Query query={QUERY_INFOES}>
+        {({loading, error, data}) => {
+          if (loading) {
+            return <Loader />;
+          }
 
-            if (error) {
-              return <Text>{error.message}</Text>;
-            }
+          if (error) {
+            return <Text>{error.message}</Text>;
+          }
 
-            if (data) {
-              return <About data={data} />;
-            }
-          }}
-        </Query>
-      );
-    },
-  };
+          if (data) {
+            return <Aboout />;
+          }
+        }}
+      </Query>
+    );
+  }
 }
 
 export default AboutContainer;
