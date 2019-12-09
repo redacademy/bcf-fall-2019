@@ -19,30 +19,23 @@ const AppStack = createStackNavigator(
     Contact: ContactModal,
     Faq: FaqModal,
   },
-
   {
-    headerMode: 'none',
-    mode: 'modal',
+    defaultNavigationOptions: () => ({
+      headerMode: 'none',
+      mode: 'modal',
+    }),
   },
 );
 
 const AccountStack = createStackNavigator(
   {
-    SignIn: {
-      screen: SignIn,
-      navigationOptions: () => ({
-        headerShown: false,
-      }),
-    },
-    SignUp: {
-      screen: SignUp,
-      navigationOptions: () => ({
-        title: 'Sign Up',
-      }),
-    },
+    SignIn,
+    SignUp,
   },
   {
-    initialRouteName: 'SignIn',
+    defaultNavigationOptions: () => ({
+      initialRouteName: 'SignIn',
+    }),
   },
 );
 
@@ -54,7 +47,9 @@ const AuthContainer = createAppContainer(
       Account: AccountStack,
     },
     {
-      initialRouteName: 'ServiceLoading',
+      defaultNavigationOptions: () => ({
+        initialRouteName: 'ServiceLoading',
+      }),
     },
   ),
 );
@@ -67,7 +62,9 @@ export default createAppContainer(
       Auth: AuthContainer,
     },
     {
-      initialRouteName: 'AuthLoading',
+      defaultNavigationOptions: () => ({
+        initialRouteName: 'AuthLoading',
+      }),
     },
   ),
 );
