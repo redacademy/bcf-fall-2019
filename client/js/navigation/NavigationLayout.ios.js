@@ -2,11 +2,11 @@ import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
 
-import HomeScreen from '../screens/Home';
-import SearchScreen from '../screens/Search';
-import BookingScreen from '../screens/Booking';
-import SavedScreen from '../screens/Saved';
-import ProfileScreen from '../screens/Profile';
+import Home from '../screens/Home';
+import Search from '../screens/Search';
+import Booking from '../screens/Booking';
+import Saved from '../screens/Saved';
+import Profile from '../screens/Profile';
 
 import {Image} from 'react-native';
 
@@ -17,7 +17,7 @@ const {black, mediumGrey, white} = Colors;
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: Home,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -30,7 +30,7 @@ const HomeStack = createStackNavigator(
 
 const SearchStack = createStackNavigator(
   {
-    Search: SearchScreen,
+    Search: Search,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -43,7 +43,7 @@ const SearchStack = createStackNavigator(
 
 const BookingStack = createStackNavigator(
   {
-    Booking: BookingScreen,
+    Booking: Booking,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -56,7 +56,7 @@ const BookingStack = createStackNavigator(
 
 const SavedStack = createStackNavigator(
   {
-    Saved: SavedScreen,
+    Saved: Saved,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -69,7 +69,7 @@ const SavedStack = createStackNavigator(
 
 const ProfileStack = createStackNavigator(
   {
-    Profile: ProfileScreen,
+    Profile: Profile,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
