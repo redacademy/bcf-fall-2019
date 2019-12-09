@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, Text, View, Animated} from 'react-native';
 import {THEME} from '../../config';
+import PropTypes from 'prop-types';
 
 class ButtonDefault extends Component {
   constructor(props) {
@@ -69,3 +70,11 @@ class ButtonDefault extends Component {
 }
 
 export default ButtonDefault;
+
+ButtonDefault.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  onPress: PropTypes.func.isRequired,
+  buttonStyle: PropTypes.object,
+  textStyle: PropTypes.object,
+  title: PropTypes.string.isRequired,
+};
