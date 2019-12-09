@@ -99,7 +99,7 @@ type ContactUs{
   facebookLink: String
 }
 
-type Infoes{
+type Info{
   id: ID! @id
   faq: [Faq] @relation(link: TABLE)
   about: String!

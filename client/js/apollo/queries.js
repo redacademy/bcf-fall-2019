@@ -10,7 +10,7 @@ export const QUERY_INFOES = gql`
 
 export const QUERY_CONTACTUS = gql`
   {
-    ContactUs {
+    ContactUses {
       id
       contactInfo
       twitterLink
@@ -22,7 +22,7 @@ export const QUERY_CONTACTUS = gql`
 
 export const QUERY_FAQ = gql`
   {
-    Faq {
+    Faqs {
       id
       question
       answer

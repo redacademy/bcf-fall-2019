@@ -18,7 +18,7 @@ class AboutContainer extends Component {
           }
 
           if (data) {
-            return <Aboout />;
+            return <About />;
           }
         }}
       </Query>
