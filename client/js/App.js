@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import RootStackNavigator from '../js/navigation/RootStackNavigator';
 
-import SignIn from './screens/SignIn';
+import SignUp from './screens/SignUp';
 
 export default class App extends Component {
   render() {
-    return <SignIn />;
+    return <SignUp />;
     // return <RootStackNavigator />;
   }
 }
