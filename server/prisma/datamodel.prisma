@@ -70,7 +70,7 @@ type SelfGuidedTour{
   id: ID! @id
   title: String!
   location: String!
-  duration: String!
+  duration: Float!
   difficulty: Difficulty!
   distance: String!
   petFriendly: Boolean! @default(value: false)
