@@ -1,27 +1,31 @@
 import React, {Component} from 'react';
 import About from './About';
-// import {prisma} from './generated/prisma-client';
+import Loader from '../../components/Loader';
+//import query from apollo/queries.js
 
 class AboutContainer extends Component {
-  render() {
-    return (
-      <Query query={QUERY_}>
-        {({loading, error, data}) => {
-          if (loading) {
-            return <Loader />;
-          }
+  static navigationOptions = {
+    title: 'About',
+    render() {
+      return (
+        <Query query={QUERY_INFO}>
+          {({loading, error, data}) => {
+            if (loading) {
+              return <Loader />;
+            }
 
-          if (error) {
-            return <Text>{error.message}</Text>;
-          }
+            if (error) {
+              return <Text>{error.message}</Text>;
+            }
 
-          if (data) {
-            return <About data={data} />;
-          }
-        }}
-      </Query>
-    );
-  }
+            if (data) {
+              return <About data={data} />;
+            }
+          }}
+        </Query>
+      );
+    },
+  };
 }
 
 export default AboutContainer;
