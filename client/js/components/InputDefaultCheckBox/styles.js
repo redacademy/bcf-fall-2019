@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   text: {
     ...THEME.typography.size.caption,
-    marginLeft: THEME.padding.default(0.5),
+    marginLeft: THEME.spacing.default(0.5),
     color: THEME.colors.astronautBlue,
     fontWeight: THEME.typography.weight.medium,
   },

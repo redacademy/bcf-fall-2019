@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
 import {THEME} from '../../config';
-import {ThemeColors} from 'react-navigation';
 
 const styles = StyleSheet.create({
   profileWrap: {
     alignItems: 'center',
-    marginBottom: 4,
+    marginTop: THEME.spacing.default(),
+    marginBottom: THEME.spacing.default(0.25),
   },
   profileImg: {
     width: 169,
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   text: {
     ...THEME.typography.size.caption,
     textAlign: 'center',
+    marginBottom: THEME.spacing.default(3),
   },
 });
 

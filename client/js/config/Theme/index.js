@@ -1,6 +1,11 @@
 import {Platform} from 'react-native';
 
 const THEME = {
+  spacing: {
+    default: (int = 1) => {
+      return 16 * int;
+    },
+  },
   typography: {
     regular: {
       fontFamily: 'Montserrat-Regular',
@@ -67,9 +72,6 @@ const THEME = {
     },
   },
   padding: {
-    default: int => {
-      return 16 * int;
-    },
     accountScreen: {
       paddingHorizontal: 32,
     },
