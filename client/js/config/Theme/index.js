@@ -20,10 +20,14 @@ const THEME = {
       caption: {
         fontSize: 12,
       },
+      title: {
+        fontSize: 22,
+      },
     },
     weight: {
       medium: '500',
       semibold: '600',
+      bold: '700',
     },
     button: {
       fontSize: 17,
