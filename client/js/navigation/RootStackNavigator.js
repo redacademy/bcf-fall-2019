@@ -28,11 +28,20 @@ const AppStack = createStackNavigator(
 
 const AccountStack = createStackNavigator(
   {
-    SignIn,
-    SignUp,
+    SignIn: {
+      screen: SignIn,
+      navigationOptions: () => ({
+        headerShown: false,
+      }),
+    },
+    SignUp: {
+      screen: SignUp,
+      navigationOptions: () => ({
+        title: 'Sign Up',
+      }),
+    },
   },
   {
-    headerMode: 'none',
     initialRouteName: 'SignIn',
   },
 );
