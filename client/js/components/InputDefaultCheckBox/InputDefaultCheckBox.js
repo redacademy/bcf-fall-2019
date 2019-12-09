@@ -3,6 +3,7 @@ import CheckBox from 'react-native-check-box';
 import {Image} from 'react-native';
 import {Field} from 'react-final-form';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 class InputDefaultCheckBox extends Component {
   constructor(props) {
@@ -51,3 +52,11 @@ class InputDefaultCheckBox extends Component {
 }
 
 export default InputDefaultCheckBox;
+
+InputDefaultCheckBox.propTypes = {
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  rightText: PropTypes.string,
+  rightTextStyle: PropTypes.object,
+  containerStyles: PropTypes.object,
+};

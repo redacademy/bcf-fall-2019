@@ -1,12 +1,32 @@
 import React from 'react';
-import {ImageBackground, Text, View} from 'react-native';
+import {ImageBackground, Text, View, TouchableOpacity} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from './styles';
 import {THEME} from '../../config';
+import {setOnboarding} from '../../config/models';
+import PropTypes from 'prop-types';
 
-const OnboardingSwiper = () => {
+const OnboardingSwiper = ({navigation}) => {
   return (
     <Onboarding
+      skipToPage={2}
+      DoneButtonComponent={props => {
+        return (
+          <TouchableOpacity
+            {...props}
+            style={styles.btnDone}
+            onPress={async () => {
+              try {
+                await setOnboarding();
+                await navigation.navigate('SignIn');
+              } catch (error) {
+                console.log(error);
+              }
+            }}>
+            <Text style={styles.btnDoneText}>Done</Text>
+          </TouchableOpacity>
+        );
+      }}
       pages={[
         {
           backgroundColor: THEME.colors.black,
@@ -62,3 +82,7 @@ const OnboardingSwiper = () => {
 };
 
 export default OnboardingSwiper;
+
+OnboardingSwiper.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};

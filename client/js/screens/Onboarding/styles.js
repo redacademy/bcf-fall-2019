@@ -24,6 +24,15 @@ const styles = StyleSheet.create({
     lineHeight: 52,
     letterSpacing: 0.25,
   },
+  btnDone: {
+    width: 64,
+  },
+  btnDoneText: {
+    color: THEME.colors.white,
+    fontSize: 16,
+    textAlign: 'center',
+    marginRight: 10,
+  },
 });
 
 export default styles;
