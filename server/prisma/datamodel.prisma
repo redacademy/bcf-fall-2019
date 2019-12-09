@@ -72,6 +72,7 @@ type SelfGuidedTour{
   location: String!
   duration: String!
   difficulty: Difficulty!
+  distance: String!
   petFriendly: Boolean! @default(value: false)
   description: String!
   audio: Audio  @relation(link: TABLE, onDelete: CASCADE)
