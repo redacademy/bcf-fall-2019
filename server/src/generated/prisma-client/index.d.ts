@@ -17,6 +17,7 @@ export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
   audio: (where?: AudioWhereInput) => Promise<boolean>;
+  audioMarkers: (where?: AudioMarkersWhereInput) => Promise<boolean>;
   contactInfo: (where?: ContactInfoWhereInput) => Promise<boolean>;
   contactUs: (where?: ContactUsWhereInput) => Promise<boolean>;
   event: (where?: EventWhereInput) => Promise<boolean>;
@@ -66,6 +67,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => AudioConnectionPromise;
+  audioMarkers: (
+    where: AudioMarkersWhereUniqueInput
+  ) => AudioMarkersNullablePromise;
+  audioMarkerses: (args?: {
+    where?: AudioMarkersWhereInput;
+    orderBy?: AudioMarkersOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<AudioMarkers>;
+  audioMarkersesConnection: (args?: {
+    where?: AudioMarkersWhereInput;
+    orderBy?: AudioMarkersOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => AudioMarkersConnectionPromise;
   contactInfo: (
     where: ContactInfoWhereUniqueInput
   ) => ContactInfoNullablePromise;
@@ -263,6 +285,26 @@ export interface Prisma {
   }) => AudioPromise;
   deleteAudio: (where: AudioWhereUniqueInput) => AudioPromise;
   deleteManyAudios: (where?: AudioWhereInput) => BatchPayloadPromise;
+  createAudioMarkers: (data: AudioMarkersCreateInput) => AudioMarkersPromise;
+  updateAudioMarkers: (args: {
+    data: AudioMarkersUpdateInput;
+    where: AudioMarkersWhereUniqueInput;
+  }) => AudioMarkersPromise;
+  updateManyAudioMarkerses: (args: {
+    data: AudioMarkersUpdateManyMutationInput;
+    where?: AudioMarkersWhereInput;
+  }) => BatchPayloadPromise;
+  upsertAudioMarkers: (args: {
+    where: AudioMarkersWhereUniqueInput;
+    create: AudioMarkersCreateInput;
+    update: AudioMarkersUpdateInput;
+  }) => AudioMarkersPromise;
+  deleteAudioMarkers: (
+    where: AudioMarkersWhereUniqueInput
+  ) => AudioMarkersPromise;
+  deleteManyAudioMarkerses: (
+    where?: AudioMarkersWhereInput
+  ) => BatchPayloadPromise;
   createContactInfo: (data: ContactInfoCreateInput) => ContactInfoPromise;
   updateContactInfo: (args: {
     data: ContactInfoUpdateInput;
@@ -427,6 +469,9 @@ export interface Subscription {
   audio: (
     where?: AudioSubscriptionWhereInput
   ) => AudioSubscriptionPayloadSubscription;
+  audioMarkers: (
+    where?: AudioMarkersSubscriptionWhereInput
+  ) => AudioMarkersSubscriptionPayloadSubscription;
   contactInfo: (
     where?: ContactInfoSubscriptionWhereInput
   ) => ContactInfoSubscriptionPayloadSubscription;
@@ -464,77 +509,9 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type HostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "image_ASC"
-  | "image_DESC"
-  | "bio_ASC"
-  | "bio_DESC";
+export type Difficulty = "EASY" | "MODERATE" | "DIFFICULT";
 
-export type ContactInfoOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "address_ASC"
-  | "address_DESC"
-  | "phoneNumber_ASC"
-  | "phoneNumber_DESC"
-  | "email_ASC"
-  | "email_DESC";
-
-export type FaqOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "question_ASC"
-  | "question_DESC"
-  | "answer_ASC"
-  | "answer_DESC";
-
-export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "password_ASC"
-  | "password_DESC"
-  | "firstName_ASC"
-  | "firstName_DESC"
-  | "lastName_ASC"
-  | "lastName_DESC"
-  | "location_ASC"
-  | "location_DESC"
-  | "image_ASC"
-  | "image_DESC"
-  | "date_ASC"
-  | "date_DESC";
-
-export type ContactUsOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "twitterLink_ASC"
-  | "twitterLink_DESC"
-  | "instagramLink_ASC"
-  | "instagramLink_DESC"
-  | "facebookLink_ASC"
-  | "facebookLink_DESC";
-
-export type Difficulty = "EASY" | "MEDIUM" | "HARD";
-
-export type ReviewOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "userID_ASC"
-  | "userID_DESC"
-  | "score_ASC"
-  | "score_DESC"
-  | "comment_ASC"
-  | "comment_DESC"
-  | "date_ASC"
-  | "date_DESC";
+export type AudioOrderByInput = "id_ASC" | "id_DESC" | "url_ASC" | "url_DESC";
 
 export type EventOrderByInput =
   | "id_ASC"
@@ -564,6 +541,68 @@ export type EventOrderByInput =
   | "details_ASC"
   | "details_DESC";
 
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "firstName_ASC"
+  | "firstName_DESC"
+  | "lastName_ASC"
+  | "lastName_DESC"
+  | "location_ASC"
+  | "location_DESC"
+  | "image_ASC"
+  | "image_DESC"
+  | "date_ASC"
+  | "date_DESC";
+
+export type ContactInfoOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "address_ASC"
+  | "address_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC"
+  | "email_ASC"
+  | "email_DESC";
+
+export type ContactUsOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "twitterLink_ASC"
+  | "twitterLink_DESC"
+  | "instagramLink_ASC"
+  | "instagramLink_DESC"
+  | "facebookLink_ASC"
+  | "facebookLink_DESC";
+
+export type ReviewOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "score_ASC"
+  | "score_DESC"
+  | "comment_ASC"
+  | "comment_DESC"
+  | "date_ASC"
+  | "date_DESC";
+
+export type AudioMarkersOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "latitude_ASC"
+  | "latitude_DESC"
+  | "longitude_ASC"
+  | "longitude_DESC"
+  | "start_ASC"
+  | "start_DESC";
+
 export type SelfGuidedTourOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -582,183 +621,47 @@ export type SelfGuidedTourOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
+export type FaqOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "question_ASC"
+  | "question_DESC"
+  | "answer_ASC"
+  | "answer_DESC";
+
+export type HostOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "image_ASC"
+  | "image_DESC"
+  | "bio_ASC"
+  | "bio_DESC";
+
 export type InfoOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "about_ASC"
   | "about_DESC";
 
-export type AudioOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "duration_ASC"
-  | "duration_DESC"
-  | "latitude_ASC"
-  | "latitude_DESC"
-  | "longitude_ASC"
-  | "longitude_DESC"
-  | "url_ASC"
-  | "url_DESC";
-
-export interface ContactUsUpdateInput {
-  contactInfo?: Maybe<ContactInfoUpdateOneRequiredInput>;
-  twitterLink?: Maybe<String>;
-  instagramLink?: Maybe<String>;
-  facebookLink?: Maybe<String>;
+export interface AudioMarkersCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  latitude: String;
+  longitude: String;
+  start: Float;
+  audio: AudioCreateOneWithoutMarkersInput;
 }
 
 export type AudioWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface HostCreateInput {
-  id?: Maybe<ID_Input>;
-  email: String;
-  name: String;
-  image: String;
-  bio: String;
-}
-
-export interface ContactInfoWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  address?: Maybe<String>;
-  address_not?: Maybe<String>;
-  address_in?: Maybe<String[] | String>;
-  address_not_in?: Maybe<String[] | String>;
-  address_lt?: Maybe<String>;
-  address_lte?: Maybe<String>;
-  address_gt?: Maybe<String>;
-  address_gte?: Maybe<String>;
-  address_contains?: Maybe<String>;
-  address_not_contains?: Maybe<String>;
-  address_starts_with?: Maybe<String>;
-  address_not_starts_with?: Maybe<String>;
-  address_ends_with?: Maybe<String>;
-  address_not_ends_with?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  phoneNumber_not?: Maybe<String>;
-  phoneNumber_in?: Maybe<String[] | String>;
-  phoneNumber_not_in?: Maybe<String[] | String>;
-  phoneNumber_lt?: Maybe<String>;
-  phoneNumber_lte?: Maybe<String>;
-  phoneNumber_gt?: Maybe<String>;
-  phoneNumber_gte?: Maybe<String>;
-  phoneNumber_contains?: Maybe<String>;
-  phoneNumber_not_contains?: Maybe<String>;
-  phoneNumber_starts_with?: Maybe<String>;
-  phoneNumber_not_starts_with?: Maybe<String>;
-  phoneNumber_ends_with?: Maybe<String>;
-  phoneNumber_not_ends_with?: Maybe<String>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  AND?: Maybe<ContactInfoWhereInput[] | ContactInfoWhereInput>;
-  OR?: Maybe<ContactInfoWhereInput[] | ContactInfoWhereInput>;
-  NOT?: Maybe<ContactInfoWhereInput[] | ContactInfoWhereInput>;
-}
-
-export interface FaqScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  question?: Maybe<String>;
-  question_not?: Maybe<String>;
-  question_in?: Maybe<String[] | String>;
-  question_not_in?: Maybe<String[] | String>;
-  question_lt?: Maybe<String>;
-  question_lte?: Maybe<String>;
-  question_gt?: Maybe<String>;
-  question_gte?: Maybe<String>;
-  question_contains?: Maybe<String>;
-  question_not_contains?: Maybe<String>;
-  question_starts_with?: Maybe<String>;
-  question_not_starts_with?: Maybe<String>;
-  question_ends_with?: Maybe<String>;
-  question_not_ends_with?: Maybe<String>;
-  answer?: Maybe<String>;
-  answer_not?: Maybe<String>;
-  answer_in?: Maybe<String[] | String>;
-  answer_not_in?: Maybe<String[] | String>;
-  answer_lt?: Maybe<String>;
-  answer_lte?: Maybe<String>;
-  answer_gt?: Maybe<String>;
-  answer_gte?: Maybe<String>;
-  answer_contains?: Maybe<String>;
-  answer_not_contains?: Maybe<String>;
-  answer_starts_with?: Maybe<String>;
-  answer_not_starts_with?: Maybe<String>;
-  answer_ends_with?: Maybe<String>;
-  answer_not_ends_with?: Maybe<String>;
-  AND?: Maybe<FaqScalarWhereInput[] | FaqScalarWhereInput>;
-  OR?: Maybe<FaqScalarWhereInput[] | FaqScalarWhereInput>;
-  NOT?: Maybe<FaqScalarWhereInput[] | FaqScalarWhereInput>;
-}
-
-export interface ReviewUpdateManyDataInput {
-  userID?: Maybe<String>;
-  score?: Maybe<Int>;
-  comment?: Maybe<String>;
-}
-
-export type SelfGuidedTourWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface ReviewCreateManyInput {
-  create?: Maybe<ReviewCreateInput[] | ReviewCreateInput>;
-  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
-}
-
-export interface FaqUpsertWithWhereUniqueNestedInput {
-  where: FaqWhereUniqueInput;
-  update: FaqUpdateDataInput;
-  create: FaqCreateInput;
-}
-
-export type ContactUsWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface SelfGuidedTourWhereInput {
+export interface AudioMarkersWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -787,40 +690,6 @@ export interface SelfGuidedTourWhereInput {
   title_not_starts_with?: Maybe<String>;
   title_ends_with?: Maybe<String>;
   title_not_ends_with?: Maybe<String>;
-  location?: Maybe<String>;
-  location_not?: Maybe<String>;
-  location_in?: Maybe<String[] | String>;
-  location_not_in?: Maybe<String[] | String>;
-  location_lt?: Maybe<String>;
-  location_lte?: Maybe<String>;
-  location_gt?: Maybe<String>;
-  location_gte?: Maybe<String>;
-  location_contains?: Maybe<String>;
-  location_not_contains?: Maybe<String>;
-  location_starts_with?: Maybe<String>;
-  location_not_starts_with?: Maybe<String>;
-  location_ends_with?: Maybe<String>;
-  location_not_ends_with?: Maybe<String>;
-  duration?: Maybe<String>;
-  duration_not?: Maybe<String>;
-  duration_in?: Maybe<String[] | String>;
-  duration_not_in?: Maybe<String[] | String>;
-  duration_lt?: Maybe<String>;
-  duration_lte?: Maybe<String>;
-  duration_gt?: Maybe<String>;
-  duration_gte?: Maybe<String>;
-  duration_contains?: Maybe<String>;
-  duration_not_contains?: Maybe<String>;
-  duration_starts_with?: Maybe<String>;
-  duration_not_starts_with?: Maybe<String>;
-  duration_ends_with?: Maybe<String>;
-  duration_not_ends_with?: Maybe<String>;
-  difficulty?: Maybe<Difficulty>;
-  difficulty_not?: Maybe<Difficulty>;
-  difficulty_in?: Maybe<Difficulty[] | Difficulty>;
-  difficulty_not_in?: Maybe<Difficulty[] | Difficulty>;
-  petFriendly?: Maybe<Boolean>;
-  petFriendly_not?: Maybe<Boolean>;
   description?: Maybe<String>;
   description_not?: Maybe<String>;
   description_in?: Maybe<String[] | String>;
@@ -835,13 +704,241 @@ export interface SelfGuidedTourWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  audio_every?: Maybe<AudioWhereInput>;
-  audio_some?: Maybe<AudioWhereInput>;
-  audio_none?: Maybe<AudioWhereInput>;
-  AND?: Maybe<SelfGuidedTourWhereInput[] | SelfGuidedTourWhereInput>;
-  OR?: Maybe<SelfGuidedTourWhereInput[] | SelfGuidedTourWhereInput>;
-  NOT?: Maybe<SelfGuidedTourWhereInput[] | SelfGuidedTourWhereInput>;
+  latitude?: Maybe<String>;
+  latitude_not?: Maybe<String>;
+  latitude_in?: Maybe<String[] | String>;
+  latitude_not_in?: Maybe<String[] | String>;
+  latitude_lt?: Maybe<String>;
+  latitude_lte?: Maybe<String>;
+  latitude_gt?: Maybe<String>;
+  latitude_gte?: Maybe<String>;
+  latitude_contains?: Maybe<String>;
+  latitude_not_contains?: Maybe<String>;
+  latitude_starts_with?: Maybe<String>;
+  latitude_not_starts_with?: Maybe<String>;
+  latitude_ends_with?: Maybe<String>;
+  latitude_not_ends_with?: Maybe<String>;
+  longitude?: Maybe<String>;
+  longitude_not?: Maybe<String>;
+  longitude_in?: Maybe<String[] | String>;
+  longitude_not_in?: Maybe<String[] | String>;
+  longitude_lt?: Maybe<String>;
+  longitude_lte?: Maybe<String>;
+  longitude_gt?: Maybe<String>;
+  longitude_gte?: Maybe<String>;
+  longitude_contains?: Maybe<String>;
+  longitude_not_contains?: Maybe<String>;
+  longitude_starts_with?: Maybe<String>;
+  longitude_not_starts_with?: Maybe<String>;
+  longitude_ends_with?: Maybe<String>;
+  longitude_not_ends_with?: Maybe<String>;
+  start?: Maybe<Float>;
+  start_not?: Maybe<Float>;
+  start_in?: Maybe<Float[] | Float>;
+  start_not_in?: Maybe<Float[] | Float>;
+  start_lt?: Maybe<Float>;
+  start_lte?: Maybe<Float>;
+  start_gt?: Maybe<Float>;
+  start_gte?: Maybe<Float>;
+  audio?: Maybe<AudioWhereInput>;
+  AND?: Maybe<AudioMarkersWhereInput[] | AudioMarkersWhereInput>;
+  OR?: Maybe<AudioMarkersWhereInput[] | AudioMarkersWhereInput>;
+  NOT?: Maybe<AudioMarkersWhereInput[] | AudioMarkersWhereInput>;
 }
+
+export interface ReviewUpdateDataInput {
+  user?: Maybe<UserUpdateOneRequiredInput>;
+  score?: Maybe<Int>;
+  comment?: Maybe<String>;
+}
+
+export interface FaqUpdateManyMutationInput {
+  question?: Maybe<String>;
+  answer?: Maybe<String>;
+}
+
+export interface ContactInfoCreateInput {
+  id?: Maybe<ID_Input>;
+  address: String;
+  phoneNumber: String;
+  email: String;
+}
+
+export interface FaqUpdateInput {
+  question?: Maybe<String>;
+  answer?: Maybe<String>;
+}
+
+export interface SelfGuidedTourSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<SelfGuidedTourWhereInput>;
+  AND?: Maybe<
+    | SelfGuidedTourSubscriptionWhereInput[]
+    | SelfGuidedTourSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | SelfGuidedTourSubscriptionWhereInput[]
+    | SelfGuidedTourSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | SelfGuidedTourSubscriptionWhereInput[]
+    | SelfGuidedTourSubscriptionWhereInput
+  >;
+}
+
+export interface FaqCreateInput {
+  id?: Maybe<ID_Input>;
+  question: String;
+  answer: String;
+}
+
+export interface ReviewSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ReviewWhereInput>;
+  AND?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
+  OR?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
+  NOT?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface HostSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<HostWhereInput>;
+  AND?: Maybe<HostSubscriptionWhereInput[] | HostSubscriptionWhereInput>;
+  OR?: Maybe<HostSubscriptionWhereInput[] | HostSubscriptionWhereInput>;
+  NOT?: Maybe<HostSubscriptionWhereInput[] | HostSubscriptionWhereInput>;
+}
+
+export interface EventUpdateManyMutationInput {
+  title?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  startAt?: Maybe<String>;
+  endAt?: Maybe<String>;
+  category?: Maybe<String>;
+  price?: Maybe<Float>;
+  locationTitle?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  difficulty?: Maybe<Difficulty>;
+  language?: Maybe<String>;
+  details?: Maybe<String>;
+}
+
+export interface FaqSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<FaqWhereInput>;
+  AND?: Maybe<FaqSubscriptionWhereInput[] | FaqSubscriptionWhereInput>;
+  OR?: Maybe<FaqSubscriptionWhereInput[] | FaqSubscriptionWhereInput>;
+  NOT?: Maybe<FaqSubscriptionWhereInput[] | FaqSubscriptionWhereInput>;
+}
+
+export interface ReviewUpdateManyDataInput {
+  score?: Maybe<Int>;
+  comment?: Maybe<String>;
+}
+
+export interface EventSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<EventWhereInput>;
+  AND?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
+  OR?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
+  NOT?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
+}
+
+export interface ReviewUpdateManyWithWhereNestedInput {
+  where: ReviewScalarWhereInput;
+  data: ReviewUpdateManyDataInput;
+}
+
+export interface ContactInfoSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ContactInfoWhereInput>;
+  AND?: Maybe<
+    ContactInfoSubscriptionWhereInput[] | ContactInfoSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ContactInfoSubscriptionWhereInput[] | ContactInfoSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ContactInfoSubscriptionWhereInput[] | ContactInfoSubscriptionWhereInput
+  >;
+}
+
+export interface ReviewScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  score?: Maybe<Int>;
+  score_not?: Maybe<Int>;
+  score_in?: Maybe<Int[] | Int>;
+  score_not_in?: Maybe<Int[] | Int>;
+  score_lt?: Maybe<Int>;
+  score_lte?: Maybe<Int>;
+  score_gt?: Maybe<Int>;
+  score_gte?: Maybe<Int>;
+  comment?: Maybe<String>;
+  comment_not?: Maybe<String>;
+  comment_in?: Maybe<String[] | String>;
+  comment_not_in?: Maybe<String[] | String>;
+  comment_lt?: Maybe<String>;
+  comment_lte?: Maybe<String>;
+  comment_gt?: Maybe<String>;
+  comment_gte?: Maybe<String>;
+  comment_contains?: Maybe<String>;
+  comment_not_contains?: Maybe<String>;
+  comment_starts_with?: Maybe<String>;
+  comment_not_starts_with?: Maybe<String>;
+  comment_ends_with?: Maybe<String>;
+  comment_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  OR?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  NOT?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+}
+
+export type ContactUsWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface ContactUsWhereInput {
   id?: Maybe<ID_Input>;
@@ -906,217 +1003,63 @@ export interface ContactUsWhereInput {
   NOT?: Maybe<ContactUsWhereInput[] | ContactUsWhereInput>;
 }
 
-export interface AudioWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  duration?: Maybe<String>;
-  duration_not?: Maybe<String>;
-  duration_in?: Maybe<String[] | String>;
-  duration_not_in?: Maybe<String[] | String>;
-  duration_lt?: Maybe<String>;
-  duration_lte?: Maybe<String>;
-  duration_gt?: Maybe<String>;
-  duration_gte?: Maybe<String>;
-  duration_contains?: Maybe<String>;
-  duration_not_contains?: Maybe<String>;
-  duration_starts_with?: Maybe<String>;
-  duration_not_starts_with?: Maybe<String>;
-  duration_ends_with?: Maybe<String>;
-  duration_not_ends_with?: Maybe<String>;
-  latitude?: Maybe<String>;
-  latitude_not?: Maybe<String>;
-  latitude_in?: Maybe<String[] | String>;
-  latitude_not_in?: Maybe<String[] | String>;
-  latitude_lt?: Maybe<String>;
-  latitude_lte?: Maybe<String>;
-  latitude_gt?: Maybe<String>;
-  latitude_gte?: Maybe<String>;
-  latitude_contains?: Maybe<String>;
-  latitude_not_contains?: Maybe<String>;
-  latitude_starts_with?: Maybe<String>;
-  latitude_not_starts_with?: Maybe<String>;
-  latitude_ends_with?: Maybe<String>;
-  latitude_not_ends_with?: Maybe<String>;
-  longitude?: Maybe<String>;
-  longitude_not?: Maybe<String>;
-  longitude_in?: Maybe<String[] | String>;
-  longitude_not_in?: Maybe<String[] | String>;
-  longitude_lt?: Maybe<String>;
-  longitude_lte?: Maybe<String>;
-  longitude_gt?: Maybe<String>;
-  longitude_gte?: Maybe<String>;
-  longitude_contains?: Maybe<String>;
-  longitude_not_contains?: Maybe<String>;
-  longitude_starts_with?: Maybe<String>;
-  longitude_not_starts_with?: Maybe<String>;
-  longitude_ends_with?: Maybe<String>;
-  longitude_not_ends_with?: Maybe<String>;
-  url?: Maybe<String>;
-  url_not?: Maybe<String>;
-  url_in?: Maybe<String[] | String>;
-  url_not_in?: Maybe<String[] | String>;
-  url_lt?: Maybe<String>;
-  url_lte?: Maybe<String>;
-  url_gt?: Maybe<String>;
-  url_gte?: Maybe<String>;
-  url_contains?: Maybe<String>;
-  url_not_contains?: Maybe<String>;
-  url_starts_with?: Maybe<String>;
-  url_not_starts_with?: Maybe<String>;
-  url_ends_with?: Maybe<String>;
-  url_not_ends_with?: Maybe<String>;
-  AND?: Maybe<AudioWhereInput[] | AudioWhereInput>;
-  OR?: Maybe<AudioWhereInput[] | AudioWhereInput>;
-  NOT?: Maybe<AudioWhereInput[] | AudioWhereInput>;
-}
-
-export interface ReviewSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ReviewWhereInput>;
-  AND?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
-  OR?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
-  NOT?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
-}
-
-export interface FaqUpdateDataInput {
-  question?: Maybe<String>;
-  answer?: Maybe<String>;
-}
-
-export interface HostSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<HostWhereInput>;
-  AND?: Maybe<HostSubscriptionWhereInput[] | HostSubscriptionWhereInput>;
-  OR?: Maybe<HostSubscriptionWhereInput[] | HostSubscriptionWhereInput>;
-  NOT?: Maybe<HostSubscriptionWhereInput[] | HostSubscriptionWhereInput>;
-}
-
-export interface FaqUpdateWithWhereUniqueNestedInput {
-  where: FaqWhereUniqueInput;
-  data: FaqUpdateDataInput;
-}
-
-export interface FaqSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<FaqWhereInput>;
-  AND?: Maybe<FaqSubscriptionWhereInput[] | FaqSubscriptionWhereInput>;
-  OR?: Maybe<FaqSubscriptionWhereInput[] | FaqSubscriptionWhereInput>;
-  NOT?: Maybe<FaqSubscriptionWhereInput[] | FaqSubscriptionWhereInput>;
-}
-
-export interface FaqUpdateManyInput {
-  create?: Maybe<FaqCreateInput[] | FaqCreateInput>;
-  update?: Maybe<
-    FaqUpdateWithWhereUniqueNestedInput[] | FaqUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    FaqUpsertWithWhereUniqueNestedInput[] | FaqUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
-  connect?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
-  set?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
-  disconnect?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
-  deleteMany?: Maybe<FaqScalarWhereInput[] | FaqScalarWhereInput>;
-  updateMany?: Maybe<
-    FaqUpdateManyWithWhereNestedInput[] | FaqUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface ContactUsSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ContactUsWhereInput>;
-  AND?: Maybe<
-    ContactUsSubscriptionWhereInput[] | ContactUsSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    ContactUsSubscriptionWhereInput[] | ContactUsSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    ContactUsSubscriptionWhereInput[] | ContactUsSubscriptionWhereInput
-  >;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
-
-export interface AudioSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<AudioWhereInput>;
-  AND?: Maybe<AudioSubscriptionWhereInput[] | AudioSubscriptionWhereInput>;
-  OR?: Maybe<AudioSubscriptionWhereInput[] | AudioSubscriptionWhereInput>;
-  NOT?: Maybe<AudioSubscriptionWhereInput[] | AudioSubscriptionWhereInput>;
-}
-
-export interface InfoUpdateInput {
-  faq?: Maybe<FaqUpdateManyInput>;
-  about?: Maybe<String>;
-  contactUs?: Maybe<ContactUsUpdateOneRequiredInput>;
-}
-
-export interface UserUpdateManyMutationInput {
+export interface UserUpdateInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
   location?: Maybe<String>;
   image?: Maybe<String>;
+}
+
+export interface AudioCreateInput {
+  id?: Maybe<ID_Input>;
+  url: String;
+  markers?: Maybe<AudioMarkersCreateManyWithoutAudioInput>;
+  selfGuidedTour: SelfGuidedTourCreateOneWithoutAudioInput;
+}
+
+export interface AudioUpsertWithoutSelfGuidedTourInput {
+  update: AudioUpdateWithoutSelfGuidedTourDataInput;
+  create: AudioCreateWithoutSelfGuidedTourInput;
+}
+
+export interface AudioMarkersCreateManyWithoutAudioInput {
+  create?: Maybe<
+    AudioMarkersCreateWithoutAudioInput[] | AudioMarkersCreateWithoutAudioInput
+  >;
+  connect?: Maybe<
+    AudioMarkersWhereUniqueInput[] | AudioMarkersWhereUniqueInput
+  >;
+}
+
+export interface AudioUpdateWithoutSelfGuidedTourDataInput {
+  url?: Maybe<String>;
+  markers?: Maybe<AudioMarkersUpdateManyWithoutAudioInput>;
+}
+
+export interface AudioMarkersCreateWithoutAudioInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  latitude: String;
+  longitude: String;
+  start: Float;
+}
+
+export interface SelfGuidedTourUpdateInput {
+  title?: Maybe<String>;
+  location?: Maybe<String>;
+  duration?: Maybe<String>;
+  difficulty?: Maybe<Difficulty>;
+  petFriendly?: Maybe<Boolean>;
+  description?: Maybe<String>;
+  audio?: Maybe<AudioUpdateOneRequiredWithoutSelfGuidedTourInput>;
+}
+
+export interface SelfGuidedTourCreateOneWithoutAudioInput {
+  create?: Maybe<SelfGuidedTourCreateWithoutAudioInput>;
+  connect?: Maybe<SelfGuidedTourWhereUniqueInput>;
 }
 
 export interface UserWhereInput {
@@ -1229,6 +1172,27 @@ export interface UserWhereInput {
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
+}
+
+export interface SelfGuidedTourCreateWithoutAudioInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  location: String;
+  duration: String;
+  difficulty: Difficulty;
+  petFriendly?: Maybe<Boolean>;
+  description: String;
+}
+
+export interface AudioCreateOneWithoutSelfGuidedTourInput {
+  create?: Maybe<AudioCreateWithoutSelfGuidedTourInput>;
+  connect?: Maybe<AudioWhereUniqueInput>;
+}
+
+export interface AudioUpdateInput {
+  url?: Maybe<String>;
+  markers?: Maybe<AudioMarkersUpdateManyWithoutAudioInput>;
+  selfGuidedTour?: Maybe<SelfGuidedTourUpdateOneRequiredWithoutAudioInput>;
 }
 
 export interface EventWhereInput {
@@ -1401,51 +1365,65 @@ export interface EventWhereInput {
   NOT?: Maybe<EventWhereInput[] | EventWhereInput>;
 }
 
-export interface ContactUsCreateOneInput {
-  create?: Maybe<ContactUsCreateInput>;
-  connect?: Maybe<ContactUsWhereUniqueInput>;
+export interface AudioMarkersUpdateManyWithoutAudioInput {
+  create?: Maybe<
+    AudioMarkersCreateWithoutAudioInput[] | AudioMarkersCreateWithoutAudioInput
+  >;
+  delete?: Maybe<AudioMarkersWhereUniqueInput[] | AudioMarkersWhereUniqueInput>;
+  connect?: Maybe<
+    AudioMarkersWhereUniqueInput[] | AudioMarkersWhereUniqueInput
+  >;
+  set?: Maybe<AudioMarkersWhereUniqueInput[] | AudioMarkersWhereUniqueInput>;
+  disconnect?: Maybe<
+    AudioMarkersWhereUniqueInput[] | AudioMarkersWhereUniqueInput
+  >;
+  update?: Maybe<
+    | AudioMarkersUpdateWithWhereUniqueWithoutAudioInput[]
+    | AudioMarkersUpdateWithWhereUniqueWithoutAudioInput
+  >;
+  upsert?: Maybe<
+    | AudioMarkersUpsertWithWhereUniqueWithoutAudioInput[]
+    | AudioMarkersUpsertWithWhereUniqueWithoutAudioInput
+  >;
+  deleteMany?: Maybe<
+    AudioMarkersScalarWhereInput[] | AudioMarkersScalarWhereInput
+  >;
+  updateMany?: Maybe<
+    | AudioMarkersUpdateManyWithWhereNestedInput[]
+    | AudioMarkersUpdateManyWithWhereNestedInput
+  >;
 }
 
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email: String;
-  password: String;
-  firstName: String;
-  lastName: String;
-  location: String;
-  image?: Maybe<String>;
+export interface ReviewUpdateManyMutationInput {
+  score?: Maybe<Int>;
+  comment?: Maybe<String>;
 }
 
-export interface FaqCreateManyInput {
-  create?: Maybe<FaqCreateInput[] | FaqCreateInput>;
-  connect?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
+export interface AudioMarkersUpdateWithWhereUniqueWithoutAudioInput {
+  where: AudioMarkersWhereUniqueInput;
+  data: AudioMarkersUpdateWithoutAudioDataInput;
 }
 
-export interface AudioUpdateManyDataInput {
+export interface InfoUpdateManyMutationInput {
+  about?: Maybe<String>;
+}
+
+export interface AudioMarkersUpdateWithoutAudioDataInput {
   title?: Maybe<String>;
   description?: Maybe<String>;
-  duration?: Maybe<String>;
   latitude?: Maybe<String>;
   longitude?: Maybe<String>;
-  url?: Maybe<String>;
-}
-
-export interface InfoCreateInput {
-  id?: Maybe<ID_Input>;
-  faq?: Maybe<FaqCreateManyInput>;
-  about: String;
-  contactUs: ContactUsCreateOneInput;
+  start?: Maybe<Float>;
 }
 
 export type FaqWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface HostUpdateManyMutationInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-  image?: Maybe<String>;
-  bio?: Maybe<String>;
+export interface AudioMarkersUpsertWithWhereUniqueWithoutAudioInput {
+  where: AudioMarkersWhereUniqueInput;
+  update: AudioMarkersUpdateWithoutAudioDataInput;
+  create: AudioMarkersCreateWithoutAudioInput;
 }
 
 export interface FaqWhereInput {
@@ -1496,265 +1474,7 @@ export interface FaqWhereInput {
   NOT?: Maybe<FaqWhereInput[] | FaqWhereInput>;
 }
 
-export interface AudioUpdateDataInput {
-  title?: Maybe<String>;
-  description?: Maybe<String>;
-  duration?: Maybe<String>;
-  latitude?: Maybe<String>;
-  longitude?: Maybe<String>;
-  url?: Maybe<String>;
-}
-
-export interface AudioUpdateManyInput {
-  create?: Maybe<AudioCreateInput[] | AudioCreateInput>;
-  update?: Maybe<
-    | AudioUpdateWithWhereUniqueNestedInput[]
-    | AudioUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | AudioUpsertWithWhereUniqueNestedInput[]
-    | AudioUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<AudioWhereUniqueInput[] | AudioWhereUniqueInput>;
-  connect?: Maybe<AudioWhereUniqueInput[] | AudioWhereUniqueInput>;
-  set?: Maybe<AudioWhereUniqueInput[] | AudioWhereUniqueInput>;
-  disconnect?: Maybe<AudioWhereUniqueInput[] | AudioWhereUniqueInput>;
-  deleteMany?: Maybe<AudioScalarWhereInput[] | AudioScalarWhereInput>;
-  updateMany?: Maybe<
-    AudioUpdateManyWithWhereNestedInput[] | AudioUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface AudioCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  description: String;
-  duration: String;
-  latitude: String;
-  longitude: String;
-  url: String;
-}
-
-export interface SelfGuidedTourUpdateInput {
-  title?: Maybe<String>;
-  location?: Maybe<String>;
-  duration?: Maybe<String>;
-  difficulty?: Maybe<Difficulty>;
-  petFriendly?: Maybe<Boolean>;
-  description?: Maybe<String>;
-  audio?: Maybe<AudioUpdateManyInput>;
-}
-
-export interface AudioUpdateInput {
-  title?: Maybe<String>;
-  description?: Maybe<String>;
-  duration?: Maybe<String>;
-  latitude?: Maybe<String>;
-  longitude?: Maybe<String>;
-  url?: Maybe<String>;
-}
-
-export interface SelfGuidedTourCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  location: String;
-  duration: String;
-  difficulty: Difficulty;
-  petFriendly?: Maybe<Boolean>;
-  description: String;
-  audio?: Maybe<AudioCreateManyInput>;
-}
-
-export interface AudioUpdateManyMutationInput {
-  title?: Maybe<String>;
-  description?: Maybe<String>;
-  duration?: Maybe<String>;
-  latitude?: Maybe<String>;
-  longitude?: Maybe<String>;
-  url?: Maybe<String>;
-}
-
-export type InfoWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface HostUpdateInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-  image?: Maybe<String>;
-  bio?: Maybe<String>;
-}
-
-export interface InfoWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  faq_every?: Maybe<FaqWhereInput>;
-  faq_some?: Maybe<FaqWhereInput>;
-  faq_none?: Maybe<FaqWhereInput>;
-  about?: Maybe<String>;
-  about_not?: Maybe<String>;
-  about_in?: Maybe<String[] | String>;
-  about_not_in?: Maybe<String[] | String>;
-  about_lt?: Maybe<String>;
-  about_lte?: Maybe<String>;
-  about_gt?: Maybe<String>;
-  about_gte?: Maybe<String>;
-  about_contains?: Maybe<String>;
-  about_not_contains?: Maybe<String>;
-  about_starts_with?: Maybe<String>;
-  about_not_starts_with?: Maybe<String>;
-  about_ends_with?: Maybe<String>;
-  about_not_ends_with?: Maybe<String>;
-  contactUs?: Maybe<ContactUsWhereInput>;
-  AND?: Maybe<InfoWhereInput[] | InfoWhereInput>;
-  OR?: Maybe<InfoWhereInput[] | InfoWhereInput>;
-  NOT?: Maybe<InfoWhereInput[] | InfoWhereInput>;
-}
-
-export interface FaqUpdateManyMutationInput {
-  question?: Maybe<String>;
-  answer?: Maybe<String>;
-}
-
-export interface ContactUsUpsertNestedInput {
-  update: ContactUsUpdateDataInput;
-  create: ContactUsCreateInput;
-}
-
-export interface ContactInfoCreateInput {
-  id?: Maybe<ID_Input>;
-  address: String;
-  phoneNumber: String;
-  email: String;
-}
-
-export interface ContactUsUpdateOneRequiredInput {
-  create?: Maybe<ContactUsCreateInput>;
-  update?: Maybe<ContactUsUpdateDataInput>;
-  upsert?: Maybe<ContactUsUpsertNestedInput>;
-  connect?: Maybe<ContactUsWhereUniqueInput>;
-}
-
-export interface ContactInfoUpdateInput {
-  address?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  email?: Maybe<String>;
-}
-
-export interface FaqUpdateManyDataInput {
-  question?: Maybe<String>;
-  answer?: Maybe<String>;
-}
-
-export interface ContactInfoUpdateManyMutationInput {
-  address?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  email?: Maybe<String>;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
-export interface ContactUsCreateInput {
-  id?: Maybe<ID_Input>;
-  contactInfo: ContactInfoCreateOneInput;
-  twitterLink?: Maybe<String>;
-  instagramLink?: Maybe<String>;
-  facebookLink?: Maybe<String>;
-}
-
-export type ContactInfoWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface ContactInfoCreateOneInput {
-  create?: Maybe<ContactInfoCreateInput>;
-  connect?: Maybe<ContactInfoWhereUniqueInput>;
-}
-
-export type EventWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface FaqUpdateInput {
-  question?: Maybe<String>;
-  answer?: Maybe<String>;
-}
-
-export interface ContactInfoSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ContactInfoWhereInput>;
-  AND?: Maybe<
-    ContactInfoSubscriptionWhereInput[] | ContactInfoSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    ContactInfoSubscriptionWhereInput[] | ContactInfoSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    ContactInfoSubscriptionWhereInput[] | ContactInfoSubscriptionWhereInput
-  >;
-}
-
-export interface ContactInfoUpdateOneRequiredInput {
-  create?: Maybe<ContactInfoCreateInput>;
-  update?: Maybe<ContactInfoUpdateDataInput>;
-  upsert?: Maybe<ContactInfoUpsertNestedInput>;
-  connect?: Maybe<ContactInfoWhereUniqueInput>;
-}
-
-export interface UserUpdateInput {
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  location?: Maybe<String>;
-  image?: Maybe<String>;
-}
-
-export interface ContactInfoUpdateDataInput {
-  address?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  email?: Maybe<String>;
-}
-
-export interface SelfGuidedTourUpdateManyMutationInput {
-  title?: Maybe<String>;
-  location?: Maybe<String>;
-  duration?: Maybe<String>;
-  difficulty?: Maybe<Difficulty>;
-  petFriendly?: Maybe<Boolean>;
-  description?: Maybe<String>;
-}
-
-export interface ContactInfoUpsertNestedInput {
-  update: ContactInfoUpdateDataInput;
-  create: ContactInfoCreateInput;
-}
-
-export interface AudioScalarWhereInput {
+export interface AudioMarkersScalarWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -1797,20 +1517,6 @@ export interface AudioScalarWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  duration?: Maybe<String>;
-  duration_not?: Maybe<String>;
-  duration_in?: Maybe<String[] | String>;
-  duration_not_in?: Maybe<String[] | String>;
-  duration_lt?: Maybe<String>;
-  duration_lte?: Maybe<String>;
-  duration_gt?: Maybe<String>;
-  duration_gte?: Maybe<String>;
-  duration_contains?: Maybe<String>;
-  duration_not_contains?: Maybe<String>;
-  duration_starts_with?: Maybe<String>;
-  duration_not_starts_with?: Maybe<String>;
-  duration_ends_with?: Maybe<String>;
-  duration_not_ends_with?: Maybe<String>;
   latitude?: Maybe<String>;
   latitude_not?: Maybe<String>;
   latitude_in?: Maybe<String[] | String>;
@@ -1839,6 +1545,59 @@ export interface AudioScalarWhereInput {
   longitude_not_starts_with?: Maybe<String>;
   longitude_ends_with?: Maybe<String>;
   longitude_not_ends_with?: Maybe<String>;
+  start?: Maybe<Float>;
+  start_not?: Maybe<Float>;
+  start_in?: Maybe<Float[] | Float>;
+  start_not_in?: Maybe<Float[] | Float>;
+  start_lt?: Maybe<Float>;
+  start_lte?: Maybe<Float>;
+  start_gt?: Maybe<Float>;
+  start_gte?: Maybe<Float>;
+  AND?: Maybe<AudioMarkersScalarWhereInput[] | AudioMarkersScalarWhereInput>;
+  OR?: Maybe<AudioMarkersScalarWhereInput[] | AudioMarkersScalarWhereInput>;
+  NOT?: Maybe<AudioMarkersScalarWhereInput[] | AudioMarkersScalarWhereInput>;
+}
+
+export interface ContactUsUpdateOneRequiredInput {
+  create?: Maybe<ContactUsCreateInput>;
+  update?: Maybe<ContactUsUpdateDataInput>;
+  upsert?: Maybe<ContactUsUpsertNestedInput>;
+  connect?: Maybe<ContactUsWhereUniqueInput>;
+}
+
+export interface AudioMarkersUpdateManyWithWhereNestedInput {
+  where: AudioMarkersScalarWhereInput;
+  data: AudioMarkersUpdateManyDataInput;
+}
+
+export interface FaqUpdateManyWithWhereNestedInput {
+  where: FaqScalarWhereInput;
+  data: FaqUpdateManyDataInput;
+}
+
+export interface AudioMarkersUpdateManyDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  latitude?: Maybe<String>;
+  longitude?: Maybe<String>;
+  start?: Maybe<Float>;
+}
+
+export interface AudioWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
   url?: Maybe<String>;
   url_not?: Maybe<String>;
   url_in?: Maybe<String[] | String>;
@@ -1853,94 +1612,153 @@ export interface AudioScalarWhereInput {
   url_not_starts_with?: Maybe<String>;
   url_ends_with?: Maybe<String>;
   url_not_ends_with?: Maybe<String>;
-  AND?: Maybe<AudioScalarWhereInput[] | AudioScalarWhereInput>;
-  OR?: Maybe<AudioScalarWhereInput[] | AudioScalarWhereInput>;
-  NOT?: Maybe<AudioScalarWhereInput[] | AudioScalarWhereInput>;
+  markers_every?: Maybe<AudioMarkersWhereInput>;
+  markers_some?: Maybe<AudioMarkersWhereInput>;
+  markers_none?: Maybe<AudioMarkersWhereInput>;
+  selfGuidedTour?: Maybe<SelfGuidedTourWhereInput>;
+  AND?: Maybe<AudioWhereInput[] | AudioWhereInput>;
+  OR?: Maybe<AudioWhereInput[] | AudioWhereInput>;
+  NOT?: Maybe<AudioWhereInput[] | AudioWhereInput>;
 }
 
-export interface ContactUsUpdateManyMutationInput {
-  twitterLink?: Maybe<String>;
-  instagramLink?: Maybe<String>;
-  facebookLink?: Maybe<String>;
+export interface SelfGuidedTourUpdateOneRequiredWithoutAudioInput {
+  create?: Maybe<SelfGuidedTourCreateWithoutAudioInput>;
+  update?: Maybe<SelfGuidedTourUpdateWithoutAudioDataInput>;
+  upsert?: Maybe<SelfGuidedTourUpsertWithoutAudioInput>;
+  connect?: Maybe<SelfGuidedTourWhereUniqueInput>;
 }
 
-export interface AudioUpdateWithWhereUniqueNestedInput {
-  where: AudioWhereUniqueInput;
-  data: AudioUpdateDataInput;
+export interface FaqUpsertWithWhereUniqueNestedInput {
+  where: FaqWhereUniqueInput;
+  update: FaqUpdateDataInput;
+  create: FaqCreateInput;
 }
 
-export interface EventCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  date: DateTimeInput;
-  startAt: String;
-  endAt: String;
-  category: String;
-  price: Float;
-  locationTitle: String;
-  address: String;
-  image: String;
-  difficulty: Difficulty;
-  language: String;
-  details: String;
-  host: HostCreateOneInput;
-  reviews?: Maybe<ReviewCreateManyInput>;
-}
-
-export interface AudioCreateManyInput {
-  create?: Maybe<AudioCreateInput[] | AudioCreateInput>;
-  connect?: Maybe<AudioWhereUniqueInput[] | AudioWhereUniqueInput>;
-}
-
-export interface HostCreateOneInput {
-  create?: Maybe<HostCreateInput>;
-  connect?: Maybe<HostWhereUniqueInput>;
-}
-
-export interface ReviewUpdateInput {
-  userID?: Maybe<String>;
-  score?: Maybe<Int>;
-  comment?: Maybe<String>;
-}
-
-export interface FaqCreateInput {
-  id?: Maybe<ID_Input>;
-  question: String;
-  answer: String;
-}
-
-export interface ContactUsUpdateDataInput {
-  contactInfo?: Maybe<ContactInfoUpdateOneRequiredInput>;
-  twitterLink?: Maybe<String>;
-  instagramLink?: Maybe<String>;
-  facebookLink?: Maybe<String>;
-}
-
-export interface EventUpdateManyMutationInput {
+export interface SelfGuidedTourUpdateWithoutAudioDataInput {
   title?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  startAt?: Maybe<String>;
-  endAt?: Maybe<String>;
-  category?: Maybe<String>;
-  price?: Maybe<Float>;
-  locationTitle?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
+  location?: Maybe<String>;
+  duration?: Maybe<String>;
   difficulty?: Maybe<Difficulty>;
-  language?: Maybe<String>;
-  details?: Maybe<String>;
+  petFriendly?: Maybe<Boolean>;
+  description?: Maybe<String>;
 }
 
-export interface FaqUpdateManyWithWhereNestedInput {
-  where: FaqScalarWhereInput;
-  data: FaqUpdateManyDataInput;
+export type InfoWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SelfGuidedTourUpsertWithoutAudioInput {
+  update: SelfGuidedTourUpdateWithoutAudioDataInput;
+  create: SelfGuidedTourCreateWithoutAudioInput;
 }
 
-export interface ReviewCreateInput {
+export interface InfoWhereInput {
   id?: Maybe<ID_Input>;
-  userID: String;
-  score: Int;
-  comment: String;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  faq_every?: Maybe<FaqWhereInput>;
+  faq_some?: Maybe<FaqWhereInput>;
+  faq_none?: Maybe<FaqWhereInput>;
+  about?: Maybe<String>;
+  about_not?: Maybe<String>;
+  about_in?: Maybe<String[] | String>;
+  about_not_in?: Maybe<String[] | String>;
+  about_lt?: Maybe<String>;
+  about_lte?: Maybe<String>;
+  about_gt?: Maybe<String>;
+  about_gte?: Maybe<String>;
+  about_contains?: Maybe<String>;
+  about_not_contains?: Maybe<String>;
+  about_starts_with?: Maybe<String>;
+  about_not_starts_with?: Maybe<String>;
+  about_ends_with?: Maybe<String>;
+  about_not_ends_with?: Maybe<String>;
+  contactUs?: Maybe<ContactUsWhereInput>;
+  AND?: Maybe<InfoWhereInput[] | InfoWhereInput>;
+  OR?: Maybe<InfoWhereInput[] | InfoWhereInput>;
+  NOT?: Maybe<InfoWhereInput[] | InfoWhereInput>;
+}
+
+export interface AudioUpdateManyMutationInput {
+  url?: Maybe<String>;
+}
+
+export interface InfoUpdateInput {
+  faq?: Maybe<FaqUpdateManyInput>;
+  about?: Maybe<String>;
+  contactUs?: Maybe<ContactUsUpdateOneRequiredInput>;
+}
+
+export interface ReviewUpsertWithWhereUniqueNestedInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateDataInput;
+  create: ReviewCreateInput;
+}
+
+export interface FaqCreateManyInput {
+  create?: Maybe<FaqCreateInput[] | FaqCreateInput>;
+  connect?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface InfoCreateInput {
+  id?: Maybe<ID_Input>;
+  faq?: Maybe<FaqCreateManyInput>;
+  about: String;
+  contactUs: ContactUsCreateOneInput;
+}
+
+export interface UserUpdateDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  location?: Maybe<String>;
+  image?: Maybe<String>;
+}
+
+export interface HostUpdateInput {
+  email?: Maybe<String>;
+  name?: Maybe<String>;
+  image?: Maybe<String>;
+  bio?: Maybe<String>;
+}
+
+export interface AudioCreateOneWithoutMarkersInput {
+  create?: Maybe<AudioCreateWithoutMarkersInput>;
+  connect?: Maybe<AudioWhereUniqueInput>;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+}
+
+export interface AudioCreateWithoutMarkersInput {
+  id?: Maybe<ID_Input>;
+  url: String;
+  selfGuidedTour: SelfGuidedTourCreateOneWithoutAudioInput;
 }
 
 export interface InfoSubscriptionWhereInput {
@@ -1954,21 +1772,130 @@ export interface InfoSubscriptionWhereInput {
   NOT?: Maybe<InfoSubscriptionWhereInput[] | InfoSubscriptionWhereInput>;
 }
 
-export interface EventUpdateInput {
+export interface AudioMarkersUpdateInput {
   title?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  startAt?: Maybe<String>;
-  endAt?: Maybe<String>;
-  category?: Maybe<String>;
-  price?: Maybe<Float>;
-  locationTitle?: Maybe<String>;
+  description?: Maybe<String>;
+  latitude?: Maybe<String>;
+  longitude?: Maybe<String>;
+  start?: Maybe<Float>;
+  audio?: Maybe<AudioUpdateOneRequiredWithoutMarkersInput>;
+}
+
+export interface ContactInfoWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
   address?: Maybe<String>;
+  address_not?: Maybe<String>;
+  address_in?: Maybe<String[] | String>;
+  address_not_in?: Maybe<String[] | String>;
+  address_lt?: Maybe<String>;
+  address_lte?: Maybe<String>;
+  address_gt?: Maybe<String>;
+  address_gte?: Maybe<String>;
+  address_contains?: Maybe<String>;
+  address_not_contains?: Maybe<String>;
+  address_starts_with?: Maybe<String>;
+  address_not_starts_with?: Maybe<String>;
+  address_ends_with?: Maybe<String>;
+  address_not_ends_with?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumber_not?: Maybe<String>;
+  phoneNumber_in?: Maybe<String[] | String>;
+  phoneNumber_not_in?: Maybe<String[] | String>;
+  phoneNumber_lt?: Maybe<String>;
+  phoneNumber_lte?: Maybe<String>;
+  phoneNumber_gt?: Maybe<String>;
+  phoneNumber_gte?: Maybe<String>;
+  phoneNumber_contains?: Maybe<String>;
+  phoneNumber_not_contains?: Maybe<String>;
+  phoneNumber_starts_with?: Maybe<String>;
+  phoneNumber_not_starts_with?: Maybe<String>;
+  phoneNumber_ends_with?: Maybe<String>;
+  phoneNumber_not_ends_with?: Maybe<String>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ContactInfoWhereInput[] | ContactInfoWhereInput>;
+  OR?: Maybe<ContactInfoWhereInput[] | ContactInfoWhereInput>;
+  NOT?: Maybe<ContactInfoWhereInput[] | ContactInfoWhereInput>;
+}
+
+export interface AudioUpdateOneRequiredWithoutMarkersInput {
+  create?: Maybe<AudioCreateWithoutMarkersInput>;
+  update?: Maybe<AudioUpdateWithoutMarkersDataInput>;
+  upsert?: Maybe<AudioUpsertWithoutMarkersInput>;
+  connect?: Maybe<AudioWhereUniqueInput>;
+}
+
+export interface AudioMarkersSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<AudioMarkersWhereInput>;
+  AND?: Maybe<
+    AudioMarkersSubscriptionWhereInput[] | AudioMarkersSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    AudioMarkersSubscriptionWhereInput[] | AudioMarkersSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    AudioMarkersSubscriptionWhereInput[] | AudioMarkersSubscriptionWhereInput
+  >;
+}
+
+export interface AudioUpdateWithoutMarkersDataInput {
+  url?: Maybe<String>;
+  selfGuidedTour?: Maybe<SelfGuidedTourUpdateOneRequiredWithoutAudioInput>;
+}
+
+export interface UserUpdateManyMutationInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  location?: Maybe<String>;
   image?: Maybe<String>;
-  difficulty?: Maybe<Difficulty>;
-  language?: Maybe<String>;
-  details?: Maybe<String>;
-  host?: Maybe<HostUpdateOneRequiredInput>;
-  reviews?: Maybe<ReviewUpdateManyInput>;
+}
+
+export interface AudioUpsertWithoutMarkersInput {
+  update: AudioUpdateWithoutMarkersDataInput;
+  create: AudioCreateWithoutMarkersInput;
+}
+
+export type EventWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface AudioMarkersUpdateManyMutationInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  latitude?: Maybe<String>;
+  longitude?: Maybe<String>;
+  start?: Maybe<Float>;
 }
 
 export interface ReviewWhereInput {
@@ -1986,20 +1913,7 @@ export interface ReviewWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  userID?: Maybe<String>;
-  userID_not?: Maybe<String>;
-  userID_in?: Maybe<String[] | String>;
-  userID_not_in?: Maybe<String[] | String>;
-  userID_lt?: Maybe<String>;
-  userID_lte?: Maybe<String>;
-  userID_gt?: Maybe<String>;
-  userID_gte?: Maybe<String>;
-  userID_contains?: Maybe<String>;
-  userID_not_contains?: Maybe<String>;
-  userID_starts_with?: Maybe<String>;
-  userID_not_starts_with?: Maybe<String>;
-  userID_ends_with?: Maybe<String>;
-  userID_not_ends_with?: Maybe<String>;
+  user?: Maybe<UserWhereInput>;
   score?: Maybe<Int>;
   score_not?: Maybe<Int>;
   score_in?: Maybe<Int[] | Int>;
@@ -2035,23 +1949,238 @@ export interface ReviewWhereInput {
   NOT?: Maybe<ReviewWhereInput[] | ReviewWhereInput>;
 }
 
-export interface HostUpdateOneRequiredInput {
-  create?: Maybe<HostCreateInput>;
-  update?: Maybe<HostUpdateDataInput>;
-  upsert?: Maybe<HostUpsertNestedInput>;
-  connect?: Maybe<HostWhereUniqueInput>;
+export interface UserUpdateOneRequiredInput {
+  create?: Maybe<UserCreateInput>;
+  update?: Maybe<UserUpdateDataInput>;
+  upsert?: Maybe<UserUpsertNestedInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
-export interface AudioUpdateManyWithWhereNestedInput {
-  where: AudioScalarWhereInput;
-  data: AudioUpdateManyDataInput;
+export interface SelfGuidedTourCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  location: String;
+  duration: String;
+  difficulty: Difficulty;
+  petFriendly?: Maybe<Boolean>;
+  description: String;
+  audio: AudioCreateOneWithoutSelfGuidedTourInput;
 }
 
-export interface HostUpdateDataInput {
+export interface ContactInfoUpdateInput {
+  address?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  email?: Maybe<String>;
+}
+
+export interface ReviewUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredInput>;
+  score?: Maybe<Int>;
+  comment?: Maybe<String>;
+}
+
+export interface ContactInfoUpdateManyMutationInput {
+  address?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  email?: Maybe<String>;
+}
+
+export interface ContactUsUpdateDataInput {
+  contactInfo?: Maybe<ContactInfoUpdateOneRequiredInput>;
+  twitterLink?: Maybe<String>;
+  instagramLink?: Maybe<String>;
+  facebookLink?: Maybe<String>;
+}
+
+export interface ContactUsCreateInput {
+  id?: Maybe<ID_Input>;
+  contactInfo: ContactInfoCreateOneInput;
+  twitterLink?: Maybe<String>;
+  instagramLink?: Maybe<String>;
+  facebookLink?: Maybe<String>;
+}
+
+export interface FaqUpdateManyDataInput {
+  question?: Maybe<String>;
+  answer?: Maybe<String>;
+}
+
+export interface ContactInfoCreateOneInput {
+  create?: Maybe<ContactInfoCreateInput>;
+  connect?: Maybe<ContactInfoWhereUniqueInput>;
+}
+
+export interface FaqScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  question?: Maybe<String>;
+  question_not?: Maybe<String>;
+  question_in?: Maybe<String[] | String>;
+  question_not_in?: Maybe<String[] | String>;
+  question_lt?: Maybe<String>;
+  question_lte?: Maybe<String>;
+  question_gt?: Maybe<String>;
+  question_gte?: Maybe<String>;
+  question_contains?: Maybe<String>;
+  question_not_contains?: Maybe<String>;
+  question_starts_with?: Maybe<String>;
+  question_not_starts_with?: Maybe<String>;
+  question_ends_with?: Maybe<String>;
+  question_not_ends_with?: Maybe<String>;
+  answer?: Maybe<String>;
+  answer_not?: Maybe<String>;
+  answer_in?: Maybe<String[] | String>;
+  answer_not_in?: Maybe<String[] | String>;
+  answer_lt?: Maybe<String>;
+  answer_lte?: Maybe<String>;
+  answer_gt?: Maybe<String>;
+  answer_gte?: Maybe<String>;
+  answer_contains?: Maybe<String>;
+  answer_not_contains?: Maybe<String>;
+  answer_starts_with?: Maybe<String>;
+  answer_not_starts_with?: Maybe<String>;
+  answer_ends_with?: Maybe<String>;
+  answer_not_ends_with?: Maybe<String>;
+  AND?: Maybe<FaqScalarWhereInput[] | FaqScalarWhereInput>;
+  OR?: Maybe<FaqScalarWhereInput[] | FaqScalarWhereInput>;
+  NOT?: Maybe<FaqScalarWhereInput[] | FaqScalarWhereInput>;
+}
+
+export interface ContactUsUpdateInput {
+  contactInfo?: Maybe<ContactInfoUpdateOneRequiredInput>;
+  twitterLink?: Maybe<String>;
+  instagramLink?: Maybe<String>;
+  facebookLink?: Maybe<String>;
+}
+
+export interface FaqUpdateWithWhereUniqueNestedInput {
+  where: FaqWhereUniqueInput;
+  data: FaqUpdateDataInput;
+}
+
+export interface ContactInfoUpdateOneRequiredInput {
+  create?: Maybe<ContactInfoCreateInput>;
+  update?: Maybe<ContactInfoUpdateDataInput>;
+  upsert?: Maybe<ContactInfoUpsertNestedInput>;
+  connect?: Maybe<ContactInfoWhereUniqueInput>;
+}
+
+export interface ContactUsCreateOneInput {
+  create?: Maybe<ContactUsCreateInput>;
+  connect?: Maybe<ContactUsWhereUniqueInput>;
+}
+
+export interface ContactInfoUpdateDataInput {
+  address?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  email?: Maybe<String>;
+}
+
+export interface HostUpdateManyMutationInput {
   email?: Maybe<String>;
   name?: Maybe<String>;
   image?: Maybe<String>;
   bio?: Maybe<String>;
+}
+
+export interface ContactInfoUpsertNestedInput {
+  update: ContactInfoUpdateDataInput;
+  create: ContactInfoCreateInput;
+}
+
+export type AudioMarkersWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ContactUsUpdateManyMutationInput {
+  twitterLink?: Maybe<String>;
+  instagramLink?: Maybe<String>;
+  facebookLink?: Maybe<String>;
+}
+
+export interface ContactUsSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ContactUsWhereInput>;
+  AND?: Maybe<
+    ContactUsSubscriptionWhereInput[] | ContactUsSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ContactUsSubscriptionWhereInput[] | ContactUsSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ContactUsSubscriptionWhereInput[] | ContactUsSubscriptionWhereInput
+  >;
+}
+
+export interface EventCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  date: DateTimeInput;
+  startAt: String;
+  endAt: String;
+  category: String;
+  price: Float;
+  locationTitle: String;
+  address: String;
+  image: String;
+  difficulty: Difficulty;
+  language: String;
+  details: String;
+  host: HostCreateOneInput;
+  reviews?: Maybe<ReviewCreateManyInput>;
+}
+
+export interface SelfGuidedTourUpdateManyMutationInput {
+  title?: Maybe<String>;
+  location?: Maybe<String>;
+  duration?: Maybe<String>;
+  difficulty?: Maybe<Difficulty>;
+  petFriendly?: Maybe<Boolean>;
+  description?: Maybe<String>;
+}
+
+export interface HostCreateOneInput {
+  create?: Maybe<HostCreateInput>;
+  connect?: Maybe<HostWhereUniqueInput>;
+}
+
+export interface AudioCreateWithoutSelfGuidedTourInput {
+  id?: Maybe<ID_Input>;
+  url: String;
+  markers?: Maybe<AudioMarkersCreateManyWithoutAudioInput>;
+}
+
+export interface HostCreateInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  name: String;
+  image: String;
+  bio: String;
+}
+
+export interface ContactUsUpsertNestedInput {
+  update: ContactUsUpdateDataInput;
+  create: ContactUsCreateInput;
+}
+
+export interface ReviewCreateManyInput {
+  create?: Maybe<ReviewCreateInput[] | ReviewCreateInput>;
+  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
 }
 
 export type HostWhereUniqueInput = AtLeastOne<{
@@ -2059,59 +2188,76 @@ export type HostWhereUniqueInput = AtLeastOne<{
   email?: Maybe<String>;
 }>;
 
-export interface HostUpsertNestedInput {
-  update: HostUpdateDataInput;
-  create: HostCreateInput;
+export interface ReviewCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneInput;
+  score: Int;
+  comment: String;
 }
 
-export interface InfoUpdateManyMutationInput {
-  about?: Maybe<String>;
-}
-
-export interface ReviewUpdateManyInput {
-  create?: Maybe<ReviewCreateInput[] | ReviewCreateInput>;
+export interface FaqUpdateManyInput {
+  create?: Maybe<FaqCreateInput[] | FaqCreateInput>;
   update?: Maybe<
-    | ReviewUpdateWithWhereUniqueNestedInput[]
-    | ReviewUpdateWithWhereUniqueNestedInput
+    FaqUpdateWithWhereUniqueNestedInput[] | FaqUpdateWithWhereUniqueNestedInput
   >;
   upsert?: Maybe<
-    | ReviewUpsertWithWhereUniqueNestedInput[]
-    | ReviewUpsertWithWhereUniqueNestedInput
+    FaqUpsertWithWhereUniqueNestedInput[] | FaqUpsertWithWhereUniqueNestedInput
   >;
-  delete?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
-  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
-  set?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
-  disconnect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
-  deleteMany?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  delete?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
+  connect?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
+  set?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
+  disconnect?: Maybe<FaqWhereUniqueInput[] | FaqWhereUniqueInput>;
+  deleteMany?: Maybe<FaqScalarWhereInput[] | FaqScalarWhereInput>;
   updateMany?: Maybe<
-    | ReviewUpdateManyWithWhereNestedInput[]
-    | ReviewUpdateManyWithWhereNestedInput
+    FaqUpdateManyWithWhereNestedInput[] | FaqUpdateManyWithWhereNestedInput
   >;
 }
 
-export interface SelfGuidedTourSubscriptionWhereInput {
+export interface UserCreateOneInput {
+  create?: Maybe<UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export type SelfGuidedTourWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  firstName: String;
+  lastName: String;
+  location: String;
+  image?: Maybe<String>;
+}
+
+export interface AudioSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SelfGuidedTourWhereInput>;
-  AND?: Maybe<
-    | SelfGuidedTourSubscriptionWhereInput[]
-    | SelfGuidedTourSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    | SelfGuidedTourSubscriptionWhereInput[]
-    | SelfGuidedTourSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    | SelfGuidedTourSubscriptionWhereInput[]
-    | SelfGuidedTourSubscriptionWhereInput
-  >;
+  node?: Maybe<AudioWhereInput>;
+  AND?: Maybe<AudioSubscriptionWhereInput[] | AudioSubscriptionWhereInput>;
+  OR?: Maybe<AudioSubscriptionWhereInput[] | AudioSubscriptionWhereInput>;
+  NOT?: Maybe<AudioSubscriptionWhereInput[] | AudioSubscriptionWhereInput>;
 }
 
-export interface ReviewUpdateWithWhereUniqueNestedInput {
-  where: ReviewWhereUniqueInput;
-  data: ReviewUpdateDataInput;
+export interface EventUpdateInput {
+  title?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  startAt?: Maybe<String>;
+  endAt?: Maybe<String>;
+  category?: Maybe<String>;
+  price?: Maybe<Float>;
+  locationTitle?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  difficulty?: Maybe<Difficulty>;
+  language?: Maybe<String>;
+  details?: Maybe<String>;
+  host?: Maybe<HostUpdateOneRequiredInput>;
+  reviews?: Maybe<ReviewUpdateManyInput>;
 }
 
 export interface HostWhereInput {
@@ -2190,12 +2336,61 @@ export interface HostWhereInput {
   NOT?: Maybe<HostWhereInput[] | HostWhereInput>;
 }
 
-export interface ReviewUpdateManyWithWhereNestedInput {
-  where: ReviewScalarWhereInput;
-  data: ReviewUpdateManyDataInput;
+export interface HostUpdateOneRequiredInput {
+  create?: Maybe<HostCreateInput>;
+  update?: Maybe<HostUpdateDataInput>;
+  upsert?: Maybe<HostUpsertNestedInput>;
+  connect?: Maybe<HostWhereUniqueInput>;
 }
 
-export interface ReviewScalarWhereInput {
+export interface FaqUpdateDataInput {
+  question?: Maybe<String>;
+  answer?: Maybe<String>;
+}
+
+export interface ReviewUpdateWithWhereUniqueNestedInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateDataInput;
+}
+
+export interface ReviewUpdateManyInput {
+  create?: Maybe<ReviewCreateInput[] | ReviewCreateInput>;
+  update?: Maybe<
+    | ReviewUpdateWithWhereUniqueNestedInput[]
+    | ReviewUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | ReviewUpsertWithWhereUniqueNestedInput[]
+    | ReviewUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  set?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  disconnect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  deleteMany?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  updateMany?: Maybe<
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface HostUpsertNestedInput {
+  update: HostUpdateDataInput;
+  create: HostCreateInput;
+}
+
+export interface HostUpdateDataInput {
+  email?: Maybe<String>;
+  name?: Maybe<String>;
+  image?: Maybe<String>;
+  bio?: Maybe<String>;
+}
+
+export type ReviewWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SelfGuidedTourWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -2210,93 +2405,84 @@ export interface ReviewScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  userID?: Maybe<String>;
-  userID_not?: Maybe<String>;
-  userID_in?: Maybe<String[] | String>;
-  userID_not_in?: Maybe<String[] | String>;
-  userID_lt?: Maybe<String>;
-  userID_lte?: Maybe<String>;
-  userID_gt?: Maybe<String>;
-  userID_gte?: Maybe<String>;
-  userID_contains?: Maybe<String>;
-  userID_not_contains?: Maybe<String>;
-  userID_starts_with?: Maybe<String>;
-  userID_not_starts_with?: Maybe<String>;
-  userID_ends_with?: Maybe<String>;
-  userID_not_ends_with?: Maybe<String>;
-  score?: Maybe<Int>;
-  score_not?: Maybe<Int>;
-  score_in?: Maybe<Int[] | Int>;
-  score_not_in?: Maybe<Int[] | Int>;
-  score_lt?: Maybe<Int>;
-  score_lte?: Maybe<Int>;
-  score_gt?: Maybe<Int>;
-  score_gte?: Maybe<Int>;
-  comment?: Maybe<String>;
-  comment_not?: Maybe<String>;
-  comment_in?: Maybe<String[] | String>;
-  comment_not_in?: Maybe<String[] | String>;
-  comment_lt?: Maybe<String>;
-  comment_lte?: Maybe<String>;
-  comment_gt?: Maybe<String>;
-  comment_gte?: Maybe<String>;
-  comment_contains?: Maybe<String>;
-  comment_not_contains?: Maybe<String>;
-  comment_starts_with?: Maybe<String>;
-  comment_not_starts_with?: Maybe<String>;
-  comment_ends_with?: Maybe<String>;
-  comment_not_ends_with?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  date_not?: Maybe<DateTimeInput>;
-  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_lt?: Maybe<DateTimeInput>;
-  date_lte?: Maybe<DateTimeInput>;
-  date_gt?: Maybe<DateTimeInput>;
-  date_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
-  OR?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
-  NOT?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  location?: Maybe<String>;
+  location_not?: Maybe<String>;
+  location_in?: Maybe<String[] | String>;
+  location_not_in?: Maybe<String[] | String>;
+  location_lt?: Maybe<String>;
+  location_lte?: Maybe<String>;
+  location_gt?: Maybe<String>;
+  location_gte?: Maybe<String>;
+  location_contains?: Maybe<String>;
+  location_not_contains?: Maybe<String>;
+  location_starts_with?: Maybe<String>;
+  location_not_starts_with?: Maybe<String>;
+  location_ends_with?: Maybe<String>;
+  location_not_ends_with?: Maybe<String>;
+  duration?: Maybe<String>;
+  duration_not?: Maybe<String>;
+  duration_in?: Maybe<String[] | String>;
+  duration_not_in?: Maybe<String[] | String>;
+  duration_lt?: Maybe<String>;
+  duration_lte?: Maybe<String>;
+  duration_gt?: Maybe<String>;
+  duration_gte?: Maybe<String>;
+  duration_contains?: Maybe<String>;
+  duration_not_contains?: Maybe<String>;
+  duration_starts_with?: Maybe<String>;
+  duration_not_starts_with?: Maybe<String>;
+  duration_ends_with?: Maybe<String>;
+  duration_not_ends_with?: Maybe<String>;
+  difficulty?: Maybe<Difficulty>;
+  difficulty_not?: Maybe<Difficulty>;
+  difficulty_in?: Maybe<Difficulty[] | Difficulty>;
+  difficulty_not_in?: Maybe<Difficulty[] | Difficulty>;
+  petFriendly?: Maybe<Boolean>;
+  petFriendly_not?: Maybe<Boolean>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  audio?: Maybe<AudioWhereInput>;
+  AND?: Maybe<SelfGuidedTourWhereInput[] | SelfGuidedTourWhereInput>;
+  OR?: Maybe<SelfGuidedTourWhereInput[] | SelfGuidedTourWhereInput>;
+  NOT?: Maybe<SelfGuidedTourWhereInput[] | SelfGuidedTourWhereInput>;
 }
 
-export interface ReviewUpsertWithWhereUniqueNestedInput {
-  where: ReviewWhereUniqueInput;
-  update: ReviewUpdateDataInput;
-  create: ReviewCreateInput;
+export interface AudioUpdateOneRequiredWithoutSelfGuidedTourInput {
+  create?: Maybe<AudioCreateWithoutSelfGuidedTourInput>;
+  update?: Maybe<AudioUpdateWithoutSelfGuidedTourDataInput>;
+  upsert?: Maybe<AudioUpsertWithoutSelfGuidedTourInput>;
+  connect?: Maybe<AudioWhereUniqueInput>;
 }
 
-export interface ReviewUpdateDataInput {
-  userID?: Maybe<String>;
-  score?: Maybe<Int>;
-  comment?: Maybe<String>;
-}
-
-export interface AudioUpsertWithWhereUniqueNestedInput {
-  where: AudioWhereUniqueInput;
-  update: AudioUpdateDataInput;
-  create: AudioCreateInput;
-}
-
-export interface EventSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<EventWhereInput>;
-  AND?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
-  OR?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
-  NOT?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
-}
-
-export type ReviewWhereUniqueInput = AtLeastOne<{
+export type ContactInfoWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
-
-export interface ReviewUpdateManyMutationInput {
-  userID?: Maybe<String>;
-  score?: Maybe<Int>;
-  comment?: Maybe<String>;
-}
 
 export interface NodeNode {
   id: ID_Output;
@@ -2339,178 +2525,133 @@ export interface UserPreviousValuesSubscription
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface ContactInfoConnection {
-  pageInfo: PageInfo;
-  edges: ContactInfoEdge[];
-}
-
-export interface ContactInfoConnectionPromise
-  extends Promise<ContactInfoConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ContactInfoEdge>>() => T;
-  aggregate: <T = AggregateContactInfoPromise>() => T;
-}
-
-export interface ContactInfoConnectionSubscription
-  extends Promise<AsyncIterator<ContactInfoConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ContactInfoEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateContactInfoSubscription>() => T;
-}
-
-export interface ContactInfoEdge {
-  node: ContactInfo;
+export interface ContactUsEdge {
+  node: ContactUs;
   cursor: String;
 }
 
-export interface ContactInfoEdgePromise
-  extends Promise<ContactInfoEdge>,
+export interface ContactUsEdgePromise
+  extends Promise<ContactUsEdge>,
     Fragmentable {
-  node: <T = ContactInfoPromise>() => T;
+  node: <T = ContactUsPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface ContactInfoEdgeSubscription
-  extends Promise<AsyncIterator<ContactInfoEdge>>,
+export interface ContactUsEdgeSubscription
+  extends Promise<AsyncIterator<ContactUsEdge>>,
     Fragmentable {
-  node: <T = ContactInfoSubscription>() => T;
+  node: <T = ContactUsSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface EventEdge {
-  node: Event;
-  cursor: String;
-}
-
-export interface EventEdgePromise extends Promise<EventEdge>, Fragmentable {
-  node: <T = EventPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface EventEdgeSubscription
-  extends Promise<AsyncIterator<EventEdge>>,
-    Fragmentable {
-  node: <T = EventSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ReviewPreviousValues {
-  id: ID_Output;
-  userID: String;
-  score: Int;
-  comment: String;
-  date: DateTimeOutput;
-}
-
-export interface ReviewPreviousValuesPromise
-  extends Promise<ReviewPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  userID: () => Promise<String>;
-  score: () => Promise<Int>;
-  comment: () => Promise<String>;
-  date: () => Promise<DateTimeOutput>;
-}
-
-export interface ReviewPreviousValuesSubscription
-  extends Promise<AsyncIterator<ReviewPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  userID: () => Promise<AsyncIterator<String>>;
-  score: () => Promise<AsyncIterator<Int>>;
-  comment: () => Promise<AsyncIterator<String>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface EventConnection {
+export interface AudioConnection {
   pageInfo: PageInfo;
-  edges: EventEdge[];
+  edges: AudioEdge[];
 }
 
-export interface EventConnectionPromise
-  extends Promise<EventConnection>,
+export interface AudioConnectionPromise
+  extends Promise<AudioConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<EventEdge>>() => T;
-  aggregate: <T = AggregateEventPromise>() => T;
+  edges: <T = FragmentableArray<AudioEdge>>() => T;
+  aggregate: <T = AggregateAudioPromise>() => T;
 }
 
-export interface EventConnectionSubscription
-  extends Promise<AsyncIterator<EventConnection>>,
+export interface AudioConnectionSubscription
+  extends Promise<AsyncIterator<AudioConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<EventEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateEventSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<AudioEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateAudioSubscription>() => T;
 }
 
-export interface Review {
+export interface ContactUsConnection {
+  pageInfo: PageInfo;
+  edges: ContactUsEdge[];
+}
+
+export interface ContactUsConnectionPromise
+  extends Promise<ContactUsConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ContactUsEdge>>() => T;
+  aggregate: <T = AggregateContactUsPromise>() => T;
+}
+
+export interface ContactUsConnectionSubscription
+  extends Promise<AsyncIterator<ContactUsConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ContactUsEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateContactUsSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AudioMarkers {
   id: ID_Output;
-  userID: String;
-  score: Int;
-  comment: String;
-  date: DateTimeOutput;
+  title: String;
+  description: String;
+  latitude: String;
+  longitude: String;
+  start: Float;
 }
 
-export interface ReviewPromise extends Promise<Review>, Fragmentable {
+export interface AudioMarkersPromise
+  extends Promise<AudioMarkers>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
-  userID: () => Promise<String>;
-  score: () => Promise<Int>;
-  comment: () => Promise<String>;
-  date: () => Promise<DateTimeOutput>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  latitude: () => Promise<String>;
+  longitude: () => Promise<String>;
+  start: () => Promise<Float>;
+  audio: <T = AudioPromise>() => T;
 }
 
-export interface ReviewSubscription
-  extends Promise<AsyncIterator<Review>>,
+export interface AudioMarkersSubscription
+  extends Promise<AsyncIterator<AudioMarkers>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  userID: () => Promise<AsyncIterator<String>>;
-  score: () => Promise<AsyncIterator<Int>>;
-  comment: () => Promise<AsyncIterator<String>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  latitude: () => Promise<AsyncIterator<String>>;
+  longitude: () => Promise<AsyncIterator<String>>;
+  start: () => Promise<AsyncIterator<Float>>;
+  audio: <T = AudioSubscription>() => T;
 }
 
-export interface ReviewNullablePromise
-  extends Promise<Review | null>,
+export interface AudioMarkersNullablePromise
+  extends Promise<AudioMarkers | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  userID: () => Promise<String>;
-  score: () => Promise<Int>;
-  comment: () => Promise<String>;
-  date: () => Promise<DateTimeOutput>;
-}
-
-export interface ContactInfo {
-  id: ID_Output;
-  address: String;
-  phoneNumber: String;
-  email: String;
-}
-
-export interface ContactInfoPromise extends Promise<ContactInfo>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  address: () => Promise<String>;
-  phoneNumber: () => Promise<String>;
-  email: () => Promise<String>;
-}
-
-export interface ContactInfoSubscription
-  extends Promise<AsyncIterator<ContactInfo>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  address: () => Promise<AsyncIterator<String>>;
-  phoneNumber: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ContactInfoNullablePromise
-  extends Promise<ContactInfo | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  address: () => Promise<String>;
-  phoneNumber: () => Promise<String>;
-  email: () => Promise<String>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  latitude: () => Promise<String>;
+  longitude: () => Promise<String>;
+  start: () => Promise<Float>;
+  audio: <T = AudioPromise>() => T;
 }
 
 export interface AggregateUser {
@@ -2529,38 +2670,39 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface SelfGuidedTourPreviousValues {
+export interface ContactUs {
   id: ID_Output;
-  title: String;
-  location: String;
-  duration: String;
-  difficulty: Difficulty;
-  petFriendly: Boolean;
-  description: String;
+  twitterLink?: String;
+  instagramLink?: String;
+  facebookLink?: String;
 }
 
-export interface SelfGuidedTourPreviousValuesPromise
-  extends Promise<SelfGuidedTourPreviousValues>,
-    Fragmentable {
+export interface ContactUsPromise extends Promise<ContactUs>, Fragmentable {
   id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  location: () => Promise<String>;
-  duration: () => Promise<String>;
-  difficulty: () => Promise<Difficulty>;
-  petFriendly: () => Promise<Boolean>;
-  description: () => Promise<String>;
+  contactInfo: <T = ContactInfoPromise>() => T;
+  twitterLink: () => Promise<String>;
+  instagramLink: () => Promise<String>;
+  facebookLink: () => Promise<String>;
 }
 
-export interface SelfGuidedTourPreviousValuesSubscription
-  extends Promise<AsyncIterator<SelfGuidedTourPreviousValues>>,
+export interface ContactUsSubscription
+  extends Promise<AsyncIterator<ContactUs>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  location: () => Promise<AsyncIterator<String>>;
-  duration: () => Promise<AsyncIterator<String>>;
-  difficulty: () => Promise<AsyncIterator<Difficulty>>;
-  petFriendly: () => Promise<AsyncIterator<Boolean>>;
-  description: () => Promise<AsyncIterator<String>>;
+  contactInfo: <T = ContactInfoSubscription>() => T;
+  twitterLink: () => Promise<AsyncIterator<String>>;
+  instagramLink: () => Promise<AsyncIterator<String>>;
+  facebookLink: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContactUsNullablePromise
+  extends Promise<ContactUs | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  contactInfo: <T = ContactInfoPromise>() => T;
+  twitterLink: () => Promise<String>;
+  instagramLink: () => Promise<String>;
+  facebookLink: () => Promise<String>;
 }
 
 export interface UserConnection {
@@ -2584,241 +2726,74 @@ export interface UserConnectionSubscription
   aggregate: <T = AggregateUserSubscription>() => T;
 }
 
-export interface AudioEdge {
-  node: Audio;
-  cursor: String;
-}
-
-export interface AudioEdgePromise extends Promise<AudioEdge>, Fragmentable {
-  node: <T = AudioPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface AudioEdgeSubscription
-  extends Promise<AsyncIterator<AudioEdge>>,
-    Fragmentable {
-  node: <T = AudioSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface User {
-  id: ID_Output;
-  email: String;
-  password: String;
-  firstName: String;
-  lastName: String;
-  location: String;
-  image?: String;
-  date: DateTimeOutput;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
-  location: () => Promise<String>;
-  image: () => Promise<String>;
-  date: () => Promise<DateTimeOutput>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
-  location: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
-  location: () => Promise<String>;
-  image: () => Promise<String>;
-  date: () => Promise<DateTimeOutput>;
-}
-
-export interface Host {
-  id: ID_Output;
-  email: String;
-  name: String;
-  image: String;
-  bio: String;
-}
-
-export interface HostPromise extends Promise<Host>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
-  image: () => Promise<String>;
-  bio: () => Promise<String>;
-}
-
-export interface HostSubscription
-  extends Promise<AsyncIterator<Host>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
-  bio: () => Promise<AsyncIterator<String>>;
-}
-
-export interface HostNullablePromise
-  extends Promise<Host | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
-  image: () => Promise<String>;
-  bio: () => Promise<String>;
-}
-
-export interface SelfGuidedTourEdge {
-  node: SelfGuidedTour;
-  cursor: String;
-}
-
-export interface SelfGuidedTourEdgePromise
-  extends Promise<SelfGuidedTourEdge>,
-    Fragmentable {
-  node: <T = SelfGuidedTourPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SelfGuidedTourEdgeSubscription
-  extends Promise<AsyncIterator<SelfGuidedTourEdge>>,
-    Fragmentable {
-  node: <T = SelfGuidedTourSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
 export interface Audio {
   id: ID_Output;
-  title: String;
-  description: String;
-  duration: String;
-  latitude: String;
-  longitude: String;
   url: String;
 }
 
 export interface AudioPromise extends Promise<Audio>, Fragmentable {
   id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  duration: () => Promise<String>;
-  latitude: () => Promise<String>;
-  longitude: () => Promise<String>;
   url: () => Promise<String>;
+  markers: <T = FragmentableArray<AudioMarkers>>(args?: {
+    where?: AudioMarkersWhereInput;
+    orderBy?: AudioMarkersOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  selfGuidedTour: <T = SelfGuidedTourPromise>() => T;
 }
 
 export interface AudioSubscription
   extends Promise<AsyncIterator<Audio>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  duration: () => Promise<AsyncIterator<String>>;
-  latitude: () => Promise<AsyncIterator<String>>;
-  longitude: () => Promise<AsyncIterator<String>>;
   url: () => Promise<AsyncIterator<String>>;
+  markers: <T = Promise<AsyncIterator<AudioMarkersSubscription>>>(args?: {
+    where?: AudioMarkersWhereInput;
+    orderBy?: AudioMarkersOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  selfGuidedTour: <T = SelfGuidedTourSubscription>() => T;
 }
 
 export interface AudioNullablePromise
   extends Promise<Audio | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  duration: () => Promise<String>;
-  latitude: () => Promise<String>;
-  longitude: () => Promise<String>;
   url: () => Promise<String>;
-}
-
-export interface SelfGuidedTour {
-  id: ID_Output;
-  title: String;
-  location: String;
-  duration: String;
-  difficulty: Difficulty;
-  petFriendly: Boolean;
-  description: String;
-}
-
-export interface SelfGuidedTourPromise
-  extends Promise<SelfGuidedTour>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  location: () => Promise<String>;
-  duration: () => Promise<String>;
-  difficulty: () => Promise<Difficulty>;
-  petFriendly: () => Promise<Boolean>;
-  description: () => Promise<String>;
-  audio: <T = FragmentableArray<Audio>>(args?: {
-    where?: AudioWhereInput;
-    orderBy?: AudioOrderByInput;
+  markers: <T = FragmentableArray<AudioMarkers>>(args?: {
+    where?: AudioMarkersWhereInput;
+    orderBy?: AudioMarkersOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
   }) => T;
+  selfGuidedTour: <T = SelfGuidedTourPromise>() => T;
 }
 
-export interface SelfGuidedTourSubscription
-  extends Promise<AsyncIterator<SelfGuidedTour>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  location: () => Promise<AsyncIterator<String>>;
-  duration: () => Promise<AsyncIterator<String>>;
-  difficulty: () => Promise<AsyncIterator<Difficulty>>;
-  petFriendly: () => Promise<AsyncIterator<Boolean>>;
-  description: () => Promise<AsyncIterator<String>>;
-  audio: <T = Promise<AsyncIterator<AudioSubscription>>>(args?: {
-    where?: AudioWhereInput;
-    orderBy?: AudioOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+export interface AggregateSelfGuidedTour {
+  count: Int;
 }
 
-export interface SelfGuidedTourNullablePromise
-  extends Promise<SelfGuidedTour | null>,
+export interface AggregateSelfGuidedTourPromise
+  extends Promise<AggregateSelfGuidedTour>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  location: () => Promise<String>;
-  duration: () => Promise<String>;
-  difficulty: () => Promise<Difficulty>;
-  petFriendly: () => Promise<Boolean>;
-  description: () => Promise<String>;
-  audio: <T = FragmentableArray<Audio>>(args?: {
-    where?: AudioWhereInput;
-    orderBy?: AudioOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSelfGuidedTourSubscription
+  extends Promise<AsyncIterator<AggregateSelfGuidedTour>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface AudioSubscriptionPayload {
@@ -2846,6 +2821,46 @@ export interface AudioSubscriptionPayloadSubscription
   previousValues: <T = AudioPreviousValuesSubscription>() => T;
 }
 
+export interface SelfGuidedTourConnection {
+  pageInfo: PageInfo;
+  edges: SelfGuidedTourEdge[];
+}
+
+export interface SelfGuidedTourConnectionPromise
+  extends Promise<SelfGuidedTourConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<SelfGuidedTourEdge>>() => T;
+  aggregate: <T = AggregateSelfGuidedTourPromise>() => T;
+}
+
+export interface SelfGuidedTourConnectionSubscription
+  extends Promise<AsyncIterator<SelfGuidedTourConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SelfGuidedTourEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSelfGuidedTourSubscription>() => T;
+}
+
+export interface AudioPreviousValues {
+  id: ID_Output;
+  url: String;
+}
+
+export interface AudioPreviousValuesPromise
+  extends Promise<AudioPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  url: () => Promise<String>;
+}
+
+export interface AudioPreviousValuesSubscription
+  extends Promise<AsyncIterator<AudioPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  url: () => Promise<AsyncIterator<String>>;
+}
+
 export interface ReviewEdge {
   node: Review;
   cursor: String;
@@ -2863,38 +2878,20 @@ export interface ReviewEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AudioPreviousValues {
-  id: ID_Output;
-  title: String;
-  description: String;
-  duration: String;
-  latitude: String;
-  longitude: String;
-  url: String;
+export interface AggregateContactInfo {
+  count: Int;
 }
 
-export interface AudioPreviousValuesPromise
-  extends Promise<AudioPreviousValues>,
+export interface AggregateContactInfoPromise
+  extends Promise<AggregateContactInfo>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  duration: () => Promise<String>;
-  latitude: () => Promise<String>;
-  longitude: () => Promise<String>;
-  url: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
-export interface AudioPreviousValuesSubscription
-  extends Promise<AsyncIterator<AudioPreviousValues>>,
+export interface AggregateContactInfoSubscription
+  extends Promise<AsyncIterator<AggregateContactInfo>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  duration: () => Promise<AsyncIterator<String>>;
-  latitude: () => Promise<AsyncIterator<String>>;
-  longitude: () => Promise<AsyncIterator<String>>;
-  url: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface AggregateInfo {
@@ -2913,20 +2910,29 @@ export interface AggregateInfoSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface AggregateAudio {
-  count: Int;
+export interface AudioMarkersSubscriptionPayload {
+  mutation: MutationType;
+  node: AudioMarkers;
+  updatedFields: String[];
+  previousValues: AudioMarkersPreviousValues;
 }
 
-export interface AggregateAudioPromise
-  extends Promise<AggregateAudio>,
+export interface AudioMarkersSubscriptionPayloadPromise
+  extends Promise<AudioMarkersSubscriptionPayload>,
     Fragmentable {
-  count: () => Promise<Int>;
+  mutation: () => Promise<MutationType>;
+  node: <T = AudioMarkersPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AudioMarkersPreviousValuesPromise>() => T;
 }
 
-export interface AggregateAudioSubscription
-  extends Promise<AsyncIterator<AggregateAudio>>,
+export interface AudioMarkersSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AudioMarkersSubscriptionPayload>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AudioMarkersSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AudioMarkersPreviousValuesSubscription>() => T;
 }
 
 export interface InfoConnection {
@@ -2950,29 +2956,35 @@ export interface InfoConnectionSubscription
   aggregate: <T = AggregateInfoSubscription>() => T;
 }
 
-export interface ContactInfoSubscriptionPayload {
-  mutation: MutationType;
-  node: ContactInfo;
-  updatedFields: String[];
-  previousValues: ContactInfoPreviousValues;
+export interface AudioMarkersPreviousValues {
+  id: ID_Output;
+  title: String;
+  description: String;
+  latitude: String;
+  longitude: String;
+  start: Float;
 }
 
-export interface ContactInfoSubscriptionPayloadPromise
-  extends Promise<ContactInfoSubscriptionPayload>,
+export interface AudioMarkersPreviousValuesPromise
+  extends Promise<AudioMarkersPreviousValues>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ContactInfoPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ContactInfoPreviousValuesPromise>() => T;
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  latitude: () => Promise<String>;
+  longitude: () => Promise<String>;
+  start: () => Promise<Float>;
 }
 
-export interface ContactInfoSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ContactInfoSubscriptionPayload>>,
+export interface AudioMarkersPreviousValuesSubscription
+  extends Promise<AsyncIterator<AudioMarkersPreviousValues>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ContactInfoSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ContactInfoPreviousValuesSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  latitude: () => Promise<AsyncIterator<String>>;
+  longitude: () => Promise<AsyncIterator<String>>;
+  start: () => Promise<AsyncIterator<Float>>;
 }
 
 export interface Info {
@@ -3029,6 +3041,83 @@ export interface InfoNullablePromise
   contactUs: <T = ContactUsPromise>() => T;
 }
 
+export interface ContactInfoEdge {
+  node: ContactInfo;
+  cursor: String;
+}
+
+export interface ContactInfoEdgePromise
+  extends Promise<ContactInfoEdge>,
+    Fragmentable {
+  node: <T = ContactInfoPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ContactInfoEdgeSubscription
+  extends Promise<AsyncIterator<ContactInfoEdge>>,
+    Fragmentable {
+  node: <T = ContactInfoSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface HostEdge {
+  node: Host;
+  cursor: String;
+}
+
+export interface HostEdgePromise extends Promise<HostEdge>, Fragmentable {
+  node: <T = HostPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface HostEdgeSubscription
+  extends Promise<AsyncIterator<HostEdge>>,
+    Fragmentable {
+  node: <T = HostSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContactInfoSubscriptionPayload {
+  mutation: MutationType;
+  node: ContactInfo;
+  updatedFields: String[];
+  previousValues: ContactInfoPreviousValues;
+}
+
+export interface ContactInfoSubscriptionPayloadPromise
+  extends Promise<ContactInfoSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ContactInfoPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ContactInfoPreviousValuesPromise>() => T;
+}
+
+export interface ContactInfoSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ContactInfoSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ContactInfoSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ContactInfoPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateFaq {
+  count: Int;
+}
+
+export interface AggregateFaqPromise
+  extends Promise<AggregateFaq>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateFaqSubscription
+  extends Promise<AsyncIterator<AggregateFaq>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface ContactInfoPreviousValues {
   id: ID_Output;
   address: String;
@@ -3054,67 +3143,62 @@ export interface ContactInfoPreviousValuesSubscription
   email: () => Promise<AsyncIterator<String>>;
 }
 
-export interface HostEdge {
-  node: Host;
-  cursor: String;
-}
-
-export interface HostEdgePromise extends Promise<HostEdge>, Fragmentable {
-  node: <T = HostPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface HostEdgeSubscription
-  extends Promise<AsyncIterator<HostEdge>>,
-    Fragmentable {
-  node: <T = HostSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface SelfGuidedTourSubscriptionPayload {
-  mutation: MutationType;
-  node: SelfGuidedTour;
-  updatedFields: String[];
-  previousValues: SelfGuidedTourPreviousValues;
-}
-
-export interface SelfGuidedTourSubscriptionPayloadPromise
-  extends Promise<SelfGuidedTourSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = SelfGuidedTourPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = SelfGuidedTourPreviousValuesPromise>() => T;
-}
-
-export interface SelfGuidedTourSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SelfGuidedTourSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SelfGuidedTourSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SelfGuidedTourPreviousValuesSubscription>() => T;
-}
-
-export interface AudioConnection {
+export interface FaqConnection {
   pageInfo: PageInfo;
-  edges: AudioEdge[];
+  edges: FaqEdge[];
 }
 
-export interface AudioConnectionPromise
-  extends Promise<AudioConnection>,
+export interface FaqConnectionPromise
+  extends Promise<FaqConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<AudioEdge>>() => T;
-  aggregate: <T = AggregateAudioPromise>() => T;
+  edges: <T = FragmentableArray<FaqEdge>>() => T;
+  aggregate: <T = AggregateFaqPromise>() => T;
 }
 
-export interface AudioConnectionSubscription
-  extends Promise<AsyncIterator<AudioConnection>>,
+export interface FaqConnectionSubscription
+  extends Promise<AsyncIterator<FaqConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<AudioEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateAudioSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FaqEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFaqSubscription>() => T;
+}
+
+export interface ContactInfoConnection {
+  pageInfo: PageInfo;
+  edges: ContactInfoEdge[];
+}
+
+export interface ContactInfoConnectionPromise
+  extends Promise<ContactInfoConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ContactInfoEdge>>() => T;
+  aggregate: <T = AggregateContactInfoPromise>() => T;
+}
+
+export interface ContactInfoConnectionSubscription
+  extends Promise<AsyncIterator<ContactInfoConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ContactInfoEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateContactInfoSubscription>() => T;
+}
+
+export interface AggregateEvent {
+  count: Int;
+}
+
+export interface AggregateEventPromise
+  extends Promise<AggregateEvent>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateEventSubscription
+  extends Promise<AsyncIterator<AggregateEvent>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface ContactUsSubscriptionPayload {
@@ -3142,21 +3226,25 @@ export interface ContactUsSubscriptionPayloadSubscription
   previousValues: <T = ContactUsPreviousValuesSubscription>() => T;
 }
 
-export interface FaqEdge {
-  node: Faq;
-  cursor: String;
+export interface EventConnection {
+  pageInfo: PageInfo;
+  edges: EventEdge[];
 }
 
-export interface FaqEdgePromise extends Promise<FaqEdge>, Fragmentable {
-  node: <T = FaqPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface FaqEdgeSubscription
-  extends Promise<AsyncIterator<FaqEdge>>,
+export interface EventConnectionPromise
+  extends Promise<EventConnection>,
     Fragmentable {
-  node: <T = FaqSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<EventEdge>>() => T;
+  aggregate: <T = AggregateEventPromise>() => T;
+}
+
+export interface EventConnectionSubscription
+  extends Promise<AsyncIterator<EventConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<EventEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateEventSubscription>() => T;
 }
 
 export interface ContactUsPreviousValues {
@@ -3184,188 +3272,194 @@ export interface ContactUsPreviousValuesSubscription
   facebookLink: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ContactUs {
+export interface User {
   id: ID_Output;
-  twitterLink?: String;
-  instagramLink?: String;
-  facebookLink?: String;
+  email: String;
+  password: String;
+  firstName: String;
+  lastName: String;
+  location: String;
+  image?: String;
+  date: DateTimeOutput;
 }
 
-export interface ContactUsPromise extends Promise<ContactUs>, Fragmentable {
+export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  contactInfo: <T = ContactInfoPromise>() => T;
-  twitterLink: () => Promise<String>;
-  instagramLink: () => Promise<String>;
-  facebookLink: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  location: () => Promise<String>;
+  image: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
 }
 
-export interface ContactUsSubscription
-  extends Promise<AsyncIterator<ContactUs>>,
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  contactInfo: <T = ContactInfoSubscription>() => T;
-  twitterLink: () => Promise<AsyncIterator<String>>;
-  instagramLink: () => Promise<AsyncIterator<String>>;
-  facebookLink: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  location: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface ContactUsNullablePromise
-  extends Promise<ContactUs | null>,
+export interface UserNullablePromise
+  extends Promise<User | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  contactInfo: <T = ContactInfoPromise>() => T;
-  twitterLink: () => Promise<String>;
-  instagramLink: () => Promise<String>;
-  facebookLink: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  location: () => Promise<String>;
+  image: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
 }
 
-export interface AggregateEvent {
-  count: Int;
-}
-
-export interface AggregateEventPromise
-  extends Promise<AggregateEvent>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateEventSubscription
-  extends Promise<AsyncIterator<AggregateEvent>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface EventSubscriptionPayload {
-  mutation: MutationType;
+export interface EventEdge {
   node: Event;
-  updatedFields: String[];
-  previousValues: EventPreviousValues;
-}
-
-export interface EventSubscriptionPayloadPromise
-  extends Promise<EventSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = EventPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = EventPreviousValuesPromise>() => T;
-}
-
-export interface EventSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<EventSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = EventSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = EventPreviousValuesSubscription>() => T;
-}
-
-export interface UserEdge {
-  node: User;
   cursor: String;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
+export interface EventEdgePromise extends Promise<EventEdge>, Fragmentable {
+  node: <T = EventPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface EventEdgeSubscription
+  extends Promise<AsyncIterator<EventEdge>>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
+  node: <T = EventSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface EventPreviousValues {
+export interface ReviewPreviousValues {
   id: ID_Output;
-  title: String;
+  score: Int;
+  comment: String;
   date: DateTimeOutput;
-  startAt: String;
-  endAt: String;
-  category: String;
-  price: Float;
-  locationTitle: String;
-  address: String;
-  image: String;
-  difficulty: Difficulty;
-  language: String;
-  details: String;
 }
 
-export interface EventPreviousValuesPromise
-  extends Promise<EventPreviousValues>,
+export interface ReviewPreviousValuesPromise
+  extends Promise<ReviewPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
+  score: () => Promise<Int>;
+  comment: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
-  startAt: () => Promise<String>;
-  endAt: () => Promise<String>;
-  category: () => Promise<String>;
-  price: () => Promise<Float>;
-  locationTitle: () => Promise<String>;
-  address: () => Promise<String>;
-  image: () => Promise<String>;
-  difficulty: () => Promise<Difficulty>;
-  language: () => Promise<String>;
-  details: () => Promise<String>;
 }
 
-export interface EventPreviousValuesSubscription
-  extends Promise<AsyncIterator<EventPreviousValues>>,
+export interface ReviewPreviousValuesSubscription
+  extends Promise<AsyncIterator<ReviewPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
+  score: () => Promise<AsyncIterator<Int>>;
+  comment: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
-  startAt: () => Promise<AsyncIterator<String>>;
-  endAt: () => Promise<AsyncIterator<String>>;
-  category: () => Promise<AsyncIterator<String>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  locationTitle: () => Promise<AsyncIterator<String>>;
-  address: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
-  difficulty: () => Promise<AsyncIterator<Difficulty>>;
-  language: () => Promise<AsyncIterator<String>>;
-  details: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateSelfGuidedTour {
+export interface AggregateAudio {
   count: Int;
 }
 
-export interface AggregateSelfGuidedTourPromise
-  extends Promise<AggregateSelfGuidedTour>,
+export interface AggregateAudioPromise
+  extends Promise<AggregateAudio>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateSelfGuidedTourSubscription
-  extends Promise<AsyncIterator<AggregateSelfGuidedTour>>,
+export interface AggregateAudioSubscription
+  extends Promise<AsyncIterator<AggregateAudio>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface SelfGuidedTour {
+  id: ID_Output;
+  title: String;
+  location: String;
+  duration: String;
+  difficulty: Difficulty;
+  petFriendly: Boolean;
+  description: String;
+}
+
+export interface SelfGuidedTourPromise
+  extends Promise<SelfGuidedTour>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  location: () => Promise<String>;
+  duration: () => Promise<String>;
+  difficulty: () => Promise<Difficulty>;
+  petFriendly: () => Promise<Boolean>;
+  description: () => Promise<String>;
+  audio: <T = AudioPromise>() => T;
+}
+
+export interface SelfGuidedTourSubscription
+  extends Promise<AsyncIterator<SelfGuidedTour>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  location: () => Promise<AsyncIterator<String>>;
+  duration: () => Promise<AsyncIterator<String>>;
+  difficulty: () => Promise<AsyncIterator<Difficulty>>;
+  petFriendly: () => Promise<AsyncIterator<Boolean>>;
+  description: () => Promise<AsyncIterator<String>>;
+  audio: <T = AudioSubscription>() => T;
+}
+
+export interface SelfGuidedTourNullablePromise
+  extends Promise<SelfGuidedTour | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  location: () => Promise<String>;
+  duration: () => Promise<String>;
+  difficulty: () => Promise<Difficulty>;
+  petFriendly: () => Promise<Boolean>;
+  description: () => Promise<String>;
+  audio: <T = AudioPromise>() => T;
+}
+
+export interface Review {
+  id: ID_Output;
+  score: Int;
+  comment: String;
+  date: DateTimeOutput;
+}
+
+export interface ReviewPromise extends Promise<Review>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  score: () => Promise<Int>;
+  comment: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+}
+
+export interface ReviewSubscription
+  extends Promise<AsyncIterator<Review>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  score: () => Promise<AsyncIterator<Int>>;
+  comment: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ReviewNullablePromise
+  extends Promise<Review | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  score: () => Promise<Int>;
+  comment: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
 }
 
 export interface Event {
@@ -3466,20 +3560,223 @@ export interface EventNullablePromise
   }) => T;
 }
 
-export interface AggregateReview {
-  count: Int;
+export interface Host {
+  id: ID_Output;
+  email: String;
+  name: String;
+  image: String;
+  bio: String;
 }
 
-export interface AggregateReviewPromise
-  extends Promise<AggregateReview>,
-    Fragmentable {
-  count: () => Promise<Int>;
+export interface HostPromise extends Promise<Host>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  name: () => Promise<String>;
+  image: () => Promise<String>;
+  bio: () => Promise<String>;
 }
 
-export interface AggregateReviewSubscription
-  extends Promise<AsyncIterator<AggregateReview>>,
+export interface HostSubscription
+  extends Promise<AsyncIterator<Host>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  email: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  bio: () => Promise<AsyncIterator<String>>;
+}
+
+export interface HostNullablePromise
+  extends Promise<Host | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  name: () => Promise<String>;
+  image: () => Promise<String>;
+  bio: () => Promise<String>;
+}
+
+export interface AudioEdge {
+  node: Audio;
+  cursor: String;
+}
+
+export interface AudioEdgePromise extends Promise<AudioEdge>, Fragmentable {
+  node: <T = AudioPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AudioEdgeSubscription
+  extends Promise<AsyncIterator<AudioEdge>>,
+    Fragmentable {
+  node: <T = AudioSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface EventSubscriptionPayload {
+  mutation: MutationType;
+  node: Event;
+  updatedFields: String[];
+  previousValues: EventPreviousValues;
+}
+
+export interface EventSubscriptionPayloadPromise
+  extends Promise<EventSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = EventPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = EventPreviousValuesPromise>() => T;
+}
+
+export interface EventSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<EventSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = EventSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = EventPreviousValuesSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface EventPreviousValues {
+  id: ID_Output;
+  title: String;
+  date: DateTimeOutput;
+  startAt: String;
+  endAt: String;
+  category: String;
+  price: Float;
+  locationTitle: String;
+  address: String;
+  image: String;
+  difficulty: Difficulty;
+  language: String;
+  details: String;
+}
+
+export interface EventPreviousValuesPromise
+  extends Promise<EventPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+  startAt: () => Promise<String>;
+  endAt: () => Promise<String>;
+  category: () => Promise<String>;
+  price: () => Promise<Float>;
+  locationTitle: () => Promise<String>;
+  address: () => Promise<String>;
+  image: () => Promise<String>;
+  difficulty: () => Promise<Difficulty>;
+  language: () => Promise<String>;
+  details: () => Promise<String>;
+}
+
+export interface EventPreviousValuesSubscription
+  extends Promise<AsyncIterator<EventPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  startAt: () => Promise<AsyncIterator<String>>;
+  endAt: () => Promise<AsyncIterator<String>>;
+  category: () => Promise<AsyncIterator<String>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  locationTitle: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  difficulty: () => Promise<AsyncIterator<Difficulty>>;
+  language: () => Promise<AsyncIterator<String>>;
+  details: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SelfGuidedTourEdge {
+  node: SelfGuidedTour;
+  cursor: String;
+}
+
+export interface SelfGuidedTourEdgePromise
+  extends Promise<SelfGuidedTourEdge>,
+    Fragmentable {
+  node: <T = SelfGuidedTourPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SelfGuidedTourEdgeSubscription
+  extends Promise<AsyncIterator<SelfGuidedTourEdge>>,
+    Fragmentable {
+  node: <T = SelfGuidedTourSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContactInfo {
+  id: ID_Output;
+  address: String;
+  phoneNumber: String;
+  email: String;
+}
+
+export interface ContactInfoPromise extends Promise<ContactInfo>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  address: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  email: () => Promise<String>;
+}
+
+export interface ContactInfoSubscription
+  extends Promise<AsyncIterator<ContactInfo>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  address: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContactInfoNullablePromise
+  extends Promise<ContactInfo | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  address: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  email: () => Promise<String>;
+}
+
+export interface ReviewConnection {
+  pageInfo: PageInfo;
+  edges: ReviewEdge[];
+}
+
+export interface ReviewConnectionPromise
+  extends Promise<ReviewConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ReviewEdge>>() => T;
+  aggregate: <T = AggregateReviewPromise>() => T;
+}
+
+export interface ReviewConnectionSubscription
+  extends Promise<AsyncIterator<ReviewConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ReviewEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateReviewSubscription>() => T;
 }
 
 export interface FaqSubscriptionPayload {
@@ -3507,21 +3804,29 @@ export interface FaqSubscriptionPayloadSubscription
   previousValues: <T = FaqPreviousValuesSubscription>() => T;
 }
 
-export interface InfoEdge {
-  node: Info;
-  cursor: String;
+export interface SelfGuidedTourSubscriptionPayload {
+  mutation: MutationType;
+  node: SelfGuidedTour;
+  updatedFields: String[];
+  previousValues: SelfGuidedTourPreviousValues;
 }
 
-export interface InfoEdgePromise extends Promise<InfoEdge>, Fragmentable {
-  node: <T = InfoPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface InfoEdgeSubscription
-  extends Promise<AsyncIterator<InfoEdge>>,
+export interface SelfGuidedTourSubscriptionPayloadPromise
+  extends Promise<SelfGuidedTourSubscriptionPayload>,
     Fragmentable {
-  node: <T = InfoSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  mutation: () => Promise<MutationType>;
+  node: <T = SelfGuidedTourPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SelfGuidedTourPreviousValuesPromise>() => T;
+}
+
+export interface SelfGuidedTourSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SelfGuidedTourSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SelfGuidedTourSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SelfGuidedTourPreviousValuesSubscription>() => T;
 }
 
 export interface FaqPreviousValues {
@@ -3546,52 +3851,67 @@ export interface FaqPreviousValuesSubscription
   answer: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateHost {
+export interface HostConnection {
+  pageInfo: PageInfo;
+  edges: HostEdge[];
+}
+
+export interface HostConnectionPromise
+  extends Promise<HostConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<HostEdge>>() => T;
+  aggregate: <T = AggregateHostPromise>() => T;
+}
+
+export interface HostConnectionSubscription
+  extends Promise<AsyncIterator<HostConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<HostEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateHostSubscription>() => T;
+}
+
+export interface AggregateAudioMarkers {
   count: Int;
 }
 
-export interface AggregateHostPromise
-  extends Promise<AggregateHost>,
+export interface AggregateAudioMarkersPromise
+  extends Promise<AggregateAudioMarkers>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateHostSubscription
-  extends Promise<AsyncIterator<AggregateHost>>,
+export interface AggregateAudioMarkersSubscription
+  extends Promise<AsyncIterator<AggregateAudioMarkers>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface AggregateContactUs {
-  count: Int;
+export interface Faq {
+  id: ID_Output;
+  question: String;
+  answer: String;
 }
 
-export interface AggregateContactUsPromise
-  extends Promise<AggregateContactUs>,
+export interface FaqPromise extends Promise<Faq>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  question: () => Promise<String>;
+  answer: () => Promise<String>;
+}
+
+export interface FaqSubscription
+  extends Promise<AsyncIterator<Faq>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  question: () => Promise<AsyncIterator<String>>;
+  answer: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateContactUsSubscription
-  extends Promise<AsyncIterator<AggregateContactUs>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateFaq {
-  count: Int;
-}
-
-export interface AggregateFaqPromise
-  extends Promise<AggregateFaq>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateFaqSubscription
-  extends Promise<AsyncIterator<AggregateFaq>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+export interface FaqNullablePromise extends Promise<Faq | null>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  question: () => Promise<String>;
+  answer: () => Promise<String>;
 }
 
 export interface HostSubscriptionPayload {
@@ -3619,30 +3939,20 @@ export interface HostSubscriptionPayloadSubscription
   previousValues: <T = HostPreviousValuesSubscription>() => T;
 }
 
-export interface Faq {
-  id: ID_Output;
-  question: String;
-  answer: String;
+export interface AggregateContactUs {
+  count: Int;
 }
 
-export interface FaqPromise extends Promise<Faq>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  question: () => Promise<String>;
-  answer: () => Promise<String>;
-}
-
-export interface FaqSubscription
-  extends Promise<AsyncIterator<Faq>>,
+export interface AggregateContactUsPromise
+  extends Promise<AggregateContactUs>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  question: () => Promise<AsyncIterator<String>>;
-  answer: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
 }
 
-export interface FaqNullablePromise extends Promise<Faq | null>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  question: () => Promise<String>;
-  answer: () => Promise<String>;
+export interface AggregateContactUsSubscription
+  extends Promise<AsyncIterator<AggregateContactUs>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface HostPreviousValues {
@@ -3673,90 +3983,91 @@ export interface HostPreviousValuesSubscription
   bio: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
+export interface SelfGuidedTourPreviousValues {
+  id: ID_Output;
+  title: String;
+  location: String;
+  duration: String;
+  difficulty: Difficulty;
+  petFriendly: Boolean;
+  description: String;
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface SelfGuidedTourPreviousValuesPromise
+  extends Promise<SelfGuidedTourPreviousValues>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  location: () => Promise<String>;
+  duration: () => Promise<String>;
+  difficulty: () => Promise<Difficulty>;
+  petFriendly: () => Promise<Boolean>;
+  description: () => Promise<String>;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+export interface SelfGuidedTourPreviousValuesSubscription
+  extends Promise<AsyncIterator<SelfGuidedTourPreviousValues>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  location: () => Promise<AsyncIterator<String>>;
+  duration: () => Promise<AsyncIterator<String>>;
+  difficulty: () => Promise<AsyncIterator<Difficulty>>;
+  petFriendly: () => Promise<AsyncIterator<Boolean>>;
+  description: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ContactUsEdge {
-  node: ContactUs;
+export interface AudioMarkersEdge {
+  node: AudioMarkers;
   cursor: String;
 }
 
-export interface ContactUsEdgePromise
-  extends Promise<ContactUsEdge>,
+export interface AudioMarkersEdgePromise
+  extends Promise<AudioMarkersEdge>,
     Fragmentable {
-  node: <T = ContactUsPromise>() => T;
+  node: <T = AudioMarkersPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface ContactUsEdgeSubscription
-  extends Promise<AsyncIterator<ContactUsEdge>>,
+export interface AudioMarkersEdgeSubscription
+  extends Promise<AsyncIterator<AudioMarkersEdge>>,
     Fragmentable {
-  node: <T = ContactUsSubscription>() => T;
+  node: <T = AudioMarkersSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ReviewConnection {
-  pageInfo: PageInfo;
-  edges: ReviewEdge[];
+export interface InfoEdge {
+  node: Info;
+  cursor: String;
 }
 
-export interface ReviewConnectionPromise
-  extends Promise<ReviewConnection>,
+export interface InfoEdgePromise extends Promise<InfoEdge>, Fragmentable {
+  node: <T = InfoPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface InfoEdgeSubscription
+  extends Promise<AsyncIterator<InfoEdge>>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ReviewEdge>>() => T;
-  aggregate: <T = AggregateReviewPromise>() => T;
+  node: <T = InfoSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ReviewConnectionSubscription
-  extends Promise<AsyncIterator<ReviewConnection>>,
+export interface FaqEdge {
+  node: Faq;
+  cursor: String;
+}
+
+export interface FaqEdgePromise extends Promise<FaqEdge>, Fragmentable {
+  node: <T = FaqPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FaqEdgeSubscription
+  extends Promise<AsyncIterator<FaqEdge>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ReviewEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateReviewSubscription>() => T;
-}
-
-export interface HostConnection {
-  pageInfo: PageInfo;
-  edges: HostEdge[];
-}
-
-export interface HostConnectionPromise
-  extends Promise<HostConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<HostEdge>>() => T;
-  aggregate: <T = AggregateHostPromise>() => T;
-}
-
-export interface HostConnectionSubscription
-  extends Promise<AsyncIterator<HostConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<HostEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateHostSubscription>() => T;
+  node: <T = FaqSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ReviewSubscriptionPayload {
@@ -3784,25 +4095,25 @@ export interface ReviewSubscriptionPayloadSubscription
   previousValues: <T = ReviewPreviousValuesSubscription>() => T;
 }
 
-export interface ContactUsConnection {
+export interface AudioMarkersConnection {
   pageInfo: PageInfo;
-  edges: ContactUsEdge[];
+  edges: AudioMarkersEdge[];
 }
 
-export interface ContactUsConnectionPromise
-  extends Promise<ContactUsConnection>,
+export interface AudioMarkersConnectionPromise
+  extends Promise<AudioMarkersConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ContactUsEdge>>() => T;
-  aggregate: <T = AggregateContactUsPromise>() => T;
+  edges: <T = FragmentableArray<AudioMarkersEdge>>() => T;
+  aggregate: <T = AggregateAudioMarkersPromise>() => T;
 }
 
-export interface ContactUsConnectionSubscription
-  extends Promise<AsyncIterator<ContactUsConnection>>,
+export interface AudioMarkersConnectionSubscription
+  extends Promise<AsyncIterator<AudioMarkersConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ContactUsEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateContactUsSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<AudioMarkersEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateAudioMarkersSubscription>() => T;
 }
 
 export interface InfoPreviousValues {
@@ -3849,62 +4160,61 @@ export interface InfoSubscriptionPayloadSubscription
   previousValues: <T = InfoPreviousValuesSubscription>() => T;
 }
 
-export interface FaqConnection {
-  pageInfo: PageInfo;
-  edges: FaqEdge[];
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
 }
 
-export interface FaqConnectionPromise
-  extends Promise<FaqConnection>,
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<FaqEdge>>() => T;
-  aggregate: <T = AggregateFaqPromise>() => T;
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
 }
 
-export interface FaqConnectionSubscription
-  extends Promise<AsyncIterator<FaqConnection>>,
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<FaqEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateFaqSubscription>() => T;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateContactInfo {
+export interface AggregateHost {
   count: Int;
 }
 
-export interface AggregateContactInfoPromise
-  extends Promise<AggregateContactInfo>,
+export interface AggregateHostPromise
+  extends Promise<AggregateHost>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateContactInfoSubscription
-  extends Promise<AsyncIterator<AggregateContactInfo>>,
+export interface AggregateHostSubscription
+  extends Promise<AsyncIterator<AggregateHost>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface SelfGuidedTourConnection {
-  pageInfo: PageInfo;
-  edges: SelfGuidedTourEdge[];
+export interface AggregateReview {
+  count: Int;
 }
 
-export interface SelfGuidedTourConnectionPromise
-  extends Promise<SelfGuidedTourConnection>,
+export interface AggregateReviewPromise
+  extends Promise<AggregateReview>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SelfGuidedTourEdge>>() => T;
-  aggregate: <T = AggregateSelfGuidedTourPromise>() => T;
+  count: () => Promise<Int>;
 }
 
-export interface SelfGuidedTourConnectionSubscription
-  extends Promise<AsyncIterator<SelfGuidedTourConnection>>,
+export interface AggregateReviewSubscription
+  extends Promise<AsyncIterator<AggregateReview>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SelfGuidedTourEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSelfGuidedTourSubscription>() => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface BatchPayload {
@@ -3923,10 +4233,22 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
+export type Long = string;
+
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
-export type Boolean = boolean;
+export type Int = number;
+
+/*
+DateTime scalar input type, allowing Date
+*/
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -3940,26 +4262,14 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
-
-export type Long = string;
-
-/*
 The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
 */
 export type Float = number;
 
 /*
-DateTime scalar input type, allowing Date
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type DateTimeInput = Date | string;
-
-/*
-DateTime scalar output type, which is always a string
-*/
-export type DateTimeOutput = string;
+export type Boolean = boolean;
 
 /**
  * Model Metadata
@@ -3988,6 +4298,10 @@ export const models: Model[] = [
   },
   {
     name: "Audio",
+    embedded: false
+  },
+  {
+    name: "AudioMarkers",
     embedded: false
   },
   {

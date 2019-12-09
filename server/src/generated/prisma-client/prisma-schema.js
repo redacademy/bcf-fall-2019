@@ -7,6 +7,10 @@ module.exports = {
   count: Int!
 }
 
+type AggregateAudioMarkers {
+  count: Int!
+}
+
 type AggregateContactInfo {
   count: Int!
 }
@@ -45,12 +49,9 @@ type AggregateUser {
 
 type Audio {
   id: ID!
-  title: String!
-  description: String!
-  duration: String!
-  latitude: String!
-  longitude: String!
   url: String!
+  markers(where: AudioMarkersWhereInput, orderBy: AudioMarkersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AudioMarkers!]
+  selfGuidedTour: SelfGuidedTour!
 }
 
 type AudioConnection {
@@ -61,17 +62,31 @@ type AudioConnection {
 
 input AudioCreateInput {
   id: ID
-  title: String!
-  description: String!
-  duration: String!
-  latitude: String!
-  longitude: String!
   url: String!
+  markers: AudioMarkersCreateManyWithoutAudioInput
+  selfGuidedTour: SelfGuidedTourCreateOneWithoutAudioInput!
 }
 
-input AudioCreateManyInput {
-  create: [AudioCreateInput!]
-  connect: [AudioWhereUniqueInput!]
+input AudioCreateOneWithoutMarkersInput {
+  create: AudioCreateWithoutMarkersInput
+  connect: AudioWhereUniqueInput
+}
+
+input AudioCreateOneWithoutSelfGuidedTourInput {
+  create: AudioCreateWithoutSelfGuidedTourInput
+  connect: AudioWhereUniqueInput
+}
+
+input AudioCreateWithoutMarkersInput {
+  id: ID
+  url: String!
+  selfGuidedTour: SelfGuidedTourCreateOneWithoutAudioInput!
+}
+
+input AudioCreateWithoutSelfGuidedTourInput {
+  id: ID
+  url: String!
+  markers: AudioMarkersCreateManyWithoutAudioInput
 }
 
 type AudioEdge {
@@ -79,34 +94,76 @@ type AudioEdge {
   cursor: String!
 }
 
-enum AudioOrderByInput {
+type AudioMarkers {
+  id: ID!
+  title: String!
+  description: String!
+  latitude: String!
+  longitude: String!
+  start: Float!
+  audio: Audio!
+}
+
+type AudioMarkersConnection {
+  pageInfo: PageInfo!
+  edges: [AudioMarkersEdge]!
+  aggregate: AggregateAudioMarkers!
+}
+
+input AudioMarkersCreateInput {
+  id: ID
+  title: String!
+  description: String!
+  latitude: String!
+  longitude: String!
+  start: Float!
+  audio: AudioCreateOneWithoutMarkersInput!
+}
+
+input AudioMarkersCreateManyWithoutAudioInput {
+  create: [AudioMarkersCreateWithoutAudioInput!]
+  connect: [AudioMarkersWhereUniqueInput!]
+}
+
+input AudioMarkersCreateWithoutAudioInput {
+  id: ID
+  title: String!
+  description: String!
+  latitude: String!
+  longitude: String!
+  start: Float!
+}
+
+type AudioMarkersEdge {
+  node: AudioMarkers!
+  cursor: String!
+}
+
+enum AudioMarkersOrderByInput {
   id_ASC
   id_DESC
   title_ASC
   title_DESC
   description_ASC
   description_DESC
-  duration_ASC
-  duration_DESC
   latitude_ASC
   latitude_DESC
   longitude_ASC
   longitude_DESC
-  url_ASC
-  url_DESC
+  start_ASC
+  start_DESC
 }
 
-type AudioPreviousValues {
+type AudioMarkersPreviousValues {
   id: ID!
   title: String!
   description: String!
-  duration: String!
   latitude: String!
   longitude: String!
-  url: String!
+  start: Float!
 }
 
-input AudioScalarWhereInput {
+input AudioMarkersScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -149,20 +206,6 @@ input AudioScalarWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  duration: String
-  duration_not: String
-  duration_in: [String!]
-  duration_not_in: [String!]
-  duration_lt: String
-  duration_lte: String
-  duration_gt: String
-  duration_gte: String
-  duration_contains: String
-  duration_not_contains: String
-  duration_starts_with: String
-  duration_not_starts_with: String
-  duration_ends_with: String
-  duration_not_ends_with: String
   latitude: String
   latitude_not: String
   latitude_in: [String!]
@@ -191,23 +234,197 @@ input AudioScalarWhereInput {
   longitude_not_starts_with: String
   longitude_ends_with: String
   longitude_not_ends_with: String
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
-  AND: [AudioScalarWhereInput!]
-  OR: [AudioScalarWhereInput!]
-  NOT: [AudioScalarWhereInput!]
+  start: Float
+  start_not: Float
+  start_in: [Float!]
+  start_not_in: [Float!]
+  start_lt: Float
+  start_lte: Float
+  start_gt: Float
+  start_gte: Float
+  AND: [AudioMarkersScalarWhereInput!]
+  OR: [AudioMarkersScalarWhereInput!]
+  NOT: [AudioMarkersScalarWhereInput!]
+}
+
+type AudioMarkersSubscriptionPayload {
+  mutation: MutationType!
+  node: AudioMarkers
+  updatedFields: [String!]
+  previousValues: AudioMarkersPreviousValues
+}
+
+input AudioMarkersSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AudioMarkersWhereInput
+  AND: [AudioMarkersSubscriptionWhereInput!]
+  OR: [AudioMarkersSubscriptionWhereInput!]
+  NOT: [AudioMarkersSubscriptionWhereInput!]
+}
+
+input AudioMarkersUpdateInput {
+  title: String
+  description: String
+  latitude: String
+  longitude: String
+  start: Float
+  audio: AudioUpdateOneRequiredWithoutMarkersInput
+}
+
+input AudioMarkersUpdateManyDataInput {
+  title: String
+  description: String
+  latitude: String
+  longitude: String
+  start: Float
+}
+
+input AudioMarkersUpdateManyMutationInput {
+  title: String
+  description: String
+  latitude: String
+  longitude: String
+  start: Float
+}
+
+input AudioMarkersUpdateManyWithoutAudioInput {
+  create: [AudioMarkersCreateWithoutAudioInput!]
+  delete: [AudioMarkersWhereUniqueInput!]
+  connect: [AudioMarkersWhereUniqueInput!]
+  set: [AudioMarkersWhereUniqueInput!]
+  disconnect: [AudioMarkersWhereUniqueInput!]
+  update: [AudioMarkersUpdateWithWhereUniqueWithoutAudioInput!]
+  upsert: [AudioMarkersUpsertWithWhereUniqueWithoutAudioInput!]
+  deleteMany: [AudioMarkersScalarWhereInput!]
+  updateMany: [AudioMarkersUpdateManyWithWhereNestedInput!]
+}
+
+input AudioMarkersUpdateManyWithWhereNestedInput {
+  where: AudioMarkersScalarWhereInput!
+  data: AudioMarkersUpdateManyDataInput!
+}
+
+input AudioMarkersUpdateWithoutAudioDataInput {
+  title: String
+  description: String
+  latitude: String
+  longitude: String
+  start: Float
+}
+
+input AudioMarkersUpdateWithWhereUniqueWithoutAudioInput {
+  where: AudioMarkersWhereUniqueInput!
+  data: AudioMarkersUpdateWithoutAudioDataInput!
+}
+
+input AudioMarkersUpsertWithWhereUniqueWithoutAudioInput {
+  where: AudioMarkersWhereUniqueInput!
+  update: AudioMarkersUpdateWithoutAudioDataInput!
+  create: AudioMarkersCreateWithoutAudioInput!
+}
+
+input AudioMarkersWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  latitude: String
+  latitude_not: String
+  latitude_in: [String!]
+  latitude_not_in: [String!]
+  latitude_lt: String
+  latitude_lte: String
+  latitude_gt: String
+  latitude_gte: String
+  latitude_contains: String
+  latitude_not_contains: String
+  latitude_starts_with: String
+  latitude_not_starts_with: String
+  latitude_ends_with: String
+  latitude_not_ends_with: String
+  longitude: String
+  longitude_not: String
+  longitude_in: [String!]
+  longitude_not_in: [String!]
+  longitude_lt: String
+  longitude_lte: String
+  longitude_gt: String
+  longitude_gte: String
+  longitude_contains: String
+  longitude_not_contains: String
+  longitude_starts_with: String
+  longitude_not_starts_with: String
+  longitude_ends_with: String
+  longitude_not_ends_with: String
+  start: Float
+  start_not: Float
+  start_in: [Float!]
+  start_not_in: [Float!]
+  start_lt: Float
+  start_lte: Float
+  start_gt: Float
+  start_gte: Float
+  audio: AudioWhereInput
+  AND: [AudioMarkersWhereInput!]
+  OR: [AudioMarkersWhereInput!]
+  NOT: [AudioMarkersWhereInput!]
+}
+
+input AudioMarkersWhereUniqueInput {
+  id: ID
+}
+
+enum AudioOrderByInput {
+  id_ASC
+  id_DESC
+  url_ASC
+  url_DESC
+}
+
+type AudioPreviousValues {
+  id: ID!
+  url: String!
 }
 
 type AudioSubscriptionPayload {
@@ -228,68 +445,48 @@ input AudioSubscriptionWhereInput {
   NOT: [AudioSubscriptionWhereInput!]
 }
 
-input AudioUpdateDataInput {
-  title: String
-  description: String
-  duration: String
-  latitude: String
-  longitude: String
-  url: String
-}
-
 input AudioUpdateInput {
-  title: String
-  description: String
-  duration: String
-  latitude: String
-  longitude: String
   url: String
-}
-
-input AudioUpdateManyDataInput {
-  title: String
-  description: String
-  duration: String
-  latitude: String
-  longitude: String
-  url: String
-}
-
-input AudioUpdateManyInput {
-  create: [AudioCreateInput!]
-  update: [AudioUpdateWithWhereUniqueNestedInput!]
-  upsert: [AudioUpsertWithWhereUniqueNestedInput!]
-  delete: [AudioWhereUniqueInput!]
-  connect: [AudioWhereUniqueInput!]
-  set: [AudioWhereUniqueInput!]
-  disconnect: [AudioWhereUniqueInput!]
-  deleteMany: [AudioScalarWhereInput!]
-  updateMany: [AudioUpdateManyWithWhereNestedInput!]
+  markers: AudioMarkersUpdateManyWithoutAudioInput
+  selfGuidedTour: SelfGuidedTourUpdateOneRequiredWithoutAudioInput
 }
 
 input AudioUpdateManyMutationInput {
-  title: String
-  description: String
-  duration: String
-  latitude: String
-  longitude: String
   url: String
 }
 
-input AudioUpdateManyWithWhereNestedInput {
-  where: AudioScalarWhereInput!
-  data: AudioUpdateManyDataInput!
+input AudioUpdateOneRequiredWithoutMarkersInput {
+  create: AudioCreateWithoutMarkersInput
+  update: AudioUpdateWithoutMarkersDataInput
+  upsert: AudioUpsertWithoutMarkersInput
+  connect: AudioWhereUniqueInput
 }
 
-input AudioUpdateWithWhereUniqueNestedInput {
-  where: AudioWhereUniqueInput!
-  data: AudioUpdateDataInput!
+input AudioUpdateOneRequiredWithoutSelfGuidedTourInput {
+  create: AudioCreateWithoutSelfGuidedTourInput
+  update: AudioUpdateWithoutSelfGuidedTourDataInput
+  upsert: AudioUpsertWithoutSelfGuidedTourInput
+  connect: AudioWhereUniqueInput
 }
 
-input AudioUpsertWithWhereUniqueNestedInput {
-  where: AudioWhereUniqueInput!
-  update: AudioUpdateDataInput!
-  create: AudioCreateInput!
+input AudioUpdateWithoutMarkersDataInput {
+  url: String
+  selfGuidedTour: SelfGuidedTourUpdateOneRequiredWithoutAudioInput
+}
+
+input AudioUpdateWithoutSelfGuidedTourDataInput {
+  url: String
+  markers: AudioMarkersUpdateManyWithoutAudioInput
+}
+
+input AudioUpsertWithoutMarkersInput {
+  update: AudioUpdateWithoutMarkersDataInput!
+  create: AudioCreateWithoutMarkersInput!
+}
+
+input AudioUpsertWithoutSelfGuidedTourInput {
+  update: AudioUpdateWithoutSelfGuidedTourDataInput!
+  create: AudioCreateWithoutSelfGuidedTourInput!
 }
 
 input AudioWhereInput {
@@ -307,76 +504,6 @@ input AudioWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  description: String
-  description_not: String
-  description_in: [String!]
-  description_not_in: [String!]
-  description_lt: String
-  description_lte: String
-  description_gt: String
-  description_gte: String
-  description_contains: String
-  description_not_contains: String
-  description_starts_with: String
-  description_not_starts_with: String
-  description_ends_with: String
-  description_not_ends_with: String
-  duration: String
-  duration_not: String
-  duration_in: [String!]
-  duration_not_in: [String!]
-  duration_lt: String
-  duration_lte: String
-  duration_gt: String
-  duration_gte: String
-  duration_contains: String
-  duration_not_contains: String
-  duration_starts_with: String
-  duration_not_starts_with: String
-  duration_ends_with: String
-  duration_not_ends_with: String
-  latitude: String
-  latitude_not: String
-  latitude_in: [String!]
-  latitude_not_in: [String!]
-  latitude_lt: String
-  latitude_lte: String
-  latitude_gt: String
-  latitude_gte: String
-  latitude_contains: String
-  latitude_not_contains: String
-  latitude_starts_with: String
-  latitude_not_starts_with: String
-  latitude_ends_with: String
-  latitude_not_ends_with: String
-  longitude: String
-  longitude_not: String
-  longitude_in: [String!]
-  longitude_not_in: [String!]
-  longitude_lt: String
-  longitude_lte: String
-  longitude_gt: String
-  longitude_gte: String
-  longitude_contains: String
-  longitude_not_contains: String
-  longitude_starts_with: String
-  longitude_not_starts_with: String
-  longitude_ends_with: String
-  longitude_not_ends_with: String
   url: String
   url_not: String
   url_in: [String!]
@@ -391,6 +518,10 @@ input AudioWhereInput {
   url_not_starts_with: String
   url_ends_with: String
   url_not_ends_with: String
+  markers_every: AudioMarkersWhereInput
+  markers_some: AudioMarkersWhereInput
+  markers_none: AudioMarkersWhereInput
+  selfGuidedTour: SelfGuidedTourWhereInput
   AND: [AudioWhereInput!]
   OR: [AudioWhereInput!]
   NOT: [AudioWhereInput!]
@@ -737,8 +868,8 @@ scalar DateTime
 
 enum Difficulty {
   EASY
-  MEDIUM
-  HARD
+  MODERATE
+  DIFFICULT
 }
 
 type Event {
@@ -1567,6 +1698,12 @@ type Mutation {
   upsertAudio(where: AudioWhereUniqueInput!, create: AudioCreateInput!, update: AudioUpdateInput!): Audio!
   deleteAudio(where: AudioWhereUniqueInput!): Audio
   deleteManyAudios(where: AudioWhereInput): BatchPayload!
+  createAudioMarkers(data: AudioMarkersCreateInput!): AudioMarkers!
+  updateAudioMarkers(data: AudioMarkersUpdateInput!, where: AudioMarkersWhereUniqueInput!): AudioMarkers
+  updateManyAudioMarkerses(data: AudioMarkersUpdateManyMutationInput!, where: AudioMarkersWhereInput): BatchPayload!
+  upsertAudioMarkers(where: AudioMarkersWhereUniqueInput!, create: AudioMarkersCreateInput!, update: AudioMarkersUpdateInput!): AudioMarkers!
+  deleteAudioMarkers(where: AudioMarkersWhereUniqueInput!): AudioMarkers
+  deleteManyAudioMarkerses(where: AudioMarkersWhereInput): BatchPayload!
   createContactInfo(data: ContactInfoCreateInput!): ContactInfo!
   updateContactInfo(data: ContactInfoUpdateInput!, where: ContactInfoWhereUniqueInput!): ContactInfo
   updateManyContactInfoes(data: ContactInfoUpdateManyMutationInput!, where: ContactInfoWhereInput): BatchPayload!
@@ -1644,6 +1781,9 @@ type Query {
   audio(where: AudioWhereUniqueInput!): Audio
   audios(where: AudioWhereInput, orderBy: AudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Audio]!
   audiosConnection(where: AudioWhereInput, orderBy: AudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AudioConnection!
+  audioMarkers(where: AudioMarkersWhereUniqueInput!): AudioMarkers
+  audioMarkerses(where: AudioMarkersWhereInput, orderBy: AudioMarkersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AudioMarkers]!
+  audioMarkersesConnection(where: AudioMarkersWhereInput, orderBy: AudioMarkersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AudioMarkersConnection!
   contactInfo(where: ContactInfoWhereUniqueInput!): ContactInfo
   contactInfoes(where: ContactInfoWhereInput, orderBy: ContactInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactInfo]!
   contactInfoesConnection(where: ContactInfoWhereInput, orderBy: ContactInfoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContactInfoConnection!
@@ -1676,7 +1816,7 @@ type Query {
 
 type Review {
   id: ID!
-  userID: String!
+  user: User!
   score: Int!
   comment: String!
   date: DateTime!
@@ -1690,7 +1830,7 @@ type ReviewConnection {
 
 input ReviewCreateInput {
   id: ID
-  userID: String!
+  user: UserCreateOneInput!
   score: Int!
   comment: String!
 }
@@ -1708,8 +1848,6 @@ type ReviewEdge {
 enum ReviewOrderByInput {
   id_ASC
   id_DESC
-  userID_ASC
-  userID_DESC
   score_ASC
   score_DESC
   comment_ASC
@@ -1720,7 +1858,6 @@ enum ReviewOrderByInput {
 
 type ReviewPreviousValues {
   id: ID!
-  userID: String!
   score: Int!
   comment: String!
   date: DateTime!
@@ -1741,20 +1878,6 @@ input ReviewScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  userID: String
-  userID_not: String
-  userID_in: [String!]
-  userID_not_in: [String!]
-  userID_lt: String
-  userID_lte: String
-  userID_gt: String
-  userID_gte: String
-  userID_contains: String
-  userID_not_contains: String
-  userID_starts_with: String
-  userID_not_starts_with: String
-  userID_ends_with: String
-  userID_not_ends_with: String
   score: Int
   score_not: Int
   score_in: [Int!]
@@ -1809,19 +1932,18 @@ input ReviewSubscriptionWhereInput {
 }
 
 input ReviewUpdateDataInput {
-  userID: String
+  user: UserUpdateOneRequiredInput
   score: Int
   comment: String
 }
 
 input ReviewUpdateInput {
-  userID: String
+  user: UserUpdateOneRequiredInput
   score: Int
   comment: String
 }
 
 input ReviewUpdateManyDataInput {
-  userID: String
   score: Int
   comment: String
 }
@@ -1839,7 +1961,6 @@ input ReviewUpdateManyInput {
 }
 
 input ReviewUpdateManyMutationInput {
-  userID: String
   score: Int
   comment: String
 }
@@ -1875,20 +1996,7 @@ input ReviewWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  userID: String
-  userID_not: String
-  userID_in: [String!]
-  userID_not_in: [String!]
-  userID_lt: String
-  userID_lte: String
-  userID_gt: String
-  userID_gte: String
-  userID_contains: String
-  userID_not_contains: String
-  userID_starts_with: String
-  userID_not_starts_with: String
-  userID_ends_with: String
-  userID_not_ends_with: String
+  user: UserWhereInput
   score: Int
   score_not: Int
   score_in: [Int!]
@@ -1936,7 +2044,7 @@ type SelfGuidedTour {
   difficulty: Difficulty!
   petFriendly: Boolean!
   description: String!
-  audio(where: AudioWhereInput, orderBy: AudioOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Audio!]
+  audio: Audio!
 }
 
 type SelfGuidedTourConnection {
@@ -1953,7 +2061,22 @@ input SelfGuidedTourCreateInput {
   difficulty: Difficulty!
   petFriendly: Boolean
   description: String!
-  audio: AudioCreateManyInput
+  audio: AudioCreateOneWithoutSelfGuidedTourInput!
+}
+
+input SelfGuidedTourCreateOneWithoutAudioInput {
+  create: SelfGuidedTourCreateWithoutAudioInput
+  connect: SelfGuidedTourWhereUniqueInput
+}
+
+input SelfGuidedTourCreateWithoutAudioInput {
+  id: ID
+  title: String!
+  location: String!
+  duration: String!
+  difficulty: Difficulty!
+  petFriendly: Boolean
+  description: String!
 }
 
 type SelfGuidedTourEdge {
@@ -2013,7 +2136,7 @@ input SelfGuidedTourUpdateInput {
   difficulty: Difficulty
   petFriendly: Boolean
   description: String
-  audio: AudioUpdateManyInput
+  audio: AudioUpdateOneRequiredWithoutSelfGuidedTourInput
 }
 
 input SelfGuidedTourUpdateManyMutationInput {
@@ -2023,6 +2146,27 @@ input SelfGuidedTourUpdateManyMutationInput {
   difficulty: Difficulty
   petFriendly: Boolean
   description: String
+}
+
+input SelfGuidedTourUpdateOneRequiredWithoutAudioInput {
+  create: SelfGuidedTourCreateWithoutAudioInput
+  update: SelfGuidedTourUpdateWithoutAudioDataInput
+  upsert: SelfGuidedTourUpsertWithoutAudioInput
+  connect: SelfGuidedTourWhereUniqueInput
+}
+
+input SelfGuidedTourUpdateWithoutAudioDataInput {
+  title: String
+  location: String
+  duration: String
+  difficulty: Difficulty
+  petFriendly: Boolean
+  description: String
+}
+
+input SelfGuidedTourUpsertWithoutAudioInput {
+  update: SelfGuidedTourUpdateWithoutAudioDataInput!
+  create: SelfGuidedTourCreateWithoutAudioInput!
 }
 
 input SelfGuidedTourWhereInput {
@@ -2102,9 +2246,7 @@ input SelfGuidedTourWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  audio_every: AudioWhereInput
-  audio_some: AudioWhereInput
-  audio_none: AudioWhereInput
+  audio: AudioWhereInput
   AND: [SelfGuidedTourWhereInput!]
   OR: [SelfGuidedTourWhereInput!]
   NOT: [SelfGuidedTourWhereInput!]
@@ -2116,6 +2258,7 @@ input SelfGuidedTourWhereUniqueInput {
 
 type Subscription {
   audio(where: AudioSubscriptionWhereInput): AudioSubscriptionPayload
+  audioMarkers(where: AudioMarkersSubscriptionWhereInput): AudioMarkersSubscriptionPayload
   contactInfo(where: ContactInfoSubscriptionWhereInput): ContactInfoSubscriptionPayload
   contactUs(where: ContactUsSubscriptionWhereInput): ContactUsSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
@@ -2152,6 +2295,11 @@ input UserCreateInput {
   lastName: String!
   location: String!
   image: String
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 type UserEdge {
@@ -2207,6 +2355,15 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+  location: String
+  image: String
+}
+
 input UserUpdateInput {
   email: String
   password: String
@@ -2223,6 +2380,18 @@ input UserUpdateManyMutationInput {
   lastName: String
   location: String
   image: String
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {

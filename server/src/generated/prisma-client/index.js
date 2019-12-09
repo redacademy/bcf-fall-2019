@@ -29,6 +29,10 @@ var models = [
     embedded: false
   },
   {
+    name: "AudioMarkers",
+    embedded: false
+  },
+  {
     name: "SelfGuidedTour",
     embedded: false
   },
