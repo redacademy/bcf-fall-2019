@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, Image} from 'react-native';
 import SignUp from './SignUp';
-
+import {THEME} from '../../config';
 class SignUpContainer extends Component {
   static navigationOptions = ({navigation}) => {
     return {
+      title: 'Sign Up',
       headerLeft: () => (
         <TouchableOpacity
           onPress={() => {
@@ -13,7 +14,7 @@ class SignUpContainer extends Component {
           <Image source={require('../../assets/images/icArrLeftDefault.png')} />
         </TouchableOpacity>
       ),
-      title: 'Sign Up',
+      headerTitleStyle: {color: THEME.colors.astronautBlue},
     };
   };
   render() {
