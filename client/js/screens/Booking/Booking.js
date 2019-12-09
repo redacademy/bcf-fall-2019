@@ -1,8 +1,9 @@
 import React from 'react';
 import {Text} from 'react-native';
+import SingleAudio from '../SingleAudio';
 
 const Booking = props => {
-  return <Text>Hello Booking</Text>;
+  return <SingleAudio />;
 };
 
 export default Booking;
