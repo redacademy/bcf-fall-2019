@@ -33,10 +33,12 @@ const SignIn = ({navigation}) => {
       client={client}
       onCompleted={async ({login}) => {
         const viewer = {id: login.user.id, token: login.token};
-        await addViewer(viewer);
-        await navigation.navigate('AuthLoading');
         try {
-        } catch (error) {}
+          await addViewer(viewer);
+          await navigation.navigate('AuthLoading');
+        } catch (error) {
+          console.error(error);
+        }
       }}>
       {(logIn, {loading, error, data}) => {
         return (
@@ -139,7 +141,7 @@ const SignIn = ({navigation}) => {
                             }
                           }}
                           buttonStyle={styles.button}
-                          isActive={!isErrors ? true : false}
+                          isActive={!isErrors}
                           title="Sign In"
                         />
                       </View>

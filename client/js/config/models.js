@@ -9,7 +9,7 @@ export const getOnboarding = async () => {
   }
 };
 
-export const removeOnboarding = async () => {
+export const setOnboarding = async () => {
   try {
     return await AsyncStorage.setItem(`isOnBoardingCompleted`, `true`);
   } catch (e) {

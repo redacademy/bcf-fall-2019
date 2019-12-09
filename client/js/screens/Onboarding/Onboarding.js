@@ -3,7 +3,7 @@ import {ImageBackground, Text, View, TouchableOpacity} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from './styles';
 import {THEME} from '../../config';
-import {removeOnboarding} from '../../config/models';
+import {setOnboarding} from '../../config/models';
 import PropTypes from 'prop-types';
 
 const OnboardingSwiper = ({navigation}) => {
@@ -17,7 +17,7 @@ const OnboardingSwiper = ({navigation}) => {
             style={styles.btnDone}
             onPress={async () => {
               try {
-                await removeOnboarding();
+                await setOnboarding();
                 await navigation.navigate('SignIn');
               } catch (error) {
                 console.log(error);
