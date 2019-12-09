@@ -1,12 +1,20 @@
 import React, {Component} from 'react';
+import {TouchableOpacity, Image} from 'react-native';
 import SignUp from './SignUp';
 
 class SignUpContainer extends Component {
-  static navigationOptions = ({navigation, screenProps, navigationOptions}) => {
-    console.log(navigation);
-    console.log(screenProps);
-    console.log(navigationOptions);
-    return {title: 'Sign Up'};
+  static navigationOptions = ({navigation}) => {
+    return {
+      headerLeft: () => (
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Image source={require('../../assets/images/icArrLeftDefault.png')} />
+        </TouchableOpacity>
+      ),
+      title: 'Sign Up',
+    };
   };
   render() {
     return <SignUp />;
