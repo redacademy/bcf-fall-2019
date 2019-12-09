@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import RootStackNavigator from '../js/navigation/RootStackNavigator';
+import {ApolloProvider} from 'react-apollo';
+import client from './config/api';
 
-import SignIn from './screens/SignIn';
+import RootStackNavigator from '../js/navigation/RootStackNavigator';
 
 export default class App extends Component {
   render() {
-    return <SignIn />;
-    // return <RootStackNavigator />;
+    return (
+      <ApolloProvider client={client}>
+        <RootStackNavigator />
+      </ApolloProvider>
+    );
   }
 }

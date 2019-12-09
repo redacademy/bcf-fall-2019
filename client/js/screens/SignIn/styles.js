@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    marginTop: 160,
+    marginTop: 140,
+    marginBottom: 32,
     textAlign: 'center',
   },
   inputEmail: {
