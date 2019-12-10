@@ -79,6 +79,7 @@ const THEME = {
   },
   padding: {
     accountScreen: {
+      paddingTop: '22%',
       paddingHorizontal: 32,
     },
     inputField: {
@@ -86,7 +87,7 @@ const THEME = {
       paddingVertical: 12,
     },
     bottomGap: {
-      paddingBottom: 48,
+      paddingBottom: '12%',
     },
   },
   button: {
