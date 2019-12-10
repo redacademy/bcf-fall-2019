@@ -9,6 +9,7 @@ import TitleText from '../../components/TitleText';
 import TitleForm from '../../components/TitleForm';
 import InputDefaultField from '../../components/InputDefaultField';
 import CardForm from '../../components/CardForm';
+import ButtonDefault from '../../components/ButtonDefault';
 import styles from './styles';
 import {THEME} from '../../config';
 
@@ -95,6 +96,13 @@ const SignUp = props => {
           />
         </View>
         <CardForm style={styles.cardFormMargin} />
+        <ButtonDefault
+          isActive={false}
+          onPress={() => {
+            console.log('Pressed');
+          }}
+          title="Sign In"
+        />
       </SafeAreaView>
     </ScrollView>
   );
