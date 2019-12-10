@@ -15,7 +15,7 @@ export const MUTATION_LOG_IN = gql`
   }
 `;
 
-export const MUTATION_SING_UP = gql`
+export const MUTATION_SIGN_UP = gql`
   mutation signup(
     $email: String!
     $password: String!
