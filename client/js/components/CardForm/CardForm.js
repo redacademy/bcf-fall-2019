@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Image, Text} from 'react-native';
 import InputDefaultField from '../InputDefaultField';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 const CardForm = ({style}) => {
   return (
@@ -86,3 +87,7 @@ const CardForm = ({style}) => {
 };
 
 export default CardForm;
+
+CardForm.propTypes = {
+  style: PropTypes.object,
+};
