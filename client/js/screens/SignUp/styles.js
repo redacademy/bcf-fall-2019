@@ -22,6 +22,24 @@ const styles = StyleSheet.create({
   formTitle: {
     marginBottom: THEME.spacing.default(),
   },
+  locationTitle: {
+    ...THEME.typography.size.default,
+    fontWeight: THEME.typography.weight.regular,
+    color: THEME.colors.astronautBlue,
+    marginBottom: 6,
+  },
+  locaitonInput: {
+    ...THEME.padding.inputField,
+    ...THEME.typography.size.default,
+    ...THEME.borders.radius.default,
+    ...THEME.borders.width.default,
+    color: 'rgba(0,0,0,0.25)',
+    backgroundColor: THEME.colors.paleGrey,
+    borderColor: THEME.colors.grey,
+  },
+  locationTextSelected: {
+    color: THEME.colors.black,
+  },
   input: {
     marginBottom: THEME.spacing.default(1.5),
   },
