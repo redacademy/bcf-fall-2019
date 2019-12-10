@@ -8,6 +8,7 @@ class SignUpContainer extends Component {
       title: 'Sign Up',
       headerLeft: () => (
         <TouchableOpacity
+          style={{marginLeft: 12}}
           onPress={() => {
             navigation.goBack();
           }}>
