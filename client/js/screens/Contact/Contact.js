@@ -1,17 +1,32 @@
 import React from 'react';
 import {ScrollView, Text, View, Linking, Image} from 'react-native';
-import {TouchableOpacity, TouchableHighlight} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 
 const Contact = ({contact}) => {
   return (
     <ScrollView>
       <Text>Contact Us</Text>
+
       <View>
-        <Text>Feel free to contact us</Text>
-        <Text>BC Parks Foundation</Text>
-        <Text>#301 - 470 Granville Street</Text>
-        <Text>Vancouver, BC Canada</Text>
-        <Text>V6C 1V5</Text>
+        <View>
+          <Text>Feel free to contact us</Text>
+        </View>
+
+        <View>
+          <Text>BC Parks Foundation</Text>
+        </View>
+
+        <View>
+          <Text>#301 - 470 Granville Street</Text>
+        </View>
+
+        <View>
+          <Text>Vancouver, BC Canada</Text>
+        </View>
+
+        <View>
+          <Text>V6C 1V5</Text>
+        </View>
 
         <TouchableOpacity>
           <Text
@@ -25,17 +40,17 @@ const Contact = ({contact}) => {
         <Text>info@bcparksfoundation.ca</Text>
 
         <TouchableOpacity
-          onPress={() => LinkingIOS.openURL('https://facebook.com')}>
+          onPress={() => Linking.openURL('https://facebook.com')}>
           <Image source={require('../../assets/images/icSocialFacebook.png')} />
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => LinkingIOS.openURL('https://twitter.com')}>
+          onPress={() => Linking.openURL('https://twitter.com')}>
           <Image source={require('../../assets/images/icSocialTwitter.png')} />
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => LinkingIOS.openURL('https://instagram.com')}>
+          onPress={() => Linking.openURL('https://instagram.com')}>
           <Image
             source={require('../../assets/images/icSocialInstagram.png')}
           />
