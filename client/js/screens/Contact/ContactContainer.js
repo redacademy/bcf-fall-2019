@@ -10,10 +10,9 @@ class ContactContainer extends Component {
     return (
       <Query query={QUERY_CONTACT}>
         {({loading, error, data}) => {
-          console.log(data);
           if (loading) return <Loader />;
           if (error) return <Text>{error.message}</Text>;
-          if (data) return <About info={data.contact[0]} />;
+          if (data) return <Contact contact={data.contactUses[0]} />;
         }}
       </Query>
     );

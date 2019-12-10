@@ -12,7 +12,12 @@ export const QUERY_CONTACT = gql`
   {
     contactUses {
       id
-      contactInfo
+      contactInfo {
+        id
+        address
+        email
+        phoneNumber
+      }
       twitterLink
       instagramLink
       facebookLink
