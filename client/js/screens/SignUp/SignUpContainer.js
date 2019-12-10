@@ -19,7 +19,7 @@ class SignUpContainer extends Component {
     };
   };
   render() {
-    return <SignUp />;
+    return <SignUp navigation={this.props.navigation} />;
   }
 }
 

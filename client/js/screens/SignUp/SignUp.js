@@ -19,6 +19,7 @@ import InputDefaultField from '../../components/InputDefaultField';
 import CardForm from '../../components/CardForm';
 import CityPicker from '../../components/CityPicker';
 import ButtonDefault from '../../components/ButtonDefault';
+import {addViewer} from '../../config/models';
 import styles from './styles';
 import {THEME} from '../../config';
 
@@ -44,10 +45,22 @@ class SignUp extends Component {
   };
 
   render() {
+    const {navigation} = this.props;
     return (
       <>
-        <Mutation mutation={MUTATION_SIGN_UP} client={client}>
-          {({logIn}) => {
+        <Mutation
+          mutation={MUTATION_SIGN_UP}
+          client={client}
+          onCompleted={async ({signup}) => {
+            const viewer = {id: signup.user.id, token: signup.token};
+            try {
+              await addViewer(viewer);
+              await navigation.navigate('AuthLoading');
+            } catch (error) {
+              console.error(error);
+            }
+          }}>
+          {signup => {
             return (
               <ScrollView>
                 <SafeAreaView
@@ -56,8 +69,32 @@ class SignUp extends Component {
                     ...THEME.padding.bottomGap,
                   }}>
                   <Form
-                    onSubmit={values => {
-                      console.log('submit');
+                    onSubmit={async values => {
+                      try {
+                        await signup({variables: values});
+                      } catch (error) {
+                        let message = error && error.graphQLErrors[0].message;
+
+                        const errorMessage =
+                          'A unique constraint would be violated on User. Details: Field name = email';
+
+                        if (message == errorMessage) {
+                          message = 'Email exists already';
+                        } else {
+                          message = JSON.stringify(message);
+                        }
+
+                        Alert.alert(
+                          message,
+                          '',
+                          [
+                            {
+                              text: 'OK',
+                            },
+                          ],
+                          {cancelable: true},
+                        );
+                      }
                     }}>
                     {props => {
                       return (
@@ -72,6 +109,11 @@ class SignUp extends Component {
                               if (!values.skipStep) {
                                 this.setState({
                                   isErrors: 'Please check the box',
+                                });
+                              }
+                              if (!values.location) {
+                                this.setState({
+                                  isErrors: 'Please select the location',
                                 });
                               }
                               if (!values.lastName) {
@@ -194,7 +236,7 @@ class SignUp extends Component {
                                     this.setState({showPicker: true});
                                   }}>
                                   <Text style={styles.locationTitle}>
-                                    Location
+                                    Location*
                                   </Text>
                                   <Text
                                     {...input}
@@ -262,7 +304,7 @@ class SignUp extends Component {
                           <ButtonDefault
                             isActive={!this.state.isErrors ? true : false}
                             onPress={() => {
-                              if (isErrors) {
+                              if (this.state.isErrors) {
                                 Alert.alert(
                                   this.state.isErrors,
                                   '',

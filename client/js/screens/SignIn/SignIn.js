@@ -17,9 +17,9 @@ import TitleText from '../../components/TitleText';
 import ButtonDefault from '../../components/ButtonDefault';
 import InputDefaultField from '../../components/InputDefaultField';
 import InputDefaultCheckBox from '../../components/InputDefaultCheckBox';
+import {addViewer} from '../../config/models';
 import {THEME} from '../../config';
 import styles from './styles';
-import {addViewer} from '../../config/models';
 import PropTypes from 'prop-types';
 
 const client = new ApolloClient({uri: 'http://157.245.163.7:8000/'});
