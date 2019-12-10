@@ -25,6 +25,26 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: THEME.spacing.default(1.5),
   },
+  lastInput: {
+    marginBottom: THEME.spacing.default(3),
+  },
+  billingTitle: {
+    marginBottom: THEME.spacing.default(0.5),
+  },
+  skipView: {
+    height: 24,
+    justifyContent: 'center',
+    paddingLeft: 2,
+    marginBottom: THEME.spacing.default(),
+  },
+  textSkip: {
+    ...THEME.typography.size.caption,
+    color: THEME.colors.astronautBlue,
+    marginLeft: THEME.spacing.default(0.5),
+  },
+  cardFormMargin: {
+    marginBottom: THEME.spacing.default(3),
+  },
 });
 
 export default styles;
