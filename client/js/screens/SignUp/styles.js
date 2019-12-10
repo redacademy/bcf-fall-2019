@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     marginBottom: THEME.spacing.default(0.25),
   },
   profileImg: {
-    width: 169,
+    width: '48%',
     height: 169,
   },
   title: {
