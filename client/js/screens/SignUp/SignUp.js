@@ -15,7 +15,8 @@ const client = new ApolloClient({uri: 'http://157.245.163.7:8000/'});
 const SignUp = props => {
   return (
     <ScrollView>
-      <SafeAreaView style={THEME.padding.accountScreen}>
+      <SafeAreaView
+        style={{...THEME.padding.accountScreen, ...THEME.padding.bottomGap}}>
         <View style={styles.profileWrap}>
           <Image
             source={require('../../assets/images/imgProfileDefault.png')}
@@ -27,11 +28,45 @@ const SignUp = props => {
         <Text style={styles.text}>
           Sign up to see what is happening near you
         </Text>
-        <TitleForm>Profile</TitleForm>
+
+        <TitleForm style={styles.formTitle}>Profile</TitleForm>
         <InputDefaultField
-          title="Email *"
+          title="Email*"
           titleStyle="regular"
           autoCapitalize="none"
+          autoCompleteType="email"
+          placeholder="Your email"
+          textContentType="emailAddress"
+          style={styles.input}
+        />
+        <InputDefaultField
+          title="Password*"
+          titleStyle="regular"
+          secureTextEntry={true}
+          autoCapitalize="none"
+          autoCompleteType="password"
+          placeholder="Password"
+          style={styles.input}
+        />
+        <InputDefaultField
+          title="First name*"
+          titleStyle="regular"
+          autoCompleteType="name"
+          placeholder="First name"
+          style={styles.input}
+        />
+        <InputDefaultField
+          title="Last name*"
+          titleStyle="regular"
+          autoCompleteType="name"
+          placeholder="Last name"
+          style={styles.input}
+        />
+        <InputDefaultField
+          title="Location"
+          titleStyle="regular"
+          placeholder="Location"
+          style={styles.input}
         />
       </SafeAreaView>
     </ScrollView>

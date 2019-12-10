@@ -19,6 +19,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: THEME.spacing.default(3),
   },
+  formTitle: {
+    marginBottom: THEME.spacing.default(),
+  },
+  input: {
+    marginBottom: THEME.spacing.default(1.5),
+  },
 });
 
 export default styles;

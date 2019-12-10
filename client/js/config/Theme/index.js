@@ -84,6 +84,9 @@ const THEME = {
       paddingHorizontal: 16,
       paddingVertical: 12,
     },
+    bottomGap: {
+      paddingBottom: 48,
+    },
   },
   button: {
     borderRadius: 4,
