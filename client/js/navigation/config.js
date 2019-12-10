@@ -5,7 +5,6 @@ import {Image, TouchableOpacity} from 'react-native';
 const {white} = Colors;
 
 export const sharedNavigationOptions = navigation => {
-  console.log(navigation);
   return {
     headerBackTitle: null,
     headerLeft: null,

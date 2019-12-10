@@ -1,16 +1,16 @@
 import gql from 'graphql-tag';
 
-export const QUERY_INFOES = gql`
+export const QUERY_INFO = gql`
   {
-    Infoes {
+    infoes {
       about
     }
   }
 `;
 
-export const QUERY_CONTACTUS = gql`
+export const QUERY_CONTACT = gql`
   {
-    ContactUses {
+    contactUses {
       id
       contactInfo
       twitterLink
@@ -22,7 +22,7 @@ export const QUERY_CONTACTUS = gql`
 
 export const QUERY_FAQ = gql`
   {
-    Faqs {
+    faqs {
       id
       question
       answer
