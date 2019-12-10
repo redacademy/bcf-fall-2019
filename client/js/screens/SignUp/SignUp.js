@@ -102,8 +102,6 @@ class SignUp extends Component {
                           <FormSpy
                             subscription={{values: true}}
                             onChange={({values}) => {
-                              console.log(values);
-
                               this.setState({isErrors: null});
 
                               if (!values.skipStep) {
