@@ -20,9 +20,9 @@ const AppStack = createStackNavigator(
     Faq: FaqModal,
   },
   {
+    mode: 'modal',
     defaultNavigationOptions: () => ({
-      headerMode: 'none',
-      mode: 'modal',
+      header: null,
     }),
   },
 );

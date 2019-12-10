@@ -17,13 +17,16 @@ const {black, mediumGrey, white} = Colors;
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({navigation}) => ({
+        title: 'Home',
+      }),
+    },
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
-      ...sharedNavigationOptions(navigation),
       initialRouteName: 'Home',
-      title: 'Home',
     }),
   },
 );
