@@ -3,6 +3,7 @@ import About from './About';
 import Loader from '../../components/Loader';
 import {Query} from 'react-apollo';
 import {QUERY_INFOES} from '../../apollo/queries';
+import Text from 'react-native';
 
 class AboutContainer extends Component {
   render() {
