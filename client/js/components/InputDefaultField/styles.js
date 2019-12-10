@@ -3,10 +3,13 @@ import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
   title: {
-    ...THEME.typography.bold,
     ...THEME.typography.size.default,
+    fontWeight: THEME.typography.weight.semibold,
     color: THEME.colors.astronautBlue,
     marginBottom: 6,
+  },
+  titleRegular: {
+    fontWeight: THEME.typography.weight.regular,
   },
   default: {
     ...THEME.padding.inputField,

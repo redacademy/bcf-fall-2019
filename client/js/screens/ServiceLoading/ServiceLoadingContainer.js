@@ -9,7 +9,7 @@ class ServiceLoadingContainer extends Component {
 
   _bootstrapAsync = async () => {
     const isOnboarding = JSON.parse(await getOnboarding());
-    this.props.navigation.navigate(isOnboarding ? 'SignIn' : 'Onboarding');
+    this.props.navigation.navigate(isOnboarding ? 'Account' : 'Onboarding');
   };
   render() {
     return <ServiceLoading />;

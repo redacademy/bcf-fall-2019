@@ -190,7 +190,10 @@ const SignIn = ({navigation}) => {
                     New to Discover?
                   </Text>
 
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.push('SignUp');
+                    }}>
                     <Text style={{...styles.text, ...styles.textNewAcc}}>
                       Create An Account
                     </Text>

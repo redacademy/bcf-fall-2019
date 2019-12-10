@@ -2,15 +2,12 @@ import {StyleSheet} from 'react-native';
 import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flex: 1,
-  },
   text: {
-    ...THEME.typography.size.caption,
-    marginLeft: THEME.spacing.default(0.5),
+    ...THEME.typography.size.title,
+    fontWeight: THEME.typography.weight.bold,
     color: THEME.colors.astronautBlue,
-    fontWeight: THEME.typography.weight.medium,
+    lineHeight: 28,
+    letterSpacing: 0.35,
   },
 });
 

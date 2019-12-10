@@ -1,6 +1,11 @@
 import {Platform} from 'react-native';
 
 const THEME = {
+  spacing: {
+    default: (int = 1) => {
+      return 16 * int;
+    },
+  },
   typography: {
     regular: {
       fontFamily: 'Montserrat-Regular',
@@ -15,10 +20,15 @@ const THEME = {
       caption: {
         fontSize: 12,
       },
+      title: {
+        fontSize: 22,
+      },
     },
     weight: {
+      regular: '400',
       medium: '500',
       semibold: '600',
+      bold: '700',
     },
     button: {
       fontSize: 17,
@@ -67,15 +77,15 @@ const THEME = {
     },
   },
   padding: {
-    default: int => {
-      return 16 * int;
-    },
     accountScreen: {
       paddingHorizontal: 32,
     },
     inputField: {
       paddingHorizontal: 16,
       paddingVertical: 12,
+    },
+    bottomGap: {
+      paddingBottom: 48,
     },
   },
   button: {
