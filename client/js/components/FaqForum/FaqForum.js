@@ -18,8 +18,8 @@ class FaqForum extends React.Component {
       spinValue: new Animated.Value(0),
     };
     this.icons = {
-      collapse: '../../assets/images/icPlusDefault.png',
-      show: '../../assets/images/icMinusDefault.png',
+      collapse: require('../../assets/images/icPlusDefault.png'),
+      show: require('../../assets/images/icMinusDefault.png'),
     };
   }
 
@@ -67,15 +67,11 @@ class FaqForum extends React.Component {
                 paddingRight: 10,
                 transform: [{rotate: spin}],
               }}>
-              {this.state.collapse ? (
-                <Image
-                  source={require('../../assets/images/icPlusDefault.png')}
-                />
-              ) : (
-                <Image
-                  source={require('../../assets/images/icMinusDefault.png')}
-                />
-              )}
+              <Image
+                source={
+                  this.state.collapse ? this.icons.collapse : this.icons.show
+                }
+              />
             </Animated.Text>
             <Text style={styles.faqQuestion}>{this.props.question}</Text>
           </View>
