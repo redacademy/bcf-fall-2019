@@ -15,12 +15,12 @@ import {removeViewer} from '../../config/models';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const Home = ({navigation, detectOffsetTopm, data}) => {
+const Home = ({navigation, detectOffsetTop, data}) => {
   return (
     <NavScrollView
       scrollEventThrottle={16}
       onScroll={event => {
-        // console.log(event.nativeEvent.contentOffset.y);
+        detectOffsetTop(event.nativeEvent.contentOffset.y);
       }}>
       <ImageBackground
         source={require('../../assets/images/cities/imgCityVancouver.jpg')}

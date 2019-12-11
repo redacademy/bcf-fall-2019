@@ -1,7 +1,16 @@
 import React, {Component} from 'react';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
-import {Text} from 'react-native';
+import {
+  StatusBar,
+  Text,
+  View,
+  LayoutAnimation,
+  Platform,
+  UIManager,
+} from 'react-native';
+import {VibrancyView} from '@react-native-community/blur';
+
 import Home from './Home';
 import {getViewer} from '../../config/models';
 import PropTypes from 'prop-types';
@@ -20,19 +29,37 @@ const QUERY = gql`
   }
 `;
 
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
+
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      offsetTop: 0,
       userID: null,
     };
   }
 
   static navigationOptions = ({navigation}) => {
+    let offsetTop = navigation.getParam('offsetTop');
+
     return {
       headerTransparent: true,
+      headerBackground: () =>
+        offsetTop > 0 && (
+          <View>
+            <StatusBar barStyle="light-content" />
+            <VibrancyView
+              blurType="dark"
+              blurAmount={2}
+              style={{width: '100%', height: '100%'}}
+            />
+          </View>
+        ),
     };
   };
 
@@ -42,7 +69,8 @@ class HomeContainer extends Component {
   }
 
   detectOffsetTop = offsetTop => {
-    // console.log(offsetTop);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    this.props.navigation.setParams({offsetTop});
   };
 
   getUserID = async () => {
@@ -60,25 +88,27 @@ class HomeContainer extends Component {
     return (
       <>
         {this.state.userID ? (
-          <Query query={QUERY} variables={{id: this.state.userID}}>
-            {({loading, error, data}) => {
-              if (loading) {
-                return <Text>loading</Text>;
-              }
-              if (error) {
-                return <Text>error</Text>;
-              }
-              if (data) {
-                return (
-                  <Home
-                    navigation={navigation}
-                    detectOffsetTop={this.detectOffsetTop}
-                    data={data.user}
-                  />
-                );
-              }
-            }}
-          </Query>
+          <>
+            <Query query={QUERY} variables={{id: this.state.userID}}>
+              {({loading, error, data}) => {
+                if (loading) {
+                  return <Text>loading</Text>;
+                }
+                if (error) {
+                  return <Text>error</Text>;
+                }
+                if (data) {
+                  return (
+                    <Home
+                      navigation={navigation}
+                      detectOffsetTop={this.detectOffsetTop}
+                      data={data.user}
+                    />
+                  );
+                }
+              }}
+            </Query>
+          </>
         ) : (
           <Home
             navigation={navigation}
