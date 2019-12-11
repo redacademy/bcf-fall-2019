@@ -1,24 +1,32 @@
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Image, TouchableOpacity} from 'react-native';
 
 const {white} = Colors;
 
-const Hamburger = ({navigation}) => (
-  <Image
-    name="md-menu"
-    size={24}
-    onPress={navigation.openDrawer}
-    style={{marginLeft: 8}}
-  />
-);
-
-export const sharedNavigationOptions = navigation => ({
-  headerBackTitle: null,
-  headerStyle: {
-    backgroundColor: 'transparent',
-  },
-  headerTitleStyle: {
-    color: white,
-  },
-  headerTintColor: white,
-});
+export const sharedNavigationOptions = navigation => {
+  return {
+    headerBackTitle: null,
+    headerLeft: null,
+    visible: true,
+    headerStyle: {
+      backgroundColor: '#013859',
+    },
+    headerTitleStyle: {
+      color: 'white',
+    },
+    headerTintColor: white,
+    headerRight: () => (
+      <TouchableOpacity
+        style={{marginRight: 0}}
+        onPress={() => {
+          navigation.toggleDrawer();
+        }}>
+        <Image
+          source={require('../assets/images/icMenuWhite.png')}
+          name="burger-menu"
+        />
+      </TouchableOpacity>
+    ),
+  };
+};
