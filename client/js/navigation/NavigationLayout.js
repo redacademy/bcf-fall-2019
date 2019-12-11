@@ -17,12 +17,7 @@ const {black, mediumGrey, white} = Colors;
 
 const HomeStack = createStackNavigator(
   {
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: ({navigation}) => ({
-        title: 'Home',
-      }),
-    },
+    Home: HomeScreen,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
