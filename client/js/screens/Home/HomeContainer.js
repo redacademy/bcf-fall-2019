@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
+import {Text} from 'react-native';
 import Home from './Home';
 import {getViewer} from '../../config/models';
 import PropTypes from 'prop-types';
@@ -61,13 +62,21 @@ class HomeContainer extends Component {
         {this.state.userID ? (
           <Query query={QUERY} variables={{id: this.state.userID}}>
             {({loading, error, data}) => {
-              return (
-                <Home
-                  navigation={navigation}
-                  detectOffsetTop={this.detectOffsetTop}
-                  data={data.user}
-                />
-              );
+              if (loading) {
+                return <Text>loading</Text>;
+              }
+              if (error) {
+                return <Text>error</Text>;
+              }
+              if (data) {
+                return (
+                  <Home
+                    navigation={navigation}
+                    detectOffsetTop={this.detectOffsetTop}
+                    data={data.user}
+                  />
+                );
+              }
             }}
           </Query>
         ) : (

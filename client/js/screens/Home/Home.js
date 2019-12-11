@@ -1,8 +1,15 @@
 import React from 'react';
-import {ImageBackground, Text, ScrollView, Button, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  Button,
+  View,
+} from 'react-native';
 import {removeViewer} from '../../config/models';
 import styles from './styles';
-import {THEME} from '../../config';
 import PropTypes from 'prop-types';
 
 const Home = ({navigation, detectOffsetTopm, data}) => {
@@ -10,15 +17,24 @@ const Home = ({navigation, detectOffsetTopm, data}) => {
     <ScrollView
       scrollEventThrottle={16}
       onScroll={event => {
-        console.log(event.nativeEvent.contentOffset.y);
+        // console.log(event.nativeEvent.contentOffset.y);
       }}>
       <ImageBackground
         source={require('../../assets/images/cities/imgCityVancouver.jpg')}
         style={styles.imgCity}>
         <View style={styles.overlay}>
           <View style={styles.wrapperMain}>
-            {console.log(data)}
-            <Text style={styles.title}>{data && data.location}</Text>
+            <TouchableOpacity style={styles.wrapperLocation}>
+              <Text style={styles.title}>{data && data.location}</Text>
+              <Text style={styles.textChangeLocation}>Change the location</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.searchBar}>
+              <Image
+                style={styles.icSearch}
+                source={require('../../assets/images/icSearch.png')}
+              />
+              <Text style={styles.placeholder}>Search</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ImageBackground>
