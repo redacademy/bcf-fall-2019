@@ -54,13 +54,17 @@ const Home = ({navigation, detectOffsetTopm, data}) => {
         </TouchableOpacity>
 
         <View style={styles.sectionCategory}>
-          <Text style={styles.sectionTitle}>Discover</Text>
+          <Text
+            style={{...styles.sectionTitle, ...styles.sectionCategoryTitle}}>
+            Discover
+          </Text>
           <ScrollView style={styles.categoryList} horizontal={true}>
             {CATEGORY_LIST.map((category, index, array) => (
               <TouchableOpacity key={index}>
                 <CategoryList
                   image={category.image}
                   name={category.name}
+                  firstChild={index === 0}
                   lastChild={index + 1 === array.length}
                 />
               </TouchableOpacity>

@@ -5,15 +5,14 @@ const styles = StyleSheet.create({
   wrapper: {
     ...THEME.borders.radius.default,
     width: 120,
-    height: '100%',
+    height: 100,
     overflow: 'hidden',
     marginRight: THEME.spacing.default(),
   },
+  firstWrapper: {
+    marginLeft: THEME.spacing.default(1.5),
+  },
   lastWrapper: {
-    ...THEME.borders.radius.default,
-    width: 120,
-    height: '100%',
-    overflow: 'hidden',
     marginRight: THEME.spacing.default(1.5),
   },
   overlay: {

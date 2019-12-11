@@ -80,9 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: THEME.spacing.default(3),
   },
   sectionCategory: {
-    paddingLeft: 24,
-    paddingRight: 0,
-    marginBottom: THEME.spacing.default(3),
+    marginBottom: THEME.spacing.default(2),
   },
   sectionTitle: {
     ...THEME.typography.bold,
@@ -90,9 +88,12 @@ const styles = StyleSheet.create({
     color: THEME.colors.astronautBlue,
     marginBottom: THEME.spacing.default(0.5),
   },
+  sectionCategoryTitle: {
+    paddingLeft: 24,
+  },
   categoryList: {
     width: '100%',
-    height: 100,
+    height: 100 + THEME.spacing.default(1),
   },
 });
 
