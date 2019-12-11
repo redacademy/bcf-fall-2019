@@ -1,4 +1,5 @@
 import React from 'react';
+import {ScrollView as NavScrollView} from 'react-navigation';
 import {
   Image,
   ImageBackground,
@@ -8,13 +9,15 @@ import {
   Button,
   View,
 } from 'react-native';
+import CategoryList from '../../components/CategoryList';
+import {CATEGORY_LIST} from '../../lib/categoryList';
 import {removeViewer} from '../../config/models';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
 const Home = ({navigation, detectOffsetTopm, data}) => {
   return (
-    <ScrollView
+    <NavScrollView
       scrollEventThrottle={16}
       onScroll={event => {
         // console.log(event.nativeEvent.contentOffset.y);
@@ -39,20 +42,29 @@ const Home = ({navigation, detectOffsetTopm, data}) => {
         </View>
       </ImageBackground>
 
-      <View>
-        <Button
-          onPress={async e => {
-            try {
-              await removeViewer();
-              await navigation.navigate('AuthLoading');
-            } catch (error) {
-              console.log(error);
-            }
-          }}
-          title="Log out"
-        />
+      <View style={styles.contents}>
+        <TouchableOpacity style={styles.section}>
+          <ImageBackground
+            style={styles.wrapperSelfGuidedTour}
+            source={require('../../assets/images/imgHomeSelfguidedTours.jpg')}>
+            <View style={{...styles.overlay, ...styles.centerOverlayContents}}>
+              <Text style={styles.textSelfGuidedTour}>Self Guided Tours</Text>
+            </View>
+          </ImageBackground>
+        </TouchableOpacity>
+
+        <View style={styles.sectionCategory}>
+          <Text style={styles.sectionTitle}>Discover</Text>
+          <ScrollView style={styles.categoryList} horizontal={true}>
+            {CATEGORY_LIST.map((category, index) => (
+              <TouchableOpacity key={index}>
+                <CategoryList image={category.image} name={category.name} />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
       </View>
-    </ScrollView>
+    </NavScrollView>
   );
 };
 
@@ -63,3 +75,17 @@ Home.propTypes = {
   detectOffsetTop: PropTypes.func.isRequired,
   data: PropTypes.object,
 };
+
+{
+  /* <Button
+  onPress={async e => {
+    try {
+      await removeViewer();
+      await navigation.navigate('AuthLoading');
+    } catch (error) {
+      console.log(error);
+    }
+  }}
+  title="Log out"
+/>; */
+}

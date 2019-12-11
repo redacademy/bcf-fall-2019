@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: THEME.colors.grey,
   },
+  centerOverlayContents: {
+    justifyContent: 'center',
+  },
   wrapperMain: {
     position: 'absolute',
     width: '100%',
@@ -55,6 +58,41 @@ const styles = StyleSheet.create({
   placeholder: {
     ...THEME.typography.size.default,
     color: THEME.colors.astronautBlue,
+  },
+  contents: {
+    paddingTop: THEME.spacing.default(3),
+  },
+  wrapperSelfGuidedTour: {
+    ...THEME.borders.radius.default,
+    overflow: 'hidden',
+    width: '100%',
+    height: 166,
+  },
+  textSelfGuidedTour: {
+    ...THEME.typography.bold,
+    ...THEME.shadow.onText,
+    color: THEME.colors.white,
+    textAlign: 'center',
+    fontSize: 24,
+  },
+  section: {
+    ...THEME.padding.appScreen,
+    marginBottom: THEME.spacing.default(3),
+  },
+  sectionCategory: {
+    paddingLeft: 24,
+    paddingRight: 0,
+    marginBottom: THEME.spacing.default(3),
+  },
+  sectionTitle: {
+    ...THEME.typography.bold,
+    fontSize: 24,
+    color: THEME.colors.astronautBlue,
+    marginBottom: THEME.spacing.default(0.5),
+  },
+  categoryList: {
+    width: '100%',
+    height: 100,
   },
 });
 
