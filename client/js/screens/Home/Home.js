@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Query} from 'react-apollo';
+import gql from 'graphql-tag';
 import {ScrollView as NavScrollView} from 'react-navigation';
 import {
   Image,
@@ -6,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  FlatList,
   Button,
   View,
 } from 'react-native';
@@ -16,6 +19,49 @@ import {CITY_LIST} from '../../lib/cityList';
 import {removeViewer} from '../../config/models';
 import styles from './styles';
 import PropTypes from 'prop-types';
+
+const QUERY = gql`
+  query getAllEvents($startFilterDate: DateTime, $endFilterDate: DateTime) {
+    events(
+      where: {AND: [{date_gte: $startFilterDate}, {date_lt: $endFilterDate}]}
+      orderBy: date_DESC
+    ) {
+      id
+      title
+      date
+      startAt
+      endAt
+      category
+      price
+      locationTitle
+      address
+      image
+      difficulty
+      language
+      details
+      host {
+        id
+        email
+        name
+        image
+        bio
+      }
+      reviews {
+        id
+        user {
+          id
+          email
+          firstName
+          lastName
+          image
+        }
+        score
+        comment
+        date
+      }
+    }
+  }
+`;
 
 class Home extends Component {
   constructor(props) {
@@ -46,6 +92,9 @@ class Home extends Component {
     const cityImage = CITY_LIST.filter(
       city => city.name === this.state.citySelected,
     )[0];
+
+    const date = new Date();
+    const dateAfterWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
     return (
       <>
@@ -116,6 +165,22 @@ class Home extends Component {
             </View>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>This week</Text>
+
+              <Query
+                query={QUERY}
+                variables={{
+                  startFilterDate: date,
+                  endFilterDate: dateAfterWeek,
+                }}>
+                {({loading, error, data}) => {
+                  if (loading) return <Text>Loading</Text>;
+                  if (error) return <Text>Error</Text>;
+                  if (data) {
+                    console.log(data);
+                    return <View></View>;
+                  }
+                }}
+              </Query>
             </View>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Popular now</Text>

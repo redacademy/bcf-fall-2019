@@ -8,20 +8,6 @@ import Home from './Home';
 import {getViewer} from '../../config/models';
 import PropTypes from 'prop-types';
 
-const QUERY = gql`
-  query user($id: ID!) {
-    user(where: {id: $id}) {
-      id
-      email
-      firstName
-      lastName
-      location
-      image
-      date
-    }
-  }
-`;
-
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +42,9 @@ class HomeContainer extends Component {
   }
 
   detectOffsetTop = offsetTop => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    if (offsetTop < 0 && offsetTop < 16) {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    }
     this.props.navigation.setParams({offsetTop});
   };
 
