@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginRight: THEME.spacing.default(),
   },
+  lastWrapper: {
+    ...THEME.borders.radius.default,
+    width: 120,
+    height: '100%',
+    overflow: 'hidden',
+    marginRight: THEME.spacing.default(1.5),
+  },
   overlay: {
     width: '100%',
     flex: 1,

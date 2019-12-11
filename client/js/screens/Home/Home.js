@@ -56,12 +56,28 @@ const Home = ({navigation, detectOffsetTopm, data}) => {
         <View style={styles.sectionCategory}>
           <Text style={styles.sectionTitle}>Discover</Text>
           <ScrollView style={styles.categoryList} horizontal={true}>
-            {CATEGORY_LIST.map((category, index) => (
+            {CATEGORY_LIST.map((category, index, array) => (
               <TouchableOpacity key={index}>
-                <CategoryList image={category.image} name={category.name} />
+                <CategoryList
+                  image={category.image}
+                  name={category.name}
+                  lastChild={index + 1 === array.length}
+                />
               </TouchableOpacity>
             ))}
           </ScrollView>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>This week</Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Popular now</Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Recently viewed</Text>
         </View>
       </View>
     </NavScrollView>
