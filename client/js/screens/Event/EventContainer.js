@@ -3,7 +3,7 @@ import Event from './Event';
 
 class EventContainer extends Component {
   render() {
-    <Event />;
+    return <Event />;
   }
 }
 
