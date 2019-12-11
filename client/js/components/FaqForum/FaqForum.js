@@ -2,11 +2,13 @@ import React from 'react';
 import {
   Text,
   View,
+  Image,
   LayoutAnimation,
   TouchableOpacity,
   Animated,
   Easing,
 } from 'react-native';
+import styles from './styles';
 
 class FaqForum extends React.Component {
   constructor(props) {
@@ -16,8 +18,8 @@ class FaqForum extends React.Component {
       spinValue: new Animated.Value(0),
     };
     this.icons = {
-      collapse: '+',
-      show: '-',
+      collapse: '../../assets/images/icPlusDefault.png',
+      show: '../../assets/images/icMinusDefault.png',
     };
   }
 
@@ -48,12 +50,6 @@ class FaqForum extends React.Component {
       outputRange: ['0deg', '360deg'],
     });
 
-    let icon = this.icons['show'];
-
-    if (this.state.collapse) {
-      icon = this.icons['collapse'];
-    }
-
     return (
       <View style={{overflow: 'hidden'}}>
         <TouchableOpacity
@@ -66,16 +62,27 @@ class FaqForum extends React.Component {
           <View style={{flexDirection: 'row'}}>
             <Animated.Text
               style={{
-                color: '#9963ea',
+                color: '#000000',
                 fontSize: 20,
+                paddingRight: 10,
                 transform: [{rotate: spin}],
               }}>
-              {icon}
+              {this.state.collapse ? (
+                <Image
+                  source={require('../../assets/images/icPlusDefault.png')}
+                />
+              ) : (
+                <Image
+                  source={require('../../assets/images/icMinusDefault.png')}
+                />
+              )}
             </Animated.Text>
-            <Text>{this.props.question}</Text>
+            <Text style={styles.faqQuestion}>{this.props.question}</Text>
           </View>
         </TouchableOpacity>
-        {!this.state.collapse && <Text>{this.props.answer}</Text>}
+        {!this.state.collapse && (
+          <Text style={styles.faqAnswer}>{this.props.answer}</Text>
+        )}
       </View>
     );
   }
