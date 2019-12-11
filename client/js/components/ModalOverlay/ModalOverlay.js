@@ -1,9 +1,20 @@
 import React from 'react';
-import {View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
-const ModalOverlay = props => {
-  return <View style={styles.modalDefault}></View>;
+const ModalOverlay = ({onPress}) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={1}
+      style={styles.modalDefault}
+    />
+  );
 };
 
 export default ModalOverlay;
+
+ModalOverlay.propTypes = {
+  onPress: PropTypes.func,
+};

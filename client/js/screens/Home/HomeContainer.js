@@ -1,14 +1,7 @@
 import React, {Component} from 'react';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
-import {
-  StatusBar,
-  Text,
-  View,
-  LayoutAnimation,
-  Platform,
-  UIManager,
-} from 'react-native';
+import {StatusBar, Text, View, LayoutAnimation} from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
 
 import Home from './Home';
@@ -28,12 +21,6 @@ const QUERY = gql`
     }
   }
 `;
-
-if (Platform.OS === 'android') {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
-}
 
 class HomeContainer extends Component {
   constructor(props) {

@@ -1,14 +1,21 @@
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
-import {View, Picker, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Picker,
+  Text,
+  TouchableOpacity,
+  LayoutAnimation,
+} from 'react-native';
 import ModalOverlay from '../ModalOverlay';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
 const CityPicker = ({hidePicker, selectCity, citySelected}) => {
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   return (
     <>
-      <ModalOverlay />
+      <ModalOverlay onPress={hidePicker} />
       <SafeAreaView style={styles.container}>
         <View style={styles.wrapper}>
           <View style={styles.inputAccessoryView}>
@@ -25,9 +32,8 @@ const CityPicker = ({hidePicker, selectCity, citySelected}) => {
               selectCity(newCity);
               setTimeout(() => {
                 hidePicker();
-              }, 500); // TODO:: Fade this out
+              }, 500);
             }}>
-            <Picker.Item label="-" value={null} />
             <Picker.Item label="Vancouver" value="Vancouver" />
             <Picker.Item label="Victoria" value="Victoria" />
             <Picker.Item label="Kelowna" value="Kelowna" />

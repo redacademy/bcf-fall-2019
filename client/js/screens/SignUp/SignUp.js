@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import ApolloClient from 'apollo-boost';
 import {Mutation} from 'react-apollo';
 import {MUTATION_SIGN_UP} from '../../apollo/mutations';
