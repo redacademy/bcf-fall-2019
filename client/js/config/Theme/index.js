@@ -1,6 +1,11 @@
 import {Platform} from 'react-native';
 
 const THEME = {
+  spacing: {
+    default: (int = 1) => {
+      return 16 * int;
+    },
+  },
   typography: {
     regular: {
       fontFamily: 'Montserrat-Regular',
@@ -9,16 +14,21 @@ const THEME = {
       fontFamily: 'Montserrat-SemiBold',
     },
     size: {
-      default: {
-        fontSize: 17,
-      },
       caption: {
         fontSize: 12,
       },
+      default: {
+        fontSize: 17,
+      },
+      title: {
+        fontSize: 22,
+      },
     },
     weight: {
+      regular: '400',
       medium: '500',
       semibold: '600',
+      bold: '700',
     },
     button: {
       fontSize: 17,
@@ -46,9 +56,10 @@ const THEME = {
     tropicalRainForest: '#027353',
     burntSienna: '#F1785B',
     paleLeaf: '#BACFB6',
+    blue: 'rgba(0, 122, 255, 1)',
     white: '#FFFFFF',
     black: '#000000',
-    grey: 'rgba(0,0,0,0.5)',
+    grey: 'rgba(0, 0, 0, 0.5)',
     paleGrey: '#F8FBFD',
   },
   shadow: {
@@ -67,15 +78,16 @@ const THEME = {
     },
   },
   padding: {
-    default: int => {
-      return 16 * int;
-    },
     accountScreen: {
+      paddingTop: '22%',
       paddingHorizontal: 32,
     },
     inputField: {
       paddingHorizontal: 16,
       paddingVertical: 12,
+    },
+    bottomGap: {
+      paddingBottom: '12%',
     },
   },
   button: {
