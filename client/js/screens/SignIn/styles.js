@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   inputEmail: {
-    marginBottom: THEME.padding.default(2),
+    marginBottom: THEME.spacing.default(2),
   },
   inputPassword: {
-    marginBottom: THEME.padding.default(1),
+    marginBottom: THEME.spacing.default(1),
   },
   columnCols2: {
     height: 24,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   forgot: {
     ...THEME.typography.size.caption,
-    marginLeft: THEME.padding.default(0.5),
+    marginLeft: THEME.spacing.default(0.5),
     color: THEME.colors.astronautBlue,
     fontWeight: THEME.typography.weight.medium,
     flex: 1,

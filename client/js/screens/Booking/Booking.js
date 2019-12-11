@@ -2,7 +2,9 @@ import React from 'react';
 import {Text} from 'react-native';
 
 const Booking = props => {
-  return <Text>Hello Booking</Text>;
+  const Booking = props => {
+    return <Text>Hello Booking</Text>;
+  };
 };
 
 export default Booking;

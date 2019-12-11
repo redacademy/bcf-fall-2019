@@ -17,11 +17,18 @@ class InputDefaultField extends Component {
   }
 
   render() {
-    const {title} = this.props;
+    const {title, titleStyle} = this.props;
 
     return (
       <View>
-        <Text style={styles.title}>{title}</Text>
+        <Text
+          style={
+            titleStyle === 'regular'
+              ? {...styles.title, ...styles.titleRegular}
+              : {...styles.title}
+          }>
+          {title}
+        </Text>
         <TextInput
           {...this.props}
           style={
@@ -46,4 +53,5 @@ export default InputDefaultField;
 InputDefaultField.propTypes = {
   title: PropTypes.string.isRequired,
   style: PropTypes.object,
+  titleStyle: PropTypes.oneOf(['bold', 'regular']),
 };
