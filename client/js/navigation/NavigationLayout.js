@@ -1,12 +1,17 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 
 import HomeScreen from '../screens/Home';
 import SearchScreen from '../screens/Search';
 import BookingScreen from '../screens/Booking';
 import SavedScreen from '../screens/Saved';
 import ProfileScreen from '../screens/Profile';
+
+import About from '../screens/About';
+import Contact from '../screens/Contact';
+import Faq from '../screens/Faq';
 
 import {Image} from 'react-native';
 
@@ -18,6 +23,9 @@ const {black, mediumGrey, white} = Colors;
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+    About: About,
+    Contact: Contact,
+    Faq: Faq,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
