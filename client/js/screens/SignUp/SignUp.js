@@ -33,7 +33,7 @@ class SignUp extends Component {
       isErrors: null,
       skipStep: false,
       showPicker: false,
-      citySelected: null,
+      citySelected: 'Vancouver',
     };
   }
 

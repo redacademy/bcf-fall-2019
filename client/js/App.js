@@ -4,13 +4,15 @@ import {ApolloProvider} from 'react-apollo';
 import client from './config/api';
 import RootStackNavigator from '../js/navigation/RootStackNavigator';
 
-if (Platform.OS === 'android') {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
-}
-
 export default class App extends Component {
+  componentDidMount() {
+    if (Platform.OS === 'android') {
+      if (UIManager.setLayoutAnimationEnabledExperimental) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+      }
+    }
+  }
+
   render() {
     return (
       <ApolloProvider client={client}>
