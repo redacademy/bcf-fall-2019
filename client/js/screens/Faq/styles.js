@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   faqGreyBar: {
-    justifyContent: 'center',
+    alignSelf: 'center',
     height: 1,
-    backgroundColor: '#e6e6e6',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     width: '90%',
   },
   faqForums: {

@@ -14,10 +14,10 @@ const Faq = ({faqs}) => {
           faqs.map(element => (
             <View style={styles.faqForums} key={element.id}>
               <FaqForum question={element.question} answer={element.answer} />
+              <View style={styles.faqGreyBar} />
             </View>
           ))}
       </View>
-      <View style={styles.faqGreyBar} />
     </ScrollView>
   );
 };
