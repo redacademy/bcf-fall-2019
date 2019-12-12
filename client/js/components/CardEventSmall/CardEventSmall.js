@@ -6,7 +6,8 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import {RatingScore00} from '../RatingScore';
+import RatingScore from '../RatingScore';
+import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
@@ -41,7 +42,7 @@ const CardEventSmall = ({eventInfo, index}) => {
         {price ? `$${price}` : 'Free'}
       </Text>
       <View style={styles.wrapperRating}>
-        <RatingScore00 />
+        <RatingScore score={calculateRatingScore(reviews)} />
         <Text style={styles.ratingText}>({reviews.length})</Text>
       </View>
     </TouchableOpacity>

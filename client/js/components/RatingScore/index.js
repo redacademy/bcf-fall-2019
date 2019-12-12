@@ -1,1 +1,2 @@
-export {RatingScore00} from './RatingScore';
+import RatingScore from './RatingScore';
+export default RatingScore;
