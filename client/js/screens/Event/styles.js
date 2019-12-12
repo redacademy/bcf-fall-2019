@@ -19,19 +19,26 @@ const styles = StyleSheet.create({
     height: 36,
     borderColor: 'gray',
     borderWidth: 1,
-    width: '90%',
+    width: '100%',
   },
   eventTextInputSmall: {
     height: 36,
     borderColor: 'gray',
     borderWidth: 1,
-    width: '40%',
+    width: '50%',
   },
   eventContactButton: {
     borderRadius: 4,
     borderWidth: 1,
     borderColor: '#F1785B',
     color: 'red',
+  },
+  eventScreenInfo: {
+    paddingHorizontal: 24,
+    paddingVertical: 13,
+  },
+  eventDetails: {
+    flexDirection: 'row',
   },
 });
 
