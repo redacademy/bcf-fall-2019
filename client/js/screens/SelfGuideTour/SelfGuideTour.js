@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 import SelfGuidedItem from '../../components/SelfGuidedItem';
 
 const SelfGuideTour = ({navigation, selfguidetours}) => {
-  console.log(selfguidetours);
   return (
     <ScrollView>
       <View style={styles.buttonsContainer}>
