@@ -21,51 +21,63 @@ const Event = props => {
           />
 
           <View style={styles.overlay}>
-            <Text>Beaver Lake Tour</Text>
-            <Text>Stanley Park</Text>
-            <Image
-              source={require('../../assets/images/icFaveShareDefault.png')}
-            />
-            <Image
-              source={require('../../assets/images/icFaveCircleDefault.png')}
-            />
+            <Text style={styles.eventName}>Beaver Lake Tour</Text>
+            <Text style={styles.eventLocation}>Stanley Park</Text>
+            <View style={styles.eventButtons}>
+              <View style={styles.eventshareButton}>
+                <Image
+                  source={require('../../assets/images/icFaveShareDefault.png')}
+                />
+              </View>
+              <View style={styles.eventButton}>
+                <Image
+                  source={require('../../assets/images/icFaveCircleDefault.png')}
+                />
+              </View>
+            </View>
           </View>
         </View>
 
         <View style={styles.eventScreenInfo}>
-          <View>
-            <Text>Date/Time</Text>
-            <TextInput
-              style={styles.eventTextInput}
-              onChangeText={text => onChangeText(text)}
-            />
-            <Text>Location</Text>
-            <TextInput
-              style={styles.eventTextInput}
-              onChangeText={text => onChangeText(text)}
-            />
-          </View>
+          <Text style={styles.infoText}>Date / Time</Text>
+
+          <TextInput
+            style={styles.eventTextInput}
+            onChangeText={text => onChangeText(text)}
+          />
+
+          <Text style={styles.infoText}>Location</Text>
+
+          <TextInput
+            style={styles.eventTextInput}
+            onChangeText={text => onChangeText(text)}
+          />
 
           <View style={styles.eventDetails}>
-            <Text>Difficulty</Text>
-            <TextInput
-              style={styles.eventTextInputSmall}
-              onChangeText={text => onChangeText()}
-            />
-            <Text>Language</Text>
-            <TextInput
-              style={styles.eventTextInputSmall}
-              onChangeText={text => onChangeText()}
-            />
+            <View style={{...styles.cols2, ...styles.firstColumn}}>
+              <Text style={styles.infoText}>Difficulty</Text>
+              <TextInput
+                style={styles.eventTextInput}
+                onChangeText={text => onChangeText()}
+              />
+            </View>
+            <View style={styles.cols2}>
+              <Text style={styles.infoText}>Language</Text>
+              <TextInput
+                style={styles.eventTextInput}
+                onChangeText={text => onChangeText()}
+              />
+            </View>
           </View>
 
           <View>
-            <Text>Event Details</Text>
+            <Text style={styles.eventInfo}>Event Details</Text>
             <Text>
               Come join us as we see take a scenic ferry ride to stanley park,
               the gem of the Islands. We will then walk off the ferry and hike
               to where on a clear day you will have views of stanley park
-              Afterwards, we will explore…(Read More)
+              Afterwards, we will explore…
+              <Text style={styles.eventReadMore}>(Read More)</Text>
             </Text>
           </View>
 
