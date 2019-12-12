@@ -95,6 +95,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 100 + THEME.spacing.default(1),
   },
+  wrapperCol2: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
   noData: {
     ...THEME.typography.size.default,
     color: THEME.colors.grey,

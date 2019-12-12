@@ -6,12 +6,13 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  FlatList,
   Button,
   View,
 } from 'react-native';
 import CategoryList from '../../components/CategoryList';
 import CityPicker from '../../components/CityPicker';
+import CardEventSmall from '../../components/CardEventSmall';
+import ButtonSeeAll from '../../components/ButtonSeeAll';
 import {CATEGORY_LIST} from '../../lib/categoryList';
 import {CITY_LIST} from '../../lib/cityList';
 import {removeViewer} from '../../config/models';
@@ -53,9 +54,7 @@ class Home extends Component {
   };
 
   render() {
-    const {navigation, detectOffsetTop, eventsInfo} = this.props;
-
-    console.log(eventsInfo.thisWeek);
+    const {navigation, detectOffsetTop, eventInfo} = this.props;
 
     const cityImage = CITY_LIST.filter(
       city => city.name === this.state.citySelected,
@@ -63,11 +62,7 @@ class Home extends Component {
 
     return (
       <>
-        <NavScrollView
-          scrollEventThrottle={16}
-          onScroll={event => {
-            detectOffsetTop(event.nativeEvent.contentOffset.y);
-          }}>
+        <NavScrollView>
           <ImageBackground
             source={cityImage && cityImage.image}
             style={styles.imgCity}>
@@ -131,10 +126,23 @@ class Home extends Component {
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>This week</Text>
 
-              {eventsInfo &&
-              eventsInfo.thisWeek &&
-              eventsInfo.thisWeek.length > 0 ? (
-                <Text>Yes</Text>
+              {eventInfo &&
+              eventInfo.thisWeek &&
+              eventInfo.thisWeek.length > 0 ? (
+                <>
+                  <View style={styles.wrapperCol2}>
+                    {eventInfo.thisWeek.map((weeklyEvent, index) => {
+                      return (
+                        <CardEventSmall
+                          key={weeklyEvent.id}
+                          index={index}
+                          eventInfo={weeklyEvent}
+                        />
+                      );
+                    })}
+                  </View>
+                  <ButtonSeeAll title="See all" />
+                </>
               ) : (
                 <Text style={styles.noData}>
                   - There is no event in this week
@@ -176,6 +184,5 @@ export default Home;
 
 Home.propTypes = {
   navigation: PropTypes.object.isRequired,
-  detectOffsetTop: PropTypes.func.isRequired,
   userInfo: PropTypes.object,
 };

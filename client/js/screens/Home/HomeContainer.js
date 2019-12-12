@@ -9,39 +9,10 @@ import {getParamFromParent} from '../../lib/paramFromParent';
 import PropTypes from 'prop-types';
 
 class HomeContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      offsetTop: 0,
-    };
-  }
-
   static navigationOptions = props => {
-    // let offsetTop = navigation.getParam('offsetTop');
-    console.log(this.state);
     return {
       headerTransparent: true,
-      // headerBackground: () =>
-      //   this.state.offsetTop > 0 && (
-      //     <View>
-      //       <StatusBar barStyle="light-content" />
-      //       <VibrancyView
-      //         blurType="dark"
-      //         blurAmount={2}
-      //         style={{width: '100%', height: '100%'}}
-      //       />
-      //     </View>
-      // ),
     };
-  };
-
-  detectOffsetTop = offsetTop => {
-    if (offsetTop < 0 && offsetTop < 16) {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    }
-    // this.props.navigation.setParams({offsetTop});
-    this.setState({offsetTop});
   };
 
   render() {
@@ -50,9 +21,8 @@ class HomeContainer extends Component {
     return (
       <Home
         navigation={navigation}
-        detectOffsetTop={this.detectOffsetTop}
         userInfo={userInfo.user}
-        eventsInfo={{
+        eventInfo={{
           thisWeek: eventThisWeek.events,
         }}
       />
@@ -86,6 +56,8 @@ export default compose(
           startFilterDate: date,
           endFilterDate: dateAfterWeek,
         },
+        offset: 0,
+        limit: 4,
       };
     },
   }),
