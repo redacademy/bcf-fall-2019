@@ -11,7 +11,6 @@ import NavigationLayout from './NavigationLayout';
 import AboutModal from '../screens/About';
 import ContactModal from '../screens/Contact';
 import FaqModal from '../screens/Faq';
-import SelfGuided from '../screens/';
 import DrawerNavigation from './DrawerNavigation';
 
 const AppStack = createStackNavigator(

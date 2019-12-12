@@ -1,3 +1,3 @@
-import SelfGuideTour from './SelfGuideTour';
+import SelfGuideTourContainer from './SelfGuideTourContainer';
 
-export default SelfGuideTour;
+export default SelfGuideTourContainer;

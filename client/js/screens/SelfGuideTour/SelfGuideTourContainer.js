@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
 import SelfGuideTour from './SelfGuideTour';
 import PropTypes from 'prop-types';
+import {Text} from 'react-native';
 import {Query} from 'react-apollo';
 import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
+import Loader from '../../components/Loader';
 
 class SelfGuideTourContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  static navigationOptions = {
+    title: 'SelfGuideTour',
+  };
   render() {
     const {navigation} = this.props;
     return (
@@ -14,8 +23,12 @@ class SelfGuideTourContainer extends Component {
           if (loading) return <Loader />;
           if (error) return <Text>{error.message}</Text>;
           if (data)
-            return console.log(data);
-            /*<SelfGuideTour navigation={navigation} data={data} />*/
+            return (
+              <SelfGuideTour
+                navigation={navigation}
+                selfguidetours={data.selfGuidedTours}
+              />
+            );
         }}
       </Query>
     );

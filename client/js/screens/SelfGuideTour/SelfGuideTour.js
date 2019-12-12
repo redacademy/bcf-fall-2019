@@ -13,15 +13,35 @@ import styles from './styles';
 import PropTypes from 'prop-types';
 import SelfGuidedItem from '../../components/SelfGuidedItem';
 
-const SelfGuideTour = props => {
+const SelfGuideTour = ({navigation, selfguidetours}) => {
+  console.log(selfguidetours);
   return (
     <ScrollView>
       <View>
-        <Button> Sort</Button>
-        <Button> Audio</Button>
+        <Button
+          onPress={() => {
+            '';
+          }}
+          title="Sort"
+        />
+        <Button
+          onPress={() => {
+            '';
+          }}
+          title="Audio"
+        />
       </View>
 
-      <SelfGuidedItem />
+      {selfguidetours &&
+        selfguidetours.map(each => {
+          return (
+            <SelfGuidedItem
+              key={each.id}
+              selfGuidedItem={each}
+              navigation={navigation}
+            />
+          );
+        })}
     </ScrollView>
   );
 };

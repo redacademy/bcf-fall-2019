@@ -6,7 +6,7 @@ const {white} = Colors;
 
 export const sharedNavigationOptions = navigation => {
   return {
-    headerBackTitle: null,
+    headerBackTitle: 'back',
     headerLeft: null,
     visible: true,
     headerStyle: {

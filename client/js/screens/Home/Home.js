@@ -20,7 +20,7 @@ const Home = ({navigation}) => {
       />
       <Button
         onPress={() => {
-          navigation.navigate('SelfGuidedScreen');
+          navigation.navigate('SelfGuidedTour');
         }}
         title="Self Guided Tour"
       />

@@ -8,6 +8,7 @@ import SearchScreen from '../screens/Search';
 import BookingScreen from '../screens/Booking';
 import SavedScreen from '../screens/Saved';
 import ProfileScreen from '../screens/Profile';
+import SelfGuidedTour from '../screens/SelfGuideTour';
 
 import About from '../screens/About';
 import Contact from '../screens/Contact';
@@ -26,6 +27,7 @@ const HomeStack = createStackNavigator(
     About: About,
     Contact: Contact,
     Faq: Faq,
+    SelfGuidedTour: SelfGuidedTour,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
