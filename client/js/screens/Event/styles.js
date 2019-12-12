@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     width: '100%',
+    borderRadius: 4,
   },
   eventContactButton: {
     borderRadius: 4,
@@ -64,18 +65,34 @@ const styles = StyleSheet.create({
   firstColumn: {
     marginRight: 16,
   },
-  eventInfo: {
-    fontSize: 17,
+  eventInfoTitle: {
+    fontSize: 20,
     color: '#013859',
     paddingTop: 24,
+    fontWeight: '600',
+    paddingBottom: 6,
+  },
+  eventInfoDescription: {
+    fontSize: 16,
   },
   infoText: {
     fontWeight: '600',
     fontSize: 13,
     paddingRight: 15,
+    paddingTop: 10,
   },
   eventReadMore: {
     color: '#013859',
+  },
+  eventTextFields: {
+    width: 32,
+    height: 32,
+    marginLeft: 2,
+    marginRight: 4,
+  },
+  eventViewMap: {
+    color: '#013859',
+    textDecorationLine: 'underline',
   },
 });
 
