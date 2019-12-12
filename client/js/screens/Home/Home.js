@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {Query} from 'react-apollo';
-import gql from 'graphql-tag';
 import {ScrollView as NavScrollView} from 'react-navigation';
 import {
   Image,
@@ -20,49 +18,6 @@ import {removeViewer} from '../../config/models';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const QUERY = gql`
-  query getAllEvents($startFilterDate: DateTime, $endFilterDate: DateTime) {
-    events(
-      where: {AND: [{date_gte: $startFilterDate}, {date_lt: $endFilterDate}]}
-      orderBy: date_DESC
-    ) {
-      id
-      title
-      date
-      startAt
-      endAt
-      category
-      price
-      locationTitle
-      address
-      image
-      difficulty
-      language
-      details
-      host {
-        id
-        email
-        name
-        image
-        bio
-      }
-      reviews {
-        id
-        user {
-          id
-          email
-          firstName
-          lastName
-          image
-        }
-        score
-        comment
-        date
-      }
-    }
-  }
-`;
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -73,29 +28,38 @@ class Home extends Component {
     };
   }
 
+  componentDidMount() {
+    const {userInfo} = this.props;
+    this.updateCityImage(userInfo);
+  }
+
   componentDidUpdate() {
     const {userInfo} = this.props;
+    this.updateCityImage(userInfo);
+  }
+
+  updateCityImage = userInfo => {
     if (!this.state.citySelected && userInfo) {
       this.setState({citySelected: userInfo.location});
     }
-  }
+  };
 
   selectCity = newCity => {
     this.setState({citySelected: newCity});
   };
+
   hidePicker = () => {
     this.setState({showPicker: false});
   };
 
   render() {
-    const {navigation, detectOffsetTop} = this.props;
+    const {navigation, detectOffsetTop, eventsInfo} = this.props;
+
+    console.log(eventsInfo.thisWeek);
 
     const cityImage = CITY_LIST.filter(
       city => city.name === this.state.citySelected,
     )[0];
-
-    const date = new Date();
-    const dateAfterWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
     return (
       <>
@@ -167,21 +131,15 @@ class Home extends Component {
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>This week</Text>
 
-              <Query
-                query={QUERY}
-                variables={{
-                  startFilterDate: date,
-                  endFilterDate: dateAfterWeek,
-                }}>
-                {({loading, error, data}) => {
-                  if (loading) return <Text>Loading</Text>;
-                  if (error) return <Text>Error</Text>;
-                  if (data) {
-                    console.log(data);
-                    return <View></View>;
-                  }
-                }}
-              </Query>
+              {eventsInfo &&
+              eventsInfo.thisWeek &&
+              eventsInfo.thisWeek.length > 0 ? (
+                <Text>Yes</Text>
+              ) : (
+                <Text style={styles.noData}>
+                  - There is no event in this week
+                </Text>
+              )}
             </View>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Popular now</Text>
