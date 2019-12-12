@@ -18,6 +18,12 @@ const Home = ({navigation}) => {
         }}
         title="Log out"
       />
+      <Button
+        onPress={() => {
+          navigation.navigate('SelfGuidedScreen');
+        }}
+        title="Self Guided Tour"
+      />
     </ScrollView>
   );
 };
