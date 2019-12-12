@@ -5,18 +5,23 @@ import {StatusBar, Text, View, LayoutAnimation} from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
 
 import Home from './Home';
-import {getViewer} from '../../config/models';
 import PropTypes from 'prop-types';
 
-class HomeContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userID: null,
-    };
+const QUERY = gql`
+  query getUser($id: ID!) {
+    user(where: {id: $id}) {
+      id
+      email
+      firstName
+      lastName
+      location
+      image
+      date
+    }
   }
+`;
 
+class HomeContainer extends Component {
   static navigationOptions = ({navigation}) => {
     let offsetTop = navigation.getParam('offsetTop');
 
@@ -36,11 +41,6 @@ class HomeContainer extends Component {
     };
   };
 
-  async componentDidMount() {
-    const userID = await this.getUserID();
-    this.setState({userID});
-  }
-
   detectOffsetTop = offsetTop => {
     if (offsetTop < 0 && offsetTop < 16) {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -48,49 +48,41 @@ class HomeContainer extends Component {
     this.props.navigation.setParams({offsetTop});
   };
 
-  getUserID = async () => {
-    try {
-      const userID = JSON.parse(await getViewer());
-      return userID.id;
-    } catch (error) {
-      console.log(error);
+  getParamFromParent = (navigation, paramName) => {
+    const {getParam, dangerouslyGetParent} = navigation;
+    let parent = dangerouslyGetParent();
+    let val = getParam(paramName);
+    while (val === undefined && parent && parent.getParam) {
+      val = parent.getParam(paramName);
+      parent = parent.dangerouslyGetParent();
     }
+    return val;
   };
 
   render() {
     const {navigation} = this.props;
+    const userToken = this.getParamFromParent(navigation, 'userToken');
 
     return (
-      <>
-        {this.state.userID ? (
-          <>
-            <Query query={QUERY} variables={{id: this.state.userID}}>
-              {({loading, error, data}) => {
-                if (loading) {
-                  return <Text>loading</Text>;
-                }
-                if (error) {
-                  return <Text>error</Text>;
-                }
-                if (data) {
-                  return (
-                    <Home
-                      navigation={navigation}
-                      detectOffsetTop={this.detectOffsetTop}
-                      data={data.user}
-                    />
-                  );
-                }
-              }}
-            </Query>
-          </>
-        ) : (
-          <Home
-            navigation={navigation}
-            detectOffsetTop={this.detectOffsetTop}
-          />
-        )}
-      </>
+      <Query query={QUERY} variables={{id: userToken.id}}>
+        {({loading, error, data}) => {
+          if (loading) {
+            return <Text>loading</Text>;
+          }
+          if (error) {
+            return <Text>error</Text>;
+          }
+          if (data) {
+            return (
+              <Home
+                navigation={navigation}
+                detectOffsetTop={this.detectOffsetTop}
+                data={data.user}
+              />
+            );
+          }
+        }}
+      </Query>
     );
   }
 }
