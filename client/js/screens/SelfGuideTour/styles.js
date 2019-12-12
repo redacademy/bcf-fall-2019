@@ -23,8 +23,23 @@ const styles = StyleSheet.create({
     padding: 10,
     marginRight: 10,
   },
-  buttonText: {},
-  buttonIcon: {},
+  audionButtonOn: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '25%',
+    height: 40,
+    borderRadius: 40,
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 10,
+    marginRight: 10,
+    backgroundColor: THEME.colors.astronautBlue,
+    color: 'white',
+  },
+  buttonTextON: {
+    color: THEME.colors.white,
+  },
 });
 
 export default styles;

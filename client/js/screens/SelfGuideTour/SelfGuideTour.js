@@ -13,7 +13,12 @@ import styles from './styles';
 import PropTypes from 'prop-types';
 import SelfGuidedItem from '../../components/SelfGuidedItem';
 
-const SelfGuideTour = ({navigation, selfguidetours}) => {
+const SelfGuideTour = ({
+  navigation,
+  selfguidetours,
+  needAudio,
+  toggleNeedAudio,
+}) => {
   return (
     <ScrollView>
       <View style={styles.buttonsContainer}>
@@ -30,18 +35,25 @@ const SelfGuideTour = ({navigation, selfguidetours}) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            '';
+            toggleNeedAudio();
           }}
-          style={styles.button}>
-          <Text style={styles.buttonText}>Audio</Text>
+          style={needAudio ? styles.button : styles.audionButtonOn}>
+          <Text style={needAudio ? styles.buttonText : styles.buttonTextON}>
+            Audio
+          </Text>
           <Image
-            style={styles.buttonIcon}
-            source={require('../../assets/images/icHeadsetDefault.png')}
+            style={needAudio ? styles.buttonIcon : styles.buttonIconON}
+            source={
+              needAudio
+                ? require('../../assets/images/icHeadsetDefault.png')
+                : require('../../assets/images/icHeadsetActive.png')
+            }
           />
         </TouchableOpacity>
       </View>
 
       {selfguidetours &&
+        needAudio &&
         selfguidetours.map(each => {
           return (
             <SelfGuidedItem
@@ -50,6 +62,19 @@ const SelfGuideTour = ({navigation, selfguidetours}) => {
               navigation={navigation}
             />
           );
+        })}
+
+      {selfguidetours &&
+        !needAudio &&
+        selfguidetours.map(each => {
+          if (each.audio !== null)
+            return (
+              <SelfGuidedItem
+                key={each.id}
+                selfGuidedItem={each}
+                navigation={navigation}
+              />
+            );
         })}
     </ScrollView>
   );
