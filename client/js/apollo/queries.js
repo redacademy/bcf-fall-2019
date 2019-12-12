@@ -34,3 +34,17 @@ export const QUERY_FAQ = gql`
     }
   }
 `;
+
+export const QUERY_USER = gql`
+  query getUser($id: ID!) {
+    user(where: {id: $id}) {
+      id
+      email
+      firstName
+      lastName
+      location
+      image
+      date
+    }
+  }
+`;

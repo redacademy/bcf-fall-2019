@@ -1,25 +1,12 @@
 import React, {Component} from 'react';
-import {Query} from 'react-apollo';
-import gql from 'graphql-tag';
+import {compose} from 'recompose';
+import {graphql} from 'react-apollo';
+import {QUERY_USER} from '../../apollo/queries';
 import {StatusBar, Text, View, LayoutAnimation} from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
-
 import Home from './Home';
+import {getParamFromParent} from '../../lib/paramFromParent';
 import PropTypes from 'prop-types';
-
-const QUERY = gql`
-  query getUser($id: ID!) {
-    user(where: {id: $id}) {
-      id
-      email
-      firstName
-      lastName
-      location
-      image
-      date
-    }
-  }
-`;
 
 class HomeContainer extends Component {
   static navigationOptions = ({navigation}) => {
@@ -48,46 +35,32 @@ class HomeContainer extends Component {
     this.props.navigation.setParams({offsetTop});
   };
 
-  getParamFromParent = (navigation, paramName) => {
-    const {getParam, dangerouslyGetParent} = navigation;
-    let parent = dangerouslyGetParent();
-    let val = getParam(paramName);
-    while (val === undefined && parent && parent.getParam) {
-      val = parent.getParam(paramName);
-      parent = parent.dangerouslyGetParent();
-    }
-    return val;
-  };
-
   render() {
-    const {navigation} = this.props;
-    const userToken = this.getParamFromParent(navigation, 'userToken');
-
+    const {navigation, userInfo} = this.props;
+    // console.log(userInfo);
     return (
-      <Query query={QUERY} variables={{id: userToken.id}}>
-        {({loading, error, data}) => {
-          if (loading) {
-            return <Text>loading</Text>;
-          }
-          if (error) {
-            return <Text>error</Text>;
-          }
-          if (data) {
-            return (
-              <Home
-                navigation={navigation}
-                detectOffsetTop={this.detectOffsetTop}
-                data={data.user}
-              />
-            );
-          }
-        }}
-      </Query>
+      <Home
+        navigation={navigation}
+        detectOffsetTop={this.detectOffsetTop}
+        userInfo={!userInfo.loading ? userInfo.user : null}
+      />
     );
   }
 }
 
-export default HomeContainer;
+export default compose(
+  graphql(QUERY_USER, {
+    name: 'userInfo',
+    options: ({navigation}) => {
+      const userToken = getParamFromParent(navigation, 'userToken');
+      return {
+        variables: {
+          id: userToken.id,
+        },
+      };
+    },
+  }),
+)(HomeContainer);
 
 HomeContainer.propTypes = {
   navigation: PropTypes.object.isRequired,

@@ -73,10 +73,10 @@ class Home extends Component {
     };
   }
 
-  componentDidMount() {
-    const {data} = this.props;
-    if (data) {
-      this.setState({citySelected: data.location});
+  componentDidUpdate() {
+    const {userInfo} = this.props;
+    if (!this.state.citySelected && userInfo) {
+      this.setState({citySelected: userInfo.location});
     }
   }
 
@@ -88,7 +88,8 @@ class Home extends Component {
   };
 
   render() {
-    const {navigation, detectOffsetTop, data} = this.props;
+    const {navigation, detectOffsetTop} = this.props;
+
     const cityImage = CITY_LIST.filter(
       city => city.name === this.state.citySelected,
     )[0];
@@ -218,5 +219,5 @@ export default Home;
 Home.propTypes = {
   navigation: PropTypes.object.isRequired,
   detectOffsetTop: PropTypes.func.isRequired,
-  data: PropTypes.object,
+  userInfo: PropTypes.object,
 };
