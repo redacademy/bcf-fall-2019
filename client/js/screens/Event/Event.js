@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import ButtonDefault from '../../components/ButtonDefault';
 import styles from './styles';
+import EventMap from '../../components/EventMap';
 
 const Event = props => {
   return (
@@ -116,7 +117,7 @@ const Event = props => {
             </Text>
           </View>
           <View>
-            <Text>Map goes here</Text>
+            <EventMap />
             <Text style={styles.eventViewMap}>View Map</Text>
           </View>
           <View>
