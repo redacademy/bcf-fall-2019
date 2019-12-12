@@ -17,19 +17,29 @@ const SelfGuideTour = ({navigation, selfguidetours}) => {
   console.log(selfguidetours);
   return (
     <ScrollView>
-      <View>
-        <Button
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity
           onPress={() => {
             '';
           }}
-          title="Sort"
-        />
-        <Button
+          style={styles.button}>
+          <Text style={styles.buttonText}>Sort</Text>
+          <Image
+            style={styles.buttonIcon}
+            source={require('../../assets/images/icChevronDownDefault.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => {
             '';
           }}
-          title="Audio"
-        />
+          style={styles.button}>
+          <Text style={styles.buttonText}>Audio</Text>
+          <Image
+            style={styles.buttonIcon}
+            source={require('../../assets/images/icHeadsetDefault.png')}
+          />
+        </TouchableOpacity>
       </View>
 
       {selfguidetours &&
