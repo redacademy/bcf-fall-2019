@@ -13,7 +13,7 @@ import styles from './styles';
 
 const Event = props => {
   return (
-    <SafeAreaView>
+    <>
       <ScrollView>
         <View style={styles.eventImg}>
           <Image
@@ -162,22 +162,18 @@ const Event = props => {
           </View>
           <ButtonDefault title="Show More Reviews" />
         </View>
-        {/*  */}
-        <View>
-          <View style={styles.container}>
-            <View style={styles.RectangleShapeView}>
-              <View style={styles.eventBooking}>
-                <Text style={styles.eventBookingPrice}>$ 15 / each</Text>
-              </View>
-              <View style={styles.eventBookingButton}>
-                <Button title="Book" color="white" />
-              </View>
-            </View>
+      </ScrollView>
+      <View style={styles.container}>
+        <View style={styles.RectangleShapeView}>
+          <View style={styles.eventBooking}>
+            <Text style={styles.eventBookingPrice}>$ 15 / each</Text>
+          </View>
+          <View style={styles.eventBookingButton}>
+            <Button title="Book" color="white" />
           </View>
         </View>
-        {/*  */}
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </>
   );
 };
 
