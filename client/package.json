@@ -23,6 +23,7 @@
     "react-native-check-box": "^2.1.7",
     "react-native-gesture-handler": "^1.5.2",
     "react-native-image-picker": "^1.1.0",
+    "react-native-maps": "^0.26.1",
     "react-native-onboarding-swiper": "^1.1.0",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^1.0.0-alpha.23",
@@ -31,7 +32,8 @@
     "react-navigation-collapsible": "^3.0.3",
     "react-navigation-drawer": "^2.3.3",
     "react-navigation-stack": "^1.10.3",
-    "react-navigation-tabs": "^2.6.2"
+    "react-navigation-tabs": "^2.6.2",
+    "recompose": "^0.30.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",

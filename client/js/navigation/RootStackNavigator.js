@@ -11,18 +11,19 @@ import NavigationLayout from './NavigationLayout';
 import AboutModal from '../screens/About';
 import ContactModal from '../screens/Contact';
 import FaqModal from '../screens/Faq';
+import DrawerNavigation from './DrawerNavigation';
 
 const AppStack = createStackNavigator(
   {
-    Layout: NavigationLayout,
+    Layout: DrawerNavigation,
     About: AboutModal,
     Contact: ContactModal,
     Faq: FaqModal,
   },
   {
+    mode: 'modal',
     defaultNavigationOptions: () => ({
-      headerMode: 'none',
-      mode: 'modal',
+      header: null,
     }),
   },
 );

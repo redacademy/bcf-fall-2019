@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
   eventshareButton: {
     paddingRight: 10,
   },
+
+  eventStarRating: {
+    paddingRight: 238,
+  },
+
   overlay: {
     backgroundColor: 'rgba(0,0,0,0.5)',
     position: 'absolute',
@@ -84,6 +89,7 @@ const styles = StyleSheet.create({
   },
   eventReadMore: {
     color: '#013859',
+    fontSize: 16,
   },
   eventTextFields: {
     width: 32,
@@ -118,7 +124,7 @@ const styles = StyleSheet.create({
   },
   hostBio: {
     fontSize: 12,
-    padding: 6,
+    padding: 8,
     height: 76,
   },
   hostInformation: {
@@ -142,7 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   RectangleShapeView: {
-    width: '100%',
+    width: '95%',
     borderRadius: 4,
     paddingHorizontal: 8,
     height: 60,
@@ -164,6 +170,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 4,
+  },
+  eventMap: {
+    width: '100%',
+    height: 201,
+  },
+  eventMapContainer: {
+    paddingTop: 36,
   },
 });
 
