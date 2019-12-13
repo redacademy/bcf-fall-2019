@@ -151,6 +151,27 @@ class Home extends Component {
             </View>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Popular now</Text>
+
+              {eventInfo &&
+              eventInfo.popular &&
+              eventInfo.popular.length > 0 ? (
+                <>
+                  <View style={styles.wrapperCol2}>
+                    {eventInfo.popular.map((popularEvent, index) => {
+                      return (
+                        <CardEventSmall
+                          key={popularEvent.id}
+                          index={index}
+                          eventInfo={popularEvent}
+                        />
+                      );
+                    })}
+                  </View>
+                  <ButtonSeeAll title="See all" />
+                </>
+              ) : (
+                <Text style={styles.noData}>- There is no event</Text>
+              )}
             </View>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Recently viewed</Text>
@@ -185,4 +206,5 @@ export default Home;
 Home.propTypes = {
   navigation: PropTypes.object.isRequired,
   userInfo: PropTypes.object,
+  eventInfo: PropTypes.object,
 };

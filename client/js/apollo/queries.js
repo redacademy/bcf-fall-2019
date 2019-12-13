@@ -1,5 +1,43 @@
 import gql from 'graphql-tag';
 
+const EventFields = gql`
+  fragment EventFields on Event {
+    id
+    title
+    date
+    startAt
+    endAt
+    category
+    price
+    locationTitle
+    address
+    image
+    difficulty
+    language
+    details
+    host {
+      id
+      email
+      name
+      image
+      bio
+    }
+    reviews {
+      id
+      user {
+        id
+        email
+        firstName
+        lastName
+        image
+      }
+      score
+      comment
+      date
+    }
+  }
+`;
+
 export const QUERY_INFO = gql`
   {
     infoes {
@@ -49,45 +87,23 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_ALL_EVENTS = gql`
+  query {
+    events {
+      ...EventFields
+    }
+  }
+  ${EventFields}
+`;
+
 export const QUERY_EVENT_THIS_WEEK = gql`
   query getAllEvents($startFilterDate: DateTime, $endFilterDate: DateTime) {
     events(
       where: {AND: [{date_gte: $startFilterDate}, {date_lt: $endFilterDate}]}
       orderBy: date_DESC
     ) {
-      id
-      title
-      date
-      startAt
-      endAt
-      category
-      price
-      locationTitle
-      address
-      image
-      difficulty
-      language
-      details
-      host {
-        id
-        email
-        name
-        image
-        bio
-      }
-      reviews {
-        id
-        user {
-          id
-          email
-          firstName
-          lastName
-          image
-        }
-        score
-        comment
-        date
-      }
+      ...EventFields
     }
   }
+  ${EventFields}
 `;
