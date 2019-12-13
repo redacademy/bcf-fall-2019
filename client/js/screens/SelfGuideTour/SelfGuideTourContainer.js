@@ -11,15 +11,44 @@ class SelfGuideTourContainer extends Component {
     super(props);
     this.state = {
       needAudio: false,
+      // values for sortType are easy, difficult, short or long
+      sortType: null,
+      near: false,
+      reviews: false,
+      pet: false,
+      sortDisplayOn: false,
     };
   }
   static navigationOptions = {
     title: 'SelfGuideTour',
   };
-  toggleNeedAudio = () => {
-    const audio = this.state.needAudio;
-    this.setState({needAudio: !audio});
+  resetValues = () => {
+    this.setState({sortType: null, near: false, reviews: false, pet: false});
   };
+  toggleSortDisplay = () => {
+    const item = this.state.sortDisplayOn;
+    this.setState({sortDisplayOn: !item});
+  };
+  toggleNeedAudio = () => {
+    const item = this.state.needAudio;
+    this.setState({needAudio: !item});
+  };
+  toggleNear = () => {
+    const item = this.state.near;
+    this.setState({near: !item});
+  };
+  toggleReviews = () => {
+    const item = this.state.reviews;
+    this.setState({reviews: !item});
+  };
+  togglePet = () => {
+    const item = this.state.pet;
+    this.setState({pet: !item});
+  };
+  setSortType = value => {
+    this.setState({sortType: value});
+  };
+
   render() {
     const {navigation} = this.props;
     return (
@@ -31,9 +60,20 @@ class SelfGuideTourContainer extends Component {
             return (
               <SelfGuideTour
                 needAudio={this.state.needAudio}
+                sortDisplayOn={this.state.sortDisplayOn}
+                sortType={this.state.sortType}
+                near={this.state.near}
+                reviews={this.state.reviews}
+                pet={this.state.pet}
+                toggleSortDisplay={this.toggleSortDisplay}
                 toggleNeedAudio={this.toggleNeedAudio}
+                toggleNear={this.toggleNear}
+                togglePet={this.togglePet}
+                toggleReviews={this.toggleReviews}
+                setSortType={this.setSortType}
                 navigation={navigation}
                 selfguidetours={data.selfGuidedTours}
+                resetValues={this.resetValues}
               />
             );
         }}
