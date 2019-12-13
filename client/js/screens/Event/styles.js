@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   },
   eventDetails: {
     flexDirection: 'row',
+    paddingBottom: 12,
   },
   cols2: {
     flex: 1,
@@ -93,6 +94,44 @@ const styles = StyleSheet.create({
   eventViewMap: {
     color: '#013859',
     textDecorationLine: 'underline',
+    paddingTop: 10,
+  },
+  hostTitle: {
+    fontSize: 20,
+    color: '#013859',
+    fontWeight: '600',
+    paddingTop: 40,
+  },
+  hostAvatar: {
+    paddingRight: 15,
+    paddingTop: 20,
+    paddingLeft: 20,
+  },
+  hostNameField: {
+    height: 36,
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '100%',
+    borderRadius: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  hostBio: {
+    fontSize: 12,
+    padding: 6,
+    height: 76,
+  },
+  hostInformation: {
+    marginRight: 16,
+    width: '65%',
+  },
+  eventContactButton: {
+    paddingBottom: 36,
+  },
+  eventReviewsTitle: {
+    fontSize: 20,
+    color: '#013859',
+    fontWeight: '600',
   },
 });
 

@@ -118,22 +118,45 @@ const Event = props => {
           <View>
             <Text style={styles.eventViewMap}>View Map</Text>
           </View>
-          <View>
-            <Text>Your Host</Text>
-            <Text>Name</Text>
-            <TextInput
-              style={styles.eventTextInputSmall}
-              onChangeText={text => onChangeText(text)}
-            />
-            <Text>Bio</Text>
-            <TextInput
-              style={styles.eventTextInputSmall}
-              onChangeText={text => onChangeText(text)}
-            />
+          {/*  */}
+          <Text style={styles.hostTitle}>Your Host</Text>
+          <View style={styles.eventDetails}>
+            <View style={{...styles.cols2, ...styles.firstColumn}}>
+              <View style={styles.hostAvatar}>
+                <Image source={require('../../assets/images/icGoogle.png')} />
+              </View>
+            </View>
+
+            <View style={styles.hostInformation}>
+              <Text style={styles.infoText}>Name</Text>
+              <View style={styles.hostNameField}>
+                <Text style={{fontSize: 12, paddingLeft: 6}}>
+                  Elise Beverley
+                </Text>
+              </View>
+
+              <Text style={styles.infoText}>Bio</Text>
+              <View
+                style={{
+                  ...styles.eventTextInput,
+                  height: 76,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <Text style={styles.hostBio}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                  interdum gravida ipsum, nec egestas mauris. Suspendisse
+                  bibendum erat metus, eu semper massa
+                </Text>
+              </View>
+            </View>
           </View>
-          <ButtonDefault title="Contact" />
+          <View style={styles.eventContactButton}>
+            <ButtonDefault title="Contact" />
+          </View>
+          {/*  */}
           <View>
-            <Text>Reviews</Text>
+            <Text style={styles.eventReviewsTitle}>Reviews</Text>
           </View>
           <ButtonDefault title="Show More Reviews" />
         </View>
