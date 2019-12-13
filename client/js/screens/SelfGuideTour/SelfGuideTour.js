@@ -63,9 +63,64 @@ const SelfGuideTour = ({
               }
             />
           </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              setSortType(null);
+            }}
+            style={sortType ? styles.audionButtonOn : styles.sortOff}>
+            <Text style={styles.buttonTextON}>
+              {sortType && sortType.charAt(0).toUpperCase() + sortType.slice(1)}
+            </Text>
+            <Image
+              style={styles.buttonIconON}
+              source={require('../../assets/images/icFilterRemoveWhite.png')}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              togglePet();
+            }}
+            style={pet ? styles.audionButtonOn : styles.sortOff}>
+            <Text style={styles.buttonTextON}>Pet</Text>
+            <Image
+              style={styles.buttonIconON}
+              source={require('../../assets/images/icFilterRemoveWhite.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              toggleNear();
+            }}
+            style={near ? styles.audionButtonOn : styles.sortOff}>
+            <Text style={styles.buttonTextON}>Near</Text>
+            <Image
+              style={styles.buttonIconON}
+              source={require('../../assets/images/icFilterRemoveWhite.png')}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {
+              toggleReviews();
+            }}
+            style={reviews ? styles.audionButtonOn : styles.sortOff}>
+            <Text style={styles.buttonTextON}>Reviews</Text>
+            <Image
+              style={styles.buttonIconON}
+              source={require('../../assets/images/icFilterRemoveWhite.png')}
+            />
+          </TouchableOpacity>
         </View>
 
-        {selfguidetours &&
+        {/*
+          **************************************************
+          TODO Is working only for all data and filtering Audio
+          remove the comments and leave the curly braces
+          **************************************************
+
+          selfguidetours &&
           needAudio &&
           selfguidetours.map(each => {
             return (
@@ -88,7 +143,7 @@ const SelfGuideTour = ({
                   navigation={navigation}
                 />
               );
-          })}
+          })*/}
       </ScrollView>
 
       <View style={sortDisplayOn ? styles.sortOn : styles.sortOff}>
