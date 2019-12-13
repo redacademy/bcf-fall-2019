@@ -40,6 +40,35 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: THEME.colors.grey,
   },
+  wrapperController: {
+    marginTop: THEME.spacing.default(2.25),
+  },
+  wrapperSlider: {
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  textSlider: {
+    ...THEME.typography.size.caption,
+    fontWeight: THEME.typography.weight.medium,
+    color: THEME.colors.grey,
+  },
+  wrapperControllerIcon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: THEME.spacing.default(3),
+    marginTop: THEME.spacing.default(0.25),
+  },
+  hotspotController: {
+    width: 46,
+    height: 46,
+    opacity: 0.16,
+    borderRadius: 23,
+  },
+  activeController: {
+    opacity: 1,
+  },
 });
 
 export default styles;
