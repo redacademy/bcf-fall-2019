@@ -90,7 +90,11 @@ class Home extends Component {
           </ImageBackground>
 
           <View style={styles.contents}>
-            <TouchableOpacity style={styles.section}>
+            <TouchableOpacity
+              style={styles.section}
+              onPress={() => {
+                navigation.navigate('SelfGuidedTour');
+              }}>
               <ImageBackground
                 style={styles.wrapperSelfGuidedTour}
                 source={require('../../assets/images/imgHomeSelfguidedTours.jpg')}>
