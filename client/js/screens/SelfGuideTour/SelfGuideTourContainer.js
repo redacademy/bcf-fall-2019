@@ -5,24 +5,19 @@ import {Text, View} from 'react-native';
 import {Query} from 'react-apollo';
 import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
 import Loader from '../../components/Loader';
+import {getViewer} from '../../config/models';
 
 class SelfGuideTourContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       audio: false,
+      // values for sortType are easy, difficult, short or long
       sortType: null,
       near: false,
       reviews: false,
       petFriendly: false,
       sortDisplayOn: false,
-      // needAudio: false,
-      // values for sortType are easy, difficult, short or long
-      // sortType: null,
-      // near: false,
-      // reviews: false,
-      // pet: false,
-      // sortDisplayOn: false,
     };
   }
   static navigationOptions = {
@@ -48,6 +43,13 @@ class SelfGuideTourContainer extends Component {
   };
   setSortType = value => {
     this.setState({sortType: value});
+  };
+
+  viewer = getViewer();
+  getUserID = async () => {
+    const user = await JSON.parse(this.viewer._55);
+    console.log(user.id);
+    return user.id;
   };
 
   filterTours = tours => {
