@@ -1,22 +1,42 @@
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {ServiceLoading, AuthLoading, SignIn, Onboarding} from '../screens';
+import {
+  ServiceLoading,
+  AuthLoading,
+  SignIn,
+  SignUp,
+  Onboarding,
+} from '../screens';
 import NavigationLayout from './NavigationLayout';
 import AboutModal from '../screens/About';
 import ContactModal from '../screens/Contact';
 import FaqModal from '../screens/Faq';
+import DrawerNavigation from './DrawerNavigation';
 
 const AppStack = createStackNavigator(
   {
-    Layout: NavigationLayout,
+    Layout: DrawerNavigation,
     About: AboutModal,
     Contact: ContactModal,
     Faq: FaqModal,
   },
-
   {
-    headerMode: 'none',
     mode: 'modal',
+    defaultNavigationOptions: () => ({
+      header: null,
+    }),
+  },
+);
+
+const AccountStack = createStackNavigator(
+  {
+    SignIn,
+    SignUp,
+  },
+  {
+    defaultNavigationOptions: () => ({
+      initialRouteName: 'SignIn',
+    }),
   },
 );
 
@@ -25,11 +45,12 @@ const AuthContainer = createAppContainer(
     {
       ServiceLoading,
       Onboarding,
-      SignIn,
+      Account: AccountStack,
     },
     {
-      headerMode: 'none',
-      initialRouteName: 'ServiceLoading',
+      defaultNavigationOptions: () => ({
+        initialRouteName: 'ServiceLoading',
+      }),
     },
   ),
 );
@@ -42,7 +63,9 @@ export default createAppContainer(
       Auth: AuthContainer,
     },
     {
-      initialRouteName: 'AuthLoading',
+      defaultNavigationOptions: () => ({
+        initialRouteName: 'AuthLoading',
+      }),
     },
   ),
 );
