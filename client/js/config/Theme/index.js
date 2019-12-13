@@ -82,6 +82,9 @@ const THEME = {
       paddingTop: '22%',
       paddingHorizontal: 32,
     },
+    appScreen: {
+      paddingHorizontal: 24,
+    },
     inputField: {
       paddingHorizontal: 16,
       paddingVertical: 12,
