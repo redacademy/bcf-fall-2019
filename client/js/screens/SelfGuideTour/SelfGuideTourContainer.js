@@ -10,13 +10,19 @@ class SelfGuideTourContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      needAudio: false,
-      // values for sortType are easy, difficult, short or long
+      audio: false,
       sortType: null,
       near: false,
       reviews: false,
-      pet: false,
+      petFriendly: false,
       sortDisplayOn: false,
+      // needAudio: false,
+      // values for sortType are easy, difficult, short or long
+      // sortType: null,
+      // near: false,
+      // reviews: false,
+      // pet: false,
+      // sortDisplayOn: false,
     };
   }
   static navigationOptions = {
@@ -26,27 +32,42 @@ class SelfGuideTourContainer extends Component {
     this.setState({sortType: null, near: false, reviews: false, pet: false});
   };
   toggleSortDisplay = () => {
-    const item = this.state.sortDisplayOn;
-    this.setState({sortDisplayOn: !item});
+    this.setState({sortDisplayOn: !this.state.sortDisplayOn});
   };
   toggleNeedAudio = () => {
-    const item = this.state.needAudio;
-    this.setState({needAudio: !item});
+    this.setState({audio: !this.state.audio});
   };
   toggleNear = () => {
-    const item = this.state.near;
-    this.setState({near: !item});
+    this.setState({near: !this.state.near});
   };
   toggleReviews = () => {
-    const item = this.state.reviews;
-    this.setState({reviews: !item});
+    this.setState({reviews: !this.state.reviews});
   };
   togglePet = () => {
-    const item = this.state.pet;
-    this.setState({pet: !item});
+    this.setState({petFriendly: !this.state.petFriendly});
   };
   setSortType = value => {
     this.setState({sortType: value});
+  };
+
+  filterTours = tours => {
+    let filteredTours = [];
+    if (this.state.petFriendly) {
+      filteredTours = tours.filter(tour => tour.petFriendly);
+    }
+    if (this.state.audio && filteredTours.length < 1) {
+      filteredTours = tours.filter(tour => tour.audio);
+    } else if (this.state.audio) {
+      filteredTours = filteredTours.filter(tour => tour.audio);
+    }
+    if (this.state.reviews && filteredTours.length < 1) {
+      filteredTours = tours.filter(tour => tour.reviews);
+    } else if (this.state.reviews) {
+      filteredTours = filteredTours.filter(tour => tour.reviews);
+    }
+    console.log(this.state);
+    console.log(filteredTours);
+    return filteredTours;
   };
 
   render() {
@@ -56,15 +77,21 @@ class SelfGuideTourContainer extends Component {
         {({loading, error, data}) => {
           if (loading) return <Loader />;
           if (error) return <Text>{error.message}</Text>;
-          if (data)
+          if (data) {
+            // console.log('data', data);
+            // console.log('filter', this.filterTours(data.selfGuidedTours));
+            const tours =
+              this.filterTours(data.selfGuidedTours).length > 0
+                ? this.filterTours(data.selfGuidedTours)
+                : data.selfGuidedTours;
             return (
               <SelfGuideTour
-                needAudio={this.state.needAudio}
+                needAudio={this.state.audio}
                 sortDisplayOn={this.state.sortDisplayOn}
                 sortType={this.state.sortType}
                 near={this.state.near}
                 reviews={this.state.reviews}
-                pet={this.state.pet}
+                pet={this.state.petFriendly}
                 toggleSortDisplay={this.toggleSortDisplay}
                 toggleNeedAudio={this.toggleNeedAudio}
                 toggleNear={this.toggleNear}
@@ -72,10 +99,11 @@ class SelfGuideTourContainer extends Component {
                 toggleReviews={this.toggleReviews}
                 setSortType={this.setSortType}
                 navigation={navigation}
-                selfguidetours={data.selfGuidedTours}
+                selfguidetours={tours}
                 resetValues={this.resetValues}
               />
             );
+          }
         }}
       </Query>
     );

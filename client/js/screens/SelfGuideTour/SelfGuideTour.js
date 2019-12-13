@@ -30,6 +30,7 @@ const SelfGuideTour = ({
   setSortType,
   resetValues,
 }) => {
+  let data = selfguidetours;
   return (
     <>
       <ScrollView>
@@ -50,16 +51,16 @@ const SelfGuideTour = ({
               toggleNeedAudio();
               console.log(needAudio);
             }}
-            style={needAudio ? styles.button : styles.audionButtonOn}>
-            <Text style={needAudio ? styles.buttonText : styles.buttonTextON}>
+            style={needAudio ? styles.audionButtonOn : styles.button}>
+            <Text style={needAudio ? styles.buttonTextON : styles.buttonText}>
               Audio
             </Text>
             <Image
-              style={needAudio ? styles.buttonIcon : styles.buttonIconON}
+              style={needAudio ? styles.buttonIconON : styles.buttonIcon}
               source={
                 needAudio
-                  ? require('../../assets/images/icHeadsetDefault.png')
-                  : require('../../assets/images/icHeadsetActive.png')
+                  ? require('../../assets/images/icHeadsetActive.png')
+                  : require('../../assets/images/icHeadsetDefault.png')
               }
             />
           </TouchableOpacity>
@@ -81,6 +82,7 @@ const SelfGuideTour = ({
           <TouchableOpacity
             onPress={() => {
               togglePet();
+              // toggleFilter('pet');
             }}
             style={pet ? styles.audionButtonOn : styles.sortOff}>
             <Text style={styles.buttonTextON}>Pet</Text>
@@ -114,14 +116,9 @@ const SelfGuideTour = ({
           </TouchableOpacity>
         </View>
 
-        {/*
-          **************************************************
-          TODO Is working only for all data and filtering Audio
-          remove the comments and leave the curly braces
-          **************************************************
-
-          selfguidetours &&
-          needAudio &&
+        {/*(data = data && pet && data.filter(each => each.petFriendly !== null))*/}
+        {/*(data = data && reviews && data.filter(each => each.reviews !== null))*/}
+        {selfguidetours &&
           selfguidetours.map(each => {
             return (
               <SelfGuidedItem
@@ -132,6 +129,17 @@ const SelfGuideTour = ({
             );
           })}
 
+        {/*selfguidetours &&
+          needAudio &&
+          selfguidetours.map(each => {
+            return (
+              <SelfGuidedItem
+                key={each.id}
+                selfGuidedItem={each}
+                navigation={navigation}
+              />
+            );
+          })}
         {selfguidetours &&
           !needAudio &&
           selfguidetours.map(each => {
@@ -274,6 +282,7 @@ const SelfGuideTour = ({
             <TouchableOpacity
               onPress={() => {
                 togglePet();
+                // toggleFilter('pet');
               }}
               style={styles.flexRow}>
               <Image
