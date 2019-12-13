@@ -133,6 +133,38 @@ const styles = StyleSheet.create({
     color: '#013859',
     fontWeight: '600',
   },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  RectangleShapeView: {
+    // position: 'absolute',
+    width: 400,
+    borderRadius: 4,
+    paddingHorizontal: 8,
+    height: 60,
+    backgroundColor: '#013859',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  eventBookingPrice: {
+    color: 'white',
+    fontSize: 22,
+    paddingVertical: 17,
+    paddingLeft: 8,
+  },
+  eventBookingButton: {
+    padding: 2,
+    width: 82,
+    fontSize: 12,
+    // height: 60,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 4,
+  },
 });
 
 export default styles;

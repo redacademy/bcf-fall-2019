@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   ScrollView,
+  Button,
 } from 'react-native';
 import ButtonDefault from '../../components/ButtonDefault';
 import styles from './styles';
@@ -87,6 +88,7 @@ const Event = props => {
               </View>
             </View>
 
+            {/*  */}
             <View style={{...styles.cols2, ...styles.firstColumn}}>
               <Text style={styles.infoText}>Language</Text>
               <View
@@ -103,6 +105,7 @@ const Event = props => {
                 <Text style={{fontSize: 12}}>English</Text>
               </View>
             </View>
+            {/*  */}
           </View>
 
           <View>
@@ -154,12 +157,25 @@ const Event = props => {
           <View style={styles.eventContactButton}>
             <ButtonDefault title="Contact" />
           </View>
-          {/*  */}
           <View>
             <Text style={styles.eventReviewsTitle}>Reviews</Text>
           </View>
           <ButtonDefault title="Show More Reviews" />
         </View>
+        {/*  */}
+        <View>
+          <View style={styles.container}>
+            <View style={styles.RectangleShapeView}>
+              <View style={styles.eventBooking}>
+                <Text style={styles.eventBookingPrice}>$ 15 / each</Text>
+              </View>
+              <View style={styles.eventBookingButton}>
+                <Button title="Book" color="white" />
+              </View>
+            </View>
+          </View>
+        </View>
+        {/*  */}
       </ScrollView>
     </SafeAreaView>
   );
