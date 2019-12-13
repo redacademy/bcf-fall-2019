@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import {THEME} from '../../config/';
 
 const styles = StyleSheet.create({
+  container: {...THEME.padding.bottomGap},
   imageMainBackground: {
     width: '100%',
     height: 230,
@@ -68,6 +69,14 @@ const styles = StyleSheet.create({
   },
   activeController: {
     opacity: 1,
+  },
+  wrapperListsOfAudio: {
+    marginTop: THEME.spacing.default(2.25),
+  },
+  sectionTitle: {
+    ...THEME.typography.size.default,
+    fontWeight: THEME.typography.weight.semibold,
+    color: THEME.colors.astronautBlue,
   },
 });
 

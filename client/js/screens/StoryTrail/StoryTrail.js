@@ -5,14 +5,14 @@ import {
   Text,
   Image,
   ImageBackground,
-  TouchableOpacity,
   TouchableHighlight,
 } from 'react-native';
+import AudioItem from '../../components/AudioItem';
 import styles from './styles';
 
 const StoryTrail = () => {
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
       <Image
         style={styles.imageMainBackground}
         source={{
@@ -48,8 +48,8 @@ const StoryTrail = () => {
 
         <View style={styles.wrapperControllerIcon}>
           <TouchableHighlight
-            activeOpacity={0.4}
             style={styles.hotspotController}
+            underlayColor={'rgba(0,0,0,0.32)'}
             onPress={() => {
               console.log('backward');
             }}>
@@ -60,8 +60,8 @@ const StoryTrail = () => {
           </TouchableHighlight>
 
           <TouchableHighlight
-            activeOpacity={0.4}
             style={{...styles.hotspotController, ...styles.activeController}}
+            underlayColor={'rgba(0,0,0,0.04)'}
             onPress={() => {
               console.log('play');
             }}>
@@ -72,8 +72,8 @@ const StoryTrail = () => {
           </TouchableHighlight>
 
           <TouchableHighlight
-            activeOpacity={0.4}
             style={styles.hotspotController}
+            underlayColor={'rgba(0,0,0,0.32)'}
             onPress={() => {
               console.log('backward');
             }}>
@@ -83,6 +83,10 @@ const StoryTrail = () => {
             />
           </TouchableHighlight>
         </View>
+        <View style={styles.wrapperListsOfAudio}>
+          <Text style={styles.sectionTitle}>Lists of Audio</Text>
+        </View>
+        <AudioItem />
       </View>
     </ScrollView>
   );
