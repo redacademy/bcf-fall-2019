@@ -8,7 +8,7 @@ import SearchScreen from '../screens/Search';
 import BookingScreen from '../screens/Booking';
 import SavedScreen from '../screens/Saved';
 import ProfileScreen from '../screens/Profile';
-import SelfGuideTour from '../screens/SelfGuideTour';
+import SelfGuidedTour from '../screens/SelfGuideTour';
 
 import About from '../screens/About';
 import Contact from '../screens/Contact';
@@ -24,7 +24,7 @@ const {black, mediumGrey, white} = Colors;
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
-    SelfGuideTour,
+    SelfGuidedTour,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
