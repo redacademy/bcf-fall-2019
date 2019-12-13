@@ -9,7 +9,9 @@ class AuthLoadingContainer extends Component {
 
   _bootstrapAsync = async () => {
     const userToken = await getViewer();
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+    this.props.navigation.navigate(userToken ? 'App' : 'Auth', {
+      userToken: JSON.parse(userToken),
+    });
   };
 
   render() {
