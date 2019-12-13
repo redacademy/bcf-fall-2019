@@ -48,6 +48,7 @@ const SelfGuideTour = ({
           <TouchableOpacity
             onPress={() => {
               toggleNeedAudio();
+              console.log(needAudio);
             }}
             style={needAudio ? styles.button : styles.audionButtonOn}>
             <Text style={needAudio ? styles.buttonText : styles.buttonTextON}>
@@ -89,6 +90,7 @@ const SelfGuideTour = ({
               );
           })}
       </ScrollView>
+
       <View style={sortDisplayOn ? styles.sortOn : styles.sortOff}>
         <View style={styles.topPart}></View>
         <View style={styles.bottomPart}>
