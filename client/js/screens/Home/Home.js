@@ -119,7 +119,16 @@ class Home extends Component {
                   <TouchableOpacity
                     key={index}
                     onPress={() => {
-                      navigation.push('EventCategory', {title: category.name});
+                      const eventsByCategory =
+                        eventInfo &&
+                        eventInfo.allEvents.filter(event => {
+                          return event.category === category.name;
+                        });
+
+                      navigation.push('EventCategory', {
+                        title: category.name,
+                        eventInfo: eventsByCategory,
+                      });
                     }}>
                     <CategoryList
                       image={category.image}
