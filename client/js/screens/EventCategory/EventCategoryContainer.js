@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, StatusBar, TouchableOpacity, Image} from 'react-native';
+import {TouchableOpacity, Image} from 'react-native';
+import {withCollapsible} from 'react-navigation-collapsible';
 import EventCategory from './EventCategory';
 import {THEME} from '../../config';
 import PropTypes from 'prop-types';
@@ -7,21 +8,22 @@ import PropTypes from 'prop-types';
 class EventCategoryContainer extends Component {
   static navigationOptions = ({navigation}) => {
     const title = navigation.getParam('title');
+    const themeColor = navigation.getParam('themeColor') || 'light';
+
     return {
       title: `${title} Events`,
       headerBackTitle: true,
-      headerTitleStyle: {color: THEME.colors.astronautBlue},
+      headerTitleStyle: {
+        color:
+          themeColor === 'light'
+            ? THEME.colors.astronautBlue
+            : THEME.colors.white,
+      },
       headerTransparent: true,
       headerStyle: {
         backgroundColor: 'transparent',
       },
-      headerBackground: () => {
-        return (
-          <View>
-            <StatusBar barStyle="dark-content" />
-          </View>
-        );
-      },
+
       headerLeft: () => {
         return (
           <TouchableOpacity
@@ -30,7 +32,11 @@ class EventCategoryContainer extends Component {
               navigation.goBack();
             }}>
             <Image
-              source={require('../../assets/images/icArrLeftDefault.png')}
+              source={
+                themeColor === 'light'
+                  ? require('../../assets/images/icArrLeftDefault.png')
+                  : require('../../assets/images/icArrLeftWhite.png')
+              }
             />
           </TouchableOpacity>
         );
@@ -42,7 +48,11 @@ class EventCategoryContainer extends Component {
             navigation.toggleDrawer();
           }}>
           <Image
-            source={require('../../assets/images/icMenuDefault.png')}
+            source={
+              themeColor === 'light'
+                ? require('../../assets/images/icMenuDefault.png')
+                : require('../../assets/images/icMenuWhite.png')
+            }
             name="burger-menu"
           />
         </TouchableOpacity>
@@ -50,14 +60,31 @@ class EventCategoryContainer extends Component {
     };
   };
 
-  render() {
-    const {navigation} = this.props;
+  onSwitchTheme = (Bool = true) => {
+    setTimeout(() => {
+      this.props.navigation.setParams({
+        themeColor: Bool ? 'light' : 'dark',
+      });
+    }, 250);
+  };
 
-    return <EventCategory eventInfo={navigation.getParam('eventInfo')} />;
+  render() {
+    const {navigation, collapsible} = this.props;
+
+    return (
+      <EventCategory
+        eventInfo={navigation.getParam('eventInfo')}
+        collapsible={collapsible}
+        navigation={navigation}
+        onSwitchTheme={this.onSwitchTheme}
+      />
+    );
   }
 }
 
-export default EventCategoryContainer;
+export default withCollapsible(EventCategoryContainer, {
+  iOSCollapsedColor: 'transparent',
+});
 
 EventCategoryContainer.propTypes = {
   navigation: PropTypes.object.isRequired,
