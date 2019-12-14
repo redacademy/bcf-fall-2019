@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import {Query} from 'react-apollo';
 import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
+import {QUERY_USER} from '../../apollo/queries';
 import Loader from '../../components/Loader';
 import {getViewer} from '../../config/models';
 
@@ -11,6 +12,8 @@ class SelfGuideTourContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userId: null,
+      userLocation: null,
       audio: false,
       // values for sortType are easy, difficult, short or long
       sortType: null,
@@ -18,13 +21,19 @@ class SelfGuideTourContainer extends Component {
       reviews: false,
       petFriendly: false,
       sortDisplayOn: false,
+      viewerLocation: null,
     };
   }
   static navigationOptions = {
     title: 'SelfGuideTour',
   };
   resetValues = () => {
-    this.setState({sortType: null, near: false, reviews: false, pet: false});
+    this.setState({
+      sortType: null,
+      near: false,
+      reviews: false,
+      petFriendly: false,
+    });
   };
   toggleSortDisplay = () => {
     this.setState({sortDisplayOn: !this.state.sortDisplayOn});
@@ -46,10 +55,10 @@ class SelfGuideTourContainer extends Component {
   };
 
   viewer = getViewer();
+  //TODO this is not working inside the query return, don't know why?!?!?!
   getUserID = async () => {
     const user = await JSON.parse(this.viewer._55);
-    console.log(user.id);
-    return user.id;
+    return user;
   };
 
   filterTours = tours => {
@@ -67,43 +76,68 @@ class SelfGuideTourContainer extends Component {
     } else if (this.state.reviews) {
       filteredTours = filteredTours.filter(tour => tour.reviews);
     }
-    console.log(this.state);
-    console.log(filteredTours);
+    if (this.state.near && filteredTours.length < 1) {
+      filteredTours = tours.filter(tour => tour.location === this.userLocation);
+    } else if (this.state.near) {
+      filteredTours = filteredTours.filter(
+        tour => tour.location === this.userLocation,
+      );
+    }
+    // console.log(this.state);
+    // console.log(filteredTours);
     return filteredTours;
   };
 
   render() {
     const {navigation} = this.props;
+    this.getUserID();
     return (
-      <Query query={QUERY_SELFGUIDED_TOUR}>
+      <Query query={QUERY_USER} variables={{id: 'ck3ursbu95g0m0b091q9h3qt0'}}>
         {({loading, error, data}) => {
           if (loading) return <Loader />;
           if (error) return <Text>{error.message}</Text>;
           if (data) {
-            // console.log('data', data);
-            // console.log('filter', this.filterTours(data.selfGuidedTours));
-            const tours =
-              this.filterTours(data.selfGuidedTours).length > 0
-                ? this.filterTours(data.selfGuidedTours)
-                : data.selfGuidedTours;
+            //TODO setState for variable for user location to get viewer location
+            //Try to get the id of the viewr to pass to query user, to get the user location
+            // to compare in the filter bellow of the next query
+            console.log('user', data);
+            console.log('calling getUserID:', this.getUserID());
+            console.log(this.getUserID());
             return (
-              <SelfGuideTour
-                needAudio={this.state.audio}
-                sortDisplayOn={this.state.sortDisplayOn}
-                sortType={this.state.sortType}
-                near={this.state.near}
-                reviews={this.state.reviews}
-                pet={this.state.petFriendly}
-                toggleSortDisplay={this.toggleSortDisplay}
-                toggleNeedAudio={this.toggleNeedAudio}
-                toggleNear={this.toggleNear}
-                togglePet={this.togglePet}
-                toggleReviews={this.toggleReviews}
-                setSortType={this.setSortType}
-                navigation={navigation}
-                selfguidetours={tours}
-                resetValues={this.resetValues}
-              />
+              <Query query={QUERY_SELFGUIDED_TOUR}>
+                {({loading, error, data}) => {
+                  if (loading) return <Loader />;
+                  if (error) return <Text>{error.message}</Text>;
+                  if (data) {
+                    // console.log('data', data);
+                    // console.log('filter', this.filterTours(data.selfGuidedTours));
+                    const tours =
+                      this.filterTours(data.selfGuidedTours).length > 0
+                        ? this.filterTours(data.selfGuidedTours)
+                        : data.selfGuidedTours;
+
+                    return (
+                      <SelfGuideTour
+                        needAudio={this.state.audio}
+                        sortDisplayOn={this.state.sortDisplayOn}
+                        sortType={this.state.sortType}
+                        near={this.state.near}
+                        reviews={this.state.reviews}
+                        pet={this.state.petFriendly}
+                        toggleSortDisplay={this.toggleSortDisplay}
+                        toggleNeedAudio={this.toggleNeedAudio}
+                        toggleNear={this.toggleNear}
+                        togglePet={this.togglePet}
+                        toggleReviews={this.toggleReviews}
+                        setSortType={this.setSortType}
+                        navigation={navigation}
+                        selfguidetours={tours}
+                        resetValues={this.resetValues}
+                      />
+                    );
+                  }
+                }}
+              </Query>
             );
           }
         }}
