@@ -62,11 +62,9 @@ class Home extends Component {
     const offset = e.nativeEvent.contentOffset;
 
     if (offset.y > 88 && !this.state.isAnimated) {
-      console.log('yes');
       this.setState({isAnimated: true});
       this.animateHeader();
     } else if (offset.y <= 88 && this.state.isAnimated) {
-      console.log('no');
       this.setState({
         isAnimated: false,
       });
