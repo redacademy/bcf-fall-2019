@@ -116,7 +116,11 @@ class Home extends Component {
               </Text>
               <ScrollView style={styles.categoryList} horizontal={true}>
                 {CATEGORY_LIST.map((category, index, array) => (
-                  <TouchableOpacity key={index}>
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      navigation.push('EventCategory', {title: category.name});
+                    }}>
                     <CategoryList
                       image={category.image}
                       name={category.name}
