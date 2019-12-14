@@ -62,10 +62,15 @@ class Home extends Component {
     const offset = e.nativeEvent.contentOffset;
 
     if (offset.y > 88 && !this.state.isAnimated) {
+      console.log('yes');
       this.setState({isAnimated: true});
       this.animateHeader();
     } else if (offset.y <= 88 && this.state.isAnimated) {
-      this.setState({isAnimated: false});
+      console.log('no');
+      this.setState({
+        isAnimated: false,
+      });
+
       this.animateHeader();
     }
   };
@@ -73,12 +78,8 @@ class Home extends Component {
   animateHeader = () => {
     Animated.timing(this.state.headerAnimation, {
       duration: 500,
-      toValue: {x: 1, y: 0},
-    }).start(animation => {
-      if (animation.finished && !this.state.isAnimated) {
-        this.setState({headerAnimation: new Animated.ValueXY({x: 0, y: -88})});
-      }
-    });
+      toValue: this.state.isAnimated ? {x: 0, y: -88} : {x: 1, y: 0},
+    }).start();
   };
 
   render() {
