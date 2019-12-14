@@ -54,7 +54,17 @@ const styles = StyleSheet.create({
     ...THEME.typography.size.caption,
     fontWeight: THEME.typography.weight.medium,
     color: THEME.colors.grey,
+    width: 36,
   },
+  leftText: {
+    textAlign: 'left',
+    marginRight: THEME.spacing.default(1.25),
+  },
+  rightText: {
+    textAlign: 'right',
+    marginLeft: THEME.spacing.default(1.25),
+  },
+  slider: {flex: 1},
   wrapperControllerIcon: {
     flexDirection: 'row',
     justifyContent: 'space-between',

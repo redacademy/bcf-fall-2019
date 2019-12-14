@@ -7,8 +7,12 @@ import {
   ImageBackground,
   TouchableHighlight,
 } from 'react-native';
+import Slider from '@react-native-community/slider';
+import Video from 'react-native-video';
 import AudioItem from '../../components/AudioItem';
+
 import styles from './styles';
+import {THEME} from '../../config/';
 
 const StoryTrail = () => {
   return (
@@ -41,8 +45,18 @@ const StoryTrail = () => {
 
         <View style={styles.wrapperController}>
           <View style={styles.wrapperSlider}>
-            <Text style={styles.textSlider}>1:40</Text>
-            <Text style={styles.textSlider}>12:50</Text>
+            <Text style={{...styles.textSlider, ...styles.leftText}}>1:40</Text>
+            <Slider
+              style={styles.slider}
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor={THEME.colors.burntSienna}
+              maximumTrackTintColor="rgba(0,0,0,0.16)"
+              thumbImage={require('../../assets/images/mediaControllers/imgSlider.png')}
+            />
+            <Text style={{...styles.textSlider, ...styles.rightText}}>
+              12:50
+            </Text>
           </View>
         </View>
 
