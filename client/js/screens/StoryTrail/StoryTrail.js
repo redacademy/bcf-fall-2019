@@ -19,6 +19,7 @@ class StoryTrail extends Component {
     super(props);
 
     this.state = {
+      isLoaded: false,
       audioPlayer: null,
       paused: true,
       currentTime: 0,
@@ -72,6 +73,7 @@ class StoryTrail extends Component {
             />
           </ImageBackground>
         </View>
+
         <View style={styles.contents}>
           <Text style={styles.title}>Tsútswecw Trail</Text>
           <Text style={styles.location}>Tsútswecw Park</Text>
@@ -84,24 +86,21 @@ class StoryTrail extends Component {
             ref={ref => {
               this.state.audioPlayer = ref;
             }}
-            // onBuffer={this.onBuffer} // Callback when remote video is buffering
-            // onError={this.videoError} // Callback when video cannot be loaded
             audioOnly={true}
             disableFocus={true}
             playInBackground={true}
             paused={this.state.paused}
-            onLoadStart={({src}) => {
-              console.log('onLoadStart: ', src);
-            }}
             onLoad={props => {
-              console.log('onLoad: ', props);
+              props
+                ? this.setState({isLoaded: true})
+                : this.setState({isLoaded: false});
               this.setState({duration: props.duration});
             }}
-            onProgress={({currentTime, playableDuration, seekableDuration}) => {
+            onProgress={({currentTime}) => {
               this.setState({currentTime});
             }}
-            onSeek={props => {
-              console.log('onSeek: ', props);
+            onSeek={({seekTime}) => {
+              this.setState({currentTime: seekTime});
             }}
             style={styles.backgroundVideo}
           />
@@ -109,7 +108,7 @@ class StoryTrail extends Component {
           <View style={styles.wrapperController}>
             <View style={styles.wrapperSlider}>
               <Text style={{...styles.textSlider, ...styles.leftText}}>
-                {this.state.currentTime === 0
+                {this.state.currentTime === 0 || this.state.draggingTime === 0
                   ? '00:00'
                   : this.state.draggingSlider
                   ? `${this.getMinutes(
@@ -128,6 +127,9 @@ class StoryTrail extends Component {
                 minimumTrackTintColor={THEME.colors.burntSienna}
                 maximumTrackTintColor="rgba(0,0,0,0.16)"
                 thumbImage={require('../../assets/images/mediaControllers/imgSlider.png')}
+                onSlidingStart={() => {
+                  this.setState({draggingSlider: true});
+                }}
                 onValueChange={newTime => {
                   this.setState({draggingSlider: true});
                   this.setState({draggingTime: newTime});
