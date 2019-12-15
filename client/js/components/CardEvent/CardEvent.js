@@ -6,13 +6,23 @@ import {
   Text,
   View,
 } from 'react-native';
+import moment from 'moment';
 import RatingScore from '../RatingScore';
 import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
 const CardEvent = ({data}) => {
-  const {date, title, image, locationTitle, price, reviews} = data;
+  const {
+    date,
+    startAt,
+    endAt,
+    title,
+    image,
+    locationTitle,
+    price,
+    reviews,
+  } = data;
 
   return (
     <TouchableOpacity style={styles.container}>
@@ -33,12 +43,22 @@ const CardEvent = ({data}) => {
               <View style={styles.detailsWrapper}>
                 <View style={styles.detailsInfo}>
                   <Text style={styles.caption}>Date</Text>
-                  <Text style={styles.detailContent}>{date}</Text>
+                  <Text style={styles.detailContent}>
+                    {`${moment(date).format('MMM D, Y')} ${
+                      parseInt(startAt) > 12 ? 12 - 12 : parseInt(startAt)
+                    }-${
+                      parseInt(endAt) > 12
+                        ? parseInt(endAt) - 12 + 'PM'
+                        : parseInt(endAt) + 'AM'
+                    }`}
+                  </Text>
                 </View>
 
                 <View>
                   <Text style={styles.caption}>Price</Text>
-                  <Text style={styles.detailContent}>{`$${price} per`}</Text>
+                  <Text style={styles.detailContent}>
+                    {price === 0 ? 'Free' : `$${price} per`}
+                  </Text>
                 </View>
               </View>
 
@@ -68,4 +88,5 @@ export default CardEvent;
 
 CardEvent.propTypes = {
   data: PropTypes.object,
+  navigation: PropTypes.object,
 };

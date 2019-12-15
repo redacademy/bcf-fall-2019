@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import {Text, Animated, StatusBar, FlatList, View} from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
 import CardEvent from '../../components/CardEvent';
+import ButtonFilter from '../../components/ButtonFilter';
 import styles from './styles';
-import PropTypes from 'prop-types';
 import {THEME} from '../../config';
+import PropTypes from 'prop-types';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -35,7 +36,7 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
       toValue: isAnimated ? {x: 0, y: -88} : {x: 1, y: 0},
     }).start();
   };
-
+  //   console.log(eventInfo);
   return (
     <>
       {!paddingHeight && <View style={{height: 88}} />}
@@ -54,12 +55,17 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
         }}
         ListHeaderComponent={() => (
           <View>
+            <View style={styles.filterWrapper}>
+              <ButtonFilter title="Sort" />
+              <ButtonFilter title="Date" />
+            </View>
+
             <Text style={styles.eventsNumber}>{eventInfo.length} Results</Text>
           </View>
         )}
         data={eventInfo}
         renderItem={({item}) => {
-          return <CardEvent data={item} />;
+          return <CardEvent data={item} navigation={navigation} />;
         }}
         style={styles.container}
       />

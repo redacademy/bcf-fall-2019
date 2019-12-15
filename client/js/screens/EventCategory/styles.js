@@ -4,6 +4,11 @@ import {THEME} from '../../config';
 const styles = StyleSheet.create({
   container: {
     ...THEME.padding.appScreen,
+    paddingTop: THEME.spacing.default(),
+    paddingBottom: THEME.spacing.default(3),
+  },
+  filterWrapper: {
+    flexDirection: 'row',
   },
   eventsNumber: {
     ...THEME.typography.size.caption,
