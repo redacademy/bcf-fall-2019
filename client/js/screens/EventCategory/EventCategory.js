@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {Text, Animated, ScrollView, StatusBar, View} from 'react-native';
+import {Text, Animated, StatusBar, FlatList, View} from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
+import CardEvent from '../../components/CardEvent';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import {THEME} from '../../config';
 
-const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
   const [isAnimated, setAnimated] = useState(false);
@@ -37,7 +38,9 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
 
   return (
     <>
-      <AnimatedScrollView
+      {!paddingHeight && <View style={{height: 88}} />}
+
+      <AnimatedFlatList
         scrollEventThrottle={32}
         onScroll={Animated.event([{nativeEvent: {contentOffset: {y: 0}}}], {
           useNativeDriver: true,
@@ -48,11 +51,18 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
         scrollIndicatorInsets={{
           top: paddingHeight / 2,
           bottom: THEME.spacing.default(0.5),
-        }}>
-        {!paddingHeight && <View style={{height: 88}} />}
-
-        <Text>EventCategory</Text>
-      </AnimatedScrollView>
+        }}
+        ListHeaderComponent={() => (
+          <View>
+            <Text style={styles.eventsNumber}>{eventInfo.length} Results</Text>
+          </View>
+        )}
+        data={eventInfo}
+        renderItem={({item}) => {
+          return <CardEvent data={item} />;
+        }}
+        style={styles.container}
+      />
 
       <Animated.View
         style={{
@@ -61,15 +71,8 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
           top: headerAnimation.y,
           height: paddingHeight || 88,
         }}>
-        <VibrancyView
-          blurType="dark"
-          blurAmount={2}
-          style={{
-            width: '100%',
-            height: '100%',
-          }}
-        />
         <StatusBar barStyle={isAnimated ? 'light-content' : 'dark-content'} />
+        <VibrancyView blurType="dark" blurAmount={2} style={styles.header} />
       </Animated.View>
     </>
   );
