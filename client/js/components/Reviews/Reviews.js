@@ -1,20 +1,22 @@
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, Text} from 'react-native';
 import styles from './styles';
 
-const Reviews = ({navigation}) => {
+const Reviews = ({navigation, eventInfo}) => {
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.push('Reviews', [reviews]);
       }}>
-      <View>
-        {/* <Text>{reviews.id}</Text> */}
-        <Text>{reviews.user}</Text>
-        <Text>{reviews.date}</Text>
-        <Text>{reviews.score}</Text>
-        <Text>{reviews.comment}</Text>
-      </View>
+      {eventInfo && eventInfo.reviews && eventInfo.reviews.length > 0 ? (
+        <View>
+          {eventInfo.reviews.map(index => {
+            return <Event key={reviews.id} index={index} eventInfo={reviews} />;
+          })}
+        </View>
+      ) : (
+        <Text> There are no reviews yet</Text>
+      )}
     </TouchableOpacity>
   );
 };

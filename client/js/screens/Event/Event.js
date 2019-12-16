@@ -6,21 +6,24 @@ import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import SafeAreaView from 'react-native-safe-area-view';
 import MapView from 'react-native-maps';
+import Reviews from '../../components/Reviews';
 
-const Event = ({navigation, data}) => {
+const Event = ({navigation, eventInfo}) => {
+  const {image, title, location, rating, host, reviews, price} = eventInfo;
+
   return (
     <>
+      {console.log(eventInfo)}
       <ScrollView>
         <SafeAreaView>
           <View style={styles.eventImg}>
-            <Image
-              style={styles.eventImg}
-              source={require('../../assets/images/imgHomeCatFamily.png')}
-            />
+            <Image style={styles.eventImg} source={{uri: eventInfo.image}} />
 
             <View style={styles.overlay}>
-              <Text style={styles.eventName}>Beaver Lake Tour</Text>
-              <Text style={styles.eventLocation}>Stanley Park</Text>
+              <Text style={styles.eventName}>{eventInfo.title}</Text>
+              <Text style={styles.eventLocation}>
+                {eventInfo.locationTitle}
+              </Text>
               <View style={styles.eventButtons}>
                 <View style={styles.eventStarRating}>
                   <RatingScore score={4} />
@@ -52,7 +55,7 @@ const Event = ({navigation, data}) => {
                 style={styles.eventTextFields}
                 source={require('../../assets/images/icFilterDate.png')}
               />
-              <Text style={{fontSize: 12}}>Nov 11, 2019 10-12 PM</Text>
+              <Text style={{fontSize: 12}}>{eventInfo.date}</Text>
             </View>
 
             <Text style={styles.infoText}>Location</Text>
@@ -67,7 +70,7 @@ const Event = ({navigation, data}) => {
                 style={styles.eventTextFields}
                 source={require('../../assets/images/icFilterLocation.png')}
               />
-              <Text style={{fontSize: 12}}>1005 E Street Vancouver</Text>
+              <Text style={{fontSize: 12}}>{eventInfo.address}</Text>
             </View>
 
             <View style={styles.eventDetails}>
@@ -84,7 +87,7 @@ const Event = ({navigation, data}) => {
                     style={styles.eventTextFields}
                     source={require('../../assets/images/icFilterDifficulty.png')}
                   />
-                  <Text style={{fontSize: 12}}>Easy</Text>
+                  <Text style={{fontSize: 12}}>{eventInfo.difficulty}</Text>
                 </View>
               </View>
 
@@ -101,20 +104,18 @@ const Event = ({navigation, data}) => {
                     style={styles.eventTextFields}
                     source={require('../../assets/images/icFilterLanguage.png')}
                   />
-                  <Text style={{fontSize: 12}}>English</Text>
+                  <Text style={{fontSize: 12}}>{eventInfo.language}</Text>
                 </View>
               </View>
             </View>
 
             <View>
               <Text style={styles.eventInfoTitle}>Event Details</Text>
+
               <Text style={styles.eventInfoDescription}>
-                Come join us as we see take a scenic ferry ride to stanley park,
-                the gem of the Islands. We will then walk off the ferry and hike
-                to where on a clear day you will have views of stanley park
-                Afterwards, we will explore…
+                {eventInfo.details.replace(/\\n/g, '\n')}
               </Text>
-              <Text style={styles.eventReadMore}>(Read More)</Text>
+              {/* <Text style={styles.eventReadMore}>(Read More)</Text> */}
             </View>
             <View style={styles.eventMapContainer}>
               <MapView
@@ -128,12 +129,15 @@ const Event = ({navigation, data}) => {
 
               <Text style={styles.eventViewMap}>View Map</Text>
             </View>
-            {/*  */}
+
             <Text style={styles.hostTitle}>Your Host</Text>
             <View style={styles.eventDetails}>
               <View style={{...styles.cols2, ...styles.firstColumn}}>
                 <View style={styles.hostAvatar}>
-                  <Image source={require('../../assets/images/icGoogle.png')} />
+                  <Image
+                    source={{uri: eventInfo.host.image}}
+                    style={styles.hostImage}
+                  />
                 </View>
               </View>
 
@@ -141,7 +145,7 @@ const Event = ({navigation, data}) => {
                 <Text style={styles.infoText}>Name</Text>
                 <View style={styles.hostNameField}>
                   <Text style={{fontSize: 12, paddingLeft: 6}}>
-                    Elise Beverley
+                    {eventInfo.host.name}
                   </Text>
                 </View>
 
@@ -153,11 +157,7 @@ const Event = ({navigation, data}) => {
                     flexDirection: 'row',
                     alignItems: 'center',
                   }}>
-                  <Text style={styles.hostBio}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Morbi interdum gravida ipsum, nec egestas mauris.
-                    Suspendisse bibendum erat metus, eu semper massa
-                  </Text>
+                  <Text style={styles.hostBio}>{eventInfo.host.bio}</Text>
                 </View>
               </View>
             </View>
@@ -166,6 +166,8 @@ const Event = ({navigation, data}) => {
             </View>
             <View>
               <Text style={styles.eventReviewsTitle}>Reviews</Text>
+
+              <Reviews />
             </View>
             <ButtonDefault title="Show More Reviews" />
           </View>
@@ -174,7 +176,7 @@ const Event = ({navigation, data}) => {
       <View style={styles.container}>
         <View style={styles.RectangleShapeView}>
           <View style={styles.eventBooking}>
-            <Text style={styles.eventBookingPrice}>$ 15 / each</Text>
+            <Text style={styles.eventBookingPrice}>${eventInfo.price}</Text>
           </View>
           <View style={styles.eventBookingButton}>
             <Button title="Book" color="white" />

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   eventName: {
     color: 'white',
-    fontSize: 34,
+    fontSize: 20,
     fontFamily: 'Montserrat-Regular',
   },
   eventLocation: {
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     color: '#013859',
     fontWeight: '600',
     paddingTop: 40,
+    paddingLeft: 15,
   },
   hostAvatar: {
     paddingRight: 15,
@@ -177,6 +178,11 @@ const styles = StyleSheet.create({
   },
   eventMapContainer: {
     paddingTop: 36,
+  },
+  hostImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
   },
 });
 
