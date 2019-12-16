@@ -33,11 +33,7 @@ class HomeContainer extends Component {
         backgroundColor: 'transparent',
       },
       headerBackground: () => {
-        return (
-          <View>
-            <StatusBar barStyle="light-content" />
-          </View>
-        );
+        return <StatusBar barStyle="light-content" />;
       },
     };
   };

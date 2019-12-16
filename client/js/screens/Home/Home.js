@@ -61,10 +61,10 @@ class Home extends Component {
   onScroll = e => {
     const offset = e.nativeEvent.contentOffset;
 
-    if (offset.y > 88 && !this.state.isAnimated) {
+    if (offset.y > this.props.headerHeight && !this.state.isAnimated) {
       this.setState({isAnimated: true});
       this.animateHeader();
-    } else if (offset.y <= 88 && this.state.isAnimated) {
+    } else if (offset.y <= this.props.headerHeight && this.state.isAnimated) {
       this.setState({
         isAnimated: false,
       });
@@ -236,16 +236,13 @@ class Home extends Component {
             position: 'absolute',
             opacity: this.state.headerAnimation.x,
             top: this.state.headerAnimation.y,
-            width: '100%',
             height: paddingHeight,
+            ...styles.hiddenHeaderWrapper,
           }}>
           <VibrancyView
             blurType="dark"
             blurAmount={2}
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
+            style={styles.hiddenHeader}
           />
         </Animated.View>
 
