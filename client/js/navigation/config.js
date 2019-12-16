@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View, TouchableOpacity, StatusBar} from 'react-native';
+import {Image, TouchableOpacity, StatusBar} from 'react-native';
 import {THEME} from '../config';
 
 export const sharedNavigationOptions = navigation => {
@@ -15,11 +15,7 @@ export const sharedNavigationOptions = navigation => {
     },
     headerTintColor: THEME.colors.white,
     headerBackground: () => {
-      return (
-        <View>
-          <StatusBar barStyle="light-content" />
-        </View>
-      );
+      return <StatusBar barStyle="light-content" />;
     },
     headerRight: () => (
       <TouchableOpacity
