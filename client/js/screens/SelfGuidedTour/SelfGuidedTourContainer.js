@@ -6,9 +6,9 @@ class SelfGuidedTourContainer extends Component {
     return (
       <Button
         onPress={() => {
-          this.props.navigation.navigate('StoryTrail');
+          this.props.navigation.navigate('SingleSelfGuided');
         }}
-        title="Audio Trails"
+        title="SingleSelfGuided"
       />
     );
   }
