@@ -159,6 +159,7 @@ class StoryTrail extends Component {
               underlayColor={'rgba(0,0,0,0.32)'}
               onPress={() => {
                 const currentTime = this.state.currentTime;
+                // when the played time is less than 10 seconds, move time backwards to 0
                 const newTime = currentTime > 10 ? currentTime - 10 : 0;
                 this.state.audioPlayer.seek(newTime);
               }}>
