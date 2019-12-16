@@ -41,6 +41,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: THEME.colors.grey,
   },
+
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+
   wrapperController: {
     marginTop: THEME.spacing.default(2.25),
   },
