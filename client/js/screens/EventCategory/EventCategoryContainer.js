@@ -14,10 +14,6 @@ class EventCategoryContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    this.setState({headerHeight: this.props.collapsible.paddingHeight});
-  }
-
   static navigationOptions = ({navigation}) => {
     const title = navigation.getParam('title');
     const themeColor = navigation.getParam('themeColor') || 'light';

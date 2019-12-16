@@ -17,9 +17,12 @@ const EventCategory = ({
   onSwitchTheme,
   headerHeight,
 }) => {
+  const _headerHeight = collapsible.paddingHeight
+    ? collapsible.paddingHeight
+    : headerHeight;
   const [isAnimated, setAnimated] = useState(false);
   const [headerAnimation, setHeaderAnimation] = useState(
-    new Animated.ValueXY({x: 0, y: -headerHeight}),
+    new Animated.ValueXY({x: 0, y: -_headerHeight}),
   );
   const [showActionSheet, toggleActionSheet] = useState(false);
   const [sortOption, setSortOption] = useState(null);
@@ -30,11 +33,11 @@ const EventCategory = ({
 
   const onScroll = e => {
     const offset = e.nativeEvent.contentOffset;
-    if (offset.y > headerHeight && !isAnimated) {
+    if (offset.y > _headerHeight && !isAnimated) {
       setAnimated(true);
       animateHeader();
       onSwitchTheme(isAnimated);
-    } else if (offset.y <= headerHeight && isAnimated) {
+    } else if (offset.y <= _headerHeight && isAnimated) {
       setAnimated(false);
       animateHeader();
       onSwitchTheme(isAnimated);
@@ -44,12 +47,12 @@ const EventCategory = ({
   const animateHeader = () => {
     Animated.timing(headerAnimation, {
       duration: 500,
-      toValue: isAnimated ? {x: 0, y: -headerHeight} : {x: 1, y: 0},
+      toValue: isAnimated ? {x: 0, y: -_headerHeight} : {x: 1, y: 0},
     }).start();
   };
   return (
     <>
-      {!paddingHeight && <View style={{height: headerHeight}} />}
+      {!paddingHeight && <View style={{height: _headerHeight}} />}
 
       <AnimatedFlatList
         scrollEventThrottle={32}
@@ -85,7 +88,7 @@ const EventCategory = ({
           ...styles.dynamicHeader,
           opacity: headerAnimation.x,
           top: headerAnimation.y,
-          height: paddingHeight || headerHeight,
+          height: paddingHeight || _headerHeight,
         }}>
         <StatusBar barStyle={isAnimated ? 'light-content' : 'dark-content'} />
         <VibrancyView blurType="dark" blurAmount={2} style={styles.header} />
