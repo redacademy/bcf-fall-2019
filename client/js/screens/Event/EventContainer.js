@@ -9,6 +9,9 @@ import {Text} from 'react-native';
 class EventContainer extends Component {
   render() {
     const {navigation} = this.props;
+    const eventInfo = navigation.getParam('eventInfo');
+    console.log('passed', navigation);
+
     return (
       <Query
         query={QUERY_GET_EVENT}

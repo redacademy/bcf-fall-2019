@@ -11,11 +11,14 @@ import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const CardEventSmall = ({eventInfo, index}) => {
+const CardEventSmall = ({eventInfo, index, navigation}) => {
   const {category, title, image, price, reviews} = eventInfo;
 
   return (
     <TouchableOpacity
+      onPress={e => {
+        navigation.push('Event', {eventInfo: {...eventInfo}});
+      }}
       style={
         index % 2 === 0
           ? {...styles.wrapper, ...styles.leftItem}
@@ -54,4 +57,5 @@ export default CardEventSmall;
 CardEventSmall.propTypes = {
   eventInfo: PropTypes.object.isRequired,
   index: PropTypes.number,
+  navigation: PropTypes.object,
 };

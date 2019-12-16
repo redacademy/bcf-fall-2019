@@ -178,6 +178,7 @@ class Home extends Component {
                           key={weeklyEvent.id}
                           index={index}
                           eventInfo={weeklyEvent}
+                          navigation={navigation}
                         />
                       );
                     })}
