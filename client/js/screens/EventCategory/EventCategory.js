@@ -10,10 +10,16 @@ import PropTypes from 'prop-types';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
+const EventCategory = ({
+  eventInfo,
+  collapsible,
+  navigation,
+  onSwitchTheme,
+  headerHeight,
+}) => {
   const [isAnimated, setAnimated] = useState(false);
   const [headerAnimation, setHeaderAnimation] = useState(
-    new Animated.ValueXY({x: 0, y: -88}),
+    new Animated.ValueXY({x: 0, y: -headerHeight}),
   );
   const [showActionSheet, toggleActionSheet] = useState(false);
   const [sortOption, setSortOption] = useState(null);
@@ -24,11 +30,11 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
 
   const onScroll = e => {
     const offset = e.nativeEvent.contentOffset;
-    if (offset.y > 88 && !isAnimated) {
+    if (offset.y > headerHeight && !isAnimated) {
       setAnimated(true);
       animateHeader();
       onSwitchTheme(isAnimated);
-    } else if (offset.y <= 88 && isAnimated) {
+    } else if (offset.y <= headerHeight && isAnimated) {
       setAnimated(false);
       animateHeader();
       onSwitchTheme(isAnimated);
@@ -38,13 +44,12 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
   const animateHeader = () => {
     Animated.timing(headerAnimation, {
       duration: 500,
-      toValue: isAnimated ? {x: 0, y: -88} : {x: 1, y: 0},
+      toValue: isAnimated ? {x: 0, y: -headerHeight} : {x: 1, y: 0},
     }).start();
   };
-  //   console.log(eventInfo);
   return (
     <>
-      {!paddingHeight && <View style={{height: 88}} />}
+      {!paddingHeight && <View style={{height: headerHeight}} />}
 
       <AnimatedFlatList
         scrollEventThrottle={32}
@@ -80,7 +85,7 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
           ...styles.dynamicHeader,
           opacity: headerAnimation.x,
           top: headerAnimation.y,
-          height: paddingHeight || 88,
+          height: paddingHeight || headerHeight,
         }}>
         <StatusBar barStyle={isAnimated ? 'light-content' : 'dark-content'} />
         <VibrancyView blurType="dark" blurAmount={2} style={styles.header} />
@@ -108,4 +113,5 @@ EventCategory.propTypes = {
   collapsible: PropTypes.object,
   navigation: PropTypes.object.isRequired,
   onSwitchTheme: PropTypes.func,
+  headerHeight: PropTypes.number,
 };

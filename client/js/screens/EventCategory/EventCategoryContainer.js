@@ -6,6 +6,18 @@ import {THEME} from '../../config';
 import PropTypes from 'prop-types';
 
 class EventCategoryContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      headerHeight: 88,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({headerHeight: this.props.collapsible.paddingHeight});
+  }
+
   static navigationOptions = ({navigation}) => {
     const title = navigation.getParam('title');
     const themeColor = navigation.getParam('themeColor') || 'light';
@@ -75,6 +87,7 @@ class EventCategoryContainer extends Component {
       <EventCategory
         eventInfo={navigation.getParam('eventInfo')}
         collapsible={collapsible}
+        headerHeight={this.state.headerHeight}
         navigation={navigation}
         onSwitchTheme={this.onSwitchTheme}
       />

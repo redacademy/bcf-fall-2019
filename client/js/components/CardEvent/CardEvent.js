@@ -24,6 +24,8 @@ const CardEvent = ({data}) => {
     reviews,
   } = data;
 
+  const hour = 12;
+
   return (
     <TouchableOpacity style={styles.container}>
       <ImageBackground source={{uri: image}} style={styles.bgImg}>
@@ -45,10 +47,12 @@ const CardEvent = ({data}) => {
                   <Text style={styles.caption}>Date</Text>
                   <Text style={styles.detailContent}>
                     {`${moment(date).format('MMM D, Y')} ${
-                      parseInt(startAt) > 12 ? 12 - 12 : parseInt(startAt)
+                      parseInt(startAt) > 12
+                        ? parseInt(startAt) - hour
+                        : parseInt(startAt)
                     }-${
                       parseInt(endAt) > 12
-                        ? parseInt(endAt) - 12 + 'PM'
+                        ? parseInt(endAt) - hour + 'PM'
                         : parseInt(endAt) + 'AM'
                     }`}
                   </Text>
