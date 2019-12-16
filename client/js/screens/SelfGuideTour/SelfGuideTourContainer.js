@@ -67,7 +67,26 @@ class SelfGuideTourContainer extends Component {
   getUser = async () => {
     const user = JSON.parse(await getViewer());
     this.setState({user});
-    console.log('getUser', user);
+  };
+
+  sortTours = (tours, sortType) => {
+    if (sortType === 'short') {
+      return tours.sort((a, b) => a.duration > b.duration);
+    } else if (sortType === 'long') {
+      return tours.sort((a, b) => a.duration < b.duration);
+    } else if (sortType === 'easy') {
+      let temp = tours.filter(each => each.difficulty === 'EASY');
+      tours.map(each => each.difficulty === 'MODERATE' && temp.push(each));
+      tours.map(each => each.difficulty === 'DIFFICULT' && temp.push(each));
+      return temp;
+    } else if (sortType === 'difficult') {
+      let temp = tours.filter(each => each.difficulty === 'DIFFICULT');
+      tours.map(each => each.difficulty === 'MODERATE' && temp.push(each));
+      tours.map(each => each.difficulty === 'EASY' && temp.push(each));
+      return temp;
+    } else {
+      return tours;
+    }
   };
 
   filterTours = (tours, location) => {
@@ -103,7 +122,7 @@ class SelfGuideTourContainer extends Component {
     ) {
       filteredTours = filteredTours;
     } else {
-      filteredTours = 'empty';
+      filteredTours = tours;
     }
 
     return filteredTours;
@@ -125,11 +144,10 @@ class SelfGuideTourContainer extends Component {
                     if (loading) return <Loader />;
                     if (error) return <Text>{error.message}</Text>;
                     if (data) {
-                      const tours =
-                        this.filterTours(data.selfGuidedTours, userLocation) !==
-                        'empty'
-                          ? this.filterTours(data.selfGuidedTours, userLocation)
-                          : data.selfGuidedTours;
+                      const tours = this.sortTours(
+                        this.filterTours(data.selfGuidedTours, userLocation),
+                        this.state.sortType,
+                      );
 
                       return (
                         <SelfGuideTour

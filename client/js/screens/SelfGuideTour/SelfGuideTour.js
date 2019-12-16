@@ -49,7 +49,6 @@ const SelfGuideTour = ({
           <TouchableOpacity
             onPress={() => {
               toggleNeedAudio();
-              console.log(needAudio);
             }}
             style={needAudio ? styles.audionButtonOn : styles.button}>
             <Text style={needAudio ? styles.buttonTextON : styles.buttonText}>
