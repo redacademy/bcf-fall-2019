@@ -11,7 +11,6 @@ import Reviews from '../../components/Reviews';
 const Event = ({navigation, eventInfo}) => {
   return (
     <>
-      {console.log(eventInfo)}
       <ScrollView>
         <SafeAreaView>
           <View style={styles.eventImg}>

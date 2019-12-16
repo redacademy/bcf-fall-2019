@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
   },
   eventScreenInfo: {
     paddingHorizontal: 24,
-    paddingVertical: 13,
+    paddingTop: 16,
+    paddingBottom: 56,
   },
   eventDetails: {
     flexDirection: 'row',
