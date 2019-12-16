@@ -27,7 +27,11 @@ const EventCategory = ({
   const [showActionSheet, toggleActionSheet] = useState(false);
   const [sortOption, setSortOption] = useState(null);
   const [isRating, setRating] = useState(false);
-  const [isPetFriendly, setPetFriendly] = useState(false);
+  const [isDifficulty, setDifficulty] = useState([
+    'EASY',
+    'MODERATE',
+    'DIFFICULT',
+  ]);
 
   const {paddingHeight, animatedY} = collapsible;
 
@@ -50,6 +54,7 @@ const EventCategory = ({
       toValue: isAnimated ? {x: 0, y: -_headerHeight} : {x: 1, y: 0},
     }).start();
   };
+
   return (
     <>
       {!paddingHeight && <View style={{height: _headerHeight}} />}
@@ -101,8 +106,8 @@ const EventCategory = ({
           setSortOption={setSortOption}
           isRating={isRating}
           setRating={setRating}
-          isPetFriendly={isPetFriendly}
-          setPetFriendly={setPetFriendly}
+          isDifficulty={isDifficulty}
+          setDifficulty={setDifficulty}
         />
       )}
     </>

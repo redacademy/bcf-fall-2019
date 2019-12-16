@@ -11,8 +11,8 @@ const SortActionSheet = ({
   setSortOption,
   isRating,
   setRating,
-  isPetFriendly,
-  setPetFriendly,
+  isDifficulty,
+  setDifficulty,
 }) => {
   return (
     <ModalOverlay
@@ -24,7 +24,9 @@ const SortActionSheet = ({
         <View style={styles.header}>
           <TouchableOpacity
             onPress={e => {
-              setSortOption(null), setRating(false), setPetFriendly(false);
+              setSortOption(null),
+                setRating(false),
+                setDifficulty(['EASY', 'MODERATE', 'DIFFICULT']);
             }}>
             <Text style={styles.actionBtn}>Reset</Text>
           </TouchableOpacity>
@@ -148,6 +150,8 @@ const SortActionSheet = ({
               style={{...styles.option, ...styles.firstOption}}
             />
 
+            <Text style={styles.label}>Difficulty:</Text>
+
             <CheckBox
               checkedImage={
                 <Image
@@ -160,10 +164,71 @@ const SortActionSheet = ({
                 />
               }
               onClick={e => {
-                setPetFriendly(!isPetFriendly);
+                if (isDifficulty.some(option => option === 'EASY')) {
+                  const newValue = isDifficulty.filter(
+                    option => option !== 'EASY',
+                  );
+                  setDifficulty(newValue);
+                } else {
+                  setDifficulty([...isDifficulty, 'EASY']);
+                }
               }}
-              isChecked={isPetFriendly}
-              rightText="Pet friendly"
+              isChecked={isDifficulty.some(option => option === 'EASY')}
+              rightText="Easy"
+              rightTextStyle={styles.rightText}
+              style={styles.option}
+            />
+
+            <CheckBox
+              checkedImage={
+                <Image
+                  source={require('../../assets/images/icCheckboxSelected.png')}
+                />
+              }
+              unCheckedImage={
+                <Image
+                  source={require('../../assets/images/icCheckboxDefault.png')}
+                />
+              }
+              onClick={e => {
+                if (isDifficulty.some(option => option === 'MODERATE')) {
+                  const newValue = isDifficulty.filter(
+                    option => option !== 'MODERATE',
+                  );
+                  setDifficulty(newValue);
+                } else {
+                  setDifficulty([...isDifficulty, 'MODERATE']);
+                }
+              }}
+              isChecked={isDifficulty.some(option => option === 'MODERATE')}
+              rightText="Moderate"
+              rightTextStyle={styles.rightText}
+              style={styles.option}
+            />
+
+            <CheckBox
+              checkedImage={
+                <Image
+                  source={require('../../assets/images/icCheckboxSelected.png')}
+                />
+              }
+              unCheckedImage={
+                <Image
+                  source={require('../../assets/images/icCheckboxDefault.png')}
+                />
+              }
+              onClick={e => {
+                if (isDifficulty.some(option => option === 'DIFFICULT')) {
+                  const newValue = isDifficulty.filter(
+                    option => option !== 'DIFFICULT',
+                  );
+                  setDifficulty(newValue);
+                } else {
+                  setDifficulty([...isDifficulty, 'DIFFICULT']);
+                }
+              }}
+              isChecked={isDifficulty.some(option => option === 'DIFFICULT')}
+              rightText="Difficult"
               rightTextStyle={styles.rightText}
             />
           </View>
@@ -181,6 +246,6 @@ SortActionSheet.propTypes = {
   setSortOption: PropTypes.func,
   isRating: PropTypes.bool,
   setRating: PropTypes.func,
-  isPetFriendly: PropTypes.bool,
-  setPetFriendly: PropTypes.func,
+  isDifficulty: PropTypes.array,
+  setDifficulty: PropTypes.func,
 };
