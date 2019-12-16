@@ -20,12 +20,11 @@ const SortActionSheet = ({
       onPress={e => {
         toggleActionSheet(false);
       }}>
-      <View style={styles.actionSheetWrapper}>
+      <TouchableOpacity activeOpacity={1} style={styles.actionSheetWrapper}>
         <View style={styles.header}>
           <TouchableOpacity
             onPress={e => {
               setSortOption(null), setRating(false), setPetFriendly(false);
-              toggleActionSheet(false);
             }}>
             <Text style={styles.actionBtn}>Reset</Text>
           </TouchableOpacity>
@@ -169,7 +168,7 @@ const SortActionSheet = ({
             />
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </ModalOverlay>
   );
 };

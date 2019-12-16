@@ -2,13 +2,6 @@ import {StyleSheet} from 'react-native';
 import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
-  // container: {
-  //   position: 'absolute',
-  //   width: '100%',
-  //   height: '100%',
-  //   zIndex: 999,
-  //   backgroundColor: THEME.colors.grey,
-  // },
   actionSheetWrapper: {
     position: 'absolute',
     bottom: 0,
