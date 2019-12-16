@@ -14,6 +14,18 @@ import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import PropTypes from 'prop-types';
 
 class HomeContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      headerHeight: 88,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({headerHeight: this.props.collapsible.paddingHeight});
+  }
+
   static navigationOptions = ({navigation, navigationOptions}) => {
     return {
       headerTransparent: true,
@@ -60,6 +72,7 @@ class HomeContainer extends Component {
           popular: filteredPopularEvents,
         }}
         collapsible={collapsible}
+        headerHeight={this.state.headerHeight}
       />
     );
   }

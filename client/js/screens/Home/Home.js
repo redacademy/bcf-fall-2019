@@ -30,7 +30,7 @@ class Home extends Component {
       showPicker: false,
       citySelected: null,
       isAnimated: false,
-      headerAnimation: new Animated.ValueXY({x: 0, y: -88}),
+      headerAnimation: new Animated.ValueXY({x: 0, y: -props.headerHeight}),
     };
   }
 
@@ -76,7 +76,9 @@ class Home extends Component {
   animateHeader = () => {
     Animated.timing(this.state.headerAnimation, {
       duration: 500,
-      toValue: this.state.isAnimated ? {x: 0, y: -88} : {x: 1, y: 0},
+      toValue: this.state.isAnimated
+        ? {x: 0, y: -this.props.headerHeight}
+        : {x: 1, y: 0},
     }).start();
   };
 
@@ -266,4 +268,5 @@ Home.propTypes = {
   userInfo: PropTypes.object,
   eventInfo: PropTypes.object,
   collapsible: PropTypes.object,
+  headerHeight: PropTypes.number,
 };
