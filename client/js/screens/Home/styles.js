@@ -103,6 +103,13 @@ const styles = StyleSheet.create({
     ...THEME.typography.size.default,
     color: THEME.colors.grey,
   },
+  hiddenHeaderWrapper: {
+    width: '100%',
+  },
+  hiddenHeader: {
+    width: '100%',
+    height: '100%',
+  },
 });
 
 export default styles;

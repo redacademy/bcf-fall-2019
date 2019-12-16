@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ScrollView as NavScrollView} from 'react-navigation';
 import {
+  Animated,
   Image,
   ImageBackground,
   Text,
@@ -9,6 +10,7 @@ import {
   Button,
   View,
 } from 'react-native';
+import {VibrancyView} from '@react-native-community/blur';
 import CategoryList from '../../components/CategoryList';
 import CityPicker from '../../components/CityPicker';
 import CardEventSmall from '../../components/CardEventSmall';
@@ -19,6 +21,7 @@ import {removeViewer} from '../../config/models';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
+const AnimatedNavScrollView = Animated.createAnimatedComponent(NavScrollView);
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +29,8 @@ class Home extends Component {
     this.state = {
       showPicker: false,
       citySelected: null,
+      isAnimated: false,
+      headerAnimation: new Animated.ValueXY({x: 0, y: -props.headerHeight}),
     };
   }
 
@@ -53,8 +58,33 @@ class Home extends Component {
     this.setState({showPicker: false});
   };
 
+  onScroll = e => {
+    const offset = e.nativeEvent.contentOffset;
+
+    if (offset.y > this.props.headerHeight && !this.state.isAnimated) {
+      this.setState({isAnimated: true});
+      this.animateHeader();
+    } else if (offset.y <= this.props.headerHeight && this.state.isAnimated) {
+      this.setState({
+        isAnimated: false,
+      });
+
+      this.animateHeader();
+    }
+  };
+
+  animateHeader = () => {
+    Animated.timing(this.state.headerAnimation, {
+      duration: 500,
+      toValue: this.state.isAnimated
+        ? {x: 0, y: -this.props.headerHeight}
+        : {x: 1, y: 0},
+    }).start();
+  };
+
   render() {
-    const {navigation, detectOffsetTop, eventInfo} = this.props;
+    const {navigation, collapsible, eventInfo} = this.props;
+    const {paddingHeight, animatedY} = collapsible;
 
     const cityImage = CITY_LIST.filter(
       city => city.name === this.state.citySelected,
@@ -62,7 +92,14 @@ class Home extends Component {
 
     return (
       <>
-        <NavScrollView>
+        <AnimatedNavScrollView
+          scrollEventThrottle={32}
+          onScroll={Animated.event([{nativeEvent: {contentOffset: {y: 0}}}], {
+            useNativeDriver: true,
+            listener: this.onScroll,
+          })}
+          _mustAddThis={animatedY}
+          scrollIndicatorInsets={{top: paddingHeight}}>
           <ImageBackground
             source={cityImage && cityImage.image}
             style={styles.imgCity}>
@@ -192,7 +229,23 @@ class Home extends Component {
               title="Log out"
             />
           </View>
-        </NavScrollView>
+        </AnimatedNavScrollView>
+
+        <Animated.View
+          style={{
+            position: 'absolute',
+            opacity: this.state.headerAnimation.x,
+            top: this.state.headerAnimation.y,
+            height: paddingHeight,
+            ...styles.hiddenHeaderWrapper,
+          }}>
+          <VibrancyView
+            blurType="dark"
+            blurAmount={2}
+            style={styles.hiddenHeader}
+          />
+        </Animated.View>
+
         {this.state.showPicker && (
           <CityPicker
             hidePicker={this.hidePicker}
@@ -211,4 +264,6 @@ Home.propTypes = {
   navigation: PropTypes.object.isRequired,
   userInfo: PropTypes.object,
   eventInfo: PropTypes.object,
+  collapsible: PropTypes.object,
+  headerHeight: PropTypes.number,
 };

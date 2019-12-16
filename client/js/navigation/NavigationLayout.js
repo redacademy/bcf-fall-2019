@@ -10,6 +10,7 @@ import SavedScreen from '../screens/Saved';
 import ProfileScreen from '../screens/Profile';
 
 import SelfGuidedTour from '../screens/SelfGuidedTour';
+import StoryTrail from '../screens/StoryTrail';
 
 import About from '../screens/About';
 import Contact from '../screens/Contact';
@@ -26,6 +27,7 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     SelfGuidedTour,
+    StoryTrail,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
