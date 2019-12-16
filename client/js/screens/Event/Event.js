@@ -11,8 +11,8 @@ import Reviews from '../../components/Reviews';
 const Event = ({navigation, eventInfo}) => {
   return (
     <>
-      <ScrollView>
-        <SafeAreaView>
+      <SafeAreaView>
+        <ScrollView>
           <View style={styles.eventImg}>
             <Image style={styles.eventImg} source={{uri: eventInfo.image}} />
 
@@ -168,8 +168,8 @@ const Event = ({navigation, eventInfo}) => {
             </View>
             <ButtonDefault title="Show More Reviews" />
           </View>
-        </SafeAreaView>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
       <View style={styles.container}>
         <View style={styles.RectangleShapeView}>
           <View style={styles.eventBooking}>
