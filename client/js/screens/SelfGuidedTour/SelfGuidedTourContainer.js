@@ -1,9 +1,16 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
+import {Button} from 'react-native';
 
 class SelfGuidedTourContainer extends Component {
   render() {
-    return <Text>SelfGuidedTourContainer</Text>;
+    return (
+      <Button
+        onPress={() => {
+          this.props.navigation.navigate('StoryTrail');
+        }}
+        title="Audio Trails"
+      />
+    );
   }
 }
 
