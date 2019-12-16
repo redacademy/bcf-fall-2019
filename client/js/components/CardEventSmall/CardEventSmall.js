@@ -16,7 +16,7 @@ const CardEventSmall = ({eventInfo, index, navigation}) => {
 
   return (
     <TouchableOpacity
-      onPress={e => {
+      onPress={() => {
         navigation.push('Event', {eventInfo: {...eventInfo}});
       }}
       style={
