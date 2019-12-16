@@ -4,7 +4,7 @@ import {THEME} from '../config';
 
 export const sharedNavigationOptions = navigation => {
   return {
-    headerBackTitle: null,
+    headerBackTitle: 'back',
     headerLeft: null,
     visible: true,
     headerStyle: {
