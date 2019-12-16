@@ -16,7 +16,6 @@ const SortActionSheet = ({
 }) => {
   return (
     <ModalOverlay
-      style={styles.container}
       onPress={e => {
         toggleActionSheet(false);
       }}>

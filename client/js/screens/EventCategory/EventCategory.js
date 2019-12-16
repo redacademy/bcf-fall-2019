@@ -1,8 +1,18 @@
 import React, {useState} from 'react';
-import {Text, Animated, StatusBar, FlatList, View} from 'react-native';
+import {
+  Text,
+  Animated,
+  StatusBar,
+  FlatList,
+  View,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
+import moment from 'moment';
 import CardEvent from '../../components/CardEvent';
 import SortActionSheet from '../../components/SortActionSheet';
+import DatePicker from '../../components/DatePicker';
 import ButtonFilter from '../../components/ButtonFilter';
 import styles from './styles';
 import {THEME} from '../../config';
@@ -33,6 +43,9 @@ const EventCategory = ({
     'DIFFICULT',
   ]);
   let newEventInfo;
+  const [showDatePicker, toggleDatePicker] = useState(false);
+  const [isDateFiltered, setDateFiltered] = useState(false);
+  const [isFilterDate, setFilterDate] = useState(new Date());
 
   const {paddingHeight, animatedY} = collapsible;
 
@@ -80,8 +93,17 @@ const EventCategory = ({
     newEventInfo = eventInfo.filter(data => data.reviews.length > 0);
   }
   if (isDifficulty.length < 3) {
-    newEventInfo = eventInfo.filter(data =>
-      isDifficulty.some(option => option === data.difficulty),
+    newEventInfo = newEventInfo ? newEventInfo : eventInfo;
+    newEventInfo = newEventInfo.filter(event =>
+      isDifficulty.some(option => option === event.difficulty),
+    );
+  }
+  if (isDateFiltered) {
+    newEventInfo = newEventInfo ? newEventInfo : eventInfo;
+    newEventInfo = newEventInfo.filter(
+      event =>
+        moment(event.date).format('YYYYMMDD') ===
+        moment(isFilterDate).format('YYYYMMDD'),
     );
   }
 
@@ -105,7 +127,29 @@ const EventCategory = ({
           <View>
             <View style={styles.filterWrapper}>
               <ButtonFilter title="Sort" onPress={toggleActionSheet} />
-              <ButtonFilter title="Date" />
+
+              {!isDateFiltered ? (
+                <ButtonFilter title="Date" onPress={toggleDatePicker} />
+              ) : (
+                <TouchableOpacity
+                  style={styles.buttonFilter}
+                  onPress={e => {
+                    toggleDatePicker(true);
+                  }}>
+                  <Text style={styles.buttonFilterText}>
+                    {moment(isFilterDate).format('MMM D, YYYY')}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={e => {
+                      setFilterDate(new Date());
+                      setDateFiltered(false);
+                    }}>
+                    <Image
+                      source={require('../../assets/images/icFilterRemoveWhite.png')}
+                    />
+                  </TouchableOpacity>
+                </TouchableOpacity>
+              )}
             </View>
 
             <Text style={styles.eventsNumber}>
@@ -140,6 +184,15 @@ const EventCategory = ({
           setRating={setRating}
           isDifficulty={isDifficulty}
           setDifficulty={setDifficulty}
+        />
+      )}
+
+      {showDatePicker && (
+        <DatePicker
+          onPress={toggleDatePicker}
+          value={isFilterDate}
+          setDate={setFilterDate}
+          setDateFiltered={setDateFiltered}
         />
       )}
     </>
