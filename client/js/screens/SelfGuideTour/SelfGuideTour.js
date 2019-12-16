@@ -115,9 +115,6 @@ const SelfGuideTour = ({
             />
           </TouchableOpacity>
         </View>
-
-        {/*(data = data && pet && data.filter(each => each.petFriendly !== null))*/}
-        {/*(data = data && reviews && data.filter(each => each.reviews !== null))*/}
         {selfguidetours &&
           selfguidetours.map(each => {
             return (
@@ -128,30 +125,6 @@ const SelfGuideTour = ({
               />
             );
           })}
-
-        {/*selfguidetours &&
-          needAudio &&
-          selfguidetours.map(each => {
-            return (
-              <SelfGuidedItem
-                key={each.id}
-                selfGuidedItem={each}
-                navigation={navigation}
-              />
-            );
-          })}
-        {selfguidetours &&
-          !needAudio &&
-          selfguidetours.map(each => {
-            if (each.audio !== null)
-              return (
-                <SelfGuidedItem
-                  key={each.id}
-                  selfGuidedItem={each}
-                  navigation={navigation}
-                />
-              );
-          })*/}
       </ScrollView>
 
       <View style={sortDisplayOn ? styles.sortOn : styles.sortOff}>

@@ -12,8 +12,7 @@ class SelfGuideTourContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: null,
-      userLocation: null,
+      user: null,
       audio: false,
       // values for sortType are easy, difficult, short or long
       sortType: null,
@@ -27,6 +26,11 @@ class SelfGuideTourContainer extends Component {
   static navigationOptions = {
     title: 'SelfGuideTour',
   };
+
+  componentDidMount = () => {
+    this.getUser();
+  };
+
   resetValues = () => {
     this.setState({
       sortType: null,
@@ -35,113 +39,125 @@ class SelfGuideTourContainer extends Component {
       petFriendly: false,
     });
   };
+
   toggleSortDisplay = () => {
     this.setState({sortDisplayOn: !this.state.sortDisplayOn});
   };
+
   toggleNeedAudio = () => {
     this.setState({audio: !this.state.audio});
   };
+
   toggleNear = () => {
     this.setState({near: !this.state.near});
   };
+
   toggleReviews = () => {
     this.setState({reviews: !this.state.reviews});
   };
+
   togglePet = () => {
     this.setState({petFriendly: !this.state.petFriendly});
   };
+
   setSortType = value => {
     this.setState({sortType: value});
   };
 
-  viewer = getViewer();
-  //TODO this is not working inside the query return, don't know why?!?!?!
-  getUserID = async () => {
-    const user = await JSON.parse(this.viewer._55);
-    return user;
+  getUser = async () => {
+    const user = JSON.parse(await getViewer());
+    this.setState({user});
+    console.log('getUser', user);
   };
 
-  filterTours = tours => {
+  filterTours = (tours, location) => {
     let filteredTours = [];
+
     if (this.state.petFriendly) {
       filteredTours = tours.filter(tour => tour.petFriendly);
     }
+
     if (this.state.audio && filteredTours.length < 1) {
       filteredTours = tours.filter(tour => tour.audio);
     } else if (this.state.audio) {
       filteredTours = filteredTours.filter(tour => tour.audio);
     }
+
     if (this.state.reviews && filteredTours.length < 1) {
       filteredTours = tours.filter(tour => tour.reviews);
     } else if (this.state.reviews) {
       filteredTours = filteredTours.filter(tour => tour.reviews);
     }
+
     if (this.state.near && filteredTours.length < 1) {
-      filteredTours = tours.filter(tour => tour.location === this.userLocation);
+      filteredTours = tours.filter(tour => tour.location === location);
     } else if (this.state.near) {
-      filteredTours = filteredTours.filter(
-        tour => tour.location === this.userLocation,
-      );
+      filteredTours = filteredTours.filter(tour => tour.location === location);
     }
-    // console.log(this.state);
-    // console.log(filteredTours);
+
+    if (
+      this.state.petFriendly ||
+      this.state.audio ||
+      this.state.reviews ||
+      this.state.near
+    ) {
+      filteredTours = filteredTours;
+    } else {
+      filteredTours = 'empty';
+    }
+
     return filteredTours;
   };
 
   render() {
     const {navigation} = this.props;
-    this.getUserID();
     return (
-      <Query query={QUERY_USER} variables={{id: 'ck3ursbu95g0m0b091q9h3qt0'}}>
-        {({loading, error, data}) => {
-          if (loading) return <Loader />;
-          if (error) return <Text>{error.message}</Text>;
-          if (data) {
-            //TODO setState for variable for user location to get viewer location
-            //Try to get the id of the viewr to pass to query user, to get the user location
-            // to compare in the filter bellow of the next query
-            console.log('user', data);
-            console.log('calling getUserID:', this.getUserID());
-            console.log(this.getUserID());
-            return (
-              <Query query={QUERY_SELFGUIDED_TOUR}>
-                {({loading, error, data}) => {
-                  if (loading) return <Loader />;
-                  if (error) return <Text>{error.message}</Text>;
-                  if (data) {
-                    // console.log('data', data);
-                    // console.log('filter', this.filterTours(data.selfGuidedTours));
-                    const tours =
-                      this.filterTours(data.selfGuidedTours).length > 0
-                        ? this.filterTours(data.selfGuidedTours)
-                        : data.selfGuidedTours;
+      this.state.user && (
+        <Query query={QUERY_USER} variables={{id: this.state.user.id}}>
+          {({loading, error, data}) => {
+            if (loading) return <Loader />;
+            if (error) return <Text>{error.message}</Text>;
+            if (data) {
+              const userLocation = data.user.location;
+              return (
+                <Query query={QUERY_SELFGUIDED_TOUR}>
+                  {({loading, error, data}) => {
+                    if (loading) return <Loader />;
+                    if (error) return <Text>{error.message}</Text>;
+                    if (data) {
+                      const tours =
+                        this.filterTours(data.selfGuidedTours, userLocation) !==
+                        'empty'
+                          ? this.filterTours(data.selfGuidedTours, userLocation)
+                          : data.selfGuidedTours;
 
-                    return (
-                      <SelfGuideTour
-                        needAudio={this.state.audio}
-                        sortDisplayOn={this.state.sortDisplayOn}
-                        sortType={this.state.sortType}
-                        near={this.state.near}
-                        reviews={this.state.reviews}
-                        pet={this.state.petFriendly}
-                        toggleSortDisplay={this.toggleSortDisplay}
-                        toggleNeedAudio={this.toggleNeedAudio}
-                        toggleNear={this.toggleNear}
-                        togglePet={this.togglePet}
-                        toggleReviews={this.toggleReviews}
-                        setSortType={this.setSortType}
-                        navigation={navigation}
-                        selfguidetours={tours}
-                        resetValues={this.resetValues}
-                      />
-                    );
-                  }
-                }}
-              </Query>
-            );
-          }
-        }}
-      </Query>
+                      return (
+                        <SelfGuideTour
+                          needAudio={this.state.audio}
+                          sortDisplayOn={this.state.sortDisplayOn}
+                          sortType={this.state.sortType}
+                          near={this.state.near}
+                          reviews={this.state.reviews}
+                          pet={this.state.petFriendly}
+                          toggleSortDisplay={this.toggleSortDisplay}
+                          toggleNeedAudio={this.toggleNeedAudio}
+                          toggleNear={this.toggleNear}
+                          togglePet={this.togglePet}
+                          toggleReviews={this.toggleReviews}
+                          setSortType={this.setSortType}
+                          navigation={navigation}
+                          selfguidetours={tours}
+                          resetValues={this.resetValues}
+                        />
+                      );
+                    }
+                  }}
+                </Query>
+              );
+            }
+          }}
+        </Query>
+      )
     );
   }
 }
