@@ -32,6 +32,7 @@ const EventCategory = ({
     'MODERATE',
     'DIFFICULT',
   ]);
+  let newEventInfo;
 
   const {paddingHeight, animatedY} = collapsible;
 
@@ -54,6 +55,35 @@ const EventCategory = ({
       toValue: isAnimated ? {x: 0, y: -_headerHeight} : {x: 1, y: 0},
     }).start();
   };
+
+  if (sortOption === 'lowToHigh') {
+    eventInfo.sort((a, b) => a.price - b.price);
+  }
+  if (sortOption === 'highToLow') {
+    eventInfo.sort((a, b) => b.price - a.price);
+  }
+  if (sortOption === 'soonestToLatest') {
+    eventInfo.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateA - dateB;
+    });
+  }
+  if (sortOption === 'latestToSoonest') {
+    eventInfo.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB - dateA;
+    });
+  }
+  if (isRating) {
+    newEventInfo = eventInfo.filter(data => data.reviews.length > 0);
+  }
+  if (isDifficulty.length < 3) {
+    newEventInfo = eventInfo.filter(data =>
+      isDifficulty.some(option => option === data.difficulty),
+    );
+  }
 
   return (
     <>
@@ -78,10 +108,12 @@ const EventCategory = ({
               <ButtonFilter title="Date" />
             </View>
 
-            <Text style={styles.eventsNumber}>{eventInfo.length} Results</Text>
+            <Text style={styles.eventsNumber}>
+              {newEventInfo ? newEventInfo.length : eventInfo.length} Results
+            </Text>
           </View>
         )}
-        data={eventInfo}
+        data={newEventInfo ? newEventInfo : eventInfo}
         renderItem={({item}) => {
           return <CardEvent data={item} navigation={navigation} />;
         }}
