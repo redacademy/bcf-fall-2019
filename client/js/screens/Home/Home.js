@@ -30,7 +30,7 @@ class Home extends Component {
       showPicker: false,
       citySelected: null,
       isAnimated: false,
-      headerAnimation: new Animated.ValueXY({x: 0, y: -88}),
+      headerAnimation: new Animated.ValueXY({x: 0, y: -props.headerHeight}),
     };
   }
 
@@ -61,11 +61,14 @@ class Home extends Component {
   onScroll = e => {
     const offset = e.nativeEvent.contentOffset;
 
-    if (offset.y > 88 && !this.state.isAnimated) {
+    if (offset.y > this.props.headerHeight && !this.state.isAnimated) {
       this.setState({isAnimated: true});
       this.animateHeader();
-    } else if (offset.y <= 88 && this.state.isAnimated) {
-      this.setState({isAnimated: false});
+    } else if (offset.y <= this.props.headerHeight && this.state.isAnimated) {
+      this.setState({
+        isAnimated: false,
+      });
+
       this.animateHeader();
     }
   };
@@ -73,12 +76,10 @@ class Home extends Component {
   animateHeader = () => {
     Animated.timing(this.state.headerAnimation, {
       duration: 500,
-      toValue: {x: 1, y: 0},
-    }).start(animation => {
-      if (animation.finished && !this.state.isAnimated) {
-        this.setState({headerAnimation: new Animated.ValueXY({x: 0, y: -88})});
-      }
-    });
+      toValue: this.state.isAnimated
+        ? {x: 0, y: -this.props.headerHeight}
+        : {x: 1, y: 0},
+    }).start();
   };
 
   render() {
@@ -235,16 +236,13 @@ class Home extends Component {
             position: 'absolute',
             opacity: this.state.headerAnimation.x,
             top: this.state.headerAnimation.y,
-            width: '100%',
             height: paddingHeight,
+            ...styles.hiddenHeaderWrapper,
           }}>
           <VibrancyView
             blurType="dark"
             blurAmount={2}
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
+            style={styles.hiddenHeader}
           />
         </Animated.View>
 
@@ -267,4 +265,5 @@ Home.propTypes = {
   userInfo: PropTypes.object,
   eventInfo: PropTypes.object,
   collapsible: PropTypes.object,
+  headerHeight: PropTypes.number,
 };
