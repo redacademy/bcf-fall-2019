@@ -31,7 +31,9 @@ class StoryTrail extends Component {
 
   getMinutes = time => {
     if (time) {
-      let minutes = Math.floor(time / 60);
+      const totalMinutes = 60;
+      let minutes = Math.floor(time / totalMinutes);
+      // when the minute in time is less than 10, display with '0'
       minutes = minutes < 10 ? `0${minutes}` : minutes;
       return minutes;
     } else {
@@ -40,7 +42,9 @@ class StoryTrail extends Component {
   };
   getSeconds = time => {
     if (time) {
-      let seconds = Math.round(time % 60);
+      const totalSeconds = 60;
+      let seconds = Math.round(time % totalSeconds);
+      // when the second in time is less than 10, display with '0'
       seconds = seconds < 10 ? `0${seconds}` : seconds;
       return seconds;
     } else {
