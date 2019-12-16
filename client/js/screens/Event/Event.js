@@ -9,8 +9,6 @@ import MapView from 'react-native-maps';
 import Reviews from '../../components/Reviews';
 
 const Event = ({navigation, eventInfo}) => {
-  const {image, title, location, rating, host, reviews, price} = eventInfo;
-
   return (
     <>
       {console.log(eventInfo)}
