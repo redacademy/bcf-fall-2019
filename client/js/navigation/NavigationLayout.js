@@ -1,7 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
-import {createDrawerNavigator} from 'react-navigation-drawer';
 
 import HomeScreen from '../screens/Home';
 import SearchScreen from '../screens/Search';
@@ -20,9 +19,8 @@ import Faq from '../screens/Faq';
 import {Image} from 'react-native';
 
 import {sharedNavigationOptions} from './config';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-const {black, mediumGrey, white} = Colors;
+import {THEME} from '../config';
 
 const HomeStack = createStackNavigator(
   {
@@ -30,9 +28,13 @@ const HomeStack = createStackNavigator(
     SelfGuidedTour,
     SingleSelfGuided,
     StoryTrail,
+    About,
+    Contact,
+    Faq,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
+      ...sharedNavigationOptions(navigation),
       initialRouteName: 'Home',
     }),
   },
@@ -154,13 +156,13 @@ export default createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: black,
-      inactiveTintColor: mediumGrey,
+      activeTintColor: THEME.colors.black,
+      inactiveTintColor: THEME.colors.grey,
       labelStyle: {
         fontSize: 10,
       },
       style: {
-        backgroundColor: white,
+        backgroundColor: THEME.colors.white,
       },
     },
   },

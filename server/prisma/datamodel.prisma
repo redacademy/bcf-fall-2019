@@ -77,6 +77,7 @@ type SelfGuidedTour{
   petFriendly: Boolean! @default(value: false)
   description: String!
   audio: Audio  @relation(link: TABLE, onDelete: CASCADE)
+  reviews: [Review]  @relation(link: TABLE, onDelete: CASCADE)
 }
 
 

@@ -73,6 +73,33 @@ export const QUERY_FAQ = gql`
   }
 `;
 
+export const QUERY_SELFGUIDED_TOUR = gql`
+  {
+    selfGuidedTours {
+      id
+      title
+      location
+      image
+      duration
+      difficulty
+      distance
+      petFriendly
+      description
+      audio {
+        id
+        url
+        markers {
+          id
+          title
+          description
+          latitude
+          longitude
+          start
+        }
+      }
+    }
+  }
+`;
 export const QUERY_USER = gql`
   query getUser($id: ID!) {
     user(where: {id: $id}) {
