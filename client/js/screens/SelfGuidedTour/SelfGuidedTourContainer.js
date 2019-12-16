@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SelfGuideTour from './SelfGuideTour';
+import SelfGuidedTour from './SelfGuidedTour';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import {Query} from 'react-apollo';
@@ -8,7 +8,7 @@ import {QUERY_USER} from '../../apollo/queries';
 import Loader from '../../components/Loader';
 import {getViewer} from '../../config/models';
 
-class SelfGuideTourContainer extends Component {
+class SelfGuidedTourContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class SelfGuideTourContainer extends Component {
     };
   }
   static navigationOptions = {
-    title: 'SelfGuideTour',
+    title: 'SelfGuidedTour',
   };
 
   componentDidMount = () => {
@@ -150,7 +150,7 @@ class SelfGuideTourContainer extends Component {
                       );
 
                       return (
-                        <SelfGuideTour
+                        <SelfGuidedTour
                           needAudio={this.state.audio}
                           sortDisplayOn={this.state.sortDisplayOn}
                           sortType={this.state.sortType}
@@ -164,7 +164,7 @@ class SelfGuideTourContainer extends Component {
                           toggleReviews={this.toggleReviews}
                           setSortType={this.setSortType}
                           navigation={navigation}
-                          selfguidetours={tours}
+                          selfguidedtours={tours}
                           resetValues={this.resetValues}
                         />
                       );
@@ -180,8 +180,8 @@ class SelfGuideTourContainer extends Component {
   }
 }
 
-export default SelfGuideTourContainer;
+export default SelfGuidedTourContainer;
 
-SelfGuideTourContainer.propTypes = {
+SelfGuidedTourContainer.propTypes = {
   navigation: PropTypes.object.isRequired,
 };

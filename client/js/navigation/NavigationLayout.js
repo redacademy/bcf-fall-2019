@@ -9,7 +9,7 @@ import BookingScreen from '../screens/Booking';
 import SavedScreen from '../screens/Saved';
 import ProfileScreen from '../screens/Profile';
 
-import SelfGuidedTour from '../screens/SelfGuideTour';
+import SelfGuidedTour from '../screens/SelfGuidedTour';
 import StoryTrail from '../screens/StoryTrail';
 
 import About from '../screens/About';

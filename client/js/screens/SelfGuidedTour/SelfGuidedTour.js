@@ -13,9 +13,9 @@ import styles from './styles';
 import PropTypes from 'prop-types';
 import SelfGuidedItem from '../../components/SelfGuidedItem';
 
-const SelfGuideTour = ({
+const SelfGuidedTour = ({
   navigation,
-  selfguidetours,
+  selfguidedtours,
   sortDisplayOn,
   needAudio,
   sortType,
@@ -30,7 +30,7 @@ const SelfGuideTour = ({
   setSortType,
   resetValues,
 }) => {
-  let data = selfguidetours;
+  let data = selfguidedtours;
   return (
     <>
       <ScrollView>
@@ -114,8 +114,8 @@ const SelfGuideTour = ({
             />
           </TouchableOpacity>
         </View>
-        {selfguidetours &&
-          selfguidetours.map(each => {
+        {selfguidedtours &&
+          selfguidedtours.map(each => {
             return (
               <SelfGuidedItem
                 key={each.id}
@@ -274,8 +274,8 @@ const SelfGuideTour = ({
   );
 };
 
-export default SelfGuideTour;
+export default SelfGuidedTour;
 
-SelfGuideTour.propTypes = {
+SelfGuidedTour.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
