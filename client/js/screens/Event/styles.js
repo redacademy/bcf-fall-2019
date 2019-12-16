@@ -185,6 +185,55 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 50,
   },
+  inputFieldStyles: {
+    ...styles.eventTextInput,
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  eventInfoAddress: {
+    fontSize: 12,
+  },
+  difficultyFilter: {
+    ...styles.cols2,
+    ...styles.firstColumn,
+  },
+  filterSectionImages: {
+    ...styles.eventTextInput,
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  eventInfoDiffucultyTitle: {
+    fontSize: 12,
+  },
+  languageSection: {
+    ...styles.cols2,
+    ...styles.firstColumn,
+  },
+  languageInputField: {
+    ...styles.eventTextInput,
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  languageTitle: {
+    fontSize: 12,
+  },
+  hostSection: {
+    ...styles.cols2,
+    ...styles.firstColumn,
+  },
+  hostNameTitle: {
+    fontSize: 12,
+    paddingLeft: 6,
+  },
+  hostBioSection: {
+    ...styles.eventTextInput,
+    height: 76,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
 
 export default styles;
