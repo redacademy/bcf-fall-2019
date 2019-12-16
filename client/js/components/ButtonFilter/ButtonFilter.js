@@ -4,13 +4,13 @@ import styles from './styles';
 import {THEME} from '../../config';
 import PropTypes from 'prop-types';
 
-const ButtonFilter = ({title}) => {
+const ButtonFilter = ({title, onPress}) => {
   const [isActive, setActive] = useState(false);
 
   return (
     <TouchableHighlight
       onPress={() => {
-        console.log('pressed');
+        onPress(true);
       }}
       style={
         isActive
@@ -51,4 +51,5 @@ export default ButtonFilter;
 
 ButtonFilter.propTypes = {
   title: PropTypes.string,
+  onPress: PropTypes.func,
 };

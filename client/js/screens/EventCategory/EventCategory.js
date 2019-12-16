@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Text, Animated, StatusBar, FlatList, View} from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
 import CardEvent from '../../components/CardEvent';
+import SortActionSheet from '../../components/SortActionSheet';
 import ButtonFilter from '../../components/ButtonFilter';
 import styles from './styles';
 import {THEME} from '../../config';
@@ -14,6 +15,10 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
   const [headerAnimation, setHeaderAnimation] = useState(
     new Animated.ValueXY({x: 0, y: -88}),
   );
+  const [showActionSheet, toggleActionSheet] = useState(false);
+  const [sortOption, setSortOption] = useState(null);
+  const [isRating, setRating] = useState(false);
+  const [isPetFriendly, setPetFriendly] = useState(false);
 
   const {paddingHeight, animatedY} = collapsible;
 
@@ -56,7 +61,7 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
         ListHeaderComponent={() => (
           <View>
             <View style={styles.filterWrapper}>
-              <ButtonFilter title="Sort" />
+              <ButtonFilter title="Sort" onPress={toggleActionSheet} />
               <ButtonFilter title="Date" />
             </View>
 
@@ -80,6 +85,18 @@ const EventCategory = ({eventInfo, collapsible, navigation, onSwitchTheme}) => {
         <StatusBar barStyle={isAnimated ? 'light-content' : 'dark-content'} />
         <VibrancyView blurType="dark" blurAmount={2} style={styles.header} />
       </Animated.View>
+
+      {showActionSheet && (
+        <SortActionSheet
+          toggleActionSheet={toggleActionSheet}
+          sortOption={sortOption}
+          setSortOption={setSortOption}
+          isRating={isRating}
+          setRating={setRating}
+          isPetFriendly={isPetFriendly}
+          setPetFriendly={setPetFriendly}
+        />
+      )}
     </>
   );
 };
