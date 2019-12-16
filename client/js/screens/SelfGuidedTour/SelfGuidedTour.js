@@ -81,7 +81,6 @@ const SelfGuidedTour = ({
           <TouchableOpacity
             onPress={() => {
               togglePet();
-              // toggleFilter('pet');
             }}
             style={pet ? styles.audionButtonOn : styles.sortOff}>
             <Text style={styles.buttonTextON}>Pet</Text>
@@ -254,7 +253,6 @@ const SelfGuidedTour = ({
             <TouchableOpacity
               onPress={() => {
                 togglePet();
-                // toggleFilter('pet');
               }}
               style={styles.flexRow}>
               <Image

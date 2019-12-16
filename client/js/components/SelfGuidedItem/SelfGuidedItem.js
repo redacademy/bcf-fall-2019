@@ -21,10 +21,7 @@ const SelfGuidedItem = ({selfGuidedItem, navigation}) => (
     style={styles.container}>
     <ImageBackground
       source={{uri: selfGuidedItem.image}}
-      style={{
-        width: '100%',
-        height: '100%',
-      }}>
+      style={styles.backgroundImage}>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{selfGuidedItem.title}</Text>
         <Text style={styles.location}>{selfGuidedItem.location}</Text>

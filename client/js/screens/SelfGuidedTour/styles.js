@@ -4,7 +4,6 @@ import {THEME} from '../../config';
 const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
-    // justifyContent: 'space-between',
     flexWrap: 'wrap',
     width: '90%',
     marginLeft: 'auto',
