@@ -19,6 +19,7 @@ class SingleSelfGuidedContainer extends Component {
   };
 
   render() {
+    console.log(this.props.navigation.state);
     return (
       <Query query={QUERY_SELFGUIDED_TOUR}>
         {({loading, error, data}) => {
@@ -27,7 +28,7 @@ class SingleSelfGuidedContainer extends Component {
           if (data) {
             const singleTour = data.selfGuidedTours.filter(
               //TODO get the actual data using this.props.navigation.state.params.itemId
-              a => a.id === this.state.mockId,
+              a => a.id === this.props.navigation.state.params.itemId,
             );
             return (
               <SingleSelfGuided
