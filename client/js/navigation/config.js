@@ -1,24 +1,25 @@
 import React from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {Image, TouchableOpacity} from 'react-native';
-
-const {white} = Colors;
+import {Image, TouchableOpacity, StatusBar} from 'react-native';
+import {THEME} from '../config';
 
 export const sharedNavigationOptions = navigation => {
   return {
-    headerBackTitle: null,
+    headerBackTitle: 'back',
     headerLeft: null,
     visible: true,
     headerStyle: {
-      backgroundColor: '#013859',
+      backgroundColor: THEME.colors.astronautBlue,
     },
     headerTitleStyle: {
-      color: 'white',
+      color: THEME.colors.white,
     },
-    headerTintColor: white,
+    headerTintColor: THEME.colors.white,
+    headerBackground: () => {
+      return <StatusBar barStyle="light-content" />;
+    },
     headerRight: () => (
       <TouchableOpacity
-        style={{marginRight: 0}}
+        style={{marginRight: 12}}
         onPress={() => {
           navigation.toggleDrawer();
         }}>
