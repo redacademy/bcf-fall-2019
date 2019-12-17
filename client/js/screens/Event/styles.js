@@ -185,6 +185,68 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 50,
   },
+  inputFieldStyles: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '100%',
+    borderRadius: 4,
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  eventInfoAddress: {
+    fontSize: 12,
+  },
+  difficultyFilter: {
+    flex: 1,
+    marginRight: 16,
+  },
+  filterSectionImages: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '100%',
+    borderRadius: 4,
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  eventInfoDiffucultyTitle: {
+    fontSize: 12,
+  },
+  languageSection: {
+    flex: 1,
+    marginRight: 16,
+  },
+  languageInputField: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '100%',
+    borderRadius: 4,
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  languageTitle: {
+    fontSize: 12,
+  },
+  hostSection: {
+    flex: 1,
+    marginRight: 16,
+  },
+  hostNameTitle: {
+    fontSize: 12,
+    paddingLeft: 6,
+  },
+  hostBioSection: {
+    height: 36,
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '100%',
+    borderRadius: 4,
+    height: 76,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
 
 export default styles;

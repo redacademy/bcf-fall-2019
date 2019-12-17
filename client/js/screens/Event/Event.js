@@ -41,13 +41,7 @@ const Event = ({navigation, eventInfo}) => {
 
           <View style={styles.eventScreenInfo}>
             <Text style={styles.infoText}>Date / Time</Text>
-            <View
-              style={{
-                ...styles.eventTextInput,
-                height: 36,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
+            <View style={styles.inputFieldStyles}>
               <Image
                 style={styles.eventTextFields}
                 source={require('../../assets/images/icFilterDate.png')}
@@ -67,41 +61,31 @@ const Event = ({navigation, eventInfo}) => {
                 style={styles.eventTextFields}
                 source={require('../../assets/images/icFilterLocation.png')}
               />
-              <Text style={{fontSize: 12}}>{eventInfo.address}</Text>
+              <Text style={styles.eventInfoAddress}>{eventInfo.address}</Text>
             </View>
 
             <View style={styles.eventDetails}>
-              <View style={{...styles.cols2, ...styles.firstColumn}}>
+              <View style={styles.difficultyFilter}>
                 <Text style={styles.infoText}>Difficulty</Text>
-                <View
-                  style={{
-                    ...styles.eventTextInput,
-                    height: 36,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}>
+                <View style={styles.filterSectionImages}>
                   <Image
                     style={styles.eventTextFields}
                     source={require('../../assets/images/icFilterDifficulty.png')}
                   />
-                  <Text style={{fontSize: 12}}>{eventInfo.difficulty}</Text>
+                  <Text style={styles.eventInfoDiffucultyTitle}>
+                    {eventInfo.difficulty}
+                  </Text>
                 </View>
               </View>
 
-              <View style={{...styles.cols2, ...styles.firstColumn}}>
+              <View style={styles.languageSection}>
                 <Text style={styles.infoText}>Language</Text>
-                <View
-                  style={{
-                    ...styles.eventTextInput,
-                    height: 36,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}>
+                <View style={styles.languageInputField}>
                   <Image
                     style={styles.eventTextFields}
                     source={require('../../assets/images/icFilterLanguage.png')}
                   />
-                  <Text style={{fontSize: 12}}>{eventInfo.language}</Text>
+                  <Text style={styles.languageTitle}>{eventInfo.language}</Text>
                 </View>
               </View>
             </View>
@@ -129,7 +113,7 @@ const Event = ({navigation, eventInfo}) => {
 
             <Text style={styles.hostTitle}>Your Host</Text>
             <View style={styles.eventDetails}>
-              <View style={{...styles.cols2, ...styles.firstColumn}}>
+              <View style={styles.hostSection}>
                 <View style={styles.hostAvatar}>
                   <Image
                     source={{uri: eventInfo.host.image}}
@@ -141,19 +125,13 @@ const Event = ({navigation, eventInfo}) => {
               <View style={styles.hostInformation}>
                 <Text style={styles.infoText}>Name</Text>
                 <View style={styles.hostNameField}>
-                  <Text style={{fontSize: 12, paddingLeft: 6}}>
+                  <Text style={styles.hostNameTitle}>
                     {eventInfo.host.name}
                   </Text>
                 </View>
 
                 <Text style={styles.infoText}>Bio</Text>
-                <View
-                  style={{
-                    ...styles.eventTextInput,
-                    height: 76,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}>
+                <View style={styles.hostBioSection}>
                   <Text style={styles.hostBio}>{eventInfo.host.bio}</Text>
                 </View>
               </View>
