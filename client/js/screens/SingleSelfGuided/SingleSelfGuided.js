@@ -18,6 +18,7 @@ import ButtonDefault from '../../components/ButtonDefault';
 import styles from './styles';
 import SafeAreaView from 'react-native-safe-area-view';
 import MapView from 'react-native-maps';
+import {Marker} from 'react-native-maps';
 // import Reviews from '../../components/Reviews';
 
 const SingleSelfGuided = ({navigation, tour}) => {
@@ -128,12 +129,26 @@ const SingleSelfGuided = ({navigation, tour}) => {
             <View style={styles.eventMapContainer}>
               <MapView
                 style={styles.eventMap}
+                mapType="satellite"
                 region={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
+                  latitude: 50.922148,
+                  longitude: -119.643196,
                   latitudeDelta: 0.015,
                   longitudeDelta: 0.0121,
-                }}></MapView>
+                }}>
+                {tour.audio &&
+                  tour.audio.markers.map(each => (
+                    <Marker
+                      key={each.id}
+                      coordinate={{
+                        latitude: each.latitude,
+                        longitude: each.longitude,
+                      }}
+                      title={each.title}
+                      description={each.description}
+                    />
+                  ))}
+              </MapView>
 
               <Text style={styles.eventViewMap}>View Map</Text>
             </View>
