@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     ...THEME.padding.appScreen,
     minHeight: '100%',
   },
+  dataWrapper: {
+    paddingBottom: THEME.spacing.default(7),
+  },
   noDataWrapper: {
     paddingTop: THEME.spacing.default(3),
   },
