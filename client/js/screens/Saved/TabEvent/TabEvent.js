@@ -13,7 +13,9 @@ const TabEvent = ({navigation, savedIds, eventInfo}) => {
         <FlatList
           data={eventInfo}
           contentContainerStyle={styles.dataWrapper}
-          renderItem={({item}) => <CardEvent data={item} />}
+          renderItem={({item}) => (
+            <CardEvent navigation={navigation} data={item} />
+          )}
         />
       ) : (
         <View style={styles.noDataWrapper}>
