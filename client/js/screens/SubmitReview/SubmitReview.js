@@ -13,8 +13,8 @@ const SubmitReview = ({navigation, eventInfo}) => {
         <View>
           <Image
             style={styles.eventImg}
-            // source={require('../../assets/images/imgHomeCatFamily.png')}
-            source={{uri: eventInfo.image}}
+            source={require('../../assets/images/imgHomeCatFamily.png')}
+            // source={{uri: eventInfo.image}}
           />
 
           <View style={styles.overlay}>
