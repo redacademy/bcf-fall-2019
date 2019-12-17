@@ -85,3 +85,28 @@ export const getAllSaves = async () => {
     return false;
   }
 };
+
+export const addEventBooked = async (event, numTickets) => {
+  try {
+    return await AsyncStorage.setItem(
+      `${event.id}`,
+      JSON.stringify({
+        id: event.id,
+        numTickets,
+        create_at: new Date(),
+      }),
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllEventsBooked = async () => {
+  const keys = await AsyncStorage.getAllKeys();
+  try {
+    const events = await AsyncStorage.multiGet(keys);
+    return events.filter(event => event[1].includes('create_at'));
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -7,20 +7,26 @@ class InputDefaultField extends Component {
   constructor(props) {
     super(props);
 
+    const textAlign = this.props.textAlign ? this.props.textAlign : 'left';
+
     this.state = {
       selected: false,
       styles: {
-        default: {...this.props.style, ...styles.default},
-        selected: {...this.props.style, ...styles.default, ...styles.selected},
+        default: {...styles.default, textAlign},
+        selected: {
+          ...styles.default,
+          ...styles.selected,
+          textAlign: this.props.textAlign,
+        },
       },
     };
   }
 
   render() {
-    const {title, titleStyle} = this.props;
+    const {title, titleStyle, style} = this.props;
 
     return (
-      <View>
+      <View style={style}>
         <Text
           style={
             titleStyle === 'regular'
@@ -54,4 +60,5 @@ InputDefaultField.propTypes = {
   title: PropTypes.string.isRequired,
   style: PropTypes.object,
   titleStyle: PropTypes.oneOf(['bold', 'regular']),
+  textAlign: PropTypes.string,
 };
