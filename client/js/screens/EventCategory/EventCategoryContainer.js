@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, Image} from 'react-native';
+import {TouchableOpacity, Image, StatusBar} from 'react-native';
 import {withCollapsible} from 'react-navigation-collapsible';
 import EventCategory from './EventCategory';
 import {THEME} from '../../config';
@@ -30,6 +30,14 @@ class EventCategoryContainer extends Component {
       headerTransparent: true,
       headerStyle: {
         backgroundColor: 'transparent',
+      },
+
+      headerBackground: () => {
+        return (
+          <StatusBar
+            barStyle={themeColor === 'light' ? 'dark-content' : 'light-content'}
+          />
+        );
       },
 
       headerLeft: () => {
