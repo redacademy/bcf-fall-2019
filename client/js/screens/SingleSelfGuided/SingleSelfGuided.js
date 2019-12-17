@@ -116,6 +116,25 @@ const SingleSelfGuided = ({navigation, tour}) => {
                   ? `${tour.audio.markers.length} Points`
                   : 'No Audio'}
               </Text>
+              <TouchableOpacity>
+                <Text style={styles.downloadAudio}>
+                  {tour.audio && tour.audio.markers.length > 1
+                    ? 'Download'
+                    : ''}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  if (tour.audio) {
+                    return navigation.push('StoryTrail', {
+                      itemId: tour.audio.id,
+                    });
+                  }
+                }}>
+                <Text style={styles.playAudio}>
+                  {tour.audio && tour.audio.markers.length > 1 ? 'Play' : ''}
+                </Text>
+              </TouchableOpacity>
             </View>
 
             <View>
@@ -133,7 +152,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
                 region={{
                   latitude: 50.922148,
                   longitude: -119.643196,
-                  latitudeDelta: 0.015,
+                  latitudeDelta: 0.02,
                   longitudeDelta: 0.0121,
                 }}>
                 {tour.audio &&

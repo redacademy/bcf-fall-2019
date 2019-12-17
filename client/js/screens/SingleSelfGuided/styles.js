@@ -250,6 +250,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  downloadAudio: {
+    fontSize: 10,
+    color: THEME.colors.blue,
+    textDecorationLine: 'underline',
+    marginLeft: 180,
+  },
+  playAudio: {
+    fontSize: 10,
+    color: THEME.colors.blue,
+    textDecorationLine: 'underline',
+    marginLeft: 10,
+  },
 });
 
 export default styles;
