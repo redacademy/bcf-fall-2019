@@ -1,10 +1,10 @@
 import {createDrawerNavigator} from 'react-navigation-drawer';
-import BottomTabNav from './NavigationLayout';
+import NavigationLayout from './NavigationLayout';
 import DrawerScreen from './DrawerScreen';
 
 export default createDrawerNavigator(
   {
-    Home: BottomTabNav,
+    Home: NavigationLayout,
   },
   {
     initialRouteName: 'Home',
