@@ -58,6 +58,8 @@ const EventBooking = ({
     new Animated.ValueXY({x: 0, y: -_headerHeight}),
   );
 
+  const [numTickets, setNumTickets] = useState(1);
+
   const [isAccInfo, setAccInfo] = useState(true);
 
   const [isPayMethod, setPayMethod] = useState(null);
@@ -111,10 +113,12 @@ const EventBooking = ({
           titleStyle="regular"
           autoFocus={true}
           placeholder="1"
-          defaultValue="1"
           keyboardType="number-pad"
           style={{...styles.firstInput, ...styles.input}}
           textAlign="right"
+          onChange={({nativeEvent: {eventCount, target, text}}) => {
+            setNumTickets(parseInt(text));
+          }}
         />
 
         <Text style={{...styles.title, ...styles.titleRegular}}>
@@ -144,7 +148,13 @@ const EventBooking = ({
               ...styles.titleRegular,
               ...styles.priceText,
             }}>
-            ${DATA.price.toFixed(2)}
+            $
+            {numTickets
+              ? (DATA.price * numTickets)
+                  .toFixed(2)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+              : `0.00`}
           </Text>
         </View>
 
@@ -174,21 +184,18 @@ const EventBooking = ({
           title="First Name"
           titleStyle="regular"
           placeholder="_"
-          defaultValue="_"
           style={styles.input}
         />
         <InputDefaultField
           title="Last Name"
           titleStyle="regular"
           placeholder="_"
-          defaultValue="_"
           style={styles.input}
         />
         <InputDefaultField
           title="Address"
           titleStyle="regular"
           placeholder="_"
-          defaultValue="_"
           style={styles.input}
         />
         <View style={styles.flexRow}>
@@ -196,7 +203,6 @@ const EventBooking = ({
             title="City"
             titleStyle="regular"
             placeholder="_"
-            defaultValue="_"
             style={{
               ...styles.input,
               ...styles.columnItem,
@@ -207,7 +213,6 @@ const EventBooking = ({
             title="Province"
             titleStyle="regular"
             placeholder="_"
-            defaultValue="_"
             style={{...styles.input, ...styles.columnItem}}
           />
         </View>
@@ -216,7 +221,6 @@ const EventBooking = ({
             title="Postal Code"
             titleStyle="regular"
             placeholder="_"
-            defaultValue="_"
             style={{
               ...styles.input,
               ...styles.columnItem,
@@ -227,7 +231,6 @@ const EventBooking = ({
             title="Country"
             titleStyle="regular"
             placeholder="_"
-            defaultValue="_"
             style={{...styles.input, ...styles.columnItem}}
           />
         </View>
@@ -235,14 +238,12 @@ const EventBooking = ({
           title="Phone number"
           titleStyle="regular"
           placeholder="_"
-          defaultValue="_"
           style={styles.input}
         />
         <InputDefaultField
           title="Email"
           titleStyle="regular"
           placeholder="_"
-          defaultValue="_"
           style={{...styles.input, ...styles.lastInput}}
         />
 
@@ -298,7 +299,6 @@ const EventBooking = ({
           title="Cardholder Name"
           titleStyle="regular"
           placeholder="Fullname"
-          defaultValue="_"
           style={{...styles.input, ...styles.lastInput}}
         />
 
