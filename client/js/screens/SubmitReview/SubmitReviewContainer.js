@@ -3,7 +3,10 @@ import SubmitReview from './SubmitReview';
 
 class SubmitReviewContainer extends Component {
   render() {
-    return <SubmitReview />;
+    const {navigation} = this.props;
+    const eventInfo = navigation.getParam('eventInfo');
+
+    return <SubmitReview navigation={navigation} eventInfo={eventInfo} />;
   }
 }
 

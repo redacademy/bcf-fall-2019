@@ -6,7 +6,7 @@ import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import SafeAreaView from 'react-native-safe-area-view';
 
-const SubmitReview = props => {
+const SubmitReview = ({navigation, eventInfo}) => {
   return (
     <>
       <SafeAreaView>
@@ -14,6 +14,7 @@ const SubmitReview = props => {
           <Image
             style={styles.eventImg}
             source={require('../../assets/images/imgHomeCatFamily.png')}
+            // source={{uri: eventInfo.image}}
           />
 
           <View style={styles.overlay}>
