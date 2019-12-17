@@ -12,7 +12,7 @@ import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const CardEventSmall = ({eventInfo, index}) => {
+const CardEventSmall = ({eventInfo, index, navigation}) => {
   const {id, category, title, image, price, reviews} = eventInfo;
 
   return (
