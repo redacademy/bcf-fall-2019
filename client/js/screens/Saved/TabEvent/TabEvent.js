@@ -1,5 +1,6 @@
 import React from 'react';
-import {Image, Text, View, FlatList} from 'react-native';
+import {Image, Text, View} from 'react-native';
+import {FlatList} from 'react-navigation';
 import ButtonDefault from '../../../components/ButtonDefault';
 import CardEvent from '../../../components/CardEvent';
 import styles from './styles';
