@@ -13,11 +13,11 @@ import styles from './styles';
 import PropTypes from 'prop-types';
 
 const CardEventSmall = ({eventInfo, index}) => {
-  const {category, title, image, price, reviews} = eventInfo;
+  const {id, category, title, image, price, reviews} = eventInfo;
 
   return (
     <SaveContext.Consumer>
-      {({saveIds, addSaveId, removeSaveIds}) => (
+      {({savedIds, addSaveId, removeSaveIds}) => (
         <TouchableOpacity
           style={
             index % 2 === 0
@@ -26,9 +26,25 @@ const CardEventSmall = ({eventInfo, index}) => {
           }>
           <ImageBackground source={{uri: image}} style={styles.bgImage}>
             <View style={styles.wrapperFave}>
-              <TouchableOpacity style={styles.wrapperFaveIcon}>
+              <TouchableOpacity
+                style={styles.wrapperFaveIcon}
+                onPress={async e => {
+                  try {
+                    if (savedIds.some(savedId => savedId === id)) {
+                      removeSaveIds(id);
+                    } else {
+                      addSaveId(id);
+                    }
+                  } catch (error) {
+                    console.log(error);
+                  }
+                }}>
                 <Image
-                  source={require('../../assets/images/icFaveCircleDefault.png')}
+                  source={
+                    savedIds.some(savedId => savedId === id)
+                      ? require('../../assets/images/icFaveCircleActive.png')
+                      : require('../../assets/images/icFaveCircleDefault.png')
+                  }
                   resizeMode="contain"
                   style={styles.icFave}
                 />

@@ -50,7 +50,7 @@ export class SaveProvider extends Component {
     return (
       <SaveContext.Provider
         value={{
-          saveIds: this.state.saveIds,
+          savedIds: this.state.saveIds,
           addSaveId: this.addSaveId,
           removeSaveIds: this.removeSaveIds,
         }}>
