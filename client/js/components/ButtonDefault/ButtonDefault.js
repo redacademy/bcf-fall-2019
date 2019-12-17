@@ -72,8 +72,8 @@ class ButtonDefault extends Component {
 export default ButtonDefault;
 
 ButtonDefault.propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  onPress: PropTypes.func.isRequired,
+  isActive: PropTypes.bool,
+  onPress: PropTypes.func,
   buttonStyle: PropTypes.object,
   textStyle: PropTypes.object,
   title: PropTypes.string.isRequired,

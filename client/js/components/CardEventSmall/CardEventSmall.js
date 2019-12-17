@@ -17,7 +17,7 @@ const CardEventSmall = ({eventInfo, index}) => {
 
   return (
     <SaveContext.Consumer>
-      {({savedIds, addSaveId, removeSaveIds}) => (
+      {({savedIds, addSaveId, removeSaveId}) => (
         <TouchableOpacity
           style={
             index % 2 === 0
@@ -31,7 +31,7 @@ const CardEventSmall = ({eventInfo, index}) => {
                 onPress={async e => {
                   try {
                     if (savedIds.some(savedId => savedId === id)) {
-                      removeSaveIds(id);
+                      removeSaveId(id);
                     } else {
                       addSaveId(id);
                     }

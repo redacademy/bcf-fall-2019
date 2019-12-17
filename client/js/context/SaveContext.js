@@ -37,7 +37,7 @@ export class SaveProvider extends Component {
     }
   };
 
-  removeSaveIds = async saveId => {
+  removeSaveId = async saveId => {
     try {
       await removeSave(saveId);
       this.getSavedIds();
@@ -52,7 +52,7 @@ export class SaveProvider extends Component {
         value={{
           savedIds: this.state.saveIds,
           addSaveId: this.addSaveId,
-          removeSaveIds: this.removeSaveIds,
+          removeSaveId: this.removeSaveId,
         }}>
         {this.props.children}
       </SaveContext.Provider>

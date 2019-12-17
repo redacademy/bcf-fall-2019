@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import SaveContext from '../../../context/SaveContext';
+import {withCollapsibleForTabChild} from 'react-navigation-collapsible';
 import TabEvent from './TabEvent';
 
 class TabEventContainer extends Component {
@@ -9,8 +11,20 @@ class TabEventContainer extends Component {
   };
 
   render() {
-    return <TabEvent />;
+    const {navigation} = this.props;
+    return (
+      <SaveContext.Consumer>
+        {({savedIds, addSaveId, removeSaveId}) => (
+          <TabEvent
+            savedIds={savedIds}
+            addSaveId={addSaveId}
+            removeSaveId={removeSaveId}
+            navigation={navigation}
+          />
+        )}
+      </SaveContext.Consumer>
+    );
   }
 }
 
-export default TabEventContainer;
+export default withCollapsibleForTabChild(TabEventContainer);

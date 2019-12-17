@@ -30,7 +30,7 @@ const CardEvent = ({data}) => {
 
   return (
     <SaveContext.Consumer>
-      {({savedIds, addSaveId, removeSaveIds}) => (
+      {({savedIds, addSaveId, removeSaveId}) => (
         <TouchableOpacity style={styles.container}>
           <ImageBackground source={{uri: image}} style={styles.bgImg}>
             <View style={styles.bgImgWrapper}>
@@ -80,7 +80,7 @@ const CardEvent = ({data}) => {
                       onPress={async e => {
                         try {
                           if (savedIds.some(savedId => savedId === id)) {
-                            removeSaveIds(id);
+                            removeSaveId(id);
                           } else {
                             addSaveId(id);
                           }
