@@ -51,6 +51,41 @@ export const removeViewer = async () => {
   }
 };
 
+export const addSave = async saveID => {
+  try {
+    return await AsyncStorage.setItem(
+      `${saveID}`,
+      JSON.stringify({
+        id: saveID,
+        saved_on: new Date(),
+      }),
+    );
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+export const removeSave = async saveID => {
+  try {
+    return await AsyncStorage.removeItem(`${saveID}`);
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+export const getAllSaves = async () => {
+  const keys = await AsyncStorage.getAllKeys();
+  try {
+    const values = await AsyncStorage.multiGet(keys);
+    return values.filter(value => value[1].includes('saved_on'));
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
 export const addEventBooked = async (event, numTickets) => {
   try {
     return await AsyncStorage.setItem(
@@ -63,7 +98,6 @@ export const addEventBooked = async (event, numTickets) => {
     );
   } catch (error) {
     console.log(error);
-    return false;
   }
 };
 
@@ -74,6 +108,5 @@ export const getAllEventsBooked = async () => {
     return events.filter(event => event[1].includes('create_at'));
   } catch (error) {
     console.log(error);
-    return false;
   }
 };

@@ -191,6 +191,7 @@ class Home extends Component {
                           key={weeklyEvent.id}
                           index={index}
                           eventInfo={weeklyEvent}
+                          navigation={navigation}
                         />
                       );
                     })}
@@ -217,6 +218,7 @@ class Home extends Component {
                           key={popularEvent.id}
                           index={index}
                           eventInfo={popularEvent}
+                          navigation={navigation}
                         />
                       );
                     })}
