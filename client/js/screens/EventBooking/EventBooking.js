@@ -373,7 +373,7 @@ const EventBooking = ({
           isActive={true}
           onPress={async () => {
             try {
-              await addEventBooked(DATA);
+              await addEventBooked(DATA, numTickets);
               await navigation.navigate('ThankYou');
             } catch (error) {
               console.log(error);
