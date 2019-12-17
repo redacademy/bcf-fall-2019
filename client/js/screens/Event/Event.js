@@ -159,7 +159,7 @@ const Event = ({navigation, eventInfo}) => {
               title="Book"
               color="white"
               onPress={() => {
-                navigation.push('EventBooking', eventInfo);
+                navigation.push('EventBooking', {eventInfo});
               }}
             />
           </View>

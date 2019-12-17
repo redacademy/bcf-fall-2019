@@ -91,6 +91,7 @@ class EventBookingContainer extends Component {
         headerHeight={this.state.headerHeight}
         navigation={navigation}
         onSwitchTheme={this.onSwitchTheme}
+        eventInfo={navigation.getParam('eventInfo')}
       />
     );
   }

@@ -11,34 +11,6 @@ import styles from './styles';
 import {THEME} from '../../config';
 import PropTypes from 'prop-types';
 
-const DATA = {
-  difficulty: 'EASY',
-  image:
-    'https://a0.muscache.com/im/pictures/0189e9ca-3a52-4fc3-9222-e6c4d9ac0aaa.jpg?aki_policy=exp_xl',
-  host: {
-    name: 'John Smith',
-    email: 'host@host.com',
-    image:
-      'https://img2.thejournal.ie/inline/2470754/original/?width=428&version=2470754',
-    bio:
-      "I am the founder and head bitters maker at The Apothecary Bitters Company, one of Canada's top bitters companies, as well as a beverage industry consultant having designed bar programs, cocktails, spirits, liqueurs and more over the past 6+ years. I also work closely with award winning Vancouver distillery, Long Table, on their cocktail program and products, such as BC's first (and gold winning) amaro. As well, I'm an educator, having taught seminars on topics such as bitters, introductions to cocktails, and using garden ingredient in cocktails in seminars at numerous places across Canada.",
-    id: 'ck3uro80z5ft50b0960g7u9vf',
-  },
-  price: 129,
-  id: 'ck41l56r4hezf0b0901k87c1f',
-  language: 'English, French',
-  date: '2019-12-25T17:34:30.045Z',
-  startAt: '14',
-  locationTitle: 'Stanley Park',
-  reviews: [],
-  address: '1955 Haro St, Vancouver, BC V6G 2N6',
-  details:
-    'LOOKING FOR AN EXCITING WAY TO SEE VANCOUVER’S LOCAL WINE SCENE!? LOOK NO FURTHER…I will whisk away with your future friends from around the world and hosted by myself on this exclusive and all-inclusive wine tasting experience! All you have to do is sit back and enjoy! If I am busy with another Experience my friends Shannon or Alecia will show you an amazing time! They are both super fun!!!\\n\\nYour Tour includes:\\n -Pick up and drop off in Downtown Vancouver\\n-Up to 6 hours of fun and informative touring with a professional guide(myself).\\n- 4 stops at the selected wineries, all tasting, reservations made in advance \\n-All tasting and tour fees included\\n-Behind-the-scenes tour of the winemaking process\\n-Plenty of tastings from some of Vancouver’s finest wine producers\\n-Water and light snacks included during the tour\\n',
-  category: 'Picnic',
-  title: "Wine Tour - Vancouver's Fraser Valley",
-  endAt: '15',
-};
-
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
 const EventBooking = ({
@@ -46,6 +18,7 @@ const EventBooking = ({
   navigation,
   onSwitchTheme,
   headerHeight,
+  eventInfo,
 }) => {
   const {paddingHeight, animatedY} = collapsible;
 
@@ -107,7 +80,7 @@ const EventBooking = ({
           bottom: THEME.spacing.default(0.5),
         }}
         style={styles.container}>
-        <CardEvent data={DATA} />
+        <CardEvent data={eventInfo} />
 
         <InputDefaultField
           title="Number of tickets"
@@ -150,7 +123,7 @@ const EventBooking = ({
             }}>
             $
             {numTickets
-              ? (DATA.price * numTickets)
+              ? (eventInfo.price * numTickets)
                   .toFixed(2)
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -373,7 +346,7 @@ const EventBooking = ({
           isActive={true}
           onPress={async () => {
             try {
-              await addEventBooked(DATA, numTickets);
+              await addEventBooked(eventInfo, numTickets);
               await navigation.navigate('ThankYou');
             } catch (error) {
               console.log(error);
@@ -403,4 +376,5 @@ EventBooking.propTypes = {
   navigation: PropTypes.object.isRequired,
   onSwitchTheme: PropTypes.func,
   headerHeight: PropTypes.number,
+  eventInfo: PropTypes.object,
 };
