@@ -10,6 +10,10 @@ class TabEventContainer extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       title: 'Events',
+
+      headerBackground: () => {
+        return <StatusBar barStyle="dark-content" />;
+      },
     };
   };
 

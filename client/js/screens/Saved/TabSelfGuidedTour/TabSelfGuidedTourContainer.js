@@ -5,6 +5,10 @@ class TabSelfGuidedTourContainer extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       title: 'Self-guided Tours',
+
+      headerBackground: () => {
+        return <StatusBar barStyle="dark-content" />;
+      },
     };
   };
 

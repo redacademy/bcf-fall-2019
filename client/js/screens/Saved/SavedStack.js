@@ -87,10 +87,6 @@ const SavedStack = createMaterialTopTabNavigator(
         backgroundColor: 'transparent',
       },
 
-      headerBackground: () => {
-        return <StatusBar barStyle="dark-content" />;
-      },
-
       headerRight: () => (
         <TouchableOpacity
           style={{marginRight: 12}}
