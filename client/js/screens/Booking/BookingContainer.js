@@ -3,7 +3,8 @@ import Booking from './Booking';
 
 class BookingContainer extends Component {
   render() {
-    return <Booking />;
+    const {navigation} = this.props;
+    return <Booking navigation={navigation} />;
   }
 }
 

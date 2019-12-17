@@ -1,8 +1,12 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {View, Text} from 'react-native';
 
-const Booking = props => {
-  return <Text>Hello Booking</Text>;
+const Booking = ({navigation}) => {
+  return (
+    <View>
+      <Text>Hello Booking</Text>
+    </View>
+  );
 };
 
 export default Booking;

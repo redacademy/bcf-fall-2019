@@ -34,7 +34,7 @@ const CardEvent = ({data, navigation}) => {
         <TouchableOpacity
           style={styles.container}
           onPress={e => {
-            navigation.push('Event', {eventInfo: data});
+            navigation.push('Event', {eventInfo: data, navigation: navigation});
           }}>
           <ImageBackground source={{uri: image}} style={styles.bgImg}>
             <View style={styles.bgImgWrapper}>

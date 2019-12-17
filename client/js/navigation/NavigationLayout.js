@@ -13,6 +13,8 @@ import StoryTrail from '../screens/StoryTrail';
 import SingleSelfGuided from '../screens/SingleSelfGuided';
 import Event from '../screens/Event';
 import EventCategory from '../screens/EventCategory';
+import EventBooking from '../screens/EventBooking';
+import ThankYou from '../screens/ThankYou';
 
 import About from '../screens/About';
 import Contact from '../screens/Contact';
@@ -30,11 +32,13 @@ const HomeStack = createStackNavigator(
     SelfGuidedTour,
     SingleSelfGuided,
     StoryTrail,
-    Event,
     EventCategory,
     About,
     Contact,
     Faq,
+    Event,
+    EventBooking,
+    ThankYou,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -73,6 +77,9 @@ const BookingStack = createStackNavigator(
 const SavedStack = createStackNavigator(
   {
     Saved: SavedScreen,
+    Event,
+    EventBooking,
+    ThankYou,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
