@@ -112,7 +112,6 @@ const EventBooking = ({
         <InputDefaultField
           title="Number of tickets"
           titleStyle="regular"
-          autoFocus={true}
           placeholder="1"
           keyboardType="number-pad"
           style={{...styles.firstInput, ...styles.input}}
