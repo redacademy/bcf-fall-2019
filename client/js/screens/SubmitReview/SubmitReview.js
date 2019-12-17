@@ -44,7 +44,6 @@ const SubmitReview = ({navigation, eventInfo}) => {
               style={styles.reviewInput}
               placeholder="Type here ..."
               onChangeText={text => this.setState({text})}
-
               // value={this.state.text}
             />
 

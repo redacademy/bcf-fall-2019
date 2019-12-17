@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     width: '100%',
-    height: 192,
+    height: 200,
     paddingHorizontal: 24,
     paddingVertical: 8,
   },
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     paddingTop: 36,
+    paddingBottom: 50,
   },
   starReviewRating: {
     height: 48,
