@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, Image, StatusBar} from 'react-native';
 import {withCollapsible} from 'react-navigation-collapsible';
+import styles from './styles';
 import {THEME} from '../../config';
 import EventBooking from './EventBooking';
 
@@ -41,7 +42,7 @@ class EventBookingContainer extends Component {
       headerLeft: () => {
         return (
           <TouchableOpacity
-            style={{marginLeft: 12}}
+            style={styles.headerBackArrow}
             onPress={() => {
               navigation.goBack();
             }}>
@@ -57,7 +58,7 @@ class EventBookingContainer extends Component {
       },
       headerRight: () => (
         <TouchableOpacity
-          style={{marginRight: 12}}
+          style={styles.headerMenu}
           onPress={() => {
             navigation.toggleDrawer();
           }}>

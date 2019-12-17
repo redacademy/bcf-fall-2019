@@ -2,6 +2,9 @@ import {StyleSheet} from 'react-native';
 import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
+  headerMenu: {
+    marginRight: 12,
+  },
   container: {
     ...THEME.padding.appScreen,
     flex: 1,

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {TouchableOpacity, Image, StatusBar} from 'react-native';
 import ThankYou from './ThankYou';
 import {THEME} from '../../config';
+import styles from './styles';
 
 class ThankYouContainer extends Component {
   static navigationOptions = () => {
@@ -22,7 +23,7 @@ class ThankYouContainer extends Component {
 
       headerRight: () => (
         <TouchableOpacity
-          style={{marginRight: 12}}
+          style={styles.headerMenu}
           onPress={() => {
             navigation.toggleDrawer();
           }}>

@@ -2,6 +2,12 @@ import {StyleSheet} from 'react-native';
 import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
+  headerBackArrow: {
+    marginLeft: 12,
+  },
+  headerMenu: {
+    marginRight: 12,
+  },
   container: {
     ...THEME.padding.appScreen,
     paddingTop: THEME.spacing.default(),
