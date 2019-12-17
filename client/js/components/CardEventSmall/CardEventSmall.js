@@ -20,7 +20,7 @@ const CardEventSmall = ({eventInfo, index, navigation}) => {
       {({savedIds, addSaveId, removeSaveId}) => (
         <TouchableOpacity
           onPress={() => {
-            navigation.push('Event', {eventInfo: {...eventInfo}});
+            navigation.push('Event', {eventInfo});
           }}
           style={
             index % 2 === 0

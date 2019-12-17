@@ -13,7 +13,7 @@ import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const CardEvent = ({data}) => {
+const CardEvent = ({data, navigation}) => {
   const {
     id,
     date,
@@ -31,7 +31,11 @@ const CardEvent = ({data}) => {
   return (
     <SaveEventContext.Consumer>
       {({savedIds, addSaveId, removeSaveId}) => (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity
+          style={styles.container}
+          onPress={e => {
+            navigation.push('Event', {eventInfo: data});
+          }}>
           <ImageBackground source={{uri: image}} style={styles.bgImg}>
             <View style={styles.bgImgWrapper}>
               <Text ellipsizeMode="tail" numberOfLines={1} style={styles.title}>
