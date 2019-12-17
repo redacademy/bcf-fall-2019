@@ -53,6 +53,7 @@ export const removeViewer = async () => {
 
 export const addEventBooked = async event => {
   try {
+    console.log(event);
     return await AsyncStorage.setItem(
       `${event.id}`,
       JSON.stringify({

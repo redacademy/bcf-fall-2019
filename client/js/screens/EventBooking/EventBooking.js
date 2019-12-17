@@ -6,6 +6,7 @@ import ButtonDefault from '../../components/ButtonDefault';
 import CardEvent from '../../components/CardEvent';
 import TitleForm from '../../components/TitleForm';
 import InputDefaultField from '../../components/InputDefaultField';
+import {addEventBooked} from '../../config/models';
 import styles from './styles';
 import {THEME} from '../../config';
 import PropTypes from 'prop-types';
@@ -371,8 +372,13 @@ const EventBooking = ({
 
         <ButtonDefault
           isActive={true}
-          onPress={() => {
-            navigation.navigate('ThankYou');
+          onPress={async () => {
+            try {
+              await addEventBooked(DATA);
+              await navigation.navigate('ThankYou');
+            } catch (error) {
+              console.log(error);
+            }
           }}
           title="Pay Now"
         />
