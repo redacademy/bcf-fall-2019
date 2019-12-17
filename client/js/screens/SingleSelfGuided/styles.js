@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     color: '#013859',
     fontWeight: '600',
     marginTop: 30,
+    marginBottom: 30,
   },
   container: {
     position: 'absolute',

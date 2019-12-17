@@ -127,7 +127,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
                 onPress={() => {
                   if (tour.audio) {
                     return navigation.push('StoryTrail', {
-                      itemId: tour.audio.id,
+                      audio: tour.audio,
                     });
                   }
                 }}>
@@ -173,7 +173,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
             </View>
 
             <View>
-              <Text style={styles.eventReviewsTitle}>Reviews</Text>
+              <Text style={styles.eventReviewsTitle}>Reviews:</Text>
 
               {/*<Reviews />*/}
             </View>
