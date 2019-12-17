@@ -10,6 +10,7 @@ import ProfileScreen from '../screens/Profile';
 
 import SelfGuidedTour from '../screens/SelfGuidedTour';
 import StoryTrail from '../screens/StoryTrail';
+import Event from '../screens/Event';
 import EventCategory from '../screens/EventCategory';
 
 import About from '../screens/About';
@@ -27,6 +28,7 @@ const HomeStack = createStackNavigator(
     Home: HomeScreen,
     SelfGuidedTour,
     StoryTrail,
+    Event,
     EventCategory,
     About,
     Contact,
