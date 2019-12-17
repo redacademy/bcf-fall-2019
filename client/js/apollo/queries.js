@@ -134,3 +134,12 @@ export const QUERY_EVENT_THIS_WEEK = gql`
   }
   ${EventFields}
 `;
+
+export const QUERY_GET_EVENT = gql`
+  query getEvent($id: ID!) {
+    event(where: {id: $id}) {
+      ...EventFields
+    }
+  }
+  ${EventFields}
+`;

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import RatingScore from '../RatingScore';
-import SaveContext from '../../context/SaveContext';
+import SaveEventContext from '../../context/SaveEventContext';
 import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import PropTypes from 'prop-types';
@@ -16,9 +16,12 @@ const CardEventSmall = ({eventInfo, index}) => {
   const {id, category, title, image, price, reviews} = eventInfo;
 
   return (
-    <SaveContext.Consumer>
+    <SaveEventContext.Consumer>
       {({savedIds, addSaveId, removeSaveId}) => (
         <TouchableOpacity
+          onPress={() => {
+            navigation.push('Event', {eventInfo: {...eventInfo}});
+          }}
           style={
             index % 2 === 0
               ? {...styles.wrapper, ...styles.leftItem}
@@ -66,7 +69,7 @@ const CardEventSmall = ({eventInfo, index}) => {
           </View>
         </TouchableOpacity>
       )}
-    </SaveContext.Consumer>
+    </SaveEventContext.Consumer>
   );
 };
 
@@ -75,4 +78,5 @@ export default CardEventSmall;
 CardEventSmall.propTypes = {
   eventInfo: PropTypes.object.isRequired,
   index: PropTypes.number,
+  navigation: PropTypes.object,
 };

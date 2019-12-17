@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {addSave, removeSave, getAllSaves} from '../config/models';
 
-const SaveContext = React.createContext();
-export default SaveContext;
+const SaveEventContext = React.createContext();
+export default SaveEventContext;
 
-export class SaveProvider extends Component {
+export class SaveEventProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,14 +48,14 @@ export class SaveProvider extends Component {
 
   render() {
     return (
-      <SaveContext.Provider
+      <SaveEventContext.Provider
         value={{
           savedIds: this.state.saveIds,
           addSaveId: this.addSaveId,
           removeSaveId: this.removeSaveId,
         }}>
         {this.props.children}
-      </SaveContext.Provider>
+      </SaveEventContext.Provider>
     );
   }
 }

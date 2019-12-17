@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text} from 'react-native';
 import {Query} from 'react-apollo';
 import {QUERY_ALL_EVENTS} from '../../../apollo/queries';
-import SaveContext from '../../../context/SaveContext';
+import SaveEventContext from '../../../context/SaveEventContext';
 import {withCollapsibleForTabChild} from 'react-navigation-collapsible';
 import TabEvent from './TabEvent';
 
@@ -20,7 +20,7 @@ class TabEventContainer extends Component {
   render() {
     const {navigation} = this.props;
     return (
-      <SaveContext.Consumer>
+      <SaveEventContext.Consumer>
         {({savedIds, addSaveId, removeSaveId}) => (
           <Query query={QUERY_ALL_EVENTS}>
             {({loading, error, data}) => {
@@ -41,7 +41,7 @@ class TabEventContainer extends Component {
             }}
           </Query>
         )}
-      </SaveContext.Consumer>
+      </SaveEventContext.Consumer>
     );
   }
 }

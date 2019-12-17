@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import moment from 'moment';
-import SaveContext from '../../context/SaveContext';
+import SaveEventContext from '../../context/SaveEventContext';
 import RatingScore from '../RatingScore';
 import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
@@ -29,7 +29,7 @@ const CardEvent = ({data}) => {
   const hour = 12;
 
   return (
-    <SaveContext.Consumer>
+    <SaveEventContext.Consumer>
       {({savedIds, addSaveId, removeSaveId}) => (
         <TouchableOpacity style={styles.container}>
           <ImageBackground source={{uri: image}} style={styles.bgImg}>
@@ -110,7 +110,7 @@ const CardEvent = ({data}) => {
           </ImageBackground>
         </TouchableOpacity>
       )}
-    </SaveContext.Consumer>
+    </SaveEventContext.Consumer>
   );
 };
 
