@@ -7,7 +7,7 @@ import {
   QUERY_EVENT_THIS_WEEK,
 } from '../../apollo/queries';
 import {withCollapsible} from 'react-navigation-collapsible';
-import {StatusBar, View} from 'react-native';
+import {StatusBar} from 'react-native';
 import Home from './Home';
 import {getParamFromParent} from '../../lib/paramFromParent';
 import {calculateRatingScore} from '../../lib/calculateRatingScore';

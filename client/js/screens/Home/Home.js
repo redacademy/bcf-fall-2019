@@ -218,6 +218,7 @@ class Home extends Component {
                           key={popularEvent.id}
                           index={index}
                           eventInfo={popularEvent}
+                          navigation={navigation}
                         />
                       );
                     })}

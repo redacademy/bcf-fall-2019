@@ -50,3 +50,38 @@ export const removeViewer = async () => {
     return false;
   }
 };
+
+export const addSave = async saveID => {
+  try {
+    return await AsyncStorage.setItem(
+      `${saveID}`,
+      JSON.stringify({
+        id: saveID,
+        saved_on: new Date(),
+      }),
+    );
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+export const removeSave = async saveID => {
+  try {
+    return await AsyncStorage.removeItem(`${saveID}`);
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+export const getAllSaves = async () => {
+  const keys = await AsyncStorage.getAllKeys();
+  try {
+    const values = await AsyncStorage.multiGet(keys);
+    return values.filter(value => value[1].includes('saved_on'));
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
