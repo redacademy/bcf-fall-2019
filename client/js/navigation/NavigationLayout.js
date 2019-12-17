@@ -12,6 +12,7 @@ import SelfGuidedTour from '../screens/SelfGuidedTour';
 import StoryTrail from '../screens/StoryTrail';
 import Event from '../screens/Event';
 import EventCategory from '../screens/EventCategory';
+import SubmitReview from '../screens/SubmitReview';
 
 import About from '../screens/About';
 import Contact from '../screens/Contact';
@@ -33,6 +34,7 @@ const HomeStack = createStackNavigator(
     About,
     Contact,
     Faq,
+    SubmitReview,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({

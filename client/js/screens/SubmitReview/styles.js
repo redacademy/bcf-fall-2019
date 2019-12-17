@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   eventName: {
     color: 'white',
-    fontSize: 36,
+    fontSize: 24,
     fontFamily: 'Montserrat-Regular',
   },
   eventLocation: {
@@ -56,6 +56,11 @@ const styles = StyleSheet.create({
   },
   hostReviewName: {
     color: 'white',
+  },
+  hostImage: {
+    width: 70,
+    height: 70,
+    borderRadius: 50,
   },
   submitButton: {
     paddingTop: 36,

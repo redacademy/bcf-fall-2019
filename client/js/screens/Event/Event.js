@@ -144,7 +144,12 @@ const Event = ({navigation, eventInfo}) => {
 
               <Reviews />
             </View>
-            <ButtonDefault title="Show More Reviews" />
+            <ButtonDefault
+              title="Show More Reviews"
+              onPress={() => {
+                navigation.push('SubmitReview', {eventInfo});
+              }}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
