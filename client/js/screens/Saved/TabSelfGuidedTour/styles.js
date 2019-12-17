@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: THEME.spacing.default(2.25),
   },
+  button: {
+    ...THEME.padding.appScreen,
+  },
 });
 
 export default styles;

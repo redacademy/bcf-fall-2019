@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 const TabSelfGuidedTour = ({navigation, savedIds, eventInfo}) => {
   return (
     <View style={styles.container}>
-      {savedIds.length > 0 ? (
+      {savedIds.length > 0 && eventInfo.length > 0 ? (
         <FlatList
           data={eventInfo}
           contentContainerStyle={styles.dataWrapper}
@@ -27,13 +27,15 @@ const TabSelfGuidedTour = ({navigation, savedIds, eventInfo}) => {
             resizeMode="contain"
             source={require('../../../assets/images/icDiscoverMore.png')}
           />
-          <ButtonDefault
-            isActive={true}
-            onPress={e => {
-              navigation.navigate('Home');
-            }}
-            title="Discover More"
-          />
+          <View style={styles.button}>
+            <ButtonDefault
+              isActive={true}
+              onPress={e => {
+                navigation.navigate('Home');
+              }}
+              title="Discover More"
+            />
+          </View>
         </View>
       )}
     </View>
@@ -41,3 +43,8 @@ const TabSelfGuidedTour = ({navigation, savedIds, eventInfo}) => {
 };
 
 export default TabSelfGuidedTour;
+
+TabSelfGuidedTour.propTypes = {
+  navigation: PropTypes.object,
+  savedIds: PropTypes.array,
+};
