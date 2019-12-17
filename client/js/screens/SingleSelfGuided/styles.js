@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#013859',
     fontWeight: '600',
+    marginTop: 30,
   },
   container: {
     position: 'absolute',

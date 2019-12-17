@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Query} from 'react-apollo';
 import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
 import Loader from '../../components/Loader';
-import {Text} from 'react-native';
+import {Text, TouchableOpacity, Image} from 'react-native';
 
 class SingleSelfGuidedContainer extends Component {
   constructor(props) {
@@ -14,8 +14,22 @@ class SingleSelfGuidedContainer extends Component {
       mockId: 'ck435ktpmunrv0b00xbq37xme',
     };
   }
-  static navigationOptions = {
-    title: 'SingleSelfGuided',
+
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'SingleSelfGuided',
+      headerLeft: () => {
+        return (
+          <TouchableOpacity
+            style={{marginLeft: 12}}
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <Image source={require('../../assets/images/icArrLeftWhite.png')} />
+          </TouchableOpacity>
+        );
+      },
+    };
   };
 
   render() {

@@ -50,30 +50,6 @@ const SingleSelfGuided = ({navigation, tour}) => {
           </View>
 
           <View style={styles.eventScreenInfo}>
-            <Text style={styles.infoText}>Date / Time</Text>
-            <View style={styles.inputFieldStyles}>
-              <Image
-                style={styles.eventTextFields}
-                source={require('../../assets/images/icFilterAudio.png')}
-              />
-              <Text style={{fontSize: 12}}>{tour.duration}</Text>
-            </View>
-
-            <Text style={styles.infoText}>Location</Text>
-            <View
-              style={{
-                ...styles.eventTextInput,
-                height: 36,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={styles.eventTextFields}
-                source={require('../../assets/images/icFilterAudio.png')}
-              />
-              <Text style={styles.tourAddress}>{tour.location}</Text>
-            </View>
-
             <View style={styles.eventDetails}>
               <View style={styles.difficultyFilter}>
                 <Text style={styles.infoText}>Difficulty</Text>
@@ -89,19 +65,60 @@ const SingleSelfGuided = ({navigation, tour}) => {
               </View>
 
               <View style={styles.languageSection}>
-                <Text style={styles.infoText}>Language</Text>
+                <Text style={styles.infoText}>Duration</Text>
                 <View style={styles.languageInputField}>
                   <Image
                     style={styles.eventTextFields}
-                    source={require('../../assets/images/icFilterAudio.png')}
+                    source={require('../../assets/images/icFilterDuration.png')}
                   />
-                  <Text style={styles.languageTitle}>English</Text>
+                  <Text style={styles.languageTitle}>
+                    {tour.duration} hours
+                  </Text>
                 </View>
               </View>
             </View>
+            <View style={styles.eventDetails}>
+              <View style={styles.difficultyFilter}>
+                <Text style={styles.infoText}>Distance</Text>
+                <View style={styles.filterSectionImages}>
+                  <Image
+                    style={styles.eventTextFields}
+                    source={require('../../assets/images/icFilterDistance.png')}
+                  />
+                  <Text style={styles.tourDiffucultyTitle}>
+                    {tour.distance}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.languageSection}>
+                <Text style={styles.infoText}>Pet Friendly</Text>
+                <View style={styles.languageInputField}>
+                  <Image
+                    style={styles.eventTextFields}
+                    source={require('../../assets/images/icFilterPetFriendly.png')}
+                  />
+                  <Text style={styles.languageTitle}>
+                    {tour.petFriendly ? 'Yes' : 'No'}
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <Text style={styles.infoText}>Audio</Text>
+            <View style={styles.inputFieldStyles}>
+              <Image
+                style={styles.eventTextFields}
+                source={require('../../assets/images/icFilterAudio.png')}
+              />
+              <Text style={{fontSize: 12}}>
+                {tour.audio && tour.audio.markers.length > 1
+                  ? `${tour.audio.markers.length} Points`
+                  : 'No Audio'}
+              </Text>
+            </View>
 
             <View>
-              <Text style={styles.eventInfoTitle}>Event Details</Text>
+              <Text style={styles.eventInfoTitle}>About the Trails:</Text>
 
               <Text style={styles.eventInfoDescription}>
                 {tour.description}
