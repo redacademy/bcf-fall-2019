@@ -1,8 +1,18 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 
-const Booking = props => {
-  return <Text>Hello Booking</Text>;
+const Booking = ({navigation}) => {
+  return (
+    <View>
+      <Text>Hello Booking</Text>
+      <Button
+        onPress={() => {
+          navigation.push('EventBooking');
+        }}
+        title="Book a event"
+      />
+    </View>
+  );
 };
 
 export default Booking;
