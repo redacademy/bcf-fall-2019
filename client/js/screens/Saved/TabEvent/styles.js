@@ -4,6 +4,7 @@ import {THEME} from '../../../config/';
 const styles = StyleSheet.create({
   container: {
     ...THEME.padding.appScreen,
+    minHeight: '100%',
   },
   noDataWrapper: {
     paddingTop: THEME.spacing.default(3),

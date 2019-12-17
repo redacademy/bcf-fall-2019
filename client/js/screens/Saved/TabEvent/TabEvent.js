@@ -1,14 +1,18 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Text, View, FlatList} from 'react-native';
 import ButtonDefault from '../../../components/ButtonDefault';
+import CardEvent from '../../../components/CardEvent';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const TabEvent = ({navigation, savedIds, addSaveId, removeSaveId}) => {
+const TabEvent = ({navigation, savedIds, eventInfo}) => {
   return (
     <View style={styles.container}>
       {savedIds.length > 0 ? (
-        <Text>Event</Text>
+        <FlatList
+          data={eventInfo}
+          renderItem={({item}) => <CardEvent data={item} />}
+        />
       ) : (
         <View style={styles.noDataWrapper}>
           <Text style={styles.noDataText}>
@@ -37,6 +41,4 @@ export default TabEvent;
 TabEvent.propTypes = {
   navigation: PropTypes.object,
   savedIds: PropTypes.array,
-  addSaveId: PropTypes.func,
-  removeSaveId: PropTypes.func,
 };
