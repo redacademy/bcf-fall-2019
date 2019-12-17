@@ -5,7 +5,7 @@ import {THEME} from '../../config';
 import styles from './styles';
 
 class ThankYouContainer extends Component {
-  static navigationOptions = () => {
+  static navigationOptions = ({navigation}) => {
     return {
       title: 'Event Booking',
       headerBackTitle: true,

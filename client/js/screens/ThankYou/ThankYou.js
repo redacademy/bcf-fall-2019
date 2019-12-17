@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import {StackActions} from 'react-navigation';
 import TitleText from '../../components/TitleText';
 import ButtonDefault from '../../components/ButtonDefault';
 import styles from './styles';
@@ -17,7 +18,7 @@ const ThankYou = ({navigation}) => {
       <ButtonDefault
         isActive={true}
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.dispatch(StackActions.popToTop());
         }}
         title="Discover More"
       />
