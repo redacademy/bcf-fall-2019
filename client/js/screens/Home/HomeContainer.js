@@ -64,6 +64,7 @@ class HomeContainer extends Component {
         navigation={navigation}
         userInfo={userInfo.user}
         eventInfo={{
+          allEvents: allEvents.events,
           thisWeek: eventThisWeek.events,
           popular: filteredPopularEvents,
         }}

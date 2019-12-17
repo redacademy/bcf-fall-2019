@@ -3,13 +3,14 @@ import {TouchableOpacity} from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-const ModalOverlay = ({onPress}) => {
+const ModalOverlay = ({onPress, children}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={1}
-      style={styles.modalDefault}
-    />
+      style={styles.modalDefault}>
+      {children}
+    </TouchableOpacity>
   );
 };
 

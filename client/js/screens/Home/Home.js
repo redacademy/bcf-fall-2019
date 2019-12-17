@@ -153,7 +153,20 @@ class Home extends Component {
               </Text>
               <ScrollView style={styles.categoryList} horizontal={true}>
                 {CATEGORY_LIST.map((category, index, array) => (
-                  <TouchableOpacity key={index}>
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      const eventsByCategory =
+                        eventInfo &&
+                        eventInfo.allEvents.filter(event => {
+                          return event.category === category.name;
+                        });
+
+                      navigation.push('EventCategory', {
+                        title: category.name,
+                        eventInfo: eventsByCategory,
+                      });
+                    }}>
                     <CategoryList
                       image={category.image}
                       name={category.name}
