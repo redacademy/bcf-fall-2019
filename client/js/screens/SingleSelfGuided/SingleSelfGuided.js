@@ -1,25 +1,10 @@
 import React, {Component} from 'react';
-import ApolloClient from 'apollo-boost';
-import {Mutation} from 'react-apollo';
-import {MUTATION_LOG_IN} from '../../apollo/mutations';
-import {THEME} from '../../config';
-import PropTypes from 'prop-types';
-import {
-  View,
-  Image,
-  Text,
-  ScrollView,
-  Button,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Image, Text, ScrollView, TouchableOpacity} from 'react-native';
 import ButtonDefault from '../../components/ButtonDefault';
-// import RatingScore from '../../components/RatingScore';
-// import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import SafeAreaView from 'react-native-safe-area-view';
 import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
-// import Reviews from '../../components/Reviews';
 
 const SingleSelfGuided = ({navigation, tour}) => {
   return (
@@ -33,9 +18,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
               <Text style={styles.eventName}>{tour.title}</Text>
               <Text style={styles.eventLocation}>{tour.location}</Text>
               <View style={styles.eventButtons}>
-                <View style={styles.eventStarRating}>
-                  {/*<RatingScore score={4} />*/}
-                </View>
+                <View style={styles.eventStarRating}></View>
                 <View style={styles.eventshareButton}>
                   <Image
                     source={require('../../assets/images/icFaveShareDefault.png')}
@@ -127,7 +110,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
                 onPress={() => {
                   if (tour.audio) {
                     return navigation.push('StoryTrail', {
-                      audio: tour.audio,
+                      tour: tour,
                     });
                   }
                 }}>
@@ -143,7 +126,6 @@ const SingleSelfGuided = ({navigation, tour}) => {
               <Text style={styles.eventInfoDescription}>
                 {tour.description}
               </Text>
-              {/* <Text style={styles.eventReadMore}>(Read More)</Text> */}
             </View>
             <View style={styles.eventMapContainer}>
               <MapView
@@ -174,8 +156,6 @@ const SingleSelfGuided = ({navigation, tour}) => {
 
             <View>
               <Text style={styles.eventReviewsTitle}>Reviews:</Text>
-
-              {/*<Reviews />*/}
             </View>
             <ButtonDefault title="Show More Reviews" />
           </View>

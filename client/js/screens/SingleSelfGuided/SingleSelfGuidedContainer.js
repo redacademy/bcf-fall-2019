@@ -41,7 +41,6 @@ class SingleSelfGuidedContainer extends Component {
           if (error) return <Text>{error.message}</Text>;
           if (data) {
             const singleTour = data.selfGuidedTours.filter(
-              //TODO get the actual data using this.props.navigation.state.params.itemId
               a => a.id === this.props.navigation.state.params.itemId,
             );
             return (
