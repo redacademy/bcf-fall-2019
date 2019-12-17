@@ -5,14 +5,13 @@ import {Query} from 'react-apollo';
 import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
 import Loader from '../../components/Loader';
 import {Text, TouchableOpacity, Image} from 'react-native';
+import styles from './styles';
 
 class SingleSelfGuidedContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      mockId: 'ck435ktpmunrv0b00xbq37xme',
-    };
+    this.state = {};
   }
 
   static navigationOptions = ({navigation}) => {
@@ -21,7 +20,7 @@ class SingleSelfGuidedContainer extends Component {
       headerLeft: () => {
         return (
           <TouchableOpacity
-            style={{marginLeft: 12}}
+            style={styles.backButton}
             onPress={() => {
               navigation.goBack();
             }}>
@@ -33,7 +32,6 @@ class SingleSelfGuidedContainer extends Component {
   };
 
   render() {
-    console.log(this.props.navigation.state);
     return (
       <Query query={QUERY_SELFGUIDED_TOUR}>
         {({loading, error, data}) => {

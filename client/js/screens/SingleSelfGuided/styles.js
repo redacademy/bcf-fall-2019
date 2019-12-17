@@ -263,6 +263,12 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     marginLeft: 10,
   },
+  audioInfo: {
+    fontSize: 12,
+  },
+  backButton: {
+    marginLeft: 12,
+  },
 });
 
 export default styles;
