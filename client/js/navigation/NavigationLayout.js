@@ -30,11 +30,11 @@ const HomeStack = createStackNavigator(
     Home: HomeScreen,
     SelfGuidedTour,
     StoryTrail,
-    Event,
     EventCategory,
     About,
     Contact,
     Faq,
+    Event,
     EventBooking,
     ThankYou,
   },
@@ -75,6 +75,9 @@ const BookingStack = createStackNavigator(
 const SavedStack = createStackNavigator(
   {
     Saved: SavedScreen,
+    Event,
+    EventBooking,
+    ThankYou,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
