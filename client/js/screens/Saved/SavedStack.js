@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View, StatusBar} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import {withCollapsibleForTab} from 'react-navigation-collapsible';
@@ -85,6 +85,10 @@ const SavedStack = createMaterialTopTabNavigator(
       headerTransparent: true,
       headerStyle: {
         backgroundColor: 'transparent',
+      },
+
+      headerBackground: () => {
+        return <StatusBar barStyle="dark-content" />;
       },
 
       headerRight: () => (
