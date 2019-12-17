@@ -35,6 +35,8 @@ const HomeStack = createStackNavigator(
     About,
     Contact,
     Faq,
+    EventBooking,
+    ThankYou,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -60,8 +62,6 @@ const SearchStack = createStackNavigator(
 const BookingStack = createStackNavigator(
   {
     Booking: BookingScreen,
-    EventBooking,
-    ThankYou,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
