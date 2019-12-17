@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import {THEME} from '../../config';
 
 const {height, width} = Dimensions.get('window');
 
@@ -8,12 +9,12 @@ const styles = StyleSheet.create({
     height: width,
   },
   eventName: {
-    color: 'white',
-    fontSize: 20,
+    color: THEME.colors.white,
+    fontSize: 36,
     fontFamily: 'Montserrat-Regular',
   },
   eventLocation: {
-    color: 'white',
+    color: THEME.colors.white,
     fontSize: 12,
     paddingTop: 5,
   },
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     paddingRight: 15,
     paddingTop: 10,
+    marginBottom: 5,
   },
   eventReadMore: {
     color: '#013859',
