@@ -118,7 +118,10 @@ const EventCategory = ({
           listener: onScroll,
         })}
         _mustAddThis={animatedY}
-        contentContainerStyle={{paddingTop: paddingHeight}}
+        contentContainerStyle={{
+          paddingTop: paddingHeight,
+          paddingBottom: THEME.spacing.default(3),
+        }}
         scrollIndicatorInsets={{
           top: paddingHeight / 2,
           bottom: THEME.spacing.default(0.5),
