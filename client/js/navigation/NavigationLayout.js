@@ -27,13 +27,10 @@ const HomeStack = createStackNavigator(
     Home: HomeScreen,
     SelfGuidedTour,
     StoryTrail,
-<<<<<<< HEAD
     EventCategory,
-=======
     About,
     Contact,
     Faq,
->>>>>>> develop
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
