@@ -12,6 +12,7 @@ import SelfGuidedTour from '../screens/SelfGuidedTour';
 import StoryTrail from '../screens/StoryTrail';
 import EventCategory from '../screens/EventCategory';
 import EventBooking from '../screens/EventBooking';
+import ThankYou from '../screens/ThankYou';
 
 import About from '../screens/About';
 import Contact from '../screens/Contact';
@@ -58,6 +59,7 @@ const BookingStack = createStackNavigator(
   {
     Booking: BookingScreen,
     EventBooking,
+    ThankYou,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({

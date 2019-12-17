@@ -372,7 +372,7 @@ const EventBooking = ({
         <ButtonDefault
           isActive={true}
           onPress={() => {
-            console.log(1);
+            navigation.navigate('ThankYou');
           }}
           title="Pay Now"
         />
