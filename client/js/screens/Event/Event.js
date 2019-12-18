@@ -5,7 +5,7 @@ import RatingScore from '../../components/RatingScore';
 import moment from 'moment';
 import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 import Reviews from '../../components/Reviews';
 import PropTypes from 'prop-types';
 import SaveEventContext from '../../context/SaveEventContext';
@@ -126,6 +126,7 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
                 <View style={styles.eventMapContainer}>
                   <MapView
                     style={styles.eventMap}
+                    scrollEnabled={false}
                     region={{
                       latitude: geoLocation
                         ? geoLocation.geometry.location.lat
@@ -135,8 +136,18 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
                         : -122.4324,
                       latitudeDelta: 0.015,
                       longitudeDelta: 0.0121,
-                    }}
-                  />
+                    }}>
+                    <Marker
+                      coordinate={{
+                        latitude: geoLocation
+                          ? geoLocation.geometry.location.lat
+                          : 37.78825,
+                        longitude: geoLocation
+                          ? geoLocation.geometry.location.lng
+                          : -122.4324,
+                      }}
+                    />
+                  </MapView>
 
                   <Text style={styles.eventViewMap}>View Map</Text>
                 </View>
