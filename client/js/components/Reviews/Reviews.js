@@ -19,7 +19,7 @@ const Reviews = ({navigation, eventInfo}) => {
             })}
           </View>
         ) : (
-          <Text> There are no reviews yet</Text>
+          <Text> There are no reviews yet!</Text>
         )}
       </TouchableOpacity>
     </SafeAreaView>
