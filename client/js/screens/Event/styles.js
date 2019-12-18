@@ -243,6 +243,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  showReviewsButton: {
+    paddingBottom: 50,
+  },
+  reviewsSection: {
+    paddingVertical: 36,
+  },
 });
 
 export default styles;

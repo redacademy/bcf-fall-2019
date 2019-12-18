@@ -41,3 +41,25 @@ export const MUTATION_SIGN_UP = gql`
     }
   }
 `;
+
+export const MUTATION_ADD_REVIEW = gql`
+  mutation addReview($score: Int!, $comment: String!, $id: ID!) {
+    createReview(
+      data: {score: $score, comment: $comment, user: {connect: {id: $id}}}
+    ) {
+      id
+      user {
+        email
+        password
+        firstName
+        lastName
+        location
+        image
+        date
+      }
+      score
+      comment
+      date
+    }
+  }
+`;

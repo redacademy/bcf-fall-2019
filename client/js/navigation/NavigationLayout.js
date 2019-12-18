@@ -13,6 +13,7 @@ import StoryTrail from '../screens/StoryTrail';
 import SingleSelfGuided from '../screens/SingleSelfGuided';
 import Event from '../screens/Event';
 import EventCategory from '../screens/EventCategory';
+import SubmitReview from '../screens/SubmitReview';
 import EventBooking from '../screens/EventBooking';
 import ThankYou from '../screens/ThankYou';
 
@@ -36,6 +37,7 @@ const HomeStack = createStackNavigator(
     About,
     Contact,
     Faq,
+    SubmitReview,
     Event,
     EventBooking,
     ThankYou,
