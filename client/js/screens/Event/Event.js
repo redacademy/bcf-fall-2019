@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Image, Text, ScrollView, Button} from 'react-native';
 import ButtonDefault from '../../components/ButtonDefault';
 import RatingScore from '../../components/RatingScore';
+import moment from 'moment';
+import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import MapView from 'react-native-maps';
 import Reviews from '../../components/Reviews';
@@ -29,7 +31,9 @@ const Event = ({navigation, eventInfo}) => {
                   </Text>
                   <View style={styles.eventButtons}>
                     <View style={styles.eventStarRating}>
-                      <RatingScore score={4} />
+                      <RatingScore
+                        score={calculateRatingScore(eventInfo.reviews)}
+                      />
                     </View>
                     <View style={styles.eventshareButton}>
                       <Image
@@ -61,7 +65,10 @@ const Event = ({navigation, eventInfo}) => {
                     style={styles.eventTextFields}
                     source={require('../../assets/images/icFilterDate.png')}
                   />
-                  <Text style={{fontSize: 12}}>{eventInfo.date}</Text>
+                  <Text style={{fontSize: 12}}>
+                    {moment(eventInfo.date).format('MMM, D, YYYY')}{' '}
+                    {eventInfo.startAt}-{eventInfo.endAt}
+                  </Text>
                 </View>
 
                 <Text style={styles.infoText}>Location</Text>
@@ -133,45 +140,56 @@ const Event = ({navigation, eventInfo}) => {
 
                 <Text style={styles.hostTitle}>Your Host</Text>
                 <View style={styles.eventDetails}>
+                  {/*  */}
                   <View style={styles.hostSection}>
-                    <View style={styles.hostAvatar}>
-                      <Image
-                        source={{uri: eventInfo.host.image}}
-                        style={styles.hostImage}
-                      />
-                    </View>
+                    <Image
+                      source={{uri: eventInfo.host.image}}
+                      style={styles.hostImage}
+                    />
                   </View>
 
-                  <View style={styles.hostInformation}>
+                  <View style={styles.hostInfoSection}>
                     <Text style={styles.infoText}>Name</Text>
                     <View style={styles.hostNameField}>
                       <Text style={styles.hostNameTitle}>
                         {eventInfo.host.name}
                       </Text>
                     </View>
-
                     <Text style={styles.infoText}>Bio</Text>
                     <View style={styles.hostBioSection}>
-                      <Text style={styles.hostBio}>{eventInfo.host.bio}</Text>
+                      <Text style={styles.hostBio} numberOfLines={4}>
+                        {eventInfo.host.bio}
+                      </Text>
                     </View>
                   </View>
+                  {/*  */}
                 </View>
-                <View style={styles.eventContactButton}>
-                  <ButtonDefault
-                    onPress={() => {
-                      if (eventInfo) {
-                        return navigation.push('ContactHost', {
-                          host: eventInfo.host,
-                        });
-                      }
-                    }}
-                    title="Contact"
-                  />
-                </View>
+
+                <ButtonDefault
+                  onPress={() => {
+                    if (eventInfo) {
+                      return navigation.push('ContactHost', {
+                        host: eventInfo.host,
+                      });
+                    }
+                  }}
+                  title="Contact"
+                />
+
                 <View>
                   <Text style={styles.eventReviewsTitle}>Reviews</Text>
 
-                  <Reviews />
+                  {eventInfo.reviews.length > 0 ? (
+                    eventInfo.reviews
+                      .sort((a, b) => {
+                        const dateA = new Date(a.date);
+                        const dateB = new Date(b.date);
+                        return dateB - dateA;
+                      })
+                      .map(review => <Reviews key={review.id} data={review} />)
+                  ) : (
+                    <Text> There are no reviews yet!</Text>
+                  )}
                 </View>
 
                 <View style={styles.eventReviewsButton}>
