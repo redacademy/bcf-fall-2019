@@ -143,25 +143,3 @@ export const QUERY_GET_EVENT = gql`
   }
   ${EventFields}
 `;
-
-export const ADD_REVIEW_MUTATION = gql`
-  mutation addReview($score: Int!, $comment: String!, $id: ID!) {
-    createReview(
-      data: {score: $score, comment: $comment, user: {connect: {id: $id}}}
-    ) {
-      id
-      user {
-        email
-        password
-        firstName
-        lastName
-        location
-        image
-        date
-      }
-      score
-      comment
-      date
-    }
-  }
-`;

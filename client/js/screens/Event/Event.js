@@ -143,7 +143,7 @@ const Event = ({navigation, eventInfo}) => {
           </View>
           <View style={styles.showReviewsButton}>
             <ButtonDefault
-              title="Show More Reviews"
+              title="Submit a Review!"
               onPress={() => {
                 navigation.push('SubmitReview', {eventInfo});
               }}
