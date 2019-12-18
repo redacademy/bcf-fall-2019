@@ -3,34 +3,42 @@ import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
   title: {
+    ...THEME.typography.bold,
     color: THEME.colors.white,
-    fontFamily: THEME.typography.bold.fontFamily,
-    fontSize: THEME.typography.size.title.fontSize,
-    shadowColor: THEME.shadow.onText.shadowColor,
+    fontSize: 16,
+    marginBottom: THEME.spacing.default(0.25),
+    marginTop: 8,
   },
   subTitles: {
+    ...THEME.typography.size.caption,
+    fontWeight: THEME.typography.weight.medium,
     color: THEME.colors.white,
   },
   infobox: {
+    marginRight: 8,
+    ...THEME.borders.radius.default,
+    overflow: 'hidden',
+    ...THEME.typography.size.caption,
     backgroundColor: THEME.colors.white,
-    padding: 5,
-    marginRight: 30,
-    fontSize: THEME.typography.size.caption.fontSize,
-    width: '80%',
+    color: THEME.colors.astronautBlue,
+    fontWeight: THEME.typography.weight.medium,
+    marginTop: THEME.spacing.default(0.25),
+    paddingHorizontal: 14,
+    paddingVertical: 4,
   },
   location: {
     color: THEME.colors.white,
-    marginBottom: 60,
+    marginBottom: 52,
   },
   container: {
     width: '90%',
     marginLeft: 'auto',
     marginRight: 'auto',
     height: 170,
-    marginBottom: 20,
+    marginTop: 12,
   },
   infoContainer: {
-    margin: 10,
+    marginLeft: 8,
   },
   flexRow: {
     flexDirection: 'row',
@@ -40,12 +48,25 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   contactSocialMediaIcon: {
-    marginTop: 20,
-    marginLeft: 10,
+    height: 20,
+    width: 20,
+    marginTop: THEME.spacing.default(1.35),
+    marginRight: 8,
+  },
+  contactSocialMediaIconShare: {
+    marginRight: THEME.spacing.default(0.75),
+    marginTop: THEME.spacing.default(1.35),
   },
   backgroundImage: {
+    height: 150,
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  bgImgWrapper: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
     width: '100%',
     height: '100%',
+    position: 'absolute',
   },
 });
 
