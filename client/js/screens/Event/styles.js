@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
 
   eventInfoHeadings: {
-    fontSize: 11,
+    fontSize: 12,
     color: 'red',
   },
 
@@ -52,11 +52,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 4,
   },
-  eventContactButton: {
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#F1785B',
-  },
+
   eventScreenInfo: {
     paddingHorizontal: 24,
     paddingTop: 16,
@@ -107,31 +103,31 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#013859',
     fontWeight: '600',
-    paddingTop: 40,
-    paddingLeft: 15,
+    marginTop: 40,
+    marginBottom: 8,
   },
-  hostAvatar: {
-    paddingRight: 15,
-    paddingTop: 20,
-    paddingLeft: 20,
-  },
+  hostInfoSection: {flex: 1},
   hostNameField: {
     height: 36,
     borderColor: 'gray',
     borderWidth: 1,
-    width: '100%',
     borderRadius: 4,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 12,
   },
   hostBio: {
     fontSize: 12,
-    padding: 8,
-    height: 76,
   },
-  hostInformation: {
-    marginRight: 16,
-    width: '65%',
+  hostNameTitle: {
+    fontSize: 12,
+  },
+  hostBioSection: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
   },
   eventReviewsTitle: {
     fontSize: 20,
@@ -178,10 +174,13 @@ const styles = StyleSheet.create({
   eventMapContainer: {
     paddingTop: 36,
   },
+  hostSection: {
+    marginRight: 16,
+  },
   hostImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
   },
   inputFieldStyles: {
     borderColor: 'gray',
@@ -213,7 +212,6 @@ const styles = StyleSheet.create({
   },
   languageSection: {
     flex: 1,
-    marginRight: 16,
   },
   languageInputField: {
     borderColor: 'gray',
@@ -227,23 +225,6 @@ const styles = StyleSheet.create({
   languageTitle: {
     fontSize: 12,
   },
-  hostSection: {
-    flex: 1,
-    marginRight: 16,
-  },
-  hostNameTitle: {
-    fontSize: 12,
-    paddingLeft: 6,
-  },
-  hostBioSection: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    height: 76,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   showReviewsButton: {
     paddingBottom: 50,
   },
@@ -251,8 +232,7 @@ const styles = StyleSheet.create({
     paddingVertical: 36,
   },
   eventReviewsButton: {
-    paddingBottom: 48,
-    paddingTop: 36,
+    paddingVertical: 36,
   },
 });
 

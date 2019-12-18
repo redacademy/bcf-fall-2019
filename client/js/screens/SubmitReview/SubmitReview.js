@@ -81,7 +81,13 @@ const SubmitReview = ({navigation, eventInfo}) => {
               </Form>
 
               <View style={styles.submitButton}>
-                <ButtonDefault title="Submit" />
+                <ButtonDefault
+                  title="Submit"
+                  isActive={true}
+                  onPress={() => {
+                    navigation.push('ThankYouReview');
+                  }}
+                />
               </View>
             </View>
           </ScrollView>
