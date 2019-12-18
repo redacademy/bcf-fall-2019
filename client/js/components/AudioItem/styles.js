@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   time: {
     ...THEME.typography.size.caption,
     color: THEME.colors.grey,
-    textAlign: 'right',
+    textAlign: 'left',
+    width: 40,
   },
   wrapperIcPlay: {
     borderRadius: 16,

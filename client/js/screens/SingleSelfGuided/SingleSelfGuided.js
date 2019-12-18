@@ -108,6 +108,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
                   </View>
                 </View>
               </View>
+              {/*  */}
               <Text style={styles.infoText}>Audio</Text>
               <View style={styles.inputFieldStyles}>
                 <Image
@@ -130,7 +131,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
                   onPress={() => {
                     if (tour.audio) {
                       return navigation.push('StoryTrail', {
-                        tour: tour,
+                        data: tour,
                       });
                     }
                   }}>
