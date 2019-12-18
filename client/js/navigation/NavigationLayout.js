@@ -17,6 +17,7 @@ import SubmitReview from '../screens/SubmitReview';
 import EventBooking from '../screens/EventBooking';
 import ThankYou from '../screens/ThankYou';
 import ThankYouReview from '../screens/ThankYouReview';
+import ThankYouHost from '../screens/ThankYouHost';
 
 import About from '../screens/About';
 import Contact from '../screens/Contact';
@@ -43,6 +44,7 @@ const HomeStack = createStackNavigator(
     EventBooking,
     ThankYou,
     ThankYouReview,
+    ThankYouHost,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
