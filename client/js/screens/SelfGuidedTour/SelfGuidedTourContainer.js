@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SelfGuidedTour from './SelfGuidedTour';
 import PropTypes from 'prop-types';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, Image} from 'react-native';
 import {Query} from 'react-apollo';
 import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
 import {QUERY_USER} from '../../apollo/queries';
@@ -23,8 +23,22 @@ class SelfGuidedTourContainer extends Component {
       viewerLocation: null,
     };
   }
-  static navigationOptions = {
-    title: 'SelfGuidedTour',
+
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'SelfGuidedTour',
+      headerLeft: () => {
+        return (
+          <TouchableOpacity
+            style={{marginLeft: 12}}
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <Image source={require('../../assets/images/icArrLeftWhite.png')} />
+          </TouchableOpacity>
+        );
+      },
+    };
   };
 
   componentDidMount = () => {

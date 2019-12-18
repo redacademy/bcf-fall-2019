@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, Image, StatusBar} from 'react-native';
 import {withCollapsible} from 'react-navigation-collapsible';
-import EventCategory from './EventCategory';
+import styles from './styles';
 import {THEME} from '../../config';
-import PropTypes from 'prop-types';
+import EventBooking from './EventBooking';
 
-class EventCategoryContainer extends Component {
+class EventBookingContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -15,11 +15,10 @@ class EventCategoryContainer extends Component {
   }
 
   static navigationOptions = ({navigation}) => {
-    const title = navigation.getParam('title');
     const themeColor = navigation.getParam('themeColor') || 'light';
 
     return {
-      title: `${title} Events`,
+      title: 'Event Booking',
       headerBackTitle: true,
       headerTitleStyle: {
         color:
@@ -43,7 +42,7 @@ class EventCategoryContainer extends Component {
       headerLeft: () => {
         return (
           <TouchableOpacity
-            style={{marginLeft: 12}}
+            style={styles.headerBackArrow}
             onPress={() => {
               navigation.goBack();
             }}>
@@ -59,7 +58,7 @@ class EventCategoryContainer extends Component {
       },
       headerRight: () => (
         <TouchableOpacity
-          style={{marginRight: 12}}
+          style={styles.headerMenu}
           onPress={() => {
             navigation.toggleDrawer();
           }}>
@@ -88,21 +87,17 @@ class EventCategoryContainer extends Component {
     const {navigation, collapsible} = this.props;
 
     return (
-      <EventCategory
-        eventInfo={navigation.getParam('eventInfo')}
+      <EventBooking
         collapsible={collapsible}
         headerHeight={this.state.headerHeight}
         navigation={navigation}
         onSwitchTheme={this.onSwitchTheme}
+        eventInfo={navigation.getParam('eventInfo')}
       />
     );
   }
 }
 
-export default withCollapsible(EventCategoryContainer, {
+export default withCollapsible(EventBookingContainer, {
   iOSCollapsedColor: 'transparent',
 });
-
-EventCategoryContainer.propTypes = {
-  navigation: PropTypes.object.isRequired,
-};

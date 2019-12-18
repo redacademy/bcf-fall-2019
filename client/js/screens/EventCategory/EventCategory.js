@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {
   Text,
   Animated,
-  StatusBar,
   FlatList,
   View,
   TouchableOpacity,
@@ -174,7 +173,6 @@ const EventCategory = ({
           top: headerAnimation.y,
           height: paddingHeight || _headerHeight,
         }}>
-        <StatusBar barStyle={isAnimated ? 'light-content' : 'dark-content'} />
         <VibrancyView blurType="dark" blurAmount={2} style={styles.header} />
       </Animated.View>
 

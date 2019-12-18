@@ -2,11 +2,11 @@ import React from 'react';
 import {View, Image, Text, ScrollView, Button} from 'react-native';
 import ButtonDefault from '../../components/ButtonDefault';
 import RatingScore from '../../components/RatingScore';
-import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import SafeAreaView from 'react-native-safe-area-view';
 import MapView from 'react-native-maps';
 import Reviews from '../../components/Reviews';
+import PropTypes from 'prop-types';
 
 const Event = ({navigation, eventInfo}) => {
   return (
@@ -151,13 +151,20 @@ const Event = ({navigation, eventInfo}) => {
           </View>
         </View>
       </ScrollView>
+
       <View style={styles.container}>
         <View style={styles.RectangleShapeView}>
           <View style={styles.eventBooking}>
             <Text style={styles.eventBookingPrice}>${eventInfo.price}</Text>
           </View>
           <View style={styles.eventBookingButton}>
-            <Button title="Book" color="white" />
+            <Button
+              title="Book"
+              color="white"
+              onPress={() => {
+                navigation.push('EventBooking', {eventInfo});
+              }}
+            />
           </View>
         </View>
       </View>
@@ -166,3 +173,8 @@ const Event = ({navigation, eventInfo}) => {
 };
 
 export default Event;
+
+Event.propTypes = {
+  navigation: PropTypes.object,
+  eventInfo: PropTypes.object,
+};
