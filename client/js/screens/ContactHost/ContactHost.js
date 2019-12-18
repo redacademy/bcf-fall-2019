@@ -34,7 +34,7 @@ const ContactHost = ({navigation, host}) => {
           value={'-'}
         />
         <ButtonDefault
-          onPress={() => navigation.push('ThankYou')}
+          onPress={() => navigation.push('ThankYouHost')}
           title="Submit"
         />
       </View>
