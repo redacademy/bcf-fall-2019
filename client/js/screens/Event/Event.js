@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import SaveEventContext from '../../context/SaveEventContext';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const Event = ({navigation, eventInfo}) => {
+const Event = ({navigation, eventInfo, geoLocation}) => {
   return (
     <SaveEventContext.Consumer>
       {({savedIds, addSaveId, removeSaveId}) => {
@@ -122,14 +122,17 @@ const Event = ({navigation, eventInfo}) => {
                   <Text style={styles.eventInfoDescription}>
                     {eventInfo.details.replace(/\\n/g, '\n')}
                   </Text>
-                  {/* <Text style={styles.eventReadMore}>(Read More)</Text> */}
                 </View>
                 <View style={styles.eventMapContainer}>
                   <MapView
                     style={styles.eventMap}
                     region={{
-                      latitude: 37.78825,
-                      longitude: -122.4324,
+                      latitude: geoLocation
+                        ? geoLocation.geometry.location.lat
+                        : 37.78825,
+                      longitude: geoLocation
+                        ? geoLocation.geometry.location.lng
+                        : -122.4324,
                       latitudeDelta: 0.015,
                       longitudeDelta: 0.0121,
                     }}
@@ -233,4 +236,5 @@ export default Event;
 Event.propTypes = {
   navigation: PropTypes.object,
   eventInfo: PropTypes.object,
+  geoLocation: PropTypes.object,
 };
