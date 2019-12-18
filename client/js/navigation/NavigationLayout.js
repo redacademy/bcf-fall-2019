@@ -87,6 +87,7 @@ const SavedStack = createStackNavigator(
     EventBooking,
     ThankYou,
     ThankYouReview,
+    ThankYouHost,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
