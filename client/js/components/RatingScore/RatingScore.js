@@ -3,7 +3,7 @@ import {Image, View} from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
-export default RatingScore = ({score}) => {
+const RatingScore = ({score}) => {
   const filledStar = require('../../assets/images/icRatingStarFilled.png');
   const outlinedStar = require('../../assets/images/icRatingStarOutline.png');
 
@@ -21,3 +21,5 @@ export default RatingScore = ({score}) => {
 RatingScore.propTypes = {
   score: PropTypes.number,
 };
+
+export default RatingScore;
