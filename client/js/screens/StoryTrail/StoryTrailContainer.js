@@ -48,7 +48,9 @@ class StoryTrailContainer extends Component {
   };
 
   render() {
-    return <StoryTrail />;
+    const {navigation} = this.props;
+
+    return <StoryTrail data={navigation.getParam('data')} />;
   }
 }
 

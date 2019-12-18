@@ -103,7 +103,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
               onPress={() => {
                 if (tour.audio) {
                   return navigation.push('StoryTrail', {
-                    tour: tour,
+                    data: tour,
                   });
                 }
               }}>
