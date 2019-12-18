@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, View} from 'react-native';
 import styles from './styles';
 
-export default ReviewScore = ({score}) => {
+const ReviewScore = ({score}) => {
   const filledStar = require('../../assets/images/icRatingBigStarFilled.png');
   const outlinedStar = require('../../assets/images/icRatingBigStarOutline.png');
 
@@ -16,3 +16,5 @@ export default ReviewScore = ({score}) => {
 
   return <View style={styles.wrapper}>{stars}</View>;
 };
+
+export default ReviewScore;
