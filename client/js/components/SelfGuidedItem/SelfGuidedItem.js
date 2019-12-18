@@ -59,19 +59,13 @@ const SelfGuidedItem = ({selfGuidedItem, navigation}) => (
                     source={require('../../assets/images/icFaveShareDefault.png')}
                   />
                   <TouchableOpacity
-                    onPress={async e => {
-                      try {
-                        if (
-                          await savedIds.some(
-                            savedId => savedId === selfGuidedItem.id,
-                          )
-                        ) {
-                          removeSaveId(selfGuidedItem.id);
-                        } else {
-                          addSaveId(selfGuidedItem.id);
-                        }
-                      } catch (error) {
-                        throw new Error(error);
+                    onPress={e => {
+                      if (
+                        savedIds.some(savedId => savedId === selfGuidedItem.id)
+                      ) {
+                        removeSaveId(selfGuidedItem.id);
+                      } else {
+                        addSaveId(selfGuidedItem.id);
                       }
                     }}>
                     <Image
