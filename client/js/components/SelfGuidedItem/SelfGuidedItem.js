@@ -62,7 +62,7 @@ const SelfGuidedItem = ({selfGuidedItem, navigation}) => (
                     onPress={async e => {
                       try {
                         if (
-                          savedIds.some(
+                          await savedIds.some(
                             savedId => savedId === selfGuidedItem.id,
                           )
                         ) {
@@ -70,7 +70,9 @@ const SelfGuidedItem = ({selfGuidedItem, navigation}) => (
                         } else {
                           addSaveId(selfGuidedItem.id);
                         }
-                      } catch (error) {}
+                      } catch (error) {
+                        throw new Error(error);
+                      }
                     }}>
                     <Image
                       style={styles.contactSocialMediaIcon}
