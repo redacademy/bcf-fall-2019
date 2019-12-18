@@ -2,9 +2,7 @@
 
 BC Parks Foundation is a Mobile App build with React Native Technology that can be deployed in both ios and Android (with some ajustments) platforms.
 
-## <img src="./client/js/assets/images/cities/imgCityVancouver.jpg"/>
-
----
+## <img src="./client/js/assets/images/discoverWhite.png" >
 
 ## Some Screenshots from Mobile App:
 
