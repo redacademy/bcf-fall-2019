@@ -156,18 +156,18 @@ const Event = ({navigation, eventInfo}) => {
                     </View>
                   </View>
                 </View>
-                <View style={styles.eventContactButton}>
-                  <ButtonDefault
-                    onPress={() => {
-                      if (eventInfo) {
-                        return navigation.push('ContactHost', {
-                          host: eventInfo.host,
-                        });
-                      }
-                    }}
-                    title="Contact"
-                  />
-                </View>
+
+                <ButtonDefault
+                  onPress={() => {
+                    if (eventInfo) {
+                      return navigation.push('ContactHost', {
+                        host: eventInfo.host,
+                      });
+                    }
+                  }}
+                  title="Contact"
+                />
+
                 <View>
                   <Text style={styles.eventReviewsTitle}>Reviews</Text>
 
