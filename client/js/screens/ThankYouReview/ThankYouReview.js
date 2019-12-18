@@ -9,11 +9,7 @@ const ThankYouReview = ({navigation}) => {
   return (
     <View style={styles.container}>
       <TitleText style={styles.title}>Thank you</TitleText>
-      <Text style={styles.text}>We hope you enjoy your activity.</Text>
-      <Text style={styles.description}>
-        You will recieve a confirmation email with your event details. To view
-        your booking, check My Tickets on the navigation bar.
-      </Text>
+      <Text style={styles.text}>We appreciate your review.</Text>
 
       <ButtonDefault
         isActive={true}

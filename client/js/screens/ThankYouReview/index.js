@@ -1,2 +1,2 @@
-import ThankYouReviewContainer from './ThankYouContainerReview';
-export default ThankYouContainerReview;
+import ThankYouReviewContainer from './ThankYouReviewContainer';
+export default ThankYouReviewContainer;
