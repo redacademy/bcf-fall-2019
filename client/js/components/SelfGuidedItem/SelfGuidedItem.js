@@ -61,9 +61,7 @@ const SelfGuidedItem = ({selfGuidedItem, navigation}) => (
                       } else {
                         addSaveId(selfGuidedItem.id);
                       }
-                    } catch (error) {
-                      console.log(error);
-                    }
+                    } catch (error) {}
                   }}>
                   <Image
                     style={styles.contactSocialMediaIcon}
