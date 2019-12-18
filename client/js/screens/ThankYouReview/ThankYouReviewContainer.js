@@ -20,19 +20,6 @@ class ThankYouReviewContainer extends Component {
       headerBackground: () => {
         return <StatusBar barStyle="dark-content" />;
       },
-
-      headerRight: () => (
-        <TouchableOpacity
-          style={styles.headerMenu}
-          onPress={() => {
-            navigation.toggleDrawer();
-          }}>
-          <Image
-            source={require('../../assets/images/icMenuDefault.png')}
-            name="burger-menu"
-          />
-        </TouchableOpacity>
-      ),
     };
   };
 
