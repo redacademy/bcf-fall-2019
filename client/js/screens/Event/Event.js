@@ -162,7 +162,17 @@ const Event = ({navigation, eventInfo}) => {
                 <View>
                   <Text style={styles.eventReviewsTitle}>Reviews</Text>
 
-                  <Reviews />
+                  {eventInfo.reviews.length > 0 ? (
+                    eventInfo.reviews
+                      .sort((a, b) => {
+                        const dateA = new Date(a.date);
+                        const dateB = new Date(b.date);
+                        return dateB - dateA;
+                      })
+                      .map(review => <Reviews key={review.id} data={review} />)
+                  ) : (
+                    <Text> There are no reviews yet!</Text>
+                  )}
                 </View>
                 <ButtonDefault title="Show More Reviews" />
               </View>
