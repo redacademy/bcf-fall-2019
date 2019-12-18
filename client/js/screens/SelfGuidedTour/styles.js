@@ -86,14 +86,12 @@ const styles = StyleSheet.create({
   },
   radioContainer: {
     paddingTop: 24,
-    // paddingBottom: 20,
   },
   title: {
     fontFamily: THEME.typography.regular.fontFamily,
     fontSize: THEME.typography.size.title.fontSize,
   },
   subTitle: {
-    // fontFamily: THEME.typography.bold.fontFamily,
     paddingTop: 5,
     paddingBottom: 5,
     fontWeight: 'bold',
