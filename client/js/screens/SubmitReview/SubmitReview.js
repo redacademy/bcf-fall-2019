@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Image, Text, ScrollView, AsyncStorage} from 'react-native';
 import ButtonDefault from '../../components/ButtonDefault';
 import ReviewScore from '../../components/ReviewScore';
+import RatingScore from '../../components/RatingScore';
 import styles from './styles';
 import InputDefaultField from '../../components/InputDefaultField';
 import {Field, FormSpy, Form} from 'react-final-form';
