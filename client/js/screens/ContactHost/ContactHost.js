@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Image,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import {View, Image, Text, TextInput} from 'react-native';
 import styles from './styles';
 import SafeAreaView from 'react-native-safe-area-view';
 import ButtonDefault from '../../components/ButtonDefault';
@@ -22,19 +15,11 @@ const ContactHost = ({navigation, host}) => {
           If you have any questions, our host will be happy help!
         </Text>
         <Text style={styles.askText}>Ask a Question</Text>
-        <TextInput
-          style={styles.inputTextOne}
-          // onChangeText={text => ''}
-          value={'Type here...'}
-        />
+        <TextInput style={styles.inputTextOne} value={'Type here...'} />
         <Text style={styles.askText}>How do we reach you?</Text>
-        <TextInput
-          style={styles.inputTextTwo}
-          // onChangeText={text => ''}
-          value={'-'}
-        />
+        <TextInput style={styles.inputTextTwo} value={'-'} />
         <ButtonDefault
-          onPress={() => navigation.push('ThankYou')}
+          onPress={() => navigation.push('ThankYouHost')}
           title="Submit"
         />
       </View>

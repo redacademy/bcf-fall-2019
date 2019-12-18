@@ -232,8 +232,7 @@ const styles = StyleSheet.create({
     paddingVertical: 36,
   },
   eventReviewsButton: {
-    paddingBottom: 48,
-    paddingTop: 36,
+    paddingVertical: 36,
   },
 });
 
