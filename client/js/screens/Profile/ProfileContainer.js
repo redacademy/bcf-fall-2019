@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
-import Profile from './Profile';
+import {graphql} from 'react-apollo';
+import {QUERY_USER} from '../../apollo/queries';
+import {compose} from 'recompose';
 import {TouchableOpacity, Image, StatusBar} from 'react-native';
+import Profile from './Profile';
+import {getParamFromParent} from '../../lib/paramFromParent';
 import {withCollapsible} from 'react-navigation-collapsible';
 import {THEME} from '../../config';
 
@@ -65,18 +69,36 @@ class ProfileContainer extends Component {
   };
 
   render() {
-    const {collapsible} = this.props;
+    const {collapsible, navigation, userInfo} = this.props;
 
     return (
       <Profile
         collapsible={collapsible}
         onSwitchTheme={this.onSwitchTheme}
         headerHeight={this.state.headerHeight}
+        navigation={navigation}
+        userInfo={userInfo.user}
       />
     );
   }
 }
 
-export default withCollapsible(ProfileContainer, {
-  iOSCollapsedColor: 'transparent',
-});
+export default compose(
+  graphql(QUERY_USER, {
+    name: 'userInfo',
+    options: ({navigation}) => {
+      const userToken = getParamFromParent(navigation, 'userToken');
+
+      return {
+        fetchPolicy: 'cache-and-network',
+        variables: {
+          id: userToken.id,
+        },
+      };
+    },
+  }),
+)(
+  withCollapsible(ProfileContainer, {
+    iOSCollapsedColor: 'transparent',
+  }),
+);
