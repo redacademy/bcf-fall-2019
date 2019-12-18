@@ -7,7 +7,6 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  Button,
   View,
 } from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
@@ -17,7 +16,7 @@ import CardEventSmall from '../../components/CardEventSmall';
 import ButtonSeeAll from '../../components/ButtonSeeAll';
 import {CATEGORY_LIST} from '../../lib/categoryList';
 import {CITY_LIST} from '../../lib/cityList';
-import {removeViewer} from '../../config/models';
+
 import styles from './styles';
 import PropTypes from 'prop-types';
 
@@ -229,20 +228,10 @@ class Home extends Component {
                 <Text style={styles.noData}>- There is no event</Text>
               )}
             </View>
+
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Recently viewed</Text>
             </View>
-            <Button
-              onPress={async e => {
-                try {
-                  await removeViewer();
-                  await navigation.navigate('AuthLoading');
-                } catch (error) {
-                  console.log(error);
-                }
-              }}
-              title="Log out"
-            />
           </View>
         </AnimatedNavScrollView>
 

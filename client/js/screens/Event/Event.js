@@ -157,7 +157,16 @@ const Event = ({navigation, eventInfo}) => {
                   </View>
                 </View>
                 <View style={styles.eventContactButton}>
-                  <ButtonDefault title="Contact" />
+                  <ButtonDefault
+                    onPress={() => {
+                      if (eventInfo) {
+                        return navigation.push('ContactHost', {
+                          host: eventInfo.host,
+                        });
+                      }
+                    }}
+                    title="Contact"
+                  />
                 </View>
                 <View>
                   <Text style={styles.eventReviewsTitle}>Reviews</Text>
@@ -174,7 +183,15 @@ const Event = ({navigation, eventInfo}) => {
                     <Text> There are no reviews yet!</Text>
                   )}
                 </View>
-                <ButtonDefault title="Show More Reviews" />
+
+                <View style={styles.eventReviewsButton}>
+                  <ButtonDefault
+                    onPress={e => {
+                      navigation.push('SubmitReview', {eventInfo});
+                    }}
+                    title="Submit a Review!"
+                  />
+                </View>
               </View>
             </ScrollView>
 
