@@ -9,6 +9,7 @@ import SavedScreen from '../screens/Saved';
 import ProfileScreen from '../screens/Profile';
 
 import SelfGuidedTour from '../screens/SelfGuidedTour';
+import ContactHost from '../screens/ContactHost';
 import StoryTrail from '../screens/StoryTrail';
 import SingleSelfGuided from '../screens/SingleSelfGuided';
 import Event from '../screens/Event';
@@ -42,6 +43,7 @@ const HomeStack = createStackNavigator(
     SubmitReview,
     Event,
     EventBooking,
+    ContactHost,
     ThankYou,
     ThankYouReview,
     ThankYouHost,
