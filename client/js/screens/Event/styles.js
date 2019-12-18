@@ -133,9 +133,6 @@ const styles = StyleSheet.create({
     marginRight: 16,
     width: '65%',
   },
-  eventContactButton: {
-    paddingBottom: 36,
-  },
   eventReviewsTitle: {
     fontSize: 20,
     color: '#013859',
@@ -238,7 +235,6 @@ const styles = StyleSheet.create({
     paddingLeft: 6,
   },
   hostBioSection: {
-    height: 36,
     borderColor: 'gray',
     borderWidth: 1,
     width: '100%',
@@ -246,6 +242,12 @@ const styles = StyleSheet.create({
     height: 76,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  showReviewsButton: {
+    paddingBottom: 50,
+  },
+  reviewsSection: {
+    paddingVertical: 36,
   },
 });
 

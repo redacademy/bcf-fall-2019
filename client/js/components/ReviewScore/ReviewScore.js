@@ -1,11 +1,10 @@
 import React from 'react';
 import {Image, View} from 'react-native';
 import styles from './styles';
-import PropTypes from 'prop-types';
 
-const RatingScore = ({score}) => {
-  const filledStar = require('../../assets/images/icRatingStarFilled.png');
-  const outlinedStar = require('../../assets/images/icRatingStarOutline.png');
+const ReviewScore = ({score}) => {
+  const filledStar = require('../../assets/images/icRatingBigStarFilled.png');
+  const outlinedStar = require('../../assets/images/icRatingBigStarOutline.png');
 
   const stars = [];
   for (let i = 0; i < score; i++) {
@@ -18,8 +17,4 @@ const RatingScore = ({score}) => {
   return <View style={styles.wrapper}>{stars}</View>;
 };
 
-RatingScore.propTypes = {
-  score: PropTypes.number,
-};
-
-export default RatingScore;
+export default ReviewScore;
