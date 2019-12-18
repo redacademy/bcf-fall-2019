@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#013859',
     fontWeight: '600',
+    paddingTop: 36,
   },
   container: {
     position: 'absolute',
@@ -248,6 +249,10 @@ const styles = StyleSheet.create({
   },
   reviewsSection: {
     paddingVertical: 36,
+  },
+  eventReviewsButton: {
+    paddingBottom: 48,
+    paddingTop: 36,
   },
 });
 
