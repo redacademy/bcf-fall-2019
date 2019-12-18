@@ -40,6 +40,7 @@ class StoryTrail extends Component {
       return 0;
     }
   };
+
   getSeconds = time => {
     if (time) {
       const totalSeconds = 60;
@@ -52,14 +53,24 @@ class StoryTrail extends Component {
     }
   };
 
+  updateCurrentTime = time => {
+    this.setState({currentTime: time});
+  };
+
+  changeAudioStatus = bool => {
+    this.setState({paused: bool});
+  };
+
   render() {
+    const {data} = this.props;
+    const {image, audio, title, location} = data;
+
     return (
       <ScrollView style={styles.container}>
         <Image
           style={styles.imageMainBackground}
           source={{
-            uri:
-              'https://bcparksfoundation.ca/site/assets/files/1313/storytrail_header_web_3.1920x0.jpg',
+            uri: image,
           }}
           resizeMode="cover"
         />
@@ -71,21 +82,19 @@ class StoryTrail extends Component {
               style={styles.TrailImage}
               resizeMode="cover"
               source={{
-                uri:
-                  'https://bcparksfoundation.ca/site/assets/files/1313/storytrail_header_web_3.1920x0.jpg',
+                uri: image,
               }}
             />
           </ImageBackground>
         </View>
 
         <View style={styles.contents}>
-          <Text style={styles.title}>Tsútswecw Trail</Text>
-          <Text style={styles.location}>Tsútswecw Park</Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.location}>{location}</Text>
 
           <Video
             source={{
-              uri:
-                'https://frafca.van.cp.academy.red/wp-content/uploads/tsutswecw-park.mp3',
+              uri: audio.url,
             }}
             ref={ref => {
               this.state.audioPlayer = ref;
@@ -101,10 +110,10 @@ class StoryTrail extends Component {
               this.setState({duration: props.duration});
             }}
             onProgress={({currentTime}) => {
-              this.setState({currentTime});
+              this.updateCurrentTime(currentTime);
             }}
             onSeek={({seekTime}) => {
-              this.setState({currentTime: seekTime});
+              this.updateCurrentTime(seekTime);
             }}
             style={styles.backgroundVideo}
           />
@@ -112,12 +121,12 @@ class StoryTrail extends Component {
           <View style={styles.wrapperController}>
             <View style={styles.wrapperSlider}>
               <Text style={{...styles.textSlider, ...styles.leftText}}>
-                {this.state.currentTime === 0 || this.state.draggingTime === 0
-                  ? '00:00'
-                  : this.state.draggingSlider
+                {this.state.draggingSlider
                   ? `${this.getMinutes(
                       this.state.draggingTime,
                     )}:${this.getSeconds(this.state.draggingTime)}`
+                  : this.state.currentTime === 0
+                  ? '00:00'
                   : `${this.getMinutes(
                       this.state.currentTime,
                     )}:${this.getSeconds(this.state.currentTime)}`}
@@ -140,7 +149,7 @@ class StoryTrail extends Component {
                 }}
                 onSlidingComplete={newTime => {
                   this.setState({draggingSlider: false});
-                  this.setState({currentTime: newTime});
+                  this.updateCurrentTime(newTime);
                   this.state.audioPlayer.seek(newTime);
                 }}
               />
@@ -203,10 +212,27 @@ class StoryTrail extends Component {
               />
             </TouchableHighlight>
           </View>
+
           <View style={styles.wrapperListsOfAudio}>
             <Text style={styles.sectionTitle}>Lists of Audio</Text>
           </View>
-          <AudioItem />
+
+          {audio.markers.map((list, index) => {
+            return (
+              <AudioItem
+                key={list.id}
+                title={list.title}
+                description={list.description}
+                playTime={list.start}
+                allAudio={audio.markers}
+                index={index}
+                currentTime={this.state.currentTime}
+                isPaused={this.state.paused}
+                audioPlayer={this.state.audioPlayer}
+                changeAudioStatus={this.changeAudioStatus}
+              />
+            );
+          })}
         </View>
       </ScrollView>
     );
