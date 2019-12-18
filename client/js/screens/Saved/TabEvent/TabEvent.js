@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 const TabEvent = ({navigation, savedIds, eventInfo}) => {
   return (
     <View style={styles.container}>
-      {savedIds.length > 0 ? (
+      {savedIds.length > 0 && eventInfo.length > 0 ? (
         <FlatList
           data={eventInfo}
           contentContainerStyle={styles.dataWrapper}
