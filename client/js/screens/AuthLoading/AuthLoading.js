@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text} from 'react-native';
+import Loader from '../../components/Loader';
 
 const AuthLoading = () => {
-  return <Text>Hello AuthLoading</Text>;
+  return <Loader />;
 };
 
 export default AuthLoading;
