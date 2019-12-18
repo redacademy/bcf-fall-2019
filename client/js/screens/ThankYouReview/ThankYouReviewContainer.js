@@ -38,8 +38,8 @@ class ThankYouReviewContainer extends Component {
 
   render() {
     const {navigation} = this.props;
-    return <ThankYou navigation={navigation} />;
+    return <ThankYouReview navigation={navigation} />;
   }
 }
 
-export default ThankYouReview;
+export default ThankYouReviewContainer;
