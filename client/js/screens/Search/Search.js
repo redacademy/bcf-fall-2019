@@ -1,8 +1,13 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
+import styles from './styles';
 
 const Search = props => {
-  return <Text>Hello Search</Text>;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Comming Soon...</Text>
+    </View>
+  );
 };
 
 export default Search;
