@@ -152,6 +152,44 @@ const EventCategory = ({
                   </TouchableOpacity>
                 </TouchableOpacity>
               )}
+
+              {sortOption && (
+                <TouchableOpacity style={styles.buttonFilter}>
+                  <Text style={styles.buttonFilterText}>
+                    {sortOption === 'lowToHigh'
+                      ? 'Low to High'
+                      : sortOption === 'highToLow'
+                      ? 'High to Low'
+                      : sortOption === 'soonestToLatest'
+                      ? 'Soonest To Latest'
+                      : sortOption === 'latestToSoonest'
+                      ? 'Latest To Soonest'
+                      : ''}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={e => {
+                      setSortOption(null);
+                    }}>
+                    <Image
+                      source={require('../../assets/images/icFilterRemoveWhite.png')}
+                    />
+                  </TouchableOpacity>
+                </TouchableOpacity>
+              )}
+
+              {isRating && (
+                <TouchableOpacity style={styles.buttonFilter}>
+                  <Text style={styles.buttonFilterText}>Rating</Text>
+                  <TouchableOpacity
+                    onPress={e => {
+                      setRating(false);
+                    }}>
+                    <Image
+                      source={require('../../assets/images/icFilterRemoveWhite.png')}
+                    />
+                  </TouchableOpacity>
+                </TouchableOpacity>
+              )}
             </View>
 
             <Text style={styles.eventsNumber}>

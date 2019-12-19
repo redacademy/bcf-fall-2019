@@ -85,8 +85,17 @@ const BookingStack = createStackNavigator(
 const SavedStack = createStackNavigator(
   {
     Saved: SavedScreen,
+    SelfGuidedTour,
+    SingleSelfGuided,
+    StoryTrail,
+    EventCategory,
+    About,
+    Contact,
+    Faq,
+    SubmitReview,
     Event,
     EventBooking,
+    ContactHost,
     ThankYou,
     ThankYouReview,
     ThankYouHost,

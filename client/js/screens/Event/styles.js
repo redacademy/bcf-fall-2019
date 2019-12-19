@@ -1,70 +1,66 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import {THEME} from '../../config';
 
 const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  mainContent: {paddingBottom: THEME.spacing.default(3)},
   eventImg: {
     width: '100%',
     height: width,
   },
-  backButton: {
-    marginLeft: 12,
-  },
-  eventName: {
-    color: 'white',
-    fontSize: 20,
-    fontFamily: 'Montserrat-Regular',
-  },
-  eventLocation: {
-    color: 'white',
-    fontSize: 12,
-    paddingTop: 5,
-  },
-  eventButtons: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  eventshareButton: {
-    paddingRight: 10,
-  },
-
-  eventStarRating: {
-    paddingRight: 238,
-  },
-
   overlay: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    ...THEME.padding.appScreen,
+    backgroundColor: THEME.colors.grey,
     position: 'absolute',
     left: 0,
     bottom: 0,
     width: '100%',
-    height: 100,
-    paddingHorizontal: 24,
-    paddingVertical: 8,
+    paddingVertical: THEME.spacing.default(0.5),
   },
-
-  eventInfoHeadings: {
-    fontSize: 12,
-    color: 'red',
+  eventName: {
+    ...THEME.typography.size.title,
+    color: THEME.colors.white,
+    ...THEME.typography.regular,
   },
-
-  eventTextInput: {
-    height: 36,
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
+  eventLocation: {
+    color: THEME.colors.white,
+    ...THEME.typography.size.caption,
   },
-
+  flexRow: {
+    marginTop: THEME.spacing.default(0.25),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  rightRow: {
+    marginRight: THEME.spacing.default(0.75),
+  },
+  ratingWrapper: {
+    marginTop: THEME.spacing.default(0.25),
+    flexDirection: 'row',
+  },
+  ratingText: {
+    ...THEME.typography.size.caption,
+    color: THEME.colors.white,
+    marginRight: THEME.spacing.default(0.375),
+  },
+  buttonWrapper: {
+    flexDirection: 'row',
+  },
+  icBtn: {
+    marginLeft: THEME.spacing.default(0.75),
+  },
   eventScreenInfo: {
-    paddingHorizontal: 24,
+    ...THEME.padding.appScreen,
     paddingTop: 16,
     paddingBottom: 56,
   },
-  eventDetails: {
-    flexDirection: 'row',
-    paddingBottom: 12,
+  infoDetails: {
+    marginTop: 0,
+    marginBottom: THEME.spacing.default(0.75),
   },
+  lastInfo: {marginTop: 0, marginBottom: 0},
   cols2: {
     flex: 1,
   },
@@ -72,103 +68,15 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   eventInfoTitle: {
-    fontSize: 20,
-    color: '#013859',
-    paddingTop: 24,
-    fontWeight: '600',
-    paddingBottom: 6,
+    ...THEME.typography.size.default,
+    color: THEME.colors.astronautBlue,
+    fontWeight: THEME.typography.weight.semibold,
+    marginTop: THEME.spacing.default(2.25),
+    marginBottom: THEME.spacing.default(0.25),
   },
   eventInfoDescription: {
     fontSize: 16,
-  },
-  infoText: {
-    fontWeight: '600',
-    fontSize: 13,
-    paddingRight: 15,
-    paddingTop: 10,
-  },
-  eventReadMore: {
-    color: '#013859',
-    fontSize: 16,
-  },
-  eventTextFields: {
-    width: 32,
-    height: 32,
-    marginLeft: 2,
-    marginRight: 4,
-  },
-  eventViewMap: {
-    color: '#013859',
-    textDecorationLine: 'underline',
-    paddingTop: 10,
-  },
-  hostTitle: {
-    fontSize: 20,
-    color: '#013859',
-    fontWeight: '600',
-    marginTop: 40,
-    marginBottom: 8,
-  },
-  hostInfoSection: {flex: 1},
-  hostNameField: {
-    height: 36,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 12,
-  },
-  hostBio: {
-    fontSize: 12,
-  },
-  hostNameTitle: {
-    fontSize: 12,
-  },
-  hostBioSection: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 4,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-  },
-  eventReviewsTitle: {
-    fontSize: 20,
-    color: '#013859',
-    fontWeight: '600',
-    paddingTop: 36,
-  },
-  container: {
-    position: 'absolute',
-    width: '100%',
-    bottom: 10,
-    paddingHorizontal: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  RectangleShapeView: {
-    width: '95%',
-    borderRadius: 4,
-    paddingHorizontal: 8,
-    height: 60,
-    backgroundColor: '#013859',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  eventBookingPrice: {
-    color: 'white',
-    fontSize: 22,
-    paddingVertical: 17,
-    paddingLeft: 8,
-  },
-  eventBookingButton: {
-    padding: 2,
-    width: 82,
-    fontSize: 12,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 4,
+    lineHeight: 22,
   },
   eventMap: {
     width: '100%',
@@ -177,65 +85,84 @@ const styles = StyleSheet.create({
   eventMapContainer: {
     paddingTop: 36,
   },
+  eventViewMap: {
+    color: THEME.colors.astronautBlue,
+    textDecorationLine: 'underline',
+    paddingTop: 10,
+  },
+  eventDetails: {
+    flexDirection: 'row',
+  },
   hostSection: {
-    marginRight: 16,
+    marginRight: THEME.spacing.default(),
+  },
+  hostInfoSection: {flex: 1},
+  infoText: {
+    ...THEME.typography.size.caption,
+    fontWeight: THEME.typography.weight.semibold,
+    marginBottom: THEME.spacing.default(0.25),
+  },
+  hostField: {
+    ...THEME.borders.radius.default,
+    ...THEME.borders.width.default,
+    borderColor: THEME.colors.grey,
+    backgroundColor: THEME.colors.paleGrey,
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: THEME.spacing.default(0.75),
+    paddingHorizontal: THEME.spacing.default(0.75),
+  },
+  hostText: {
+    ...THEME.typography.size.caption,
+    color: THEME.colors.astronautBlue,
+  },
+  hostBio: {
+    paddingVertical: THEME.spacing.default(0.75),
+    height: 100,
   },
   hostImage: {
     width: 70,
     height: 70,
     borderRadius: 35,
   },
-  inputFieldStyles: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    height: 36,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  eventInfoAddress: {
-    fontSize: 12,
-  },
-  difficultyFilter: {
-    flex: 1,
-    marginRight: 16,
-  },
-  filterSectionImages: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    height: 36,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  eventInfoDiffucultyTitle: {
-    fontSize: 12,
-  },
-  languageSection: {
-    flex: 1,
-  },
-  languageInputField: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    height: 36,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  languageTitle: {
-    fontSize: 12,
-  },
-  showReviewsButton: {
-    paddingBottom: 50,
-  },
-  reviewsSection: {
-    paddingVertical: 36,
-  },
   eventReviewsButton: {
-    paddingVertical: 36,
+    marginTop: THEME.spacing.default(2.25),
+  },
+  container: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 10,
+    padding: THEME.spacing.default(0.5),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  RectangleShapeView: {
+    ...THEME.borders.radius.default,
+    width: '100%',
+    height: 58,
+    paddingHorizontal: THEME.spacing.default(0.75),
+    backgroundColor: THEME.colors.astronautBlue,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  eventBookingPrice: {
+    ...THEME.typography.size.default,
+    color: THEME.colors.white,
+  },
+  eventBookingButton: {
+    ...THEME.borders.width.default,
+    ...THEME.borders.radius.default,
+    width: 72,
+    height: 36,
+    borderColor: THEME.colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  eventBookingButtonText: {
+    ...THEME.typography.size.caption,
+    color: THEME.colors.white,
   },
 });
 
