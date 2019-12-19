@@ -159,17 +159,20 @@ const SingleSelfGuided = ({navigation, tour}) => {
                     longitudeDelta: 0.0121,
                   }}>
                   {tour.audio &&
-                    tour.audio.markers.map(each => (
-                      <Marker
-                        key={each.id}
-                        coordinate={{
-                          latitude: each.latitude,
-                          longitude: each.longitude,
-                        }}
-                        title={each.title}
-                        description={each.description}
-                      />
-                    ))}
+                    tour.audio.markers.map(each => {
+                      console.log(each);
+                      return (
+                        <Marker
+                          key={each.id}
+                          coordinate={{
+                            latitude: parseFloat(each.latitude),
+                            longitude: parseFloat(each.longitude),
+                          }}
+                          title={each.title}
+                          description={each.description}
+                        />
+                      );
+                    })}
                 </MapView>
 
                 <Text style={styles.eventViewMap}>View Map</Text>
