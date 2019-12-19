@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import SingleSelfGuided from './SingleSelfGuided';
 import PropTypes from 'prop-types';
-import {TouchableOpacity, Image} from 'react-native';
+import {TouchableOpacity, Image, StatusBar} from 'react-native';
+import {THEME} from '../../config';
 import styles from './styles';
 
 class SingleSelfGuidedContainer extends Component {
@@ -13,7 +14,20 @@ class SingleSelfGuidedContainer extends Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'SingleSelfGuided',
+      title: 'Self-guided Tour',
+
+      headerStyle: {
+        backgroundColor: THEME.colors.white,
+      },
+
+      headerTitleStyle: {
+        color: THEME.colors.astronautBlue,
+      },
+
+      headerBackground: () => {
+        return <StatusBar barStyle="dark-content" />;
+      },
+
       headerLeft: () => {
         return (
           <TouchableOpacity
@@ -21,10 +35,25 @@ class SingleSelfGuidedContainer extends Component {
             onPress={() => {
               navigation.goBack();
             }}>
-            <Image source={require('../../assets/images/icArrLeftWhite.png')} />
+            <Image
+              source={require('../../assets/images/icArrLeftDefault.png')}
+            />
           </TouchableOpacity>
         );
       },
+
+      headerRight: () => (
+        <TouchableOpacity
+          style={{marginRight: 12}}
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}>
+          <Image
+            source={require('../../assets/images/icMenuDefault.png')}
+            name="burger-menu"
+          />
+        </TouchableOpacity>
+      ),
     };
   };
 

@@ -28,7 +28,7 @@ class SelfGuidedTourContainer extends Component {
     const themeColor = navigation.getParam('themeColor') || 'light';
 
     return {
-      title: 'Self Guided Tour',
+      title: 'Self-guided Tour',
 
       headerTitleStyle: {
         color:
