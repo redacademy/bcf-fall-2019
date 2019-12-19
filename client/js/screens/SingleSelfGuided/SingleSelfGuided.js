@@ -153,8 +153,6 @@ const SingleSelfGuided = ({navigation, tour}) => {
               />
             )}
 
-            {/*  */}
-
             <Text style={styles.eventInfoTitle}>About the Trails:</Text>
             <Text style={styles.eventInfoDescription}>{tour.description}</Text>
 

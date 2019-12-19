@@ -7,6 +7,7 @@ import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import styles from './styles';
 import MapView, {Marker} from 'react-native-maps';
 import Reviews from '../../components/Reviews';
+import TextWithIcon from '../../components/TextWithIcon';
 import PropTypes from 'prop-types';
 import SaveEventContext from '../../context/SaveEventContext';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -18,102 +19,93 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
         const isFaved = savedIds.includes(eventInfo.id);
         return (
           <>
-            <ScrollView>
+            <ScrollView contentContainerStyle={styles.mainContent}>
               <View style={styles.eventImg}>
                 <Image
                   style={styles.eventImg}
                   source={{uri: eventInfo.image}}
                 />
+                {/*  */}
                 <View style={styles.overlay}>
                   <Text style={styles.eventName}>{eventInfo.title}</Text>
-                  <Text style={styles.eventLocation}>
-                    {eventInfo.locationTitle}
-                  </Text>
-                  <View style={styles.eventButtons}>
-                    <View style={styles.eventStarRating}>
-                      <RatingScore
-                        score={calculateRatingScore(eventInfo.reviews)}
-                      />
+                  {/*  */}
+                  <View style={styles.flexRow}>
+                    <View style={styles.rightRow}>
+                      <Text style={styles.eventLocation}>
+                        {eventInfo.locationTitle}
+                      </Text>
+
+                      <View style={styles.ratingWrapper}>
+                        <RatingScore
+                          score={calculateRatingScore(
+                            eventInfo.reviews ? eventInfo.reviews : [],
+                          )}
+                        />
+                        <Text style={styles.ratingText}>
+                          {eventInfo.reviews
+                            ? `(${eventInfo.reviews.length})`
+                            : '(No reviews)'}
+                        </Text>
+                      </View>
                     </View>
-                    <View style={styles.eventshareButton}>
+
+                    <View style={styles.buttonWrapper}>
                       <Image
+                        style={styles.icBtn}
                         source={require('../../assets/images/icFaveShareDefault.png')}
                       />
-                    </View>
-                    <TouchableOpacity
-                      onPress={() =>
-                        isFaved
-                          ? removeSaveId(eventInfo.id)
-                          : addSaveId(eventInfo.id)
-                      }>
-                      <Image
-                        source={
+
+                      <TouchableOpacity
+                        style={styles.icBtn}
+                        onPress={() =>
                           isFaved
-                            ? require('../../assets/images/icFaveCircleActive.png')
-                            : require('../../assets/images/icFaveCircleDefault.png')
-                        }
-                      />
-                    </TouchableOpacity>
+                            ? removeSaveId(eventInfo.id)
+                            : addSaveId(eventInfo.id)
+                        }>
+                        <Image
+                          source={
+                            isFaved
+                              ? require('../../assets/images/icFaveCircleActive.png')
+                              : require('../../assets/images/icFaveCircleDefault.png')
+                          }
+                        />
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 </View>
               </View>
 
               <View style={styles.eventScreenInfo}>
-                <Text style={styles.infoText}>Date / Time</Text>
-                <View style={styles.inputFieldStyles}>
-                  <Image
-                    style={styles.eventTextFields}
-                    source={require('../../assets/images/icFilterDate.png')}
+                {/*  */}
+                <TextWithIcon
+                  label="Date / Time"
+                  iconSource={require('../../assets/images/icFilterDate.png')}
+                  text={`${moment(eventInfo.date).format('MMM, D, YYYY')} ${
+                    eventInfo.startAt
+                  }-${eventInfo.endAt}`}
+                  style={styles.infoDetails}
+                />
+
+                <TextWithIcon
+                  label="Location"
+                  iconSource={require('../../assets/images/icFilterLocation.png')}
+                  text={eventInfo.address}
+                  style={styles.infoDetails}
+                />
+
+                <View style={{...styles.flexRow, ...styles.lastInfo}}>
+                  <TextWithIcon
+                    label="Difficulty"
+                    iconSource={require('../../assets/images/icFilterDifficulty.png')}
+                    text={eventInfo.difficulty}
+                    style={{...styles.cols2, ...styles.firstColumn}}
                   />
-                  <Text style={{fontSize: 12}}>
-                    {moment(eventInfo.date).format('MMM, D, YYYY')}{' '}
-                    {eventInfo.startAt}-{eventInfo.endAt}
-                  </Text>
-                </View>
-
-                <Text style={styles.infoText}>Location</Text>
-                <View
-                  style={{
-                    ...styles.eventTextInput,
-                    height: 36,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}>
-                  <Image
-                    style={styles.eventTextFields}
-                    source={require('../../assets/images/icFilterLocation.png')}
+                  <TextWithIcon
+                    label="Language"
+                    iconSource={require('../../assets/images/icFilterLanguage.png')}
+                    text={eventInfo.language}
+                    style={styles.cols2}
                   />
-                  <Text style={styles.eventInfoAddress}>
-                    {eventInfo.address}
-                  </Text>
-                </View>
-
-                <View style={styles.eventDetails}>
-                  <View style={styles.difficultyFilter}>
-                    <Text style={styles.infoText}>Difficulty</Text>
-                    <View style={styles.filterSectionImages}>
-                      <Image
-                        style={styles.eventTextFields}
-                        source={require('../../assets/images/icFilterDifficulty.png')}
-                      />
-                      <Text style={styles.eventInfoDiffucultyTitle}>
-                        {eventInfo.difficulty}
-                      </Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.languageSection}>
-                    <Text style={styles.infoText}>Language</Text>
-                    <View style={styles.languageInputField}>
-                      <Image
-                        style={styles.eventTextFields}
-                        source={require('../../assets/images/icFilterLanguage.png')}
-                      />
-                      <Text style={styles.languageTitle}>
-                        {eventInfo.language}
-                      </Text>
-                    </View>
-                  </View>
                 </View>
 
                 <View>
@@ -123,6 +115,7 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
                     {eventInfo.details.replace(/\\n/g, '\n')}
                   </Text>
                 </View>
+
                 <View style={styles.eventMapContainer}>
                   <MapView
                     style={styles.eventMap}
@@ -152,9 +145,9 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
                   <Text style={styles.eventViewMap}>View Map</Text>
                 </View>
 
-                <Text style={styles.hostTitle}>Your Host</Text>
+                <Text style={styles.eventInfoTitle}>Your Host</Text>
+
                 <View style={styles.eventDetails}>
-                  {/*  */}
                   <View style={styles.hostSection}>
                     <Image
                       source={{uri: eventInfo.host.image}}
@@ -164,15 +157,15 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
 
                   <View style={styles.hostInfoSection}>
                     <Text style={styles.infoText}>Name</Text>
-                    <View style={styles.hostNameField}>
-                      <Text style={styles.hostNameTitle}>
-                        {eventInfo.host.name}
-                      </Text>
+
+                    <View style={styles.hostField}>
+                      <Text style={styles.hostText}>{eventInfo.host.name}</Text>
                     </View>
+
                     <Text style={styles.infoText}>Bio</Text>
-                    <View style={styles.hostBioSection}>
-                      <Text style={styles.hostBio} numberOfLines={4}>
-                        {eventInfo.host.bio}
+                    <View style={{...styles.hostField, ...styles.hostBio}}>
+                      <Text style={styles.hostText} numberOfLines={6}>
+                        {eventInfo.host.bio.replace(/\\n/g, '\n')}
                       </Text>
                     </View>
                   </View>
@@ -191,7 +184,7 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
                 />
 
                 <View>
-                  <Text style={styles.eventReviewsTitle}>Reviews</Text>
+                  <Text style={styles.eventInfoTitle}>Reviews</Text>
 
                   {eventInfo.reviews.length > 0 ? (
                     eventInfo.reviews
@@ -221,18 +214,19 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
               <View style={styles.RectangleShapeView}>
                 <View style={styles.eventBooking}>
                   <Text style={styles.eventBookingPrice}>
-                    ${eventInfo.price}
+                    {eventInfo.price === 0
+                      ? 'Free'
+                      : `$${eventInfo.price} / each`}
                   </Text>
                 </View>
-                <View style={styles.eventBookingButton}>
-                  <Button
-                    title="Book"
-                    color="white"
-                    onPress={() => {
-                      navigation.push('EventBooking', {eventInfo});
-                    }}
-                  />
-                </View>
+
+                <TouchableOpacity
+                  style={styles.eventBookingButton}
+                  onPress={() => {
+                    navigation.push('EventBooking', {eventInfo});
+                  }}>
+                  <Text style={styles.eventBookingButtonText}>Book</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </>
