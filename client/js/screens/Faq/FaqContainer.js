@@ -10,7 +10,6 @@ class FaqContainer extends Component {
     return (
       <Query query={QUERY_FAQ}>
         {({loading, error, data}) => {
-          console.log(data);
           if (loading) return <Loader />;
           if (error) return <Text>{error.message}</Text>;
           if (data) return <Faq faqs={data.faqs} />;
