@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   },
   filterWrapper: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   eventsNumber: {
     ...THEME.typography.size.caption,
