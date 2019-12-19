@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: width,
   },
+  backButton: {
+    marginLeft: 12,
+  },
   eventName: {
     color: 'white',
     fontSize: 20,

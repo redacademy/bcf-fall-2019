@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import {TouchableOpacity, Image, StatusBar} from 'react-native';
 import Event from './Event';
+import styles from './styles';
+import {THEME} from '../../config';
 import global from '../../../global';
 
 class EventContainer extends Component {
@@ -11,6 +14,53 @@ class EventContainer extends Component {
       geoLocation: null,
     };
   }
+
+  static navigationOptions = ({navigation}) => {
+    const {category} = navigation.getParam('eventInfo');
+
+    return {
+      title: `${category} Events`,
+
+      headerStyle: {
+        backgroundColor: THEME.colors.white,
+      },
+
+      headerTitleStyle: {
+        color: THEME.colors.astronautBlue,
+      },
+
+      headerBackground: () => {
+        return <StatusBar barStyle="dark-content" />;
+      },
+
+      headerLeft: () => {
+        return (
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <Image
+              source={require('../../assets/images/icArrLeftDefault.png')}
+            />
+          </TouchableOpacity>
+        );
+      },
+
+      headerRight: () => (
+        <TouchableOpacity
+          style={{marginRight: 12}}
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}>
+          <Image
+            source={require('../../assets/images/icMenuDefault.png')}
+            name="burger-menu"
+          />
+        </TouchableOpacity>
+      ),
+    };
+  };
 
   async componentDidMount() {
     const {navigation} = this.props;

@@ -1,2 +1,2 @@
-import BookingContainer from './BookingContainer';
-export default BookingContainer;
+import BookingStack from './BookingStack';
+export default BookingStack;

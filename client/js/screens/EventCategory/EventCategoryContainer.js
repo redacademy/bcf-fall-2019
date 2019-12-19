@@ -91,8 +91,8 @@ class EventCategoryContainer extends Component {
       <EventCategory
         eventInfo={navigation.getParam('eventInfo')}
         collapsible={collapsible}
-        headerHeight={this.state.headerHeight}
         navigation={navigation}
+        headerHeight={this.state.headerHeight}
         onSwitchTheme={this.onSwitchTheme}
       />
     );

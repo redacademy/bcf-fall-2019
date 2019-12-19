@@ -3,6 +3,7 @@ import {compose} from 'recompose';
 import {graphql} from 'react-apollo';
 import {
   QUERY_USER,
+  QUERY_SELFGUIDED_TOUR,
   QUERY_ALL_EVENTS,
   QUERY_EVENT_THIS_WEEK,
 } from '../../apollo/queries';
@@ -26,7 +27,7 @@ class HomeContainer extends Component {
     this.setState({headerHeight: this.props.collapsible.paddingHeight});
   }
 
-  static navigationOptions = ({navigation, navigationOptions}) => {
+  static navigationOptions = () => {
     return {
       headerTransparent: true,
       headerStyle: {
@@ -42,6 +43,7 @@ class HomeContainer extends Component {
     const {
       navigation,
       userInfo,
+      allSelfGuidedTour,
       allEvents,
       eventThisWeek,
       collapsible,
@@ -63,6 +65,7 @@ class HomeContainer extends Component {
       <Home
         navigation={navigation}
         userInfo={userInfo.user}
+        selfGuidedToursInfo={allSelfGuidedTour.selfGuidedTours}
         eventInfo={{
           allEvents: allEvents.events,
           thisWeek: eventThisWeek.events,
@@ -94,6 +97,10 @@ export default compose(
     name: 'allEvents',
   }),
 
+  graphql(QUERY_SELFGUIDED_TOUR, {
+    name: 'allSelfGuidedTour',
+  }),
+
   graphql(QUERY_EVENT_THIS_WEEK, {
     name: 'eventThisWeek',
     options: props => {
@@ -112,7 +119,3 @@ export default compose(
     },
   }),
 )(withCollapsible(HomeContainer, {iOSCollapsedColor: 'transparent'}));
-
-HomeContainer.propTypes = {
-  navigation: PropTypes.object.isRequired,
-};
