@@ -239,10 +239,6 @@ class Home extends Component {
                 <Text style={styles.noData}>- There is no event</Text>
               )}
             </View>
-
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Recently viewed</Text>
-            </View>
           </View>
         </AnimatedNavScrollView>
 
