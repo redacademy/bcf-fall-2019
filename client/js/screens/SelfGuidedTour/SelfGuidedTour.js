@@ -30,7 +30,6 @@ const SelfGuidedTour = ({
   setSortType,
   resetValues,
 }) => {
-  let data = selfguidedtours;
   return (
     <>
       <ScrollView>

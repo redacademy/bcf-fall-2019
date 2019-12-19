@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import SelfGuidedTour from './SelfGuidedTour';
-import PropTypes from 'prop-types';
-import {Text, TouchableOpacity, Image} from 'react-native';
-import {Query} from 'react-apollo';
-import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
-import {QUERY_USER} from '../../apollo/queries';
-import Loader from '../../components/Loader';
+import {TouchableOpacity, Image} from 'react-native';
 import {getViewer} from '../../config/models';
+import PropTypes from 'prop-types';
 
 class SelfGuidedTourContainer extends Component {
   constructor(props) {
@@ -144,52 +140,34 @@ class SelfGuidedTourContainer extends Component {
 
   render() {
     const {navigation} = this.props;
-    return (
-      this.state.user && (
-        <Query query={QUERY_USER} variables={{id: this.state.user.id}}>
-          {({loading, error, data}) => {
-            if (loading) return <Loader />;
-            if (error) return <Text>{error.message}</Text>;
-            if (data) {
-              const userLocation = data.user.location;
-              return (
-                <Query query={QUERY_SELFGUIDED_TOUR}>
-                  {({loading, error, data}) => {
-                    if (loading) return <Loader />;
-                    if (error) return <Text>{error.message}</Text>;
-                    if (data) {
-                      const tours = this.sortTours(
-                        this.filterTours(data.selfGuidedTours, userLocation),
-                        this.state.sortType,
-                      );
 
-                      return (
-                        <SelfGuidedTour
-                          needAudio={this.state.audio}
-                          sortDisplayOn={this.state.sortDisplayOn}
-                          sortType={this.state.sortType}
-                          near={this.state.near}
-                          reviews={this.state.reviews}
-                          pet={this.state.petFriendly}
-                          toggleSortDisplay={this.toggleSortDisplay}
-                          toggleNeedAudio={this.toggleNeedAudio}
-                          toggleNear={this.toggleNear}
-                          togglePet={this.togglePet}
-                          toggleReviews={this.toggleReviews}
-                          setSortType={this.setSortType}
-                          navigation={navigation}
-                          selfguidedtours={tours}
-                          resetValues={this.resetValues}
-                        />
-                      );
-                    }
-                  }}
-                </Query>
-              );
-            }
-          }}
-        </Query>
-      )
+    const {userInfo, selfGuidedToursInfo} = navigation.getParam('data');
+
+    const userLocation = userInfo.location;
+
+    const tours = this.sortTours(
+      this.filterTours(selfGuidedToursInfo, userLocation),
+      this.state.sortType,
+    );
+
+    return (
+      <SelfGuidedTour
+        needAudio={this.state.audio}
+        sortDisplayOn={this.state.sortDisplayOn}
+        sortType={this.state.sortType}
+        near={this.state.near}
+        reviews={this.state.reviews}
+        pet={this.state.petFriendly}
+        toggleSortDisplay={this.toggleSortDisplay}
+        toggleNeedAudio={this.toggleNeedAudio}
+        toggleNear={this.toggleNear}
+        togglePet={this.togglePet}
+        toggleReviews={this.toggleReviews}
+        setSortType={this.setSortType}
+        navigation={navigation}
+        selfguidedtours={tours}
+        resetValues={this.resetValues}
+      />
     );
   }
 }
