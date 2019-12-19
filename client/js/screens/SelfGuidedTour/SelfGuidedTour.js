@@ -113,6 +113,11 @@ const SelfGuidedTour = ({
             />
           </TouchableOpacity>
         </View>
+        <Text style={styles.tourNumbers}>
+          {selfguidedtours && selfguidedtours.length === 1
+            ? '1 Tour'
+            : `${selfguidedtours.length} Tours`}
+        </Text>
         {selfguidedtours &&
           selfguidedtours.map(each => {
             return (
@@ -129,20 +134,21 @@ const SelfGuidedTour = ({
         <View style={styles.topPart}></View>
         <View style={styles.bottomPart}>
           <View style={styles.sortHeader}>
-            <Button
+            <TouchableOpacity
               onPress={() => {
                 resetValues();
-              }}
-              title="Reset"
-            />
-            <Text style={styles.title}>Sort by</Text>
-            <Button
+              }}>
+              <Text style={styles.resetDoneSort}>Reset</Text>
+            </TouchableOpacity>
+            <Text style={styles.sortTitle}>Sort by</Text>
+            <TouchableOpacity
               onPress={() => {
                 toggleSortDisplay();
-              }}
-              title="Done"
-            />
+              }}>
+              <Text style={styles.resetDoneSort}>Done</Text>
+            </TouchableOpacity>
           </View>
+          <View style={styles.separator} />
           <View style={styles.radioContainer}>
             <Text style={styles.subTitle}>Activity Level:</Text>
             <TouchableOpacity
@@ -160,7 +166,7 @@ const SelfGuidedTour = ({
                     : require('../../assets/images/icRadioDefault.png')
                 }
               />
-              <Text style={styles.singleSelection}>Easy to Difficulty</Text>
+              <Text style={styles.singleSelection}>Easy to Difficult</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -179,7 +185,7 @@ const SelfGuidedTour = ({
                     : require('../../assets/images/icRadioDefault.png')
                 }
               />
-              <Text style={styles.singleSelection}>Difficulty to Easy</Text>
+              <Text style={styles.singleSelection}>Difficult to Easy</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.radioContainer}>
@@ -219,6 +225,7 @@ const SelfGuidedTour = ({
               <Text style={styles.singleSelection}>Long to Short</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.separatorTwo} />
           <View>
             <TouchableOpacity
               onPress={() => {
