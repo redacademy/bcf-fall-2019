@@ -2,11 +2,11 @@ import React from 'react';
 import {View, Image, Text, ScrollView, TouchableOpacity} from 'react-native';
 import RatingScore from '../../components/RatingScore';
 import TextWithIcon from '../../components/TextWithIcon';
-import TitleForm from '../../components/TitleForm';
 import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import ButtonDefault from '../../components/ButtonDefault';
 import styles from './styles';
 import MapView from 'react-native-maps';
+import Reviews from '../../components/Reviews';
 import {Marker} from 'react-native-maps';
 import SaveEventContext from '../../context/SaveEventContext';
 
@@ -187,15 +187,22 @@ const SingleSelfGuided = ({navigation, tour}) => {
             <View style={styles.reviewWrapper}>
               <Text style={styles.eventInfoTitle}>Reviews:</Text>
 
-              {tour.reviews ? (
-                <Text style={styles.eventInfoDescription}>yes</Text>
+              {tour.reviews && tour.reviews.length > 0 ? (
+                tour.reviews
+                  .sort((a, b) => {
+                    const dateA = new Date(a.date);
+                    const dateB = new Date(b.date);
+                    return dateB - dateA;
+                  })
+                  .map(review => <Reviews key={review.id} data={review} />)
               ) : (
                 <Text style={styles.eventInfoDescription}>
                   There is no reviews yet
                 </Text>
               )}
             </View>
-            <ButtonDefault title="Write a review" />
+
+            <ButtonDefault title="Write a review" isActive={false} />
           </View>
         </ScrollView>
       )}
