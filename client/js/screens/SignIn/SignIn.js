@@ -118,7 +118,7 @@ const SignIn = ({navigation}) => {
                           <InputDefaultCheckBox
                             type="checkbox"
                             name="rememberMe"
-                            rightText="Remeber me"
+                            rightText="Remember me"
                           />
                           <Text style={styles.forgot}>Forgot Password?</Text>
                         </View>

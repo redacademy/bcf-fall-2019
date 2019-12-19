@@ -14,64 +14,56 @@ const styles = StyleSheet.create({
     width: '100%',
     height: width,
   },
-  eventName: {
-    color: THEME.colors.white,
-    fontSize: 36,
-    fontFamily: 'Montserrat-Regular',
-  },
-  eventLocation: {
-    color: THEME.colors.white,
-    fontSize: 12,
-    paddingTop: 5,
-  },
-  eventButtons: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  eventshareButton: {
-    paddingRight: 10,
-  },
-
-  eventStarRating: {
-    paddingRight: 238,
-  },
-
   overlay: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    ...THEME.padding.appScreen,
+    backgroundColor: THEME.colors.grey,
     position: 'absolute',
     left: 0,
     bottom: 0,
     width: '100%',
-    height: 100,
-    paddingHorizontal: 24,
-    paddingVertical: 8,
+    paddingVertical: THEME.spacing.default(0.5),
   },
-
-  eventInfoHeadings: {
-    fontSize: 11,
-    color: 'red',
+  eventName: {
+    color: THEME.colors.white,
+    fontSize: 36,
+    ...THEME.typography.regular,
   },
-
-  eventTextInput: {
-    height: 36,
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
+  flexRow: {
+    marginTop: THEME.spacing.default(0.25),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  eventContactButton: {
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#F1785B',
+  rightRow: {
+    marginRight: THEME.spacing.default(0.75),
+  },
+  eventLocation: {
+    color: THEME.colors.white,
+    ...THEME.typography.size.caption,
+  },
+  ratingWrapper: {
+    marginTop: THEME.spacing.default(0.25),
+    flexDirection: 'row',
+  },
+  ratingText: {
+    ...THEME.typography.size.caption,
+    color: THEME.colors.white,
+    marginRight: THEME.spacing.default(0.375),
+  },
+  buttonWrapper: {
+    flexDirection: 'row',
+  },
+  icBtn: {
+    marginLeft: THEME.spacing.default(0.75),
   },
   eventScreenInfo: {
-    paddingHorizontal: 24,
+    ...THEME.padding.appScreen,
     paddingTop: 16,
     paddingBottom: 56,
   },
-  eventDetails: {
-    flexDirection: 'row',
-    paddingBottom: 12,
+  infoDetails: {
+    marginTop: 0,
+    marginBottom: THEME.spacing.default(0.75),
   },
   cols2: {
     flex: 1,
@@ -79,109 +71,53 @@ const styles = StyleSheet.create({
   firstColumn: {
     marginRight: 16,
   },
+  audioLabel: {
+    ...THEME.typography.size.caption,
+    fontWeight: THEME.typography.weight.semibold,
+    marginBottom: THEME.spacing.default(0.25),
+  },
+  audioWrapper: {
+    ...THEME.borders.radius.default,
+    ...THEME.borders.width.default,
+    borderColor: THEME.colors.grey,
+    backgroundColor: THEME.colors.paleGrey,
+    paddingLeft: 2,
+    paddingRight: THEME.spacing.default(0.75),
+    height: 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  audioIcon: {
+    width: 32,
+    height: 32,
+    marginRight: THEME.spacing.default(0.25),
+  },
+  audioTextWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  audioText: {
+    ...THEME.typography.size.caption,
+    color: THEME.colors.astronautBlue,
+  },
+  audioLinkText: {
+    marginLeft: THEME.spacing.default(0.75),
+    textDecorationLine: 'underline',
+  },
   eventInfoTitle: {
-    fontSize: 20,
-    color: '#013859',
-    paddingTop: 24,
-    fontWeight: '600',
-    paddingBottom: 6,
+    ...THEME.typography.size.default,
+    color: THEME.colors.astronautBlue,
+    fontWeight: THEME.typography.weight.semibold,
+    marginTop: THEME.spacing.default(2.25),
+    marginBottom: THEME.spacing.default(0.25),
   },
   eventInfoDescription: {
     fontSize: 16,
+    lineHeight: 22,
   },
-  infoText: {
-    fontWeight: '600',
-    fontSize: 13,
-    paddingRight: 15,
-    paddingTop: 10,
-    marginBottom: 5,
-  },
-  eventReadMore: {
-    color: '#013859',
-    fontSize: 16,
-  },
-  eventTextFields: {
-    width: 32,
-    height: 32,
-    marginLeft: 2,
-    marginRight: 4,
-  },
-  eventViewMap: {
-    color: '#013859',
-    textDecorationLine: 'underline',
-    paddingTop: 10,
-  },
-  hostTitle: {
-    fontSize: 20,
-    color: '#013859',
-    fontWeight: '600',
-    paddingTop: 40,
-    paddingLeft: 15,
-  },
-  hostAvatar: {
-    paddingRight: 15,
-    paddingTop: 20,
-    paddingLeft: 20,
-  },
-  hostNameField: {
-    height: 36,
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  hostBio: {
-    fontSize: 12,
-    padding: 8,
-    height: 76,
-  },
-  hostInformation: {
-    marginRight: 16,
-    width: '65%',
-  },
-  eventContactButton: {
-    paddingBottom: 36,
-  },
-  eventReviewsTitle: {
-    fontSize: 20,
-    color: '#013859',
-    fontWeight: '600',
-    marginTop: 30,
-    marginBottom: 30,
-  },
-  container: {
-    position: 'absolute',
-    width: '100%',
-    bottom: 10,
-    paddingHorizontal: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  RectangleShapeView: {
-    width: '95%',
-    borderRadius: 4,
-    paddingHorizontal: 8,
-    height: 60,
-    backgroundColor: '#013859',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  eventBookingPrice: {
-    color: 'white',
-    fontSize: 22,
-    paddingVertical: 17,
-    paddingLeft: 8,
-  },
-  eventBookingButton: {
-    padding: 2,
-    width: 82,
-    fontSize: 12,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 4,
+  reviewWrapper: {
+    marginBottom: THEME.spacing.default(2.25),
   },
   eventMap: {
     width: '100%',
@@ -190,87 +126,10 @@ const styles = StyleSheet.create({
   eventMapContainer: {
     paddingTop: 36,
   },
-  hostImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-  },
-  inputFieldStyles: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    height: 36,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  eventInfoAddress: {
-    fontSize: 12,
-  },
-  difficultyFilter: {
-    flex: 1,
-    marginRight: 16,
-  },
-  filterSectionImages: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    height: 36,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  eventInfoDiffucultyTitle: {
-    fontSize: 12,
-  },
-  languageSection: {
-    flex: 1,
-    marginRight: 16,
-  },
-  languageInputField: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    height: 36,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  languageTitle: {
-    fontSize: 12,
-  },
-  hostSection: {
-    flex: 1,
-    marginRight: 16,
-  },
-  hostNameTitle: {
-    fontSize: 12,
-    paddingLeft: 6,
-  },
-  hostBioSection: {
-    height: 36,
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 4,
-    height: 76,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  downloadAudio: {
-    fontSize: 10,
-    color: THEME.colors.blue,
+  eventViewMap: {
+    color: THEME.colors.astronautBlue,
     textDecorationLine: 'underline',
-    marginLeft: 180,
-  },
-  playAudio: {
-    fontSize: 10,
-    color: THEME.colors.blue,
-    textDecorationLine: 'underline',
-    marginLeft: 10,
-  },
-  audioInfo: {
-    fontSize: 12,
+    paddingTop: 10,
   },
 });
 
