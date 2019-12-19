@@ -1,8 +1,13 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
+import styles from './styles';
 
 const PastEvents = () => {
-  return <Text>Upcoming</Text>;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Coming Soon...</Text>
+    </View>
+  );
 };
 
 export default PastEvents;
