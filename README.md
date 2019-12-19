@@ -39,17 +39,15 @@ The App to connect people to Outdoor hosted events or selfguided tours, where is
 
 ## Instalation & Run Instructions
 
-`(iOS) Install Xcode before start`
-
 ### 1. Install Dependencies
 
 `$ cd client`
-`$ yarn init`
+`$ yarn`
 `$ cd ios`
 `$ pod install`
 `$ cd ..`
 
-### 2. Start Your Emulator (From Client)
+### 2. Start Your Emulator (From Client dir)
 
 `$ react-native run-ios`
 
