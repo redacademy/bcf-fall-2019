@@ -1,189 +1,211 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, Image, Text, ScrollView, TouchableOpacity} from 'react-native';
+import RatingScore from '../../components/RatingScore';
+import TextWithIcon from '../../components/TextWithIcon';
+import {calculateRatingScore} from '../../lib/calculateRatingScore';
 import ButtonDefault from '../../components/ButtonDefault';
 import styles from './styles';
-import SafeAreaView from 'react-native-safe-area-view';
 import MapView from 'react-native-maps';
+import Reviews from '../../components/Reviews';
 import {Marker} from 'react-native-maps';
 import SaveEventContext from '../../context/SaveEventContext';
 
 const SingleSelfGuided = ({navigation, tour}) => {
   return (
-    <SafeAreaView>
-      <SaveEventContext.Consumer>
-        {({savedIds, addSaveId, removeSaveId}) => (
-          <ScrollView>
-            <View style={styles.eventImg}>
-              <Image style={styles.eventImg} source={{uri: tour.image}} />
+    <SaveEventContext.Consumer>
+      {({savedIds, addSaveId, removeSaveId}) => (
+        <ScrollView>
+          <View style={styles.eventImg}>
+            <Image style={styles.eventImg} source={{uri: tour.image}} />
 
-              <View style={styles.overlay}>
-                <Text style={styles.eventName}>{tour.title}</Text>
-                <Text style={styles.eventLocation}>{tour.location}</Text>
-                <View style={styles.eventButtons}>
-                  <View style={styles.eventStarRating}></View>
-                  <View style={styles.eventshareButton}>
-                    <Image
-                      source={require('../../assets/images/icFaveShareDefault.png')}
+            <View style={styles.overlay}>
+              <Text style={styles.eventName}>{tour.title}</Text>
+
+              <View style={styles.flexRow}>
+                <View style={styles.rightRow}>
+                  <Text style={styles.eventLocation}>{tour.location}</Text>
+
+                  <View style={styles.ratingWrapper}>
+                    <RatingScore
+                      score={calculateRatingScore(
+                        tour.reviews ? tour.reviews : [],
+                      )}
                     />
+                    <Text style={styles.ratingText}>
+                      {tour.reviews
+                        ? `(${tour.reviews.length})`
+                        : '(No reviews)'}
+                    </Text>
                   </View>
-                  <View style={styles.eventButton}>
-                    <TouchableOpacity
-                      style={{...styles.buttons}}
-                      onPress={async e => {
-                        try {
-                          if (savedIds.some(savedId => savedId === tour.id)) {
-                            removeSaveId(tour.id);
-                          } else {
-                            addSaveId(tour.id);
-                          }
-                        } catch (error) {
-                          console.log(error);
+                </View>
+
+                <View style={styles.buttonWrapper}>
+                  <Image
+                    style={styles.icBtn}
+                    source={require('../../assets/images/icFaveShareDefault.png')}
+                  />
+
+                  <TouchableOpacity
+                    style={styles.icBtn}
+                    onPress={async e => {
+                      try {
+                        if (savedIds.some(savedId => savedId === tour.id)) {
+                          removeSaveId(tour.id);
+                        } else {
+                          addSaveId(tour.id);
                         }
-                      }}>
-                      <Image
-                        source={
-                          savedIds.some(savedId => savedId === tour.id)
-                            ? require('../../assets/images/icFaveCircleActive.png')
-                            : require('../../assets/images/icFaveCircleDefault.png')
-                        }
-                      />
-                    </TouchableOpacity>
-                  </View>
+                      } catch (error) {
+                        console.log(error);
+                      }
+                    }}>
+                    <Image
+                      source={
+                        savedIds.some(savedId => savedId === tour.id)
+                          ? require('../../assets/images/icFaveCircleActive.png')
+                          : require('../../assets/images/icFaveCircleDefault.png')
+                      }
+                    />
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
+          </View>
 
-            <View style={styles.eventScreenInfo}>
-              <View style={styles.eventDetails}>
-                <View style={styles.difficultyFilter}>
-                  <Text style={styles.infoText}>Difficulty</Text>
-                  <View style={styles.filterSectionImages}>
-                    <Image
-                      style={styles.eventTextFields}
-                      source={require('../../assets/images/icFilterDifficulty.png')}
-                    />
-                    <Text style={styles.tourDiffucultyTitle}>
-                      {tour.difficulty}
-                    </Text>
-                  </View>
-                </View>
+          <View style={styles.eventScreenInfo}>
+            <View style={{...styles.flexRow, ...styles.infoDetails}}>
+              <TextWithIcon
+                label="Difficulty"
+                iconSource={require('../../assets/images/icFilterDifficulty.png')}
+                text={tour.difficulty}
+                style={{...styles.cols2, ...styles.firstColumn}}
+              />
 
-                <View style={styles.languageSection}>
-                  <Text style={styles.infoText}>Duration</Text>
-                  <View style={styles.languageInputField}>
-                    <Image
-                      style={styles.eventTextFields}
-                      source={require('../../assets/images/icFilterDuration.png')}
-                    />
-                    <Text style={styles.languageTitle}>
-                      {tour.duration} hours
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.eventDetails}>
-                <View style={styles.difficultyFilter}>
-                  <Text style={styles.infoText}>Distance</Text>
-                  <View style={styles.filterSectionImages}>
-                    <Image
-                      style={styles.eventTextFields}
-                      source={require('../../assets/images/icFilterDistance.png')}
-                    />
-                    <Text style={styles.tourDiffucultyTitle}>
-                      {tour.distance}
-                    </Text>
-                  </View>
-                </View>
+              <TextWithIcon
+                label="Duration"
+                iconSource={require('../../assets/images/icFilterDuration.png')}
+                text={`${tour.duration} hours`}
+                style={{...styles.cols2}}
+              />
+            </View>
 
-                <View style={styles.languageSection}>
-                  <Text style={styles.infoText}>Pet Friendly</Text>
-                  <View style={styles.languageInputField}>
+            <View style={{...styles.flexRow, ...styles.infoDetails}}>
+              <TextWithIcon
+                label="Distance"
+                iconSource={require('../../assets/images/icFilterDistance.png')}
+                text={tour.distance}
+                style={{...styles.cols2, ...styles.firstColumn}}
+              />
+
+              <TextWithIcon
+                label="Pet Friendly"
+                iconSource={require('../../assets/images/icFilterPetFriendly.png')}
+                text={tour.petFriendly ? 'Yes' : 'No'}
+                style={{...styles.cols2}}
+              />
+            </View>
+
+            {tour.audio ? (
+              <>
+                <Text style={styles.audioLabel}>Audio</Text>
+                <View style={styles.audioWrapper}>
+                  <View style={styles.audioTextWrapper}>
                     <Image
-                      style={styles.eventTextFields}
-                      source={require('../../assets/images/icFilterPetFriendly.png')}
+                      styles={styles.audioIcon}
+                      source={require('../../assets/images/icFilterAudio.png')}
+                      resizeMode="contain"
                     />
-                    <Text style={styles.languageTitle}>
-                      {tour.petFriendly ? 'Yes' : 'No'}
+                    <Text style={styles.audioText}>
+                      {tour.audio.markers.length} Points
                     </Text>
                   </View>
-                </View>
-              </View>
-              {/*  */}
-              <Text style={styles.infoText}>Audio</Text>
-              <View style={styles.inputFieldStyles}>
-                <Image
-                  style={styles.eventTextFields}
-                  source={require('../../assets/images/icFilterAudio.png')}
-                />
-                <Text style={styles.audioInfo}>
-                  {tour.audio && tour.audio.markers.length > 1
-                    ? `${tour.audio.markers.length} Points`
-                    : 'No Audio'}
-                </Text>
-                <TouchableOpacity>
-                  <Text style={styles.downloadAudio}>
-                    {tour.audio && tour.audio.markers.length > 1
-                      ? 'Download'
-                      : ''}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    if (tour.audio) {
-                      return navigation.push('StoryTrail', {
+
+                  <TouchableOpacity>
+                    <Text
+                      style={{
+                        ...styles.audioText,
+                        ...styles.audioLinkText,
+                      }}>
+                      Download
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.push('StoryTrail', {
                         data: tour,
                       });
-                    }
-                  }}>
-                  <Text style={styles.playAudio}>
-                    {tour.audio && tour.audio.markers.length > 1 ? 'Play' : ''}
-                  </Text>
-                </TouchableOpacity>
-              </View>
+                    }}>
+                    <Text
+                      style={{
+                        ...styles.audioText,
+                        ...styles.audioLinkText,
+                      }}>
+                      Play
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            ) : (
+              <TextWithIcon
+                label="Audio"
+                iconSource={require('../../assets/images/icFilterAudio.png')}
+                text="No Audio"
+              />
+            )}
 
-              <View>
-                <Text style={styles.eventInfoTitle}>About the Trails:</Text>
+            <Text style={styles.eventInfoTitle}>About the Trails:</Text>
+            <Text style={styles.eventInfoDescription}>{tour.description}</Text>
 
-                <Text style={styles.eventInfoDescription}>
-                  {tour.description}
-                </Text>
-              </View>
-              <View style={styles.eventMapContainer}>
-                <MapView
-                  style={styles.eventMap}
-                  mapType="satellite"
-                  region={{
-                    latitude: 50.922148,
-                    longitude: -119.643196,
-                    latitudeDelta: 0.02,
-                    longitudeDelta: 0.0121,
-                  }}>
-                  {tour.audio &&
-                    tour.audio.markers.map(each => (
-                      <Marker
-                        key={each.id}
-                        coordinate={{
-                          latitude: each.latitude,
-                          longitude: each.longitude,
-                        }}
-                        title={each.title}
-                        description={each.description}
-                      />
-                    ))}
-                </MapView>
-
-                <Text style={styles.eventViewMap}>View Map</Text>
-              </View>
-
-              <View>
-                <Text style={styles.eventReviewsTitle}>Reviews:</Text>
-              </View>
-              <ButtonDefault title="Show More Reviews" />
+            <View style={styles.eventMapContainer}>
+              <MapView
+                style={styles.eventMap}
+                mapType="satellite"
+                scrollEnabled={false}
+                region={{
+                  latitude: 50.922148,
+                  longitude: -119.643196,
+                  latitudeDelta: 0.02,
+                  longitudeDelta: 0.0121,
+                }}>
+                {tour.audio &&
+                  tour.audio.markers.map(each => (
+                    <Marker
+                      key={each.id}
+                      coordinate={{
+                        latitude: parseFloat(each.latitude),
+                        longitude: parseFloat(each.longitude),
+                      }}
+                      title={each.title}
+                      description={each.description}
+                    />
+                  ))}
+              </MapView>
+              <Text style={styles.eventViewMap}>View Map</Text>
             </View>
-          </ScrollView>
-        )}
-      </SaveEventContext.Consumer>
-    </SafeAreaView>
+
+            <View style={styles.reviewWrapper}>
+              <Text style={styles.eventInfoTitle}>Reviews:</Text>
+
+              {tour.reviews && tour.reviews.length > 0 ? (
+                tour.reviews
+                  .sort((a, b) => {
+                    const dateA = new Date(a.date);
+                    const dateB = new Date(b.date);
+                    return dateB - dateA;
+                  })
+                  .map(review => <Reviews key={review.id} data={review} />)
+              ) : (
+                <Text style={styles.eventInfoDescription}>
+                  There is no reviews yet
+                </Text>
+              )}
+            </View>
+
+            <ButtonDefault title="Write a review" isActive={false} />
+          </View>
+        </ScrollView>
+      )}
+    </SaveEventContext.Consumer>
   );
 };
 

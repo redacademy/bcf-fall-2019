@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Text, Animated, View, ScrollView, Image, Button} from 'react-native';
+import {ScrollView} from 'react-navigation';
+import {Text, Animated, View, Image} from 'react-native';
 import TitleText from '../../components/TitleText';
 import TitleForm from '../../components/TitleForm';
 import ProfileMenu from '../../components/ProfileMenu';

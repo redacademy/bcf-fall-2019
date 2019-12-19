@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import SingleSelfGuided from './SingleSelfGuided';
 import PropTypes from 'prop-types';
-import {Query} from 'react-apollo';
-import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
-import Loader from '../../components/Loader';
-import {Text, TouchableOpacity, Image} from 'react-native';
+import {TouchableOpacity, Image, StatusBar} from 'react-native';
+import {THEME} from '../../config';
 import styles from './styles';
 
 class SingleSelfGuidedContainer extends Component {
@@ -16,7 +14,20 @@ class SingleSelfGuidedContainer extends Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'SingleSelfGuided',
+      title: 'Self-guided Tour',
+
+      headerStyle: {
+        backgroundColor: THEME.colors.white,
+      },
+
+      headerTitleStyle: {
+        color: THEME.colors.astronautBlue,
+      },
+
+      headerBackground: () => {
+        return <StatusBar barStyle="dark-content" />;
+      },
+
       headerLeft: () => {
         return (
           <TouchableOpacity
@@ -24,33 +35,33 @@ class SingleSelfGuidedContainer extends Component {
             onPress={() => {
               navigation.goBack();
             }}>
-            <Image source={require('../../assets/images/icArrLeftWhite.png')} />
+            <Image
+              source={require('../../assets/images/icArrLeftDefault.png')}
+            />
           </TouchableOpacity>
         );
       },
+
+      headerRight: () => (
+        <TouchableOpacity
+          style={styles.icMenu}
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}>
+          <Image
+            source={require('../../assets/images/icMenuDefault.png')}
+            name="burger-menu"
+          />
+        </TouchableOpacity>
+      ),
     };
   };
 
   render() {
-    return (
-      <Query query={QUERY_SELFGUIDED_TOUR}>
-        {({loading, error, data}) => {
-          if (loading) return <Loader />;
-          if (error) return <Text>{error.message}</Text>;
-          if (data) {
-            const singleTour = data.selfGuidedTours.filter(
-              a => a.id === this.props.navigation.state.params.itemId,
-            );
-            return (
-              <SingleSelfGuided
-                navigation={this.props.navigation}
-                tour={singleTour[0]}
-              />
-            );
-          }
-        }}
-      </Query>
-    );
+    const {navigation} = this.props;
+    const data = navigation.getParam('data');
+
+    return <SingleSelfGuided navigation={this.props.navigation} tour={data} />;
   }
 }
 export default SingleSelfGuidedContainer;

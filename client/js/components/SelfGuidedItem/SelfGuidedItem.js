@@ -16,7 +16,7 @@ const SelfGuidedItem = ({selfGuidedItem, navigation}) => (
         onPress={() => {
           if (selfGuidedItem) {
             return navigation.push('SingleSelfGuided', {
-              itemId: selfGuidedItem.id,
+              data: selfGuidedItem,
             });
           }
         }}
