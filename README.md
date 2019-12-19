@@ -1,6 +1,6 @@
 # BC Parks Foundation Mobile App
 
-![Title Page](_snapshots/bcf-homescreen.png)
+![Title Page](https://media.giphy.com/media/jPB1kTQGMMdCkn4fdu/giphy.gif)
 
 ## Description
 
