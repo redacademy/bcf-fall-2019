@@ -7,6 +7,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native';
 import {VibrancyView} from '@react-native-community/blur';
 import {THEME} from '../../config';
@@ -190,151 +191,168 @@ const SelfGuidedTour = ({
         <VibrancyView blurType="dark" blurAmount={2} style={styles.header} />
       </Animated.View>
 
-      <View style={sortDisplayOn ? styles.sortOn : styles.sortOff}>
-        <View style={styles.topPart}></View>
-        <View style={styles.bottomPart}>
-          <View style={styles.sortHeader}>
-            <TouchableOpacity
-              onPress={() => {
-                resetValues();
-              }}>
-              <Text style={styles.resetDoneSort}>Reset</Text>
-            </TouchableOpacity>
-            <Text style={styles.sortTitle}>Sort by</Text>
-            <TouchableOpacity
-              onPress={() => {
-                toggleSortDisplay();
-              }}>
-              <Text style={styles.resetDoneSort}>Done</Text>
-            </TouchableOpacity>
+      {sortDisplayOn && (
+        <TouchableOpacity
+          style={styles.sortOn}
+          activeOpacity={1}
+          onPress={() => {
+            toggleSortDisplay();
+          }}>
+          <View style={styles.bottomPart}>
+            {/*  */}
+            <View style={styles.sortHeader}>
+              <TouchableOpacity
+                onPress={() => {
+                  resetValues();
+                }}>
+                <Text style={styles.resetDoneSort}>Reset</Text>
+              </TouchableOpacity>
+              <Text style={styles.sortTitle}>Sort by</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  toggleSortDisplay();
+                }}>
+                <Text style={styles.resetDoneSort}>Done</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.separator} />
+
+            <View style={styles.radioContainer}>
+              <Text style={styles.subTitle}>Activity Level:</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setSortType('easy');
+                }}
+                style={styles.flexRow}>
+                <Image
+                  style={
+                    sortType === 'easy'
+                      ? styles.buttonIcon
+                      : styles.buttonIconON
+                  }
+                  source={
+                    sortType === 'easy'
+                      ? require('../../assets/images/icRadioSelected.png')
+                      : require('../../assets/images/icRadioDefault.png')
+                  }
+                />
+                <Text style={styles.singleSelection}>Easy to Difficult</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setSortType('difficult');
+                }}
+                style={styles.flexRow}>
+                <Image
+                  style={
+                    sortType === 'difficult'
+                      ? styles.buttonIcon
+                      : styles.buttonIconON
+                  }
+                  source={
+                    sortType === 'difficult'
+                      ? require('../../assets/images/icRadioSelected.png')
+                      : require('../../assets/images/icRadioDefault.png')
+                  }
+                />
+                <Text style={styles.singleSelection}>Difficult to Easy</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.radioContainer}>
+              <Text style={styles.subTitle}>Duration:</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setSortType('short');
+                }}
+                style={styles.flexRow}>
+                <Image
+                  style={
+                    sortType === 'short'
+                      ? styles.buttonIcon
+                      : styles.buttonIconON
+                  }
+                  source={
+                    sortType === 'short'
+                      ? require('../../assets/images/icRadioSelected.png')
+                      : require('../../assets/images/icRadioDefault.png')
+                  }
+                />
+                <Text style={styles.singleSelection}>Short to Long</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setSortType('long');
+                }}
+                style={styles.flexRow}>
+                <Image
+                  style={
+                    sortType === 'long'
+                      ? styles.buttonIcon
+                      : styles.buttonIconON
+                  }
+                  source={
+                    sortType === 'long'
+                      ? require('../../assets/images/icRadioSelected.png')
+                      : require('../../assets/images/icRadioDefault.png')
+                  }
+                />
+                <Text style={styles.singleSelection}>Long to Short</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.separatorTwo} />
+
+            <View style={styles.checkBoxContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  toggleNear();
+                }}
+                style={styles.flexRow}>
+                <Image
+                  style={near ? styles.buttonIcon : styles.buttonIconON}
+                  source={
+                    near
+                      ? require('../../assets/images/icCheckboxSelected.png')
+                      : require('../../assets/images/icCheckboxDefault.png')
+                  }
+                />
+                <Text style={styles.singleSelection}>Near to you</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  toggleReviews();
+                }}
+                style={styles.flexRow}>
+                <Image
+                  style={reviews ? styles.buttonIcon : styles.buttonIconON}
+                  source={
+                    reviews
+                      ? require('../../assets/images/icCheckboxSelected.png')
+                      : require('../../assets/images/icCheckboxDefault.png')
+                  }
+                />
+                <Text style={styles.singleSelection}>Reviews</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  togglePet();
+                }}
+                style={styles.flexRow}>
+                <Image
+                  style={pet ? styles.buttonIcon : styles.buttonIconON}
+                  source={
+                    pet
+                      ? require('../../assets/images/icCheckboxSelected.png')
+                      : require('../../assets/images/icCheckboxDefault.png')
+                  }
+                />
+                <Text style={styles.singleSelection}>Pet Friendly</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.separator} />
-          <View style={styles.radioContainer}>
-            <Text style={styles.subTitle}>Activity Level:</Text>
-            <TouchableOpacity
-              onPress={() => {
-                setSortType('easy');
-              }}
-              style={styles.flexRow}>
-              <Image
-                style={
-                  sortType === 'easy' ? styles.buttonIcon : styles.buttonIconON
-                }
-                source={
-                  sortType === 'easy'
-                    ? require('../../assets/images/icRadioSelected.png')
-                    : require('../../assets/images/icRadioDefault.png')
-                }
-              />
-              <Text style={styles.singleSelection}>Easy to Difficult</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setSortType('difficult');
-              }}
-              style={styles.flexRow}>
-              <Image
-                style={
-                  sortType === 'difficult'
-                    ? styles.buttonIcon
-                    : styles.buttonIconON
-                }
-                source={
-                  sortType === 'difficult'
-                    ? require('../../assets/images/icRadioSelected.png')
-                    : require('../../assets/images/icRadioDefault.png')
-                }
-              />
-              <Text style={styles.singleSelection}>Difficult to Easy</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.radioContainer}>
-            <Text style={styles.subTitle}>Duration:</Text>
-            <TouchableOpacity
-              onPress={() => {
-                setSortType('short');
-              }}
-              style={styles.flexRow}>
-              <Image
-                style={
-                  sortType === 'short' ? styles.buttonIcon : styles.buttonIconON
-                }
-                source={
-                  sortType === 'short'
-                    ? require('../../assets/images/icRadioSelected.png')
-                    : require('../../assets/images/icRadioDefault.png')
-                }
-              />
-              <Text style={styles.singleSelection}>Short to Long</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setSortType('long');
-              }}
-              style={styles.flexRow}>
-              <Image
-                style={
-                  sortType === 'long' ? styles.buttonIcon : styles.buttonIconON
-                }
-                source={
-                  sortType === 'long'
-                    ? require('../../assets/images/icRadioSelected.png')
-                    : require('../../assets/images/icRadioDefault.png')
-                }
-              />
-              <Text style={styles.singleSelection}>Long to Short</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.separatorTwo} />
-          <View>
-            <TouchableOpacity
-              onPress={() => {
-                toggleNear();
-              }}
-              style={styles.flexRow}>
-              <Image
-                style={near ? styles.buttonIcon : styles.buttonIconON}
-                source={
-                  near
-                    ? require('../../assets/images/icCheckboxSelected.png')
-                    : require('../../assets/images/icCheckboxDefault.png')
-                }
-              />
-              <Text style={styles.singleSelection}>Near to you</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                toggleReviews();
-              }}
-              style={styles.flexRow}>
-              <Image
-                style={reviews ? styles.buttonIcon : styles.buttonIconON}
-                source={
-                  reviews
-                    ? require('../../assets/images/icCheckboxSelected.png')
-                    : require('../../assets/images/icCheckboxDefault.png')
-                }
-              />
-              <Text style={styles.singleSelection}>Reviews</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                togglePet();
-              }}
-              style={styles.flexRow}>
-              <Image
-                style={pet ? styles.buttonIcon : styles.buttonIconON}
-                source={
-                  pet
-                    ? require('../../assets/images/icCheckboxSelected.png')
-                    : require('../../assets/images/icCheckboxDefault.png')
-                }
-              />
-              <Text style={styles.singleSelection}>Pet Friendly</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
+        </TouchableOpacity>
+      )}
     </>
   );
 };
