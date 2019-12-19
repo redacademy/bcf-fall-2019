@@ -9,7 +9,7 @@ The App to connect people to Outdoor hosted events or selfguided tours, where is
 
 ---
 
-## Some Screenshots the App:
+## Some Features:
 
 ### Login
 
