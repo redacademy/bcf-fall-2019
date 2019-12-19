@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import SelfGuidedTour from './SelfGuidedTour';
-import {TouchableOpacity, Image} from 'react-native';
+import {TouchableOpacity, Image, StatusBar} from 'react-native';
+import {withCollapsible} from 'react-navigation-collapsible';
 import {getViewer} from '../../config/models';
+import {THEME} from '../../config';
 import PropTypes from 'prop-types';
 
 class SelfGuidedTourContainer extends Component {
@@ -17,12 +19,36 @@ class SelfGuidedTourContainer extends Component {
       petFriendly: false,
       sortDisplayOn: false,
       viewerLocation: null,
+
+      headerHeight: 88,
     };
   }
 
   static navigationOptions = ({navigation}) => {
+    const themeColor = navigation.getParam('themeColor') || 'light';
+
     return {
-      title: 'SelfGuidedTour',
+      title: 'Self Guided Tour',
+
+      headerTitleStyle: {
+        color:
+          themeColor === 'light'
+            ? THEME.colors.astronautBlue
+            : THEME.colors.white,
+      },
+      headerTransparent: true,
+      headerStyle: {
+        backgroundColor: 'transparent',
+      },
+
+      headerBackground: () => {
+        return (
+          <StatusBar
+            barStyle={themeColor === 'light' ? 'dark-content' : 'light-content'}
+          />
+        );
+      },
+
       headerLeft: () => {
         return (
           <TouchableOpacity
@@ -30,10 +56,32 @@ class SelfGuidedTourContainer extends Component {
             onPress={() => {
               navigation.goBack();
             }}>
-            <Image source={require('../../assets/images/icArrLeftWhite.png')} />
+            <Image
+              source={
+                themeColor === 'light'
+                  ? require('../../assets/images/icArrLeftDefault.png')
+                  : require('../../assets/images/icArrLeftWhite.png')
+              }
+            />
           </TouchableOpacity>
         );
       },
+      headerRight: () => (
+        <TouchableOpacity
+          style={{marginRight: 12}}
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}>
+          <Image
+            source={
+              themeColor === 'light'
+                ? require('../../assets/images/icMenuDefault.png')
+                : require('../../assets/images/icMenuWhite.png')
+            }
+            name="burger-menu"
+          />
+        </TouchableOpacity>
+      ),
     };
   };
 
@@ -138,8 +186,16 @@ class SelfGuidedTourContainer extends Component {
     return filteredTours;
   };
 
+  onSwitchTheme = (Bool = true) => {
+    setTimeout(() => {
+      this.props.navigation.setParams({
+        themeColor: Bool ? 'light' : 'dark',
+      });
+    }, 250);
+  };
+
   render() {
-    const {navigation} = this.props;
+    const {navigation, collapsible} = this.props;
 
     const {userInfo, selfGuidedToursInfo} = navigation.getParam('data');
 
@@ -167,12 +223,17 @@ class SelfGuidedTourContainer extends Component {
         navigation={navigation}
         selfguidedtours={tours}
         resetValues={this.resetValues}
+        collapsible={collapsible}
+        headerHeight={this.state.headerHeight}
+        onSwitchTheme={this.onSwitchTheme}
       />
     );
   }
 }
 
-export default SelfGuidedTourContainer;
+export default withCollapsible(SelfGuidedTourContainer, {
+  iOSCollapsedColor: 'transparent',
+});
 
 SelfGuidedTourContainer.propTypes = {
   navigation: PropTypes.object.isRequired,

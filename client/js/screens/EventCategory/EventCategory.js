@@ -204,8 +204,8 @@ export default EventCategory;
 
 EventCategory.propTypes = {
   eventInfo: PropTypes.array,
-  collapsible: PropTypes.object,
   navigation: PropTypes.object.isRequired,
+  collapsible: PropTypes.object,
   onSwitchTheme: PropTypes.func,
   headerHeight: PropTypes.number,
 };

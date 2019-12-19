@@ -2,6 +2,15 @@ import {StyleSheet} from 'react-native';
 import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
+  dynamicHeader: {
+    position: 'absolute',
+    width: '100%',
+  },
+  header: {
+    width: '100%',
+    height: '100%',
+  },
+
   buttonsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',

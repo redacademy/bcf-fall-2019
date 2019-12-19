@@ -1,17 +1,20 @@
 import React, {useState} from 'react';
-import SafeAreaView from 'react-native-safe-area-view';
+
 import {
+  Animated,
   ScrollView,
   Image,
   View,
   Text,
   TouchableOpacity,
-  Button,
 } from 'react-native';
+import {VibrancyView} from '@react-native-community/blur';
 import {THEME} from '../../config';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import SelfGuidedItem from '../../components/SelfGuidedItem';
+
+const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
 const SelfGuidedTour = ({
   navigation,
@@ -29,10 +32,58 @@ const SelfGuidedTour = ({
   toggleReviews,
   setSortType,
   resetValues,
+  collapsible,
+  headerHeight,
+  onSwitchTheme,
 }) => {
+  const {paddingHeight, animatedY} = collapsible;
+
+  const _headerHeight = collapsible.paddingHeight
+    ? collapsible.paddingHeight
+    : headerHeight;
+  const [isAnimated, setAnimated] = useState(false);
+  const [headerAnimation, setHeaderAnimation] = useState(
+    new Animated.ValueXY({x: 0, y: -_headerHeight}),
+  );
+
+  const onScroll = e => {
+    const offset = e.nativeEvent.contentOffset;
+    if (offset.y > _headerHeight && !isAnimated) {
+      setAnimated(true);
+      animateHeader();
+      onSwitchTheme(isAnimated);
+    } else if (offset.y <= _headerHeight && isAnimated) {
+      setAnimated(false);
+      animateHeader();
+      onSwitchTheme(isAnimated);
+    }
+  };
+
+  const animateHeader = () => {
+    Animated.timing(headerAnimation, {
+      duration: 500,
+      toValue: isAnimated ? {x: 0, y: -_headerHeight} : {x: 1, y: 0},
+    }).start();
+  };
+
   return (
     <>
-      <ScrollView>
+      {!paddingHeight && <View style={{height: _headerHeight}} />}
+      <AnimatedScrollView
+        scrollEventThrottle={32}
+        onScroll={Animated.event([{nativeEvent: {contentOffset: {y: 0}}}], {
+          useNativeDriver: true,
+          listener: onScroll,
+        })}
+        _mustAddThis={animatedY}
+        contentContainerStyle={{
+          paddingTop: paddingHeight,
+          paddingBottom: THEME.spacing.default(3),
+        }}
+        scrollIndicatorInsets={{
+          top: paddingHeight / 2,
+          bottom: THEME.spacing.default(0.5),
+        }}>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
             onPress={() => {
@@ -127,7 +178,17 @@ const SelfGuidedTour = ({
               />
             );
           })}
-      </ScrollView>
+      </AnimatedScrollView>
+
+      <Animated.View
+        style={{
+          ...styles.dynamicHeader,
+          opacity: headerAnimation.x,
+          top: headerAnimation.y,
+          height: paddingHeight || _headerHeight,
+        }}>
+        <VibrancyView blurType="dark" blurAmount={2} style={styles.header} />
+      </Animated.View>
 
       <View style={sortDisplayOn ? styles.sortOn : styles.sortOff}>
         <View style={styles.topPart}></View>
@@ -282,4 +343,7 @@ export default SelfGuidedTour;
 
 SelfGuidedTour.propTypes = {
   navigation: PropTypes.object.isRequired,
+  collapsible: PropTypes.object,
+  onSwitchTheme: PropTypes.func,
+  headerHeight: PropTypes.number,
 };
