@@ -44,7 +44,7 @@ class SingleSelfGuidedContainer extends Component {
 
       headerRight: () => (
         <TouchableOpacity
-          style={{marginRight: 12}}
+          style={styles.icMenu}
           onPress={() => {
             navigation.toggleDrawer();
           }}>

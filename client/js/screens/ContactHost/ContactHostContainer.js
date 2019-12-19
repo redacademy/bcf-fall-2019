@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import ContactHost from './ContactHost';
-import PropTypes from 'prop-types';
-import {Text, TouchableOpacity, Image} from 'react-native';
+import {TouchableOpacity, StatusBar, Image} from 'react-native';
 import styles from './styles';
+import {THEME} from '../../config';
+import PropTypes from 'prop-types';
 
 class ContactHostContainer extends Component {
   constructor(props) {
@@ -13,7 +14,18 @@ class ContactHostContainer extends Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'ContactHost',
+      headerStyle: {
+        backgroundColor: THEME.colors.white,
+      },
+
+      headerTitleStyle: {
+        color: THEME.colors.astronautBlue,
+      },
+
+      headerBackground: () => {
+        return <StatusBar barStyle="dark-content" />;
+      },
+
       headerLeft: () => {
         return (
           <TouchableOpacity
@@ -21,10 +33,25 @@ class ContactHostContainer extends Component {
             onPress={() => {
               navigation.goBack();
             }}>
-            <Image source={require('../../assets/images/icArrLeftWhite.png')} />
+            <Image
+              source={require('../../assets/images/icArrLeftDefault.png')}
+            />
           </TouchableOpacity>
         );
       },
+
+      headerRight: () => (
+        <TouchableOpacity
+          style={styles.icMenu}
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}>
+          <Image
+            source={require('../../assets/images/icMenuDefault.png')}
+            name="burger-menu"
+          />
+        </TouchableOpacity>
+      ),
     };
   };
 
