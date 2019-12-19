@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import SelfGuidedTour from './SelfGuidedTour';
-import PropTypes from 'prop-types';
-import {Text, TouchableOpacity, Image} from 'react-native';
-import {Query} from 'react-apollo';
-import {QUERY_SELFGUIDED_TOUR} from '../../apollo/queries';
-import {QUERY_USER} from '../../apollo/queries';
-import Loader from '../../components/Loader';
+import {TouchableOpacity, Image, StatusBar} from 'react-native';
+import {withCollapsible} from 'react-navigation-collapsible';
 import {getViewer} from '../../config/models';
+import {THEME} from '../../config';
+import PropTypes from 'prop-types';
 
 class SelfGuidedTourContainer extends Component {
   constructor(props) {
@@ -21,12 +19,36 @@ class SelfGuidedTourContainer extends Component {
       petFriendly: false,
       sortDisplayOn: false,
       viewerLocation: null,
+
+      headerHeight: 88,
     };
   }
 
   static navigationOptions = ({navigation}) => {
+    const themeColor = navigation.getParam('themeColor') || 'light';
+
     return {
-      title: 'SelfGuidedTour',
+      title: 'Self-guided Tour',
+
+      headerTitleStyle: {
+        color:
+          themeColor === 'light'
+            ? THEME.colors.astronautBlue
+            : THEME.colors.white,
+      },
+      headerTransparent: true,
+      headerStyle: {
+        backgroundColor: 'transparent',
+      },
+
+      headerBackground: () => {
+        return (
+          <StatusBar
+            barStyle={themeColor === 'light' ? 'dark-content' : 'light-content'}
+          />
+        );
+      },
+
       headerLeft: () => {
         return (
           <TouchableOpacity
@@ -34,10 +56,32 @@ class SelfGuidedTourContainer extends Component {
             onPress={() => {
               navigation.goBack();
             }}>
-            <Image source={require('../../assets/images/icArrLeftWhite.png')} />
+            <Image
+              source={
+                themeColor === 'light'
+                  ? require('../../assets/images/icArrLeftDefault.png')
+                  : require('../../assets/images/icArrLeftWhite.png')
+              }
+            />
           </TouchableOpacity>
         );
       },
+      headerRight: () => (
+        <TouchableOpacity
+          style={{marginRight: 12}}
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}>
+          <Image
+            source={
+              themeColor === 'light'
+                ? require('../../assets/images/icMenuDefault.png')
+                : require('../../assets/images/icMenuWhite.png')
+            }
+            name="burger-menu"
+          />
+        </TouchableOpacity>
+      ),
     };
   };
 
@@ -142,59 +186,54 @@ class SelfGuidedTourContainer extends Component {
     return filteredTours;
   };
 
-  render() {
-    const {navigation} = this.props;
-    return (
-      this.state.user && (
-        <Query query={QUERY_USER} variables={{id: this.state.user.id}}>
-          {({loading, error, data}) => {
-            if (loading) return <Loader />;
-            if (error) return <Text>{error.message}</Text>;
-            if (data) {
-              const userLocation = data.user.location;
-              return (
-                <Query query={QUERY_SELFGUIDED_TOUR}>
-                  {({loading, error, data}) => {
-                    if (loading) return <Loader />;
-                    if (error) return <Text>{error.message}</Text>;
-                    if (data) {
-                      const tours = this.sortTours(
-                        this.filterTours(data.selfGuidedTours, userLocation),
-                        this.state.sortType,
-                      );
+  onSwitchTheme = (Bool = true) => {
+    setTimeout(() => {
+      this.props.navigation.setParams({
+        themeColor: Bool ? 'light' : 'dark',
+      });
+    }, 250);
+  };
 
-                      return (
-                        <SelfGuidedTour
-                          needAudio={this.state.audio}
-                          sortDisplayOn={this.state.sortDisplayOn}
-                          sortType={this.state.sortType}
-                          near={this.state.near}
-                          reviews={this.state.reviews}
-                          pet={this.state.petFriendly}
-                          toggleSortDisplay={this.toggleSortDisplay}
-                          toggleNeedAudio={this.toggleNeedAudio}
-                          toggleNear={this.toggleNear}
-                          togglePet={this.togglePet}
-                          toggleReviews={this.toggleReviews}
-                          setSortType={this.setSortType}
-                          navigation={navigation}
-                          selfguidedtours={tours}
-                          resetValues={this.resetValues}
-                        />
-                      );
-                    }
-                  }}
-                </Query>
-              );
-            }
-          }}
-        </Query>
-      )
+  render() {
+    const {navigation, collapsible} = this.props;
+
+    const {userInfo, selfGuidedToursInfo} = navigation.getParam('data');
+
+    const userLocation = userInfo.location;
+
+    const tours = this.sortTours(
+      this.filterTours(selfGuidedToursInfo, userLocation),
+      this.state.sortType,
+    );
+
+    return (
+      <SelfGuidedTour
+        needAudio={this.state.audio}
+        sortDisplayOn={this.state.sortDisplayOn}
+        sortType={this.state.sortType}
+        near={this.state.near}
+        reviews={this.state.reviews}
+        pet={this.state.petFriendly}
+        toggleSortDisplay={this.toggleSortDisplay}
+        toggleNeedAudio={this.toggleNeedAudio}
+        toggleNear={this.toggleNear}
+        togglePet={this.togglePet}
+        toggleReviews={this.toggleReviews}
+        setSortType={this.setSortType}
+        navigation={navigation}
+        selfguidedtours={tours}
+        resetValues={this.resetValues}
+        collapsible={collapsible}
+        headerHeight={this.state.headerHeight}
+        onSwitchTheme={this.onSwitchTheme}
+      />
     );
   }
 }
 
-export default SelfGuidedTourContainer;
+export default withCollapsible(SelfGuidedTourContainer, {
+  iOSCollapsedColor: 'transparent',
+});
 
 SelfGuidedTourContainer.propTypes = {
   navigation: PropTypes.object.isRequired,

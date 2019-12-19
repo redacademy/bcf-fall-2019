@@ -25,10 +25,9 @@ const Event = ({navigation, eventInfo, geoLocation}) => {
                   style={styles.eventImg}
                   source={{uri: eventInfo.image}}
                 />
-                {/*  */}
                 <View style={styles.overlay}>
                   <Text style={styles.eventName}>{eventInfo.title}</Text>
-                  {/*  */}
+
                   <View style={styles.flexRow}>
                     <View style={styles.rightRow}>
                       <Text style={styles.eventLocation}>

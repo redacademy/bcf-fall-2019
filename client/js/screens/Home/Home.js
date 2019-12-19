@@ -82,7 +82,13 @@ class Home extends Component {
   };
 
   render() {
-    const {navigation, collapsible, eventInfo} = this.props;
+    const {
+      navigation,
+      collapsible,
+      userInfo,
+      selfGuidedToursInfo,
+      eventInfo,
+    } = this.props;
     const {paddingHeight, animatedY} = collapsible;
 
     const cityImage = CITY_LIST.filter(
@@ -129,7 +135,12 @@ class Home extends Component {
             <TouchableOpacity
               style={styles.section}
               onPress={() => {
-                navigation.navigate('SelfGuidedTour');
+                navigation.navigate('SelfGuidedTour', {
+                  data: {
+                    userInfo,
+                    selfGuidedToursInfo,
+                  },
+                });
               }}>
               <ImageBackground
                 style={styles.wrapperSelfGuidedTour}
@@ -267,6 +278,7 @@ export default Home;
 Home.propTypes = {
   navigation: PropTypes.object.isRequired,
   userInfo: PropTypes.object,
+  selfGuidedToursInfo: PropTypes.array,
   eventInfo: PropTypes.object,
   collapsible: PropTypes.object,
   headerHeight: PropTypes.number,

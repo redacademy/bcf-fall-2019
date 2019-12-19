@@ -160,6 +160,7 @@ const SingleSelfGuided = ({navigation, tour}) => {
               <MapView
                 style={styles.eventMap}
                 mapType="satellite"
+                scrollEnabled={false}
                 region={{
                   latitude: 50.922148,
                   longitude: -119.643196,
