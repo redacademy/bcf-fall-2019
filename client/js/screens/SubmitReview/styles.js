@@ -3,6 +3,12 @@ import {StyleSheet, Dimensions} from 'react-native';
 const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  backButton: {
+    marginLeft: 12,
+  },
+  icMenu: {
+    marginRight: 12,
+  },
   eventImg: {
     width: '100%',
     height: width,

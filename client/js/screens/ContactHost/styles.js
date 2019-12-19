@@ -2,6 +2,12 @@ import {StyleSheet, Dimensions} from 'react-native';
 import {THEME} from '../../config';
 
 const styles = StyleSheet.create({
+  backButton: {
+    marginLeft: 12,
+  },
+  icMenu: {
+    marginRight: 12,
+  },
   container: {
     marginHorizontal: 24,
   },

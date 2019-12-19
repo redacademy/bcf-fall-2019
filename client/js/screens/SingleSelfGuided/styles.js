@@ -4,6 +4,12 @@ import {THEME} from '../../config';
 const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  backButton: {
+    marginLeft: 12,
+  },
+  icMenu: {
+    marginRight: 12,
+  },
   eventImg: {
     width: '100%',
     height: width,
@@ -265,9 +271,6 @@ const styles = StyleSheet.create({
   },
   audioInfo: {
     fontSize: 12,
-  },
-  backButton: {
-    marginLeft: 12,
   },
 });
 
