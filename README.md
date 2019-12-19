@@ -23,10 +23,6 @@ The App to connect people to Outdoor hosted events or selfguided tours, where is
 
 ![Single Event Screen](https://media.giphy.com/media/XfIgCtek8cg3vvqrdQ/giphy.gif)
 
-### Submit a Review
-
-![Submit Review Screen](https://media.giphy.com/media/VgwpZOxKsoRFAd8jsO/giphy.gif)
-
 ### Profile Screen
 
 ![Profile Screen](https://media.giphy.com/media/gkF56xi1GuALD6SNVY/giphy.gif)
