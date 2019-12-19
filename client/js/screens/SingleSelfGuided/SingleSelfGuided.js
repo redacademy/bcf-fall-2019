@@ -172,8 +172,8 @@ const SingleSelfGuided = ({navigation, tour}) => {
                     <Marker
                       key={each.id}
                       coordinate={{
-                        latitude: each.latitude,
-                        longitude: each.longitude,
+                        latitude: parseFloat(each.latitude),
+                        longitude: parseFloat(each.longitude),
                       }}
                       title={each.title}
                       description={each.description}
